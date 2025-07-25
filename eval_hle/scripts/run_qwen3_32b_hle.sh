@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=qwen3_8gpu
-#SBATCH --partition=P01
-#SBATCH --nodelist=osk-gpu51
+#SBATCH --partition=P06
+#SBATCH --nodelist=osk-gpu66
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=64
