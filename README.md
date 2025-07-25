@@ -19,10 +19,11 @@ LLM学習手順です。ファインチューニング，強化学習を含み�
 ## LLM評価手順
 
 LLM評価手順です。  
-Humanity's Last Exam（準備中）  
-Do Not Answer（準備中）   
+[Humanity's Last Exam](eval_hle/README.md)  
+[Do Not Answer](eval_dna/README.md)  
 
 ## Contributors
 
 ```
 ```
+
