@@ -113,33 +113,47 @@ python $HOME/llm_bridge_prod/train/scripts/upload_tokenizer_and_finetuned_model_
 
 ### ディレクトリ構成
 ```
-train/
-├── README*.md                    # 各ステップの詳細手順
-├── scripts/
-│   ├── data_preprocess/         # データ前処理スクリプト
-│   │   ├── hle.py              # HLE（Humanity's Last Exam）データ処理
-│   │   └── light_r1_sft.py     # SFT用データ処理
-│   ├── generation/             # モデル推論スクリプト
-│   ├── sft/                    # シングルノードSFT用スクリプト
-│   ├── mutinode_sft/           # マルチノードSFT用スクリプト
-│   ├── mutinode_ppo/           # マルチノードPPO用スクリプト
-│   └── upload_tokenizer_and_finetuned_model_to_huggingface_hub.py
+llm-bridge-sahara/
+├── train/                          # 学習パイプライン
+│   ├── README*.md                  # 各ステップの詳細手順
+│   └── scripts/
+│       ├── data_preprocess/        # データ前処理スクリプト
+│       │   ├── hle.py              # HLE（Humanity's Last Exam）データ処理
+│       │   └── light_r1_sft.py     # SFT用データ処理
+│       ├── generation/             # モデル推論スクリプト
+│       ├── sft/                    # シングルノードSFT用スクリプト
+│       ├── mutinode_sft/           # マルチノードSFT用スクリプト
+│       ├── mutinode_ppo/           # マルチノードPPO用スクリプト
+│       └── upload_tokenizer_and_finetuned_model_to_huggingface_hub.py
+├── eval_hle/                       # HLE ベンチマーク評価
+│   ├── hle_benchmark/              # 評価ロジック
+│   └── scripts/                    # 実行スクリプト
+└── eval_dna/                       # DNA 安全性評価
+    ├── do_not_answer/              # 評価フレームワーク
+    └── llm-compe-eval/             # コンペ専用評価
 ```
 
-### 学習フロー
+### 完全な開発・評価フロー
 1. **環境構築**: conda環境 + 専用ライブラリ（Verl、Apex等）
-2. **データ準備**: HuggingFace Hub からデータセット（GSM8K等）をダウンロード
+2. **データ準備**: HuggingFace Hub からデータセット（GSM8K、HLE、Light-R1等）をダウンロード
 3. **ファインチューニング**: FSDP（Fully Sharded Data Parallel）を使用したSFT
 4. **強化学習**: PPO（Proximal Policy Optimization）によるRLHF
 5. **モデル変換**: VerlチェックポイントからHuggingFace形式への変換
 6. **モデル公開**: Hugging Face Hubへのアップロード
+7. **ベンチマーク評価**: HLE（高度推論）+ DNA（安全性）評価の実行
 
 ### 重要な技術要素
+**学習関連:**
 - **FSDP**: 大規模モデルの分散学習
 - **Verl**: Volc Engine Reinforcement Learning ライブラリ
 - **Ray**: マルチノード分散実行フレームワーク
 - **Flash Attention 2**: 高速attention計算
 - **TransformerEngine**: NVIDIA最適化ライブラリ
+
+**評価関連:**
+- **vLLM**: 高性能推論エンジン（HLE評価用）
+- **OpenAI API**: 自動採点システム（o3-mini使用）
+- **Multi-API評価**: OpenAI、Gemini、Anthropicでのコスト比較
 
 ## 注意事項
 
@@ -151,9 +165,27 @@ train/
 
 ## 評価手順
 
-LLM評価は以下の2つのベンチマークで実施予定:
-- Humanity's Last Exam（準備中）
-- Do Not Answer（準備中）
+LLM評価は以下の2つのベンチマークで実施:
+
+### Humanity's Last Exam (HLE) 評価
+```bash
+# 評価環境のセットアップ
+module purge && module load cuda/12.6 miniconda/24.7.1-py312 cudnn/9.6.0 nccl/2.24.3
+conda activate llmbench
+
+# HLE評価の実行
+sbatch --export=HF_TOKEN="hf_.." --export=OPENAI_API_KEY="sk-.." ./eval_hle/scripts/run_qwen3_32b_hle.sh
+```
+
+### Do Not Answer (DNA) 安全性評価
+```bash
+# DNA評価の実行
+sbatch --export=HF_TOKEN="hf_.." --export=OPENAI_API_KEY="sk-.." ./eval_dna/scripts/run_qwen3_32b_dna.sh
+```
+
+### 評価結果の確認
+- **HLE結果**: `leaderboard/results.jsonl` および `leaderboard/summary.json`
+- **DNA結果**: `evaluation_results/results.jsonl` および `evaluation_results/summary.json`
 
 ## 開発ワークフロー
 
