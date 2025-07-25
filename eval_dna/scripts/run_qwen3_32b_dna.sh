@@ -10,7 +10,6 @@
 #SBATCH --error=/home/Competition2025/P06/shareP06/logs/%x-%j.err
 #SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>"
 #SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
-#SBATCH --export=HF_HOME="/home/Competition2025/P06/shareP06/cache"
 #--- モジュール & Conda --------------------------------------------
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
@@ -20,6 +19,7 @@ source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate llmbench
 
 # Hugging Face 認証
+export HF_HOME=${SLURM_TMPDIR:-$HOME}/.hf_cache
 export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
