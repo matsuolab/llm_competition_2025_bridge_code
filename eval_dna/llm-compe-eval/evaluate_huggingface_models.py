@@ -15,7 +15,7 @@ from pathlib import Path
 from tqdm import tqdm
 import transformers
 from transformers import AutoModelForCausalLM, AutoTokenizer
-import wandb
+# import wandb
 from typing import Dict, List, Optional, Tuple
 import re
 import asyncio
@@ -1059,6 +1059,7 @@ def main():
     
     # Log to Wandb if requested
     if args.log_wandb:
+        import wandb
         print("Logging results to Wandb...")
         log_to_wandb(
             evaluation_results, 
