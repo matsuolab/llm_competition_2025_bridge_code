@@ -30,6 +30,17 @@ pip install \
   vllm>=0.4.2 \
 ```
 
+## vllm serve が出来ないとき: undefined symbol: sqlite3_deserialize
+
+sqlite のバージョンが `< 3.36.0` であると:
+```
+conda list | grep sqlite
+>  libsqlite                 3.50.3               hee844dc_1    conda-forge
+>  sqlite                    3.32.3               hcee41ef_1    conda-forge
+```
+sqliteのバージョンをlibsqliteに揃える:
+`conda install sqlite=3.50.3 -c conda-forge`
+
 ## hle 推論用のslurmファイル
 以下を適宜、変更して実行して下さい。
 ```

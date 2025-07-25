@@ -33,7 +33,6 @@ pid_nvsmi=$!
 #--- vLLM 起動（8GPU）----------------------------------------------
 vllm serve Qwen/Qwen3-32B \
   --tensor-parallel-size 8 \
-  --enable-reasoning \
   --reasoning-parser qwen3 \
   --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
   --max-model-len 131072 \
