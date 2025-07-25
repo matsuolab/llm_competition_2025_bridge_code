@@ -27,7 +27,7 @@ echo "HF cache dir : $HF_HOME"                   # デバッグ用
 export EVAL_DIR="eval_dna"
 
 #--- GPU 監視 -------------------------------------------------------
-nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > nvidia-smi.log &
+nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/nvidia-smi.log &
 pid_nvsmi=$!
 
 #--- vLLM 起動（8GPU）----------------------------------------------
