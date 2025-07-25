@@ -25,9 +25,9 @@ srun --partition=P01 \
 conda install -c conda-forge --file requirements.txt
 pip install \
   --index-url https://download.pytorch.org/whl/cu126 \
+  --extra-index-url https://pypi.org/simple \
   torch==2.7.1+cu126 torchvision==0.22.1+cu126 torchaudio==2.7.1+cu126 \
   vllm>=0.4.2 \
-  --extra-index-url https://pypi.org/simple\
 ```
 
 ## hle 推論用のslurmファイル
