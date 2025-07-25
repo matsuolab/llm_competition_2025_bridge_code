@@ -25,6 +25,7 @@ export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"                   # デバッグ用
+export EVAL_DIR="eval_hle"
 
 #--- GPU 監視 -------------------------------------------------------
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > nvidia-smi.log &
@@ -48,10 +49,10 @@ done
 echo "vLLM READY"
 
 #--- 推論 -----------------------------------------------------------
-python predict.py > predict.log 2>&1
+python $EVAL_DIR/predict.py > predict.log 2>&1
 
 #--- 評価 -----------------------------------------------------------
-OPENAI_API_KEY=$OPENAI_API_KEY python judge.py
+OPENAI_API_KEY=$OPENAI_API_KEY python $EVAL_DIR/judge.py
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm
