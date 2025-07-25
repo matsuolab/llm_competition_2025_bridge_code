@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_hle_8gpu
+#SBATCH --job-name=qwen3_dna_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu66
 #SBATCH --nodes=1
@@ -20,12 +20,11 @@ source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate llmbench
 
 # Hugging Face 認証
-export HF_HOME="/home/Competition2025/P06/shareP06/cache"
 export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"                   # デバッグ用
-export EVAL_DIR="eval_hle"
+export EVAL_DIR="eval_dna"
 
 #--- GPU 監視 -------------------------------------------------------
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > nvidia-smi.log &
@@ -49,10 +48,13 @@ done
 echo "vLLM READY"
 
 #--- 推論 -----------------------------------------------------------
-python $EVAL_DIR/predict.py > predict.log 2>&1
-
-#--- 評価 -----------------------------------------------------------
-OPENAI_API_KEY=$OPENAI_API_KEY python $EVAL_DIR/judge.py
+python $EVAL_DIR/llm-compe-eval/evaluate_huggingface_models.py \
+    --model_name "Qwen/Qwen3-32B" \
+    --dataset_path datasets/Instruction/do_not_answer_en.csv \
+    --output_dir evaluation_results \
+    --use_vllm \
+    --max_questions 100 \
+    --vllm_base_url http://localhost:8000/v1 > predict.log 2>&1
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm
