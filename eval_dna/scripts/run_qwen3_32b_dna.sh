@@ -37,7 +37,7 @@ vllm serve Qwen/Qwen3-32B \
   --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
-  > vllm.log 2>&1 &
+  > $EVAL_DIR/vllm.log 2>&1 &
 pid_vllm=$!
 
 #--- ヘルスチェック -------------------------------------------------
@@ -48,13 +48,13 @@ done
 echo "vLLM READY"
 
 #--- 推論 -----------------------------------------------------------
-python $EVAL_DIR/llm-compe-eval/evaluate_huggingface_models.py \
+cd $EVAL_DIR && python llm-compe-eval/evaluate_huggingface_models.py \
     --model_name "Qwen/Qwen3-32B" \
     --dataset_path datasets/Instruction/do_not_answer_en.csv \
     --output_dir evaluation_results \
     --use_vllm \
     --max_questions 100 \
-    --vllm_base_url http://localhost:8000/v1 > $EVAL_DIR/predict.log 2>&1
+    --vllm_base_url http://localhost:8000/v1 > predict.log 2>&1
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm
