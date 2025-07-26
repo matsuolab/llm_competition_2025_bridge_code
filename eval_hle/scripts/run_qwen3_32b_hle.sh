@@ -6,8 +6,8 @@
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=64
 #SBATCH --time=04:00:00
-#SBATCH --output=/home/Competition2025/P06/shareP06/logs/%x-%j.out
-#SBATCH --error=/home/Competition2025/P06/shareP06/logs/%x-%j.err
+#SBATCH --output=eval_hle/logs/%x-%j.out
+#SBATCH --error=eval_hle/logs/%x-%j.err
 #SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>"
 #SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
 #--- モジュール & Conda --------------------------------------------
