@@ -53,7 +53,6 @@ cd $EVAL_DIR && python llm-compe-eval/evaluate_huggingface_models.py \
     --dataset_path datasets/Instruction/do_not_answer_en.csv \
     --output_dir evaluation_results \
     --use_vllm \
-    --max_questions 100 \
     --vllm_base_url http://localhost:8000/v1 > predict.log 2>&1
 
 #--- 後片付け -------------------------------------------------------
