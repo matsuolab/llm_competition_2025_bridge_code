@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=qwen3_06b_peft
 #SBATCH --partition=P06
-#SBATCH --nodelist=osk-gpu68
+#SBATCH --nodelist=osk-gpu68git
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=64
@@ -10,7 +10,6 @@
 #SBATCH --error=train/logs/%x-%j.err
 #SBATCH --export=CONDA_PATH=$HOME/conda
 #SBATCH --export=DATA_DIR=$HOME/data/open_math_reasoning
-#SBATCH --export=NPROC_PER_NODE=8
 #SBATCH --export=SAVE_DIR=$HOME/train/sft/open_math_reasoning/%x
 #SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
 #--- モジュール & Conda --------------------------------------------
@@ -45,7 +44,7 @@ export WANDB_RUN_NAME=$SLURM_JOBID
 # --standalone: 単一ノードでの実行
 # --nnodes=1: ノード数1
 # --nproc_per_node: ノードあたりのプロセス数（GPU数）
-cd train && torchrun --standalone --nnodes=1 --nproc_per_node=$NPROC_PER_NODE \
+cd train && torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     -m verl.trainer.fsdp_sft_trainer \
     data.train_files=$DATA_DIR/train.parquet \
     data.val_files=$DATA_DIR/test.parquet \
