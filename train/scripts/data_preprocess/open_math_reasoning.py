@@ -102,15 +102,20 @@ if __name__ == "__main__":
 
     data_source = "nvidia/OpenMathReasoning"
 
-    # 指定されたスプリットをロード
-    dataset = datasets.load_dataset(data_source)
-    
-    if args.split not in dataset:
-        print(f"エラー: スプリット '{args.split}' が見つかりません")
-        print(f"利用可能なスプリット: {list(dataset.keys())}")
+    # 指定されたスプリットのみをロード（高速化とメモリ節約）
+    try:
+        full_dataset = datasets.load_dataset(data_source, split=args.split)
+        print(f"データセット読み込み完了: {len(full_dataset)} サンプル (split: {args.split})")
+    except Exception as e:
+        print(f"エラー: スプリット '{args.split}' の読み込みに失敗しました")
+        print(f"エラー詳細: {e}")
+        # フォールバック: 全体をロードして利用可能なスプリットを表示
+        try:
+            dataset = datasets.load_dataset(data_source)
+            print(f"利用可能なスプリット: {list(dataset.keys())}")
+        except:
+            print("データセット情報の取得に失敗しました")
         exit(1)
-    
-    full_dataset = dataset[args.split]
 
     if args.program_source_to_exclude:
         to_exclude = args.program_source_to_exclude.split(',')
@@ -118,7 +123,8 @@ if __name__ == "__main__":
     else:
         filtered_dataset = full_dataset
 
-    print(f"データセット読み込み完了: {len(filtered_dataset)} サンプル (full: {len(full_dataset)} サンプル) (split: {args.split})")
+    if args.program_source_to_exclude:
+        print(f"フィルター後データセット: {len(filtered_dataset)} サンプル (フィルター前: {len(full_dataset)} サンプル)")
     print(f"最初のサンプル構造: {list(filtered_dataset[0].keys())}")
 
     def make_map_fn(split):
