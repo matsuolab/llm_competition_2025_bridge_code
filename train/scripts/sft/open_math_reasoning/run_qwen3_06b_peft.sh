@@ -1,0 +1,70 @@
+#!/bin/bash
+#SBATCH --job-name=qwen3_06b_peft
+#SBATCH --partition=P06
+#SBATCH --nodelist=osk-gpu66
+#SBATCH --nodes=1
+#SBATCH --gpus-per-node=8
+#SBATCH --cpus-per-task=64
+#SBATCH --time=04:00:00
+#SBATCH --output=train/logs/%x-%j.out
+#SBATCH --error=train/logs/%x-%j.err
+#SBATCH --export=CONDA_PATH=$HOME/conda
+#SBATCH --export=DATA_DIR=$HOME/data/open_math_reasoning
+#SBATCH --export=OUTPUT_DIR=$HOME/train/sft/open_math_reasoning/%x
+#SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>"
+#SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
+#--- モジュール & Conda --------------------------------------------
+module reset
+module load nccl/2.22.3
+module load hpcx/2.18.1-gcc-cuda12/hpcx-mt
+module load miniconda/24.7.1-py311
+source /home/appli/miniconda3/24.7.1-py311/etc/profile.d/conda.sh
+conda init
+conda config --set auto_activate_base false
+conda activate $CONDA_PATH
+
+huggingface-cli login --token $HF_TOKEN
+wandb login
+
+export NCCL_SOCKET_IFNAME=enp25s0np0
+export NVTE_FUSED_ATTN=0
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+ulimit -v unlimited
+
+export HF_HOME=${SLURM_TMPDIR:-$HOME}/.hf_cache
+export TRANSFORMERS_CACHE=$HF_HOME
+export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
+mkdir -p "$HF_HOME"
+echo "HF cache dir : $HF_HOME"                   # デバッグ用
+
+export WANDB_ENTITY="llm-2025-sahara"
+export WANDB_PROJECT_NAME=$SLURM_JOB_NAME
+export WANDB_RUN_NAME=$SLURM_JOBID
+
+# FSDP (Fully Sharded Data Parallel) を使用した分散訓練実行
+# --standalone: 単一ノードでの実行
+# --nnodes=1: ノード数1
+# --nproc_per_node: ノードあたりのプロセス数（GPU数）
+cd train && torchrun --standalone --nnodes=1 --nproc_per_node=$nproc_per_node \
+    -m verl.trainer.fsdp_sft_trainer \
+    data.train_files=$DATA_DIR/train.parquet \
+    data.val_files=$DATA_DIR/test.parquet \
+    data.prompt_key=extra_info \
+    data.response_key=extra_info \
+    data.prompt_dict_keys=['question'] \
+    +data.response_dict_keys=['answer'] \
+    optim.lr=1e-4 \
+    data.micro_batch_size_per_gpu=1 \
+    +trainer.accumulate_grad_batches=2 \
+    trainer.total_epochs=1 \
+    model.partial_pretrain=Qwen/Qwen3-0.6B \
+    model.lora_rank=32 \
+    model.lora_alpha=32 \
+    model.target_modules=all-linear \
+    data.max_length=20960 \
+    data.truncation=right \
+    trainer.default_local_dir=$OUTPUT_DIR \
+    trainer.project_name=$SLURM_JOB_NAME \
+    trainer.experiment_name=open_math_reasoning \
+    trainer.seed=42 \
+    trainer.logger=['console','wandb'] 2>&1 | tee verl_demo.log
