@@ -10,7 +10,8 @@
 #SBATCH --error=train/logs/%x-%j.err
 #SBATCH --export=CONDA_PATH=$HOME/conda
 #SBATCH --export=DATA_DIR=$HOME/data/open_math_reasoning
-#SBATCH --export=OUTPUT_DIR=$HOME/train/sft/open_math_reasoning/%x
+#SBATCH --export=NPROC_PER_NODE=8
+#SBATCH --export=SAVE_DIR=$HOME/train/sft/open_math_reasoning/%x
 #SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
 #--- モジュール & Conda --------------------------------------------
 module reset
@@ -44,7 +45,7 @@ export WANDB_RUN_NAME=$SLURM_JOBID
 # --standalone: 単一ノードでの実行
 # --nnodes=1: ノード数1
 # --nproc_per_node: ノードあたりのプロセス数（GPU数）
-cd train && torchrun --standalone --nnodes=1 --nproc_per_node=$nproc_per_node \
+cd train && torchrun --standalone --nnodes=1 --nproc_per_node=$NPROC_PER_NODE \
     -m verl.trainer.fsdp_sft_trainer \
     data.train_files=$DATA_DIR/train.parquet \
     data.val_files=$DATA_DIR/test.parquet \
@@ -62,7 +63,7 @@ cd train && torchrun --standalone --nnodes=1 --nproc_per_node=$nproc_per_node \
     model.target_modules=all-linear \
     data.max_length=20960 \
     data.truncation=right \
-    trainer.default_local_dir=$OUTPUT_DIR \
+    trainer.default_local_dir=$SAVE_DIR \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=open_math_reasoning \
     trainer.seed=42 \
