@@ -59,6 +59,7 @@ cd train && torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     model.lora_rank=32 \
     model.lora_alpha=32 \
     model.target_modules=all-linear \
+    model.fsdp_config.model_dtype=bf16 \
     data.max_length=20960 \
     data.truncation=right \
     trainer.default_local_dir=$HOME/training/sft/open_math_reasoning/$SLURM_JOB_NAME \
