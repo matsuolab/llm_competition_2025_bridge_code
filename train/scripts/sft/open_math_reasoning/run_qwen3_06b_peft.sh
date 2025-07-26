@@ -61,7 +61,7 @@ cd train && torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     model.fsdp_config.model_dtype=bf16 \
     data.max_length=20960 \
     data.truncation=right \
-    trainer.default_local_dir=$HOME/train/sft/open_math_reasoning/$SLURM_JOB_NAME \
+    trainer.default_local_dir=$HOME/training/sft/open_math_reasoning/$SLURM_JOB_NAME \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=open_math_reasoning \
     trainer.seed=42 \
