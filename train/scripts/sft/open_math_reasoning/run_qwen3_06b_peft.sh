@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=qwen3_06b_peft
 #SBATCH --partition=P06
-#SBATCH --nodelist=osk-gpu68git
+#SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=64
