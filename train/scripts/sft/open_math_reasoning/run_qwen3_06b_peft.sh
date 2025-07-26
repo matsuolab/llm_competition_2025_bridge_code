@@ -51,7 +51,8 @@ cd train && torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.prompt_dict_keys=['question'] \
     +data.response_dict_keys=['answer'] \
     optim.lr=1e-4 \
-    data.micro_batch_size_per_gpu=2 \
+    data.micro_batch_size_per_gpu=1 \
+    +trainer.accumulate_grad_batches=2 \
     +trainer.total_training_steps=278 \
     trainer.total_epochs=null \
     model.partial_pretrain=Qwen/Qwen3-0.6B \
@@ -65,4 +66,4 @@ cd train && torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=open_math_reasoning \
     trainer.seed=42 \
-    trainer.logger=['console','wandb'] 2>&1 | tee verl_demo.log
+    trainer.logger=['console','wandb'] 2>&1
