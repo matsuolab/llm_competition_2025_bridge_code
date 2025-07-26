@@ -53,12 +53,13 @@ cd train && torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     optim.lr=1e-4 \
     data.micro_batch_size_per_gpu=1 \
     +trainer.accumulate_grad_batches=2 \
-    +trainer.total_training_steps=278 \
     trainer.total_epochs=1 \
+    +trainer.total_training_steps=5 \
     model.partial_pretrain=Qwen/Qwen3-0.6B \
     model.lora_rank=32 \
     model.lora_alpha=32 \
     model.target_modules=all-linear \
+    model.enable_gradient_checkpointing=False \
     data.max_length=20960 \
     data.truncation=right \
     trainer.default_local_dir=$HOME/training/sft/open_math_reasoning/$SLURM_JOB_NAME \
