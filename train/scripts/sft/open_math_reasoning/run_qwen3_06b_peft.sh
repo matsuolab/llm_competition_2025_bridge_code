@@ -42,7 +42,7 @@ export WANDB_RUN_NAME=$SLURM_JOBID
 # --standalone: 単一ノードでの実行
 # --nnodes=1: ノード数1
 # --nproc_per_node: ノードあたりのプロセス数（GPU数）
-cd train && torchrun --standalone --nnodes=1 --nproc_per_node=8 \
+torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     -m verl.trainer.fsdp_sft_trainer \
     data.train_files=$HOME/data/open_math_reasoning/train.parquet \
     data.val_files=$HOME/data/open_math_reasoning/test.parquet \
@@ -54,7 +54,6 @@ cd train && torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.micro_batch_size_per_gpu=1 \
     +trainer.accumulate_grad_batches=2 \
     trainer.total_epochs=1 \
-    +trainer.total_training_steps=5 \
     model.partial_pretrain=Qwen/Qwen3-0.6B \
     model.lora_rank=32 \
     model.lora_alpha=32 \
