@@ -230,9 +230,9 @@ def dump_metrics(args, predictions, total_questions, all_questions):
 
     output_folder_name = "leaderboard/" +datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
     os.makedirs(output_folder_name, exist_ok=True)
-    with open(output_folder_name + "/results.jsonl", "w") as f:
+    with open(output_folder_name + "/results.jsonl", "w", encoding="utf-8") as f:
         f.writelines([json.dumps(l) + "\n" for l in results])
-    with open(output_folder_name + "/summary.json", "w") as f:
+    with open(output_folder_name + "/summary.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=4) 
 
 
@@ -246,12 +246,12 @@ def main(args):
 
     total_questions = len(all_questions)
 
-    with open(f"predictions/hle_{os.path.basename(args.model)}.json", "r") as f:
+    with open(f"predictions/hle_{os.path.basename(args.model)}.json", "r", encoding="utf-8") as f:
         predictions = json.load(f)
     
     # load only unjudged responses
     if os.path.exists(output_filepath):
-        with open(output_filepath, "r") as f:
+        with open(output_filepath, "r", encoding="utf-8") as f:
             judged_predictions = json.load(f)
     else:
         judged_predictions = {}
@@ -266,7 +266,7 @@ def main(args):
             judged_predictions[unique_id] = predictions
 
     # cache judge output
-    with open(output_filepath, "w") as f:
+    with open(output_filepath, "w", encoding="utf-8") as f:
         json.dump(judged_predictions, f, indent=4)
 
     dump_metrics(args, judged_predictions, total_questions, all_questions)
