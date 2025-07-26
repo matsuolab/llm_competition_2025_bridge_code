@@ -11,7 +11,6 @@
 #SBATCH --export=CONDA_PATH=$HOME/conda
 #SBATCH --export=DATA_DIR=$HOME/data/open_math_reasoning
 #SBATCH --export=OUTPUT_DIR=$HOME/train/sft/open_math_reasoning/%x
-#SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>"
 #SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
 #--- モジュール & Conda --------------------------------------------
 module reset
