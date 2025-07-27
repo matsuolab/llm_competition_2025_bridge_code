@@ -40,6 +40,8 @@ export WANDB_RUN_NAME=$SLURM_JOBID
 
 export VERL_LOGGING_LEVEL=INFO  
 export VERL_SFT_LOGGING_LEVEL=DEBUG
+mkdir -p "$HOME/training/sft/open_math_reasoning/checkpoints"
+echo "trainer.default_local_dir : $HOME/training/sft/open_math_reasoning/checkpoints"
 
 # FSDP (Fully Sharded Data Parallel) を使用した分散訓練実行
 # --standalone: 単一ノードでの実行
@@ -55,6 +57,8 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     +data.response_dict_keys=['answer'] \
     data.micro_batch_size_per_gpu=8 \
     model.partial_pretrain=Qwen/Qwen3-0.6B \
+    data.max_length=20960 \
+    data.truncation=right \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=$WANDB_RUN_NAME
     trainer.total_epochs=1 \
