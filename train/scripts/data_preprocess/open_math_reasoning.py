@@ -85,6 +85,10 @@ def convert_openmath_to_prompt_response(example: Dict) -> Tuple[str, str]:
     
     return prompt, response
 
+# https://github.com/volcengine/verl/blob/0f5ab5c8/verl/utils/dataset/rl_dataset.py
+# def maybe_filter_out_long_prompts(tokenizer, dataframe: datasets.Dataset = None):
+#     pass
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -125,6 +129,10 @@ if __name__ == "__main__":
 
     if args.program_source_to_exclude:
         print(f"フィルター後データセット: {len(filtered_dataset)} サンプル (フィルター前: {len(full_dataset)} サンプル)")
+
+    # dataset = dataset.loc[dataset["N"] <= max_seq_length/2].copy()
+    # dataset.shape
+
     print(f"最初のサンプル構造: {list(filtered_dataset[0].keys())}")
 
     def make_map_fn(split):

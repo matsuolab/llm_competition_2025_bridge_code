@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_06b
+#SBATCH --job-name=qwen3_4b
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
-#SBATCH --cpus-per-task=64
+#SBATCH --cpus-per-task=240
 #SBATCH --time=04:00:00
 #SBATCH --export=CONDA_PATH=/home/Competition2025/P06/%u/conda
 #SBATCH --export=HF_TOKEN=<huggingface_tokenをここに>
@@ -48,6 +48,7 @@ echo "trainer.default_local_dir : $HOME/training/sft/open_math_reasoning/$SLURM_
 # --standalone: 単一ノードでの実行
 # --nnodes=1: ノード数1
 # --nproc_per_node: ノードあたりのプロセス数（GPU数）
+# train_batch_size to be 64
 torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     -m verl.trainer.fsdp_sft_trainer \
     data.train_files=$HOME/data/open_math_reasoning/train.parquet \
@@ -58,7 +59,8 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     +data.response_dict_keys=['answer'] \
     data.train_batch_size=8 \
     data.micro_batch_size_per_gpu=1 \
-    model.partial_pretrain=Qwen/Qwen3-0.6B \
+    model.partial_pretrain=Qwen/Qwen3-4B \
+    model.fsdp_config.cpu_offload=False \
     data.max_length=12288 \
     use_remove_padding=False \
     data.truncation=right \
