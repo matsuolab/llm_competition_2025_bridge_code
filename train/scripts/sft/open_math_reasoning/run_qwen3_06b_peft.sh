@@ -6,7 +6,7 @@
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=64
 #SBATCH --time=04:00:00
-#SBATCH --export=CONDA_PATH=<conda_envをここに>
+#SBATCH --export=CONDA_PATH=/home/Competition2025/P06/%u/conda
 #SBATCH --export=HF_TOKEN=<huggingface_tokenをここに>
 #SBATCH --output=train/logs/%x-%j.out
 #SBATCH --error=train/logs/%x-%j.err
@@ -54,13 +54,13 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.micro_batch_size_per_gpu=1 \
     +trainer.accumulate_grad_batches=2 \
     trainer.total_epochs=1 \
+    trainer.total_training_steps=40 \
     model.partial_pretrain=Qwen/Qwen3-0.6B \
     model.lora_rank=32 \
     model.lora_alpha=32 \
     model.target_modules=all-linear \
     data.max_length=20960 \
     data.truncation=right \
-    trainer.save_freq=5 \
     trainer.default_local_dir=$HOME/training/sft/open_math_reasoning/checkpoints \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=open_math_reasoning \
