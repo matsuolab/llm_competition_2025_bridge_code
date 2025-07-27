@@ -6,10 +6,10 @@
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=64
 #SBATCH --time=04:00:00
-#SBATCH --export=CONDA_PATH=<conda環境のディレクトリをここに>
+#SBATCH --export=CONDA_PATH=<conda_envをここに>
 #SBATCH --export=HF_TOKEN=<huggingface_tokenをここに>
-#SBATCH --output=/home/%u/training/sft/open_math_reasoning/logs/%x-%j.out
-#SBATCH --error=/home/%u/training/sft/open_math_reasoning/logs/%x-%j.err
+#SBATCH --output=train/logs/%x-%j.out
+#SBATCH --error=train/logs/%x-%j.err
 #--- モジュール & Conda --------------------------------------------
 module reset
 module load nccl/2.22.3
