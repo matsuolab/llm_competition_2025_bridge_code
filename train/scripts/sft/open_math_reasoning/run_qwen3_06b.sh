@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_06b
+#SBATCH --job-name=qwen3_4b
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
@@ -41,8 +41,8 @@ export WANDB_RUN_NAME=$SLURM_JOBID
 export VERL_LOGGING_LEVEL=INFO  
 export VERL_SFT_LOGGING_LEVEL=DEBUG
 export PYTHONUNBUFFERED=1
-mkdir -p "$HOME/training/sft/open_math_reasoning/checkpoints"
-echo "trainer.default_local_dir : $HOME/training/sft/open_math_reasoning/checkpoints"
+mkdir -p "$HOME/training/sft/open_math_reasoning/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints"
+echo "trainer.default_local_dir : $HOME/training/sft/open_math_reasoning/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints"
 
 # FSDP (Fully Sharded Data Parallel) を使用した分散訓練実行
 # --standalone: 単一ノードでの実行
@@ -58,11 +58,12 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     +data.response_dict_keys=['answer'] \
     data.train_batch_size=8 \
     data.micro_batch_size_per_gpu=1 \
-    model.partial_pretrain=Qwen/Qwen3-0.6B \
-    data.max_length=20960 \
+    model.partial_pretrain=Qwen/Qwen3-4B \
+    data.max_length=12288 \
+    use_remove_padding=False \
     data.truncation=right \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=$SLURM_JOB_NAME-$SLURM_JOBID \
     trainer.total_epochs=1 \
-    trainer.default_local_dir=$HOME/training/sft/open_math_reasoning/checkpoints \
+    trainer.default_local_dir=$HOME/training/sft/open_math_reasoning/$SLURM_JOB_NAME/checkpoints \
     trainer.logger=['console','wandb']
