@@ -57,12 +57,12 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.response_key=extra_info \
     data.prompt_dict_keys=['question'] \
     +data.response_dict_keys=['answer'] \
-    data.train_batch_size=8 \
-    data.micro_batch_size_per_gpu=1 \
+    data.train_batch_size=16 \
+    data.micro_batch_size_per_gpu=2 \
     model.partial_pretrain=Qwen/Qwen3-4B \
-    model.fsdp_config.cpu_offload=False \
+    model.fsdp_config.cpu_offload=True \
     data.max_length=12288 \
-    use_remove_padding=False \
+    use_remove_padding=True \
     data.truncation=right \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=$SLURM_JOB_NAME-$SLURM_JOBID \
