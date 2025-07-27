@@ -60,7 +60,6 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.train_batch_size=16 \
     data.micro_batch_size_per_gpu=2 \
     model.partial_pretrain=Qwen/Qwen3-14B \
-    model.fsdp_config.cpu_offload=True \
     data.max_length=12288 \
     use_remove_padding=True \
     data.truncation=right \
