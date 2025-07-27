@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_14b
+#SBATCH --job-name=qwen3_14b_peft
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
@@ -60,6 +60,8 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.train_batch_size=16 \
     data.micro_batch_size_per_gpu=2 \
     model.partial_pretrain=Qwen/Qwen3-14B \
+    model.lora_rank=32 \
+    model.lora_alpha=32 \
     data.max_length=12288 \
     use_remove_padding=True \
     data.truncation=right \

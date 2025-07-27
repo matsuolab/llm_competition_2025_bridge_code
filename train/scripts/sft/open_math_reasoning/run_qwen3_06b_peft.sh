@@ -58,8 +58,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     +data.response_dict_keys=['answer'] \
     optim.lr=1e-4 \
     data.micro_batch_size_per_gpu=1 \
-    trainer.total_epochs=1 \
-    trainer.save_freq=100 \
+
     model.partial_pretrain=Qwen/Qwen3-0.6B \
     model.lora_rank=32 \
     model.lora_alpha=32 \
@@ -69,5 +68,8 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     trainer.default_local_dir=$HOME/training/sft/open_math_reasoning/checkpoints \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=$SLURM_JOB_NAME-$SLURM_JOBID \
+    trainer.total_epochs=1 \
+    trainer.save_freq=100 \
+    trainer.max_ckpt_to_keep=1 \
     trainer.seed=42 \
     trainer.logger=['console','wandb']
