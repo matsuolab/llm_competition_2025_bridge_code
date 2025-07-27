@@ -6,10 +6,10 @@
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=64
 #SBATCH --time=04:00:00
-#SBATCH --output=train/logs/%x-%j.out
-#SBATCH --error=train/logs/%x-%j.err
 #SBATCH --export=CONDA_PATH=<conda環境のディレクトリをここに>
 #SBATCH --export=HF_TOKEN=<huggingface_tokenをここに>
+#SBATCH --output=/home/%u/training/sft/open_math_reasoning/logs/%x-%j.out
+#SBATCH --error=/home/%u/training/sft/open_math_reasoning/logs/%x-%j.err
 #--- モジュール & Conda --------------------------------------------
 module reset
 module load nccl/2.22.3
@@ -60,8 +60,9 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     model.target_modules=all-linear \
     data.max_length=20960 \
     data.truncation=right \
-    trainer.default_local_dir=$HOME/training/sft/open_math_reasoning/ \
+    trainer.save_freq=5 \
+    trainer.default_local_dir=$HOME/training/sft/open_math_reasoning/checkpoints \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=open_math_reasoning \
     trainer.seed=42 \
-    trainer.logger=['console','wandb'] 2>&1
+    trainer.logger=['console','wandb']
