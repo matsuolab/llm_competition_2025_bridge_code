@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=qwen3_14b_peft
 #SBATCH --partition=P06
-#SBATCH --nodelist=osk-gpu68
+#SBATCH --nodelist=osk-gpu66
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
@@ -57,13 +57,15 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.response_key=extra_info \
     data.prompt_dict_keys=['question'] \
     +data.response_dict_keys=['answer'] \
-    data.train_batch_size=16 \
+    data.train_batch_size=128 \
+    optim.lr=1e-4 \
     data.micro_batch_size_per_gpu=2 \
     model.partial_pretrain=Qwen/Qwen3-14B \
     model.lora_rank=32 \
-    model.lora_alpha=32 \
+    model.lora_alpha=16 \
     data.max_length=12288 \
     use_remove_padding=True \
+    ulysses_sequence_parallel_size=2 \
     data.truncation=right \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=$SLURM_JOB_NAME-$SLURM_JOBID \
@@ -73,3 +75,4 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     trainer.default_local_dir=$HOME/training/sft/open_math_reasoning/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints \
     trainer.seed=42 \
     trainer.logger=['console','wandb'] 2>&1
+
