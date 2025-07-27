@@ -58,7 +58,6 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     +data.response_dict_keys=['answer'] \
     optim.lr=1e-4 \
     data.micro_batch_size_per_gpu=1 \
-    +trainer.accumulate_grad_batches=2 \
     trainer.total_epochs=1 \
     trainer.save_freq=100 \
     model.partial_pretrain=Qwen/Qwen3-0.6B \
