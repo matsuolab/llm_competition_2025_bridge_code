@@ -60,7 +60,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.max_length=20960 \
     data.truncation=right \
     trainer.project_name=$SLURM_JOB_NAME \
-    trainer.experiment_name=$WANDB_RUN_NAME \
+    trainer.experiment_name=$SLURM_JOB_NAME-$SLURM_JOBID \
     trainer.total_epochs=1 \
     trainer.default_local_dir=$HOME/training/sft/open_math_reasoning/checkpoints \
     trainer.logger=['console','wandb']
