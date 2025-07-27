@@ -38,6 +38,9 @@ export WANDB_ENTITY="llm-2025-sahara"
 export WANDB_PROJECT_NAME=$SLURM_JOB_NAME
 export WANDB_RUN_NAME=$SLURM_JOBID
 
+export VERL_LOGGING_LEVEL=INFO  
+export VERL_SFT_LOGGING_LEVEL=INFO
+
 # FSDP (Fully Sharded Data Parallel) を使用した分散訓練実行
 # --standalone: 単一ノードでの実行
 # --nnodes=1: ノード数1
