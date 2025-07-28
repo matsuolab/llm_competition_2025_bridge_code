@@ -64,7 +64,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     model.lora_rank=32 \
     model.lora_alpha=16 \
     model.fsdp_config.model_dtype=bf16 \
-    data.max_length=4096 \
+    data.max_length=10240 \
     use_remove_padding=True \
     ulysses_sequence_parallel_size=4 \
     data.truncation=right \
