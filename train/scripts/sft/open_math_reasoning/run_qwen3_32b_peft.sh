@@ -23,6 +23,7 @@ conda activate $CONDA_PATH
 huggingface-cli login --token $HF_TOKEN
 wandb login
 
+export HYDRA_FULL_ERROR=1
 export NCCL_DEBUG=INFO
 export NCCL_SOCKET_IFNAME=enp25s0np0
 export NVTE_FUSED_ATTN=0
@@ -57,7 +58,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.response_key=extra_info \
     data.prompt_dict_keys=['question'] \
     +data.response_dict_keys=['answer'] \
-    data.train_batch_size=256 \
+    data.train_batch_size=512 \
     optim.lr=1e-4 \
     data.micro_batch_size_per_gpu=4 \
     model.partial_pretrain=Qwen/Qwen3-32B \
