@@ -5,7 +5,7 @@
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
-#SBATCH --time=16:00:00
+#SBATCH --time=17:00:00
 #SBATCH --export=CONDA_PATH=/home/Competition2025/P06/%u/conda
 #SBATCH --export=HF_TOKEN=<huggingface_tokenをここに>
 #SBATCH --output=train/logs/%x-%j.out
@@ -58,16 +58,16 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.response_key=extra_info \
     data.prompt_dict_keys=['question'] \
     +data.response_dict_keys=['answer'] \
-    data.train_batch_size=480 \
+    data.train_batch_size=512 \
     optim.lr=1e-4 \
-    data.micro_batch_size_per_gpu=3 \
+    data.micro_batch_size_per_gpu=2 \
     model.partial_pretrain=Qwen/Qwen3-32B \
     model.lora_rank=32 \
     model.lora_alpha=32 \
     model.fsdp_config.model_dtype=bf16 \
     data.max_length=12288 \
     use_remove_padding=True \
-    ulysses_sequence_parallel_size=8 \
+    ulysses_sequence_parallel_size=4 \
     data.truncation=right \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=$SLURM_JOB_NAME-$SLURM_JOBID \
