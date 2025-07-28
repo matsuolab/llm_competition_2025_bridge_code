@@ -67,8 +67,6 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.max_length=12288 \
     use_remove_padding=True \
     ulysses_sequence_parallel_size=8 \
-    use_remove_padding=True \
-    ulysses_sequence_parallel_size=8 \
     data.truncation=right \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=$SLURM_JOB_NAME-$SLURM_JOBID \
