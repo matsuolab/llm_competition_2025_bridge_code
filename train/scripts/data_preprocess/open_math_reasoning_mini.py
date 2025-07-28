@@ -175,19 +175,23 @@ if __name__ == "__main__":
 
         return process_fn
 
-    # datasets.train_test_split()を使用してデータセットを分割
-    split_dataset = filtered_dataset.train_test_split(
-        test_size=1.0 - args.train_ratio, 
-        seed=args.seed
-    )
-    train_dataset = split_dataset["train"]
-    val_dataset = split_dataset["test"]
-    
+    if args.train_ratio < 1:
+        # datasets.train_test_split()を使用してデータセットを分割
+        split_dataset = filtered_dataset.train_test_split(
+            test_size=1.0 - args.train_ratio, 
+            seed=args.seed
+        )
+        train_dataset = split_dataset["train"]
+        val_dataset = split_dataset["test"]
+    else:
+        train_dataset = filtered_dataset["train"]
+        val_dataset = []
     print(f"分割結果: 訓練={len(train_dataset)}, 検証={len(val_dataset)}")
 
     # データセット変換を適用
     train_dataset = train_dataset.map(function=make_map_fn("train"), with_indices=True)
-    val_dataset = val_dataset.map(function=make_map_fn("validation"), with_indices=True)
+    if 0 < len(val_dataset):
+        val_dataset = val_dataset.map(function=make_map_fn("validation"), with_indices=True)
     
     print(f"フィルター前: 訓練={len(train_dataset)}, 検証={len(val_dataset)}")
 
@@ -199,12 +203,12 @@ if __name__ == "__main__":
 
     # ローカルディスクにparquet形式で保存
     train_dataset.to_parquet(os.path.join(local_dir, "train.parquet"))
-    val_dataset.to_parquet(os.path.join(local_dir, "test.parquet"))  # SFTトレーナーはtest.parquetを期待
-    
     print(f"データ保存完了: {local_dir}")
     print(f"- 訓練データ: {len(train_dataset)} サンプル -> train.parquet")
+    if 0 < len(val_dataset):
+        val_dataset.to_parquet(os.path.join(local_dir, "test.parquet"))  # SFTトレーナーはtest.parquetを期待
     print(f"- 検証データ: {len(val_dataset)} サンプル -> test.parquet")
-
+    
     # HDFSへのバックアップ（オプション）
     if hdfs_dir is not None:
         makedirs(hdfs_dir)
