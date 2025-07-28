@@ -56,12 +56,12 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.response_key=extra_info \
     data.prompt_dict_keys=['question'] \
     +data.response_dict_keys=['answer'] \
-    data.train_batch_size=128 \
+    data.train_batch_size=256 \
     optim.lr=1e-4 \
     data.micro_batch_size_per_gpu=2 \
     model.partial_pretrain=Qwen/Qwen3-14B \
     model.lora_rank=32 \
-    model.lora_alpha=16 \
+    model.lora_alpha=32 \
     data.max_length=12288 \
     use_remove_padding=True \
     ulysses_sequence_parallel_size=2 \
