@@ -184,7 +184,7 @@ if __name__ == "__main__":
         train_dataset = split_dataset["train"]
         val_dataset = split_dataset["test"]
     else:
-        train_dataset = filtered_dataset["train"]
+        train_dataset = filtered_dataset
         val_dataset = []
     print(f"分割結果: 訓練={len(train_dataset)}, 検証={len(val_dataset)}")
 
