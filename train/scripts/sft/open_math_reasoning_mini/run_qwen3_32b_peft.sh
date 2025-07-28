@@ -5,7 +5,7 @@
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
-#SBATCH --time=04:00:00
+#SBATCH --time=01:30:00
 #SBATCH --export=CONDA_PATH=/home/Competition2025/P06/%u/conda
 #SBATCH --export=HF_TOKEN=<huggingface_tokenをここに>
 #SBATCH --output=train/logs/%x-%j.out
@@ -23,6 +23,7 @@ conda activate $CONDA_PATH
 huggingface-cli login --token $HF_TOKEN
 wandb login
 
+export NCCL_DEBUG=INFO
 export NCCL_SOCKET_IFNAME=enp25s0np0
 export NVTE_FUSED_ATTN=0
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
@@ -63,11 +64,9 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     model.lora_rank=32 \
     model.lora_alpha=16 \
     model.fsdp_config.model_dtype=bf16 \
-    model.fsdp_config.cpu_offload=true \
-    model.fsdp_config.offload_params=true \
     data.max_length=4096 \
     use_remove_padding=True \
-    ulysses_sequence_parallel_size=8 \
+    ulysses_sequence_parallel_size=4 \
     data.truncation=right \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=$SLURM_JOB_NAME-$SLURM_JOBID \
@@ -77,4 +76,3 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     trainer.default_local_dir=$HOME/training/sft/open_math_reasoning_mini/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints \
     trainer.seed=42 \
     trainer.logger=['console','wandb']
-

@@ -23,6 +23,8 @@ conda activate $CONDA_PATH
 huggingface-cli login --token $HF_TOKEN
 wandb login
 
+export NCCL_DEBUG=INFO
+export NCCL_SOCKET_IFNAME=enp25s0np0
 export NCCL_SOCKET_IFNAME=enp25s0np0
 export NVTE_FUSED_ATTN=0
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
@@ -60,6 +62,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     optim.lr=1e-4 \
     data.micro_batch_size_per_gpu=2 \
     model.partial_pretrain=Qwen/Qwen3-14B \
+    model.fsdp_config.model_dtype=bf16 \
     model.lora_rank=32 \
     model.lora_alpha=32 \
     data.max_length=12288 \
