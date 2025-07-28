@@ -62,9 +62,10 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     model.partial_pretrain=Qwen/Qwen3-32B \
     model.lora_rank=32 \
     model.lora_alpha=16 \
+    model.fsdp_config.model_dtype=bf16 \
     model.fsdp_config.cpu_offload=true \
     model.fsdp_config.offload_params=true \
-    data.max_length=12288 \
+    data.max_length=4096 \
     use_remove_padding=True \
     ulysses_sequence_parallel_size=8 \
     data.truncation=right \
@@ -75,5 +76,5 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     trainer.max_ckpt_to_keep=1 \
     trainer.default_local_dir=$HOME/training/sft/open_math_reasoning_mini/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints \
     trainer.seed=42 \
-    trainer.logger=['console','wandb'] 2>&1
+    trainer.logger=['console','wandb']
 
