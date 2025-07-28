@@ -62,7 +62,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.micro_batch_size_per_gpu=2 \
     model.partial_pretrain=Qwen/Qwen3-32B \
     model.lora_rank=32 \
-    model.lora_alpha=16 \
+    model.lora_alpha=32 \
     model.fsdp_config.model_dtype=bf16 \
     data.max_length=10240 \
     use_remove_padding=True \
