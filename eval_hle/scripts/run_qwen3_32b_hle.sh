@@ -48,10 +48,11 @@ done
 echo "vLLM READY"
 
 #--- 推論 -----------------------------------------------------------
-cd $EVAL_DIR && python predict.py > predict.log 2>&1
+cd $EVAL_DIR
+python predict.py > predict.log 2>&1
 
 #--- 評価 -----------------------------------------------------------
-cd $EVAL_DIR && OPENAI_API_KEY=$OPENAI_API_KEY python judge.py
+OPENAI_API_KEY=$OPENAI_API_KEY python judge.py
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm
