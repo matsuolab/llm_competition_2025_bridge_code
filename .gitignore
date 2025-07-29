@@ -1,3 +1,5 @@
+eval_hle/datasets/
+
 .venv
 .ipynb_checkpoints
 
