@@ -25,7 +25,7 @@ def main() -> None:
 
     api = HfApi()
     # Create the repository if it doesn't exist (public by default; add private=True if needed)
-    api.create_repo(repo_id, repo_type="model", exist_ok=True)
+    api.create_repo(repo_id, repo_type="model", exist_ok=True, private=True)
 
     # Upload the entire folder; large files are chunked and pushed in parallel
     upload_folder(
