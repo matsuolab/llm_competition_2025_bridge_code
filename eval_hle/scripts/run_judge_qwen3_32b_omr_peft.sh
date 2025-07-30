@@ -40,7 +40,7 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
   --dtype "bfloat16" \
-  > logs/vllm.log 2>&1 &
+  > $EVAL_DIR/logs/vllm.log 2>&1 &
 pid_vllm=$!
 
 #--- ヘルスチェック -------------------------------------------------
@@ -51,11 +51,11 @@ done
 echo "vLLM READY"
 
 ##--- 推論 -----------------------------------------------------------
-# python predict.py > predict.log 2>&11
+# python $EVAL_DIR/predict.py > $EVAL_DIR/logs/predict.log 2>&11
 
 #--- 評価 -----------------------------------------------------------
 export BASE_URL="http://localhost:8000/v1" 
-OPENAI_API_KEY=EMPTY python judge.py > logs/judge.log 2>&1
+OPENAI_API_KEY=EMPTY python $EVAL_DIR/judge.py > $EVAL_DIR/logs/judge.log 2>&1
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm
