@@ -1,4 +1,5 @@
 eval_hle/datasets/
+*.parquet
 
 .venv
 .ipynb_checkpoints
