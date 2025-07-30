@@ -47,7 +47,7 @@ done
 echo "vLLM READY"
 
 #--- 推論 -----------------------------------------------------------
-cd $EVAL_DIR && python llm-compe-eval/evaluate_huggingface_models.py \
+python $EVAL_DIR/llm-compe-eval/evaluate_huggingface_models.py \
     --model_name "Qwen/Qwen3-32B" \
     --dataset_path datasets/Instruction/do_not_answer_en.csv \
     --output_dir evaluation_results \
