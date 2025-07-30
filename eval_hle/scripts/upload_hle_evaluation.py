@@ -6,8 +6,8 @@ def main():
     parser = argparse.ArgumentParser(description="Upload HLE evaluation results to wandb")
     parser.add_argument("--project", required=True, help="WandB project name")
     parser.add_argument("--run", required=True, help="WandB run name", default="eval_hle")
-    parser.add_argument("--prediction_dir", default="~/predictions/", help="Directory containing predictions")
-    parser.add_argument("--judged_dir", default="~/judged/", help="Directory containing judged results")
+    parser.add_argument("--prediction_dir", default="predictions/", help="Directory containing predictions")
+    parser.add_argument("--judged_dir", default="judged/", help="Directory containing judged results")
     args = parser.parse_args()
 
     # WandB API keyを環境変数から取得してログイン
