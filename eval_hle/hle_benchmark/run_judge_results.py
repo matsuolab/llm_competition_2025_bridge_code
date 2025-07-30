@@ -38,6 +38,7 @@ client = AsyncOpenAI(
     timeout=300.0,
     max_retries=1,
     api_key=os.environ.get("OPENAI_API_KEY"),
+    base_url=os.environ.get("BASE_URL", None)
 )
 
 JUDGE_PROMPT = """Judge whether the following [response] to [question] is correct or not based on the precise and unambiguous [correct_answer] below.
