@@ -31,7 +31,7 @@ nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/nvidia-smi.log &
 pid_nvsmi=$!
 
 #--- vLLM 起動（8GPU）----------------------------------------------
-vllm serve Qwen/Qwen3-32B \
+vllm serve llm-2025-sahara/Qwen3-32B-omr-peft \
   --tensor-parallel-size 8 \
   --reasoning-parser qwen3 \
   --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
@@ -48,11 +48,10 @@ done
 echo "vLLM READY"
 
 #--- 推論 -----------------------------------------------------------
-cd $EVAL_DIR
-python predict.py > predict.log 2>&1
+python $EVAL_DIR/predict.py > $EVAL_DIR/predict.log 2>&1
 
 #--- 評価 -----------------------------------------------------------
-OPENAI_API_KEY=$OPENAI_API_KEY python judge.py
+OPENAI_API_KEY=$OPENAI_API_KEY python $EVAL_DIR/judge.py
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm
