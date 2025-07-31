@@ -297,6 +297,7 @@ class HuggingFaceModelEvaluator:
         """Setup VLLM client for API-based inference."""
         print(f"Setting up VLLM client for model: {self.model_name}")
         print(f"VLLM server URL: {self.vllm_base_url}")
+        
         self.vllm_client = AsyncOpenAI(
             base_url=self.vllm_base_url,
             timeout=86400,
