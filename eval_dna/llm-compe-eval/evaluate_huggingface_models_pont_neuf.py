@@ -232,3 +232,7 @@ def main():
     # Run evaluation
     print(f"Starting evaluation of model: {args.model_name}")
     evaluator.generate_responses(questions_df, args.output_dir)
+
+
+if __name__ == "__main__":
+    main()
