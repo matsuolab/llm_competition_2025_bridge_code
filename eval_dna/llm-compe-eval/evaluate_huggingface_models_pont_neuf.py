@@ -64,10 +64,23 @@ class PontNeufModelEvaluator(HuggingFaceModelEvaluator):
     #     self, questions_df: pd.DataFrame,
     #     output_dir: str = "./evaluation_results"
     # ) -> Dict:
+    #     import openai
+    #     from openai import OpenAI
+        
+    #     client = OpenAI(
+    #         timeout=300.0,
+    #         max_retries=1,
+    #         api_key=os.environ.get("OPENAI_API_KEY"),
+    #         base_url=os.environ.get("BASE_URL", None)
+    #     )
+
     #     def gpt_single_try(messages, model = "gpt-3.5-turbo-0613"):
-    #         response = openai.chat.completions.create(
+    #         response = client.chat.completions.create(
     #             model=model,
-    #             messages = messages)
+    #             messages=messages) 
+    #         # response = openai.chat.completions.create(
+    #         #     model=model,
+    #         #     messages = messages)
 
     #         result = ''
     #         for choice in response.choices:
@@ -98,7 +111,10 @@ class PontNeufModelEvaluator(HuggingFaceModelEvaluator):
     #         'response_file': response_file
     #     }
 
-    #     # TODO: response_fileが存在するかどうかを事前にチェックする
+    #     # Check if response file exists before loading
+    #     if not os.path.exists(response_file):
+    #         raise FileNotFoundError(f"Response file not found: {response_file}. Please run generate_responses() first.")
+        
     #     response_df = pd.read_csv(response_file)
         
     #     try:
