@@ -49,6 +49,7 @@ echo "vLLM READY"
 #--- 推論 -----------------------------------------------------------
 python $EVAL_DIR/llm-compe-eval/judge_huggingface_models.py \
     --model_name "llm-2025-sahara/Qwen3-32B-omr-peft" \
+    --eval_models "deepseek-ai/DeepSeek-R1-Distill-Llama-70B" \
     --dataset_path $EVAL_DIR/datasets/Instruction/do_not_answer_en.csv \
     --output_dir $EVAL_DIR/evaluation_results \
     --use_vllm \
