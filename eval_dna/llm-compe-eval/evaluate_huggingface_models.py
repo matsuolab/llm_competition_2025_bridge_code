@@ -369,7 +369,8 @@ class HuggingFaceModelEvaluator:
             return response.choices[0].message.content.strip()
         except Exception as e:
             print(f"Error generating VLLM response: {e}")
-            return f"Error: {str(e)}"
+            raise e
+            # return f"Error: {str(e)}"
     
     def _get_hf_response(self, question: str, max_length: int = 2048, 
                         temperature: float = 0.7, top_p: float = 0.9) -> str:

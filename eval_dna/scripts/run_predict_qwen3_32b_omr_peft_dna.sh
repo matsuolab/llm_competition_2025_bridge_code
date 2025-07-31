@@ -31,12 +31,12 @@ export EVAL_DIR="eval_dna"
 # pid_nvsmi=$!
 
 #--- vLLM 起動（8GPU）----------------------------------------------
-vllm serve "llm-2025-sahara/Qwen3-32B-omr-peft" \
+vllm serve llm-2025-sahara/Qwen3-32B-omr-peft \
   --tensor-parallel-size 8 \
-  --max-model-len 131072 \
+  --reasoning-parser qwen3 \
   --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
+  --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
-  --dtype "bfloat16" \
   > $EVAL_DIR/logs/vllm.log 2>&1 &
 pid_vllm=$!
 

@@ -5,9 +5,21 @@ import time
 import os 
 
 def gpt_single_try(messages, model = "gpt-3.5-turbo-0613"):
-    response = openai.chat.completions.create(
-        model=model,
-        messages = messages)
+    base_url = os.environ.get("BASE_URL", None)
+    if base_url is None:
+        response = openai.chat.completions.create(
+            model=model,
+            messages = messages)
+    else:
+        client = openai.OpenAI(
+            timeout=300.0,
+            max_retries=1,
+            api_key=os.environ.get("OPENAI_API_KEY"),
+            base_url=os.environ.get("BASE_URL", None)
+        )
+        response = client.chat.completions.create(
+            model=model,
+            messages=messages) 
 
     result = ''
     for choice in response.choices:

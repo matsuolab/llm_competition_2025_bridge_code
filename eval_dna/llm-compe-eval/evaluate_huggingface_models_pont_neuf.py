@@ -60,105 +60,105 @@ class PontNeufModelEvaluator(HuggingFaceModelEvaluator):
         print(f"Responses saved to: {response_file}")
 
     
-    # def evaluate_generated_responses(
-    #     self, questions_df: pd.DataFrame,
-    #     output_dir: str = "./evaluation_results"
-    # ) -> Dict:
-    #     import openai
-    #     from openai import OpenAI
+    def evaluate_generated_responses(
+        self, questions_df: pd.DataFrame,
+        output_dir: str = "./evaluation_results"
+    ) -> Dict:
+        import openai
+        from openai import OpenAI
         
-    #     client = OpenAI(
-    #         timeout=300.0,
-    #         max_retries=1,
-    #         api_key=os.environ.get("OPENAI_API_KEY"),
-    #         base_url=os.environ.get("BASE_URL", None)
-    #     )
+        client = OpenAI(
+            timeout=300.0,
+            max_retries=1,
+            api_key=os.environ.get("OPENAI_API_KEY"),
+            base_url=os.environ.get("BASE_URL", None)
+        )
 
-    #     def gpt_single_try(messages, model = "gpt-3.5-turbo-0613"):
-    #         response = client.chat.completions.create(
-    #             model=model,
-    #             messages=messages) 
-    #         # response = openai.chat.completions.create(
-    #         #     model=model,
-    #         #     messages = messages)
+        def gpt_single_try(messages, model = "gpt-3.5-turbo-0613"):
+            response = client.chat.completions.create(
+                model=model,
+                messages=messages) 
+            # response = openai.chat.completions.create(
+            #     model=model,
+            #     messages = messages)
 
-    #         result = ''
-    #         for choice in response.choices:
-    #             result += choice.message.content
+            result = ''
+            for choice in response.choices:
+                result += choice.message.content
 
-    #         return result
+            return result
 
-    #     def gpt(messages, model = "gpt-3.5-turbo-0613", num_retries=3):
-    #         r = ''
-    #         for _ in range(num_retries):
-    #             try:
-    #                 r = gpt_single_try(messages, model)
-    #                 break
-    #             except openai.OpenAIError as exception:
-    #                 print(f"{exception}. Retrying...")
-    #                 time.sleep(6)
-    #         return r
+        def gpt(messages, model = "gpt-3.5-turbo-0613", num_retries=3):
+            r = ''
+            for _ in range(num_retries):
+                try:
+                    r = gpt_single_try(messages, model)
+                    break
+                except openai.OpenAIError as exception:
+                    print(f"{exception}. Retrying...")
+                    time.sleep(6)
+            return r
 
-    #     # Saved responses
-    #     model_name_safe = self.model_name.replace('/', '_').replace('\\', '_')
-    #     response_file = os.path.join(output_dir, f"responses_{model_name_safe}.csv")
+        # Saved responses
+        model_name_safe = self.model_name.replace('/', '_').replace('\\', '_')
+        response_file = os.path.join(output_dir, f"responses_{model_name_safe}.csv")
 
-    #     # Evaluate with GPT-4 if API key is available
-    #     evaluation_results = {
-    #         'model_name': self.model_name,
-    #         'total_questions': len(questions_df),
-    #         'timestamp': datetime.now().isoformat(),
-    #         'response_file': response_file
-    #     }
+        # Evaluate with GPT-4 if API key is available
+        evaluation_results = {
+            'model_name': self.model_name,
+            'total_questions': len(questions_df),
+            'timestamp': datetime.now().isoformat(),
+            'response_file': response_file
+        }
 
-    #     # Check if response file exists before loading
-    #     if not os.path.exists(response_file):
-    #         raise FileNotFoundError(f"Response file not found: {response_file}. Please run generate_responses() first.")
+        # Check if response file exists before loading
+        if not os.path.exists(response_file):
+            raise FileNotFoundError(f"Response file not found: {response_file}. Please run generate_responses() first.")
         
-    #     response_df = pd.read_csv(response_file)
+        response_df = pd.read_csv(response_file)
         
-    #     try:
-    #         # Check if multi-model evaluation is requested
-    #         eval_models = getattr(self, 'eval_models', None)
-    #         if eval_models and len(eval_models) > 1:
-    #             print(f"Evaluating responses with multiple models: {eval_models}")
-    #             multi_results = self._evaluate_with_multiple_models(response_df, output_dir, eval_models, self.disable_reasoning_eval)
-    #             evaluation_results.update(multi_results)
-    #         elif info_data.get("OpenAI") and info_data["OpenAI"] != "YOURKEY":
-    #             print("Evaluating responses with GPT-4...")
-    #             gpt_results = self._evaluate_with_gpt4(response_df, output_dir, self.disable_reasoning_eval)
-    #             evaluation_results.update(gpt_results)
-    #         else:
-    #             print("API key not configured. Skipping evaluation.")
-    #     except Exception as e:
-    #         print(f"Error in evaluation: {e}")
+        try:
+            # Check if multi-model evaluation is requested
+            eval_models = getattr(self, 'eval_models', None)
+            if eval_models and len(eval_models) > 1:
+                print(f"Evaluating responses with multiple models: {eval_models}")
+                multi_results = self._evaluate_with_multiple_models(response_df, output_dir, eval_models, self.disable_reasoning_eval)
+                evaluation_results.update(multi_results)
+            elif info_data.get("OpenAI") and info_data["OpenAI"] != "YOURKEY":
+                print("Evaluating responses with GPT-4...")
+                gpt_results = self._evaluate_with_gpt4(response_df, output_dir, self.disable_reasoning_eval)
+                evaluation_results.update(gpt_results)
+            else:
+                print("API key not configured. Skipping evaluation.")
+        except Exception as e:
+            print(f"Error in evaluation: {e}")
         
-    #     # Save evaluation results
-    #     results_file = os.path.join(output_dir, f"evaluation_{model_name_safe}.json")
-    #     with open(results_file, 'w') as f:
-    #         json.dump(evaluation_results, f, indent=2)
+        # Save evaluation results
+        results_file = os.path.join(output_dir, f"evaluation_{model_name_safe}.json")
+        with open(results_file, 'w') as f:
+            json.dump(evaluation_results, f, indent=2)
         
-    #     # Generate standardized format files
-    #     results_jsonl_file = None
-    #     summary_json_file = None
+        # Generate standardized format files
+        results_jsonl_file = None
+        summary_json_file = None
         
-    #     if 'gpt4_evaluation' in evaluation_results:
-    #         # Generate results.jsonl
-    #         results_jsonl_file = generate_results_jsonl(
-    #             response_df, 
-    #             evaluation_results['gpt4_evaluation'], 
-    #             output_dir, 
-    #             self.model_name
-    #         )
+        if 'gpt4_evaluation' in evaluation_results:
+            # Generate results.jsonl
+            results_jsonl_file = generate_results_jsonl(
+                response_df, 
+                evaluation_results['gpt4_evaluation'], 
+                output_dir, 
+                self.model_name
+            )
             
-    #         # Generate summary.json
-    #         summary_json_file = generate_summary_json(evaluation_results, output_dir)
+            # Generate summary.json
+            summary_json_file = generate_summary_json(evaluation_results, output_dir)
             
-    #         # Add file paths to evaluation results for W&B logging
-    #         evaluation_results['results_jsonl_file'] = results_jsonl_file
-    #         evaluation_results['summary_json_file'] = summary_json_file
+            # Add file paths to evaluation results for W&B logging
+            evaluation_results['results_jsonl_file'] = results_jsonl_file
+            evaluation_results['summary_json_file'] = summary_json_file
         
-    #     return evaluation_results
+        return evaluation_results
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate Hugging Face models on Do-Not-Answer dataset")
@@ -224,6 +224,9 @@ def main():
     
     args = parser.parse_args()
     
+    # for openai_api.gpt_single_try()
+    os.environ['BASE_URL'] = args.vllm_base_url
+
     # Load dataset
     print(f"Loading dataset from: {args.dataset_path}")
     questions_df = pd.read_csv(args.dataset_path)
