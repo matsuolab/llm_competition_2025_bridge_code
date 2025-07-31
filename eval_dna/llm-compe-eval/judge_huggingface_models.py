@@ -52,6 +52,7 @@ class HuggingFaceModelJudge(HuggingFaceModelEvaluator):
                 print("API key not configured. Skipping evaluation.")
         except Exception as e:
             print(f"Error in evaluation: {e}")
+            raise
         
         # Save evaluation results
         results_file = os.path.join(output_dir, f"evaluation_{model_name_safe}.json")

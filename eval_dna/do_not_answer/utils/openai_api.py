@@ -6,6 +6,7 @@ import os
 
 def gpt_single_try(messages, model = "gpt-3.5-turbo-0613"):
     base_url = os.environ.get("BASE_URL", None)
+    print("base_url: %s" % base_url)
     if base_url is None:
         response = openai.chat.completions.create(
             model=model,
