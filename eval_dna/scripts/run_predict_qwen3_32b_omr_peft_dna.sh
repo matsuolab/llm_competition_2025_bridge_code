@@ -47,14 +47,14 @@ done
 echo "vLLM READY"
 
 #--- 推論 -----------------------------------------------------------
-cd $EVAL_DIR && python llm-compe-eval/evaluate_huggingface_models_pont_neuf.py \
+python llm-compe-eval/evaluate_huggingface_models_pont_neuf.py \
     --model_name "llm-2025-sahara/Qwen3-32B-omr-peft" \
-    --dataset_path datasets/Instruction/do_not_answer_en.csv \
-    --output_dir evaluation_results \
+    --dataset_path $EVAL_DIR/datasets/Instruction/do_not_answer_en.csv \
+    --output_dir $EVAL_DIR/evaluation_results \
     --use_vllm \
-    --vllm_base_url http://localhost:8000/v1 > logs/predict.log 2>&1
+    --vllm_base_url http://localhost:8000/v1 > $EVAL_DIR/logs/predict.log 2>&1
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm
-kill $pid_nvsmi
+# kill $pid_nvsmi
 wait

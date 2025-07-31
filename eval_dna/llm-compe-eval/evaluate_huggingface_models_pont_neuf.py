@@ -1,4 +1,4 @@
-from evaluate_huggingface_models import HuggingFaceModelEvaluator
+from evaluate_huggingface_models import HuggingFaceModelEvaluator, generate_results_jsonl, generate_summary_json
 import pandas as pd
 import os
 import asyncio
@@ -61,10 +61,35 @@ class PontNeufModelEvaluator(HuggingFaceModelEvaluator):
 
     
     # def evaluate_generated_responses(
-    #     self, questions_df: pd.DataFrame, 
+    #     self, questions_df: pd.DataFrame,
     #     output_dir: str = "./evaluation_results"
     # ) -> Dict:
-                
+    #     def gpt_single_try(messages, model = "gpt-3.5-turbo-0613"):
+    #         response = openai.chat.completions.create(
+    #             model=model,
+    #             messages = messages)
+
+    #         result = ''
+    #         for choice in response.choices:
+    #             result += choice.message.content
+
+    #         return result
+
+    #     def gpt(messages, model = "gpt-3.5-turbo-0613", num_retries=3):
+    #         r = ''
+    #         for _ in range(num_retries):
+    #             try:
+    #                 r = gpt_single_try(messages, model)
+    #                 break
+    #             except openai.OpenAIError as exception:
+    #                 print(f"{exception}. Retrying...")
+    #                 time.sleep(6)
+    #         return r
+
+    #     # Saved responses
+    #     model_name_safe = self.model_name.replace('/', '_').replace('\\', '_')
+    #     response_file = os.path.join(output_dir, f"responses_{model_name_safe}.csv")
+
     #     # Evaluate with GPT-4 if API key is available
     #     evaluation_results = {
     #         'model_name': self.model_name,
@@ -72,6 +97,9 @@ class PontNeufModelEvaluator(HuggingFaceModelEvaluator):
     #         'timestamp': datetime.now().isoformat(),
     #         'response_file': response_file
     #     }
+
+    #     # TODO: response_fileが存在するかどうかを事前にチェックする
+    #     response_df = pd.read_csv(response_file)
         
     #     try:
     #         # Check if multi-model evaluation is requested
@@ -117,7 +145,6 @@ class PontNeufModelEvaluator(HuggingFaceModelEvaluator):
     #     return evaluation_results
 
 def main():
-
     parser = argparse.ArgumentParser(description="Evaluate Hugging Face models on Do-Not-Answer dataset")
     parser.add_argument(
         "--model_name",
