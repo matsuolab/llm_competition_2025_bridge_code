@@ -147,6 +147,7 @@ def main():
     
     # for openai_api.gpt_single_try()
     os.environ['BASE_URL'] = args.vllm_base_url
+    os.environ['OPENAI_API_KEY'] = info_data["OpenAI"]
 
     # Load dataset
     print(f"Loading dataset from: {args.dataset_path}")
