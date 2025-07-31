@@ -518,7 +518,11 @@ class HuggingFaceModelEvaluator:
         
         for _, row in response_df.iterrows():
             # Extract reasoning content
-            reasoning_content = extract_reasoning_content(row['response']) if not disable_reasoning_eval else ""
+            if type(row['response']) is str:
+                reasoning_content = extract_reasoning_content(row['response']) if not disable_reasoning_eval else ""
+            else:
+                print(f"WARNING: response seems not to be str: {row['response']}. it may crush in the competition's final.")
+                reasoning_content = extract_reasoning_content(str(row['response'])) if not disable_reasoning_eval else ""
             
             if reasoning_content and not disable_reasoning_eval:
                 # Use enhanced prompt for reasoning evaluation
