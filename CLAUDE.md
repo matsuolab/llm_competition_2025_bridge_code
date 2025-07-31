@@ -187,9 +187,111 @@ sbatch --export=HF_TOKEN="hf_.." --export=OPENAI_API_KEY="sk-.." ./eval_dna/scri
 - **HLE結果**: `leaderboard/results.jsonl` および `leaderboard/summary.json`
 - **DNA結果**: `evaluation_results/results.jsonl` および `evaluation_results/summary.json`
 
+## DNA安全性評価システム詳細
+
+### アーキテクチャ概要
+DNA評価は3段階のパイプラインで構成：
+1. **回答生成**: VLLM/HuggingFace経由でモデル回答を生成  
+2. **GPT自動評価**: OpenAI APIによる6段階安全性分類（カテゴリ6が有害）
+3. **結果標準化**: results.jsonl + summary.json形式での出力
+
+### VLLMサーバー統合
+```bash
+# 8GPU環境でのVLLM起動例
+vllm serve Qwen/Qwen3-32B \
+  --tensor-parallel-size 8 \
+  --reasoning-parser qwen3 \
+  --max-model-len 131072 \
+  --gpu-memory-utilization 0.95
+
+# ヘルスチェック
+until curl -s http://127.0.0.1:8000/health >/dev/null; do sleep 10; done
+```
+
+### 評価スクリプト群の関係性
+```python
+# 統合評価パイプライン（推奨）
+python evaluate_huggingface_models.py --model_name "your-model" --use_vllm
+
+# 分離実行パターン
+python predict_huggingface_models.py --model_name "your-model" --use_vllm  # 回答生成
+python judge_huggingface_models.py --model_name "your-model"               # GPT評価
+
+# バッチ評価（複数モデル）
+python batch_evaluate_models.py --config model_config.yaml --skip_failed
+```
+
+### 推論タグ評価機能
+- **対応タグ**: `<think>`, `<reasoning>`, `<analysis>`, `<thoughts>`等
+- **分離評価**: 最終回答と推論過程を個別に安全性評価
+- **推論安全性率**: 推論過程における有害コンテンツ検出率
+
+### 複数API評価とコスト比較
+```bash
+# コスト効率評価の実行
+python evaluate_huggingface_models.py \
+    --eval_models gpt-4.1 gemini-2.5-flash gpt-o4-mini \
+    --model_name "your-model" --use_vllm --max_questions 50
+```
+
+**API料金比較** (USD/1M tokens):
+- GPT-4.1: 入力$2.00, 出力$8.00  
+- Gemini-2.5-Flash: 入力$0.30, 出力$2.50
+- GPT-o4-mini: 入力$1.10, 出力$4.40
+- 自動コスト効率ランキング機能（安全性率/コスト）
+
+### UUID設定管理システム
+```bash
+# 新モデル設定の追加（8桁UUID自動割り当て）  
+python batch_evaluate_models.py \
+    --add_model "team1/your-model,Description,Custom prompt"
+
+# UUID履歴確認
+python batch_evaluate_models.py --list_uuids
+```
+
+### 標準評価フォーマット
+**results.jsonl**: 各質問の詳細評価結果
+```json
+{
+  "id": "0", "category": "Adult Content", "question": "...",
+  "prediction": "モデル回答", "gold": "safe", "correct": 1, "score": 1.0,
+  "reasoning_content": "抽出された推論内容", 
+  "reasoning_correct": 1, "reasoning_score": 1.0
+}
+```
+
+**summary.json**: モデル全体の性能サマリー  
+```json
+{
+  "model_name": "Qwen/Qwen3-32B", "overall_accuracy": 0.89,
+  "accuracy_per_category": {"safety": 0.89, "reasoning_safety": 0.87},
+  "reasoning_evaluation": {"has_reasoning": true, "reasoning_safety_rate": 87.3}
+}
+```
+
+### コーディング規約（eval_dna特有）
+- **Pythonic実装**: for文よりもリスト内包表記、map、filterを推奨
+- **型安全性**: `row['response']`のstr型チェック必須（`isinstance(response, str)`）
+- **エラーハンドリング**: VLLM APIのNoneレスポンス対応必須
+- **非同期処理**: VLLM API呼び出しは`asyncio`でバッチ処理
+
+### 実行環境別コマンド
+```bash
+# SLURM環境での実行
+sbatch --export=HF_TOKEN="hf_.." --export=OPENAI_API_KEY="sk-.." \
+    ./eval_dna/scripts/run_qwen3_32b_dna.sh
+
+# ローカル環境での実行  
+export HF_TOKEN="hf_..." OPENAI_API_KEY="sk-..."
+python eval_dna/llm-compe-eval/evaluate_huggingface_models.py \
+    --model_name "Qwen/Qwen3-32B" --use_vllm --max_questions 100
+```
+
 ## 開発ワークフロー
 
 このプロジェクトでは以下の順序で開発を進める:
 1. Step 0: conda環境構築（README_install_conda.md）
-2. Step 1: シングルノードSFT+PPO（README_single_node_SFT_PPO.md）
+2. Step 1: シングルノードSFT+PPO（README_single_node_SFT_PPO.md）  
 3. Step 2: マルチノードSFT+PPO（README_multi_node_SFT_PPO.md）
+4. Step 3: DNA安全性評価の実行

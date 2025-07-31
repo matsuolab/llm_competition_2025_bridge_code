@@ -19,7 +19,7 @@ def gpt_single_try(messages, model = "gpt-3.5-turbo-0613"):
             base_url=os.environ.get("BASE_URL", None)
         )
         response = client.chat.completions.create(
-            model=model,
+            model=os.environ["OPENAI_MODEL"],
             messages=messages) 
 
     result = ''
@@ -40,21 +40,21 @@ def gpt(messages, model = "gpt-3.5-turbo-0613", num_retries=3):
     return r
 
 
-def gpt_single_easy_try(user_input, model="gpt-3.5-turbo-0613",
-                        system_role = "You are a helpful assistant."):
-    response = openai.chat.completions.create(
-        model=model,
-        messages=[
-                {"role": "system", "content": system_role},
-                {"role": "user", "content": user_input},
-        ]
-    )
+# def gpt_single_easy_try(user_input, model="gpt-3.5-turbo-0613",
+#                         system_role = "You are a helpful assistant."):
+#     response = openai.chat.completions.create(
+#         model=model,
+#         messages=[
+#                 {"role": "system", "content": system_role},
+#                 {"role": "user", "content": user_input},
+#         ]
+#     )
 
-    result = ''
-    for choice in response.choices:
-        result += choice.message.content
+#     result = ''
+#     for choice in response.choices:
+#         result += choice.message.content
 
-    return result
+#     return result
 
 
 def gpt_easy(user_input, model="gpt-3.5-turbo-0613", 
