@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_dna_8gpu
+#SBATCH --job-name=qwen3_32b_omr_peft_dna_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
@@ -47,7 +47,7 @@ done
 echo "vLLM READY"
 
 #--- 推論 -----------------------------------------------------------
-python llm-compe-eval/evaluate_huggingface_models_pont_neuf.py \
+python $EVAL_DIR/llm-compe-eval/evaluate_huggingface_models_pont_neuf.py \
     --model_name "llm-2025-sahara/Qwen3-32B-omr-peft" \
     --dataset_path $EVAL_DIR/datasets/Instruction/do_not_answer_en.csv \
     --output_dir $EVAL_DIR/evaluation_results \
