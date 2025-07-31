@@ -365,8 +365,12 @@ class HuggingFaceModelEvaluator:
                 max_tokens=512,
                 stream=False,
             )
-            
-            return response.choices[0].message.content.strip()
+            # NOTE: コンペ予選の submission で Runtime Errorになる恐れがある
+            if response.choices[0].message.content is None:
+                print("WARNING: the model responds with None. it may crash in the competition final!")
+                return ""
+            else:
+                return response.choices[0].message.content.strip()
         except Exception as e:
             print(f"Error generating VLLM response: {e}")
             raise e

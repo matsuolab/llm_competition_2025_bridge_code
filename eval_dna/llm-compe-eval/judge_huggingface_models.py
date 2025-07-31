@@ -1,4 +1,4 @@
-from evaluate_huggingface_models import HuggingFaceModelEvaluator, generate_results_jsonl, generate_summary_json
+from evaluate_huggingface_models import HuggingFaceModelEvaluator, generate_results_jsonl, generate_summary_json, log_to_wandb
 import pandas as pd
 import os
 import asyncio
@@ -11,94 +11,14 @@ import json
 import argparse
 
 
-class PontNeufModelEvaluator(HuggingFaceModelEvaluator):
+class HuggingFaceModelJudge(HuggingFaceModelEvaluator):
     """
     Pont Neuf specialized evaluator that extends HuggingFaceModelEvaluator.
     """
-    
-    def generate_responses(
-        self, questions_df: pd.DataFrame, 
-        output_dir: str = "./evaluation_results"
-    ):
-        """
-        Evaluate model responses on the Do-Not-Answer dataset.
-        
-        Args:
-            questions_df: DataFrame with questions
-            output_dir: Directory to save results
-            
-        Returns:
-            Evaluation results dictionary
-        """
-        os.makedirs(output_dir, exist_ok=True)
-        
-        # Generate responses
-        print("Generating responses...")
-        if self.use_vllm:
-            responses = asyncio.run(self._generate_vllm_responses(questions_df))
-        else:
-            responses = []
-            for _, row in tqdm(questions_df.iterrows(), total=len(questions_df)):
-                response = self.get_response(row['question'])
-                responses.append(response)
-                time.sleep(0.1)  # Small delay to prevent overheating
-        
-        # Create response DataFrame
-        response_df = pd.DataFrame({
-            'id': questions_df['id'],
-            'question': questions_df['question'],
-            'response': responses,
-            'risk_area': questions_df['risk_area'],
-            'types_of_harm': questions_df['types_of_harm'],
-            'specific_harms': questions_df['specific_harms']
-        })
-        
-        # Save responses
-        model_name_safe = self.model_name.replace('/', '_').replace('\\', '_')
-        response_file = os.path.join(output_dir, f"responses_{model_name_safe}.csv")
-        response_df.to_csv(response_file, index=False)
-        print(f"Responses saved to: {response_file}")
-
-    
     def evaluate_generated_responses(
         self, questions_df: pd.DataFrame,
         output_dir: str = "./evaluation_results"
     ) -> Dict:
-        import openai
-        from openai import OpenAI
-        
-        client = OpenAI(
-            timeout=300.0,
-            max_retries=1,
-            api_key=os.environ.get("OPENAI_API_KEY"),
-            base_url=os.environ.get("BASE_URL", None)
-        )
-
-        def gpt_single_try(messages, model = "gpt-3.5-turbo-0613"):
-            response = client.chat.completions.create(
-                model=model,
-                messages=messages) 
-            # response = openai.chat.completions.create(
-            #     model=model,
-            #     messages = messages)
-
-            result = ''
-            for choice in response.choices:
-                result += choice.message.content
-
-            return result
-
-        def gpt(messages, model = "gpt-3.5-turbo-0613", num_retries=3):
-            r = ''
-            for _ in range(num_retries):
-                try:
-                    r = gpt_single_try(messages, model)
-                    break
-                except openai.OpenAIError as exception:
-                    print(f"{exception}. Retrying...")
-                    time.sleep(6)
-            return r
-
         # Saved responses
         model_name_safe = self.model_name.replace('/', '_').replace('\\', '_')
         response_file = os.path.join(output_dir, f"responses_{model_name_safe}.csv")
@@ -238,7 +158,7 @@ def main():
     print(f"Dataset loaded: {len(questions_df)} questions")
     
     # Initialize evaluator
-    evaluator = PontNeufModelEvaluator(
+    evaluator = HuggingFaceModelJudge(
         model_name=args.model_name,
         system_prompt=args.system_prompt,
         device=args.device,
@@ -250,8 +170,62 @@ def main():
     
     # Run evaluation
     print(f"Starting evaluation of model: {args.model_name}")
-    evaluator.generate_responses(questions_df, args.output_dir)
-
+    evaluation_results = evaluator.evaluate_generated_responses(questions_df, args.output_dir)
+    # evaluation_results = evaluator.evaluate_responses(questions_df, args.output_dir)
+    
+    # Print results
+    print("\n" + "="*50)
+    print("EVALUATION RESULTS")
+    print("="*50)
+    print(f"Model: {evaluation_results['model_name']}")
+    print(f"Total Questions: {evaluation_results['total_questions']}")
+    
+    if 'gpt4_evaluation' in evaluation_results:
+        gpt4_results = evaluation_results['gpt4_evaluation']
+        print(f"Safety Rate: {gpt4_results['safety_rate']:.2f}%")
+        print(f"Harmful Responses: {gpt4_results['harmful_responses']}")
+    
+    # Print multi-model evaluation results
+    if 'multi_model_evaluation' in evaluation_results:
+        print("\n" + "="*50)
+        print("MULTI-MODEL EVALUATION & COST COMPARISON")
+        print("="*50)
+        
+        cost_comparison = evaluation_results['cost_comparison']
+        
+        # Sort by cost for easy comparison
+        sorted_models = sorted(cost_comparison.items(), key=lambda x: x[1]['total_cost'])
+        
+        for model, metrics in sorted_models:
+            print(f"\n{model.upper()}:")
+            print(f"  Total Cost: ${metrics['total_cost']:.4f}")
+            print(f"  Cost per Question: ${metrics['cost_per_question']:.4f}")
+            print(f"  Safety Rate: {metrics['safety_rate']:.2f}%")
+            if metrics['reasoning_safety_rate'] > 0:
+                print(f"  Reasoning Safety Rate: {metrics['reasoning_safety_rate']:.2f}%")
+        
+        # Print cost efficiency ranking
+        print(f"\n{'='*30}")
+        print("COST EFFICIENCY RANKING:")
+        print(f"{'='*30}")
+        for i, (model, metrics) in enumerate(sorted_models, 1):
+            efficiency = metrics['safety_rate'] / metrics['cost_per_question'] if metrics['cost_per_question'] > 0 else 0
+            print(f"{i}. {model}: {efficiency:.2f} safety%/$ per question")
+    
+    print(f"\nResults saved to: {args.output_dir}")
+    
+    # Log to Wandb if requested
+    if args.log_wandb:
+        import wandb
+        print("Logging results to Wandb...")
+        log_to_wandb(
+            evaluation_results, 
+            evaluation_results.get('results_jsonl_file'),
+            evaluation_results.get('summary_json_file'),
+            args.wandb_project
+        )
+    
+    print("Evaluation completed!")
 
 if __name__ == "__main__":
     main()
