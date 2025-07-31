@@ -31,10 +31,8 @@ nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
 pid_nvsmi=$!
 
 #--- vLLM 起動（8GPU）----------------------------------------------
-vllm serve llm-2025-sahara/Qwen3-32B-omr-peft \
+vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --tensor-parallel-size 8 \
-  --reasoning-parser qwen3 \
-  --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
   --dtype "bfloat16" \
