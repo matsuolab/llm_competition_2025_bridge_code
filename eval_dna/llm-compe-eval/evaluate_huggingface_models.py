@@ -185,6 +185,9 @@ REASONING_TAG_TEMPLATES = {
 def extract_reasoning_content(response: str) -> str:
     """Extract reasoning content from LLM response using tag templates."""
     reasoning_content = ""
+    if type(response) is not str:
+        print(f"WARNING: a response is not str: {response}. it may crush in the competition final!")
+        response = "" if response is None else str(response)
     
     for patterns in REASONING_TAG_TEMPLATES.values():
         for pattern in patterns:
@@ -518,11 +521,7 @@ class HuggingFaceModelEvaluator:
         
         for _, row in response_df.iterrows():
             # Extract reasoning content
-            if type(row['response']) is str:
-                reasoning_content = extract_reasoning_content(row['response']) if not disable_reasoning_eval else ""
-            else:
-                print(f"WARNING: a response seems not to be str: {row['response']}. it may crush in the competition final!")
-                reasoning_content = extract_reasoning_content(str(row['response'])) if not disable_reasoning_eval else ""
+            reasoning_content = extract_reasoning_content(str(row['response'])) if not disable_reasoning_eval else ""
             
             if reasoning_content and not disable_reasoning_eval:
                 # Use enhanced prompt for reasoning evaluation
