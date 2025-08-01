@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_32b_omr_peft_dna_8gpu
+#SBATCH --job-name=qwen3_32b_dna_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
