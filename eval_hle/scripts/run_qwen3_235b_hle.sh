@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_hle_8gpu
+#SBATCH --job-name=qwen3_235b_hle_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu[67-68]
 #SBATCH --nodes=2
@@ -10,11 +10,12 @@
 #SBATCH --error=eval_hle/logs/%x-%j.err
 #SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>"
 #SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
+
 #--- モジュール & Conda --------------------------------------------
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
-module load cudnn/9.6.0  
-module load nccl/2.24.3 
+module load cudnn/9.6.0
+module load nccl/2.24.3
 source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate llmbench
 
@@ -23,39 +24,72 @@ export HF_HOME=${SLURM_TMPDIR:-$HOME}/.hf_cache
 export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
-echo "HF cache dir : $HF_HOME"                   # デバッグ用
+echo "HF cache dir : $HF_HOME"
+
 export EVAL_DIR="eval_hle"
+
+# マルチノード設定
+export MASTER_ADDR=$(scontrol show job $SLURM_JOB_ID | grep " NodeList=" | cut -d'=' -f2 | cut -d'[' -f1)
+export MASTER_PORT=29500
+export WORLD_SIZE=$SLURM_NNODES
+export NODE_RANK=$SLURM_PROCID
+
+echo "MASTER_ADDR: $MASTER_ADDR"
+echo "NODE_RANK: $NODE_RANK"
+echo "WORLD_SIZE: $WORLD_SIZE"
 
 #--- GPU 監視 -------------------------------------------------------
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/nvidia-smi.log &
 pid_nvsmi=$!
 
-#--- vLLM 起動（8GPU）----------------------------------------------
-vllm serve Qwen/Qwen3-235B-A22B \
-  --tensor-parallel-size 8 \
-  --pipeline-parallel-size 2 \
-  --reasoning-parser qwen3 \
-  --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
-  --max-model-len 131072 \
-  --gpu-memory-utilization 0.95 \
-  > $EVAL_DIR/vllm.log 2>&1 &
-pid_vllm=$!
+#--- vLLM 起動（マルチノード対応）----------------------------------
+if [ $NODE_RANK -eq 0 ]; then
+    # マスターノード
+    vllm serve Qwen/Qwen3-235B-A22B \
+    --tensor-parallel-size 16 \
+    --pipeline-parallel-size 1 \
+    --distributed-executor-backend ray \
+    --host 0.0.0.0 \
+    --port 8000 \
+    --reasoning-parser qwen3 \
+    --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
+    --max-model-len 131072 \
+    --gpu-memory-utilization 0.95 \
+    > $EVAL_DIR/vllm.log 2>&1 &
+    pid_vllm=$!
+    
+    #--- ヘルスチェック -------------------------------------------------
+    until curl -s http://127.0.0.1:8000/health >/dev/null; do
+        echo "$(date +%T) vLLM starting …"
+        sleep 10
+    done
+    echo "vLLM READY"
+    
+    #--- 推論 -----------------------------------------------------------
+    cd $EVAL_DIR
+    python predict.py > predict.log 2>&1
+    
+    #--- 評価 -----------------------------------------------------------
+    OPENAI_API_KEY=$OPENAI_API_KEY python judge.py
+    
+    #--- 後片付け -------------------------------------------------------
+    kill $pid_vllm
+else
+    # ワーカーノード
+    vllm serve Qwen/Qwen3-235B-A22B \
+    --tensor-parallel-size 16 \
+    --pipeline-parallel-size 1 \
+    --distributed-executor-backend ray \
+    --reasoning-parser qwen3 \
+    --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
+    --max-model-len 131072 \
+    --gpu-memory-utilization 0.95 \
+    > $EVAL_DIR/vllm_worker.log 2>&1 &
+    pid_vllm=$!
+    
+    # ワーカーは推論処理を待つ
+    wait $pid_vllm
+fi
 
-#--- ヘルスチェック -------------------------------------------------
-until curl -s http://127.0.0.1:8000/health >/dev/null; do
-  echo "$(date +%T) vLLM starting …"
-  sleep 10
-done
-echo "vLLM READY"
-
-#--- 推論 -----------------------------------------------------------
-cd $EVAL_DIR
-python predict.py > predict.log 2>&1
-
-#--- 評価 -----------------------------------------------------------
-OPENAI_API_KEY=$OPENAI_API_KEY python judge.py
-
-#--- 後片付け -------------------------------------------------------
-kill $pid_vllm
 kill $pid_nvsmi
 wait
