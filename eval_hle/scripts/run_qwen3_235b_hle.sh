@@ -30,7 +30,6 @@ export EVAL_DIR="eval_hle"
 
 # vLLMが自動でRayを使用するための環境変数設定
 export RAY_DISABLE_IMPORT_WARNING=1
-
 echo "NODE_RANK: $SLURM_PROCID"
 echo "WORLD_SIZE: $SLURM_NNODES"
 echo "NODE_LIST: $SLURM_JOB_NODELIST"
@@ -41,10 +40,9 @@ pid_nvsmi=$!
 
 #--- vLLM 起動（自動Ray設定）---------------------------------------
 if [ $SLURM_PROCID -eq 0 ]; then
-    echo "Starting vLLM server on master node..."
-    
-    # vLLMが自動でマルチノード分散を処理
-    vllm serve Qwen/Qwen3-235B-A22B \
+  echo "Starting vLLM server on master node..."
+  # vLLMが自動でマルチノード分散を処理
+  vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 16 \
     --distributed-executor-backend ray \
     --host 0.0.0.0 \
@@ -55,50 +53,33 @@ if [ $SLURM_PROCID -eq 0 ]; then
     --gpu-memory-utilization 0.95 \
     --disable-log-requests \
     > $EVAL_DIR/vllm.log 2>&1 &
-    pid_vllm=$!
-    
-    echo "vLLM server started with PID: $pid_vllm"
-    
-    #--- ヘルスチェック -------------------------------------------------
-    echo "Waiting for vLLM to be ready..."
-    max_attempts=60
-    attempt=0
-    until curl -s http://127.0.0.1:8000/health >/dev/null; do
-        attempt=$((attempt + 1))
-        if [ $attempt -gt $max_attempts ]; then
-            echo "ERROR: vLLM failed to start within $(($max_attempts * 10)) seconds"
-            kill $pid_vllm 2>/dev/null
-            exit 1
-        fi
-        echo "$(date +%T) vLLM starting … (attempt $attempt/$max_attempts)"
-        sleep 10
-    done
-    echo "vLLM READY"
-    
-    #--- 推論 -----------------------------------------------------------
-    cd $EVAL_DIR
-    echo "Starting inference..."
-    python predict.py > predict.log 2>&1
-    
-    #--- 評価 -----------------------------------------------------------
-    echo "Starting evaluation..."
-    OPENAI_API_KEY=$OPENAI_API_KEY python judge.py
-    
-    #--- 後片付け -------------------------------------------------------
-    echo "Cleaning up..."
-    kill $pid_vllm 2>/dev/null
-    wait $pid_vllm 2>/dev/null
-    
+  pid_vllm=$!
+  echo "vLLM server started with PID: $pid_vllm"
+
+  #--- ヘルスチェック -------------------------------------------------
+  until curl -s http://127.0.0.1:8000/health >/dev/null; do
+    echo "$(date +%T) vLLM starting …"
+    sleep 10
+  done
+  echo "vLLM READY"
+
+  #--- 推論 -----------------------------------------------------------
+  cd $EVAL_DIR
+  python predict.py > predict.log 2>&1
+
+  #--- 評価 -----------------------------------------------------------
+  OPENAI_API_KEY=$OPENAI_API_KEY python judge.py
+
+  #--- 後片付け -------------------------------------------------------
+  kill $pid_vllm 2>/dev/null
+  wait $pid_vllm 2>/dev/null
 else
-    # ワーカーノードは静かに待機
-    echo "Worker node $SLURM_PROCID waiting for master to complete..."
-    
-    # マスターノードの完了を待つ
-    while squeue -j $SLURM_JOB_ID -h -o "%T" 2>/dev/null | grep -q "RUNNING"; do
-        sleep 30
-    done
-    
-    echo "Worker node $SLURM_PROCID task completed."
+  # ワーカーノードは静かに待機
+  echo "Worker node $SLURM_PROCID waiting for master to complete..."
+  # マスターノードの完了を待つ
+  while squeue -j $SLURM_JOB_ID -h -o "%T" 2>/dev/null | grep -q "RUNNING"; do
+    sleep 30
+  done
 fi
 
 # GPU監視停止
