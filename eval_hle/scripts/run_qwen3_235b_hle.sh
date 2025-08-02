@@ -56,7 +56,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
   echo "Master node waiting for worker to join..."  
   sleep 120
 
-  vllm serve Qwen/Qwen3-235B-A22B \
+  VLLM_HOST_IP=$VLLM_HOST_IP vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 8 \
     --pipeline-parallel-size 2 \
     --distributed-executor-backend ray \
