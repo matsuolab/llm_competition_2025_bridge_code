@@ -46,6 +46,7 @@ MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_IP=$(getent ahostsv4 $MASTER_ADDR | awk '{print $1}' | head -n1)
 echo "Master node: $MASTER_ADDR ($MASTER_IP)"
 
+
 #--- vLLM 起動（自動Ray設定）---------------------------------------
 if [ $SLURM_PROCID -eq 0 ]; then
   export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
@@ -54,7 +55,10 @@ if [ $SLURM_PROCID -eq 0 ]; then
   ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
 
   echo "Master node waiting for worker to join..."  
-  sleep 120
+  sleep 180
+
+  ray status
+  ray list nodes
 
   VLLM_HOST_IP=$VLLM_HOST_IP vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 8 \
