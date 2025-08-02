@@ -58,7 +58,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
   vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 8 \  
     --pipeline-parallel-size 2 \
-    --distributed-executor-backend ray \  
+    --distributed-executor-backend ray \
     --reasoning-parser qwen3 \
     --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
     --max-model-len 131072 \
