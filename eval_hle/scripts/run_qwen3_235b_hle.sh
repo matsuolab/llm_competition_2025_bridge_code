@@ -27,15 +27,22 @@ mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"
 
 export EVAL_DIR="eval_hle"
+mkdir -p "$EVAL_DIR/logs"
+echo "log dir : $EVAL_DIR/logs"
 
 # vLLMが自動でRayを使用するための環境変数設定
 export RAY_DISABLE_IMPORT_WARNING=1
+# Ray ログの重複除去を無効化
+export RAY_DEDUP_LOGS=0
+export VLLM_LOGGING_LEVEL=DEBUG
+export RAY_LOGGING_LEVEL=DEBUG
+export PYTHONUNBUFFERED=1
 echo "NODE_RANK: $SLURM_PROCID"
 echo "WORLD_SIZE: $SLURM_NNODES"
 echo "NODE_LIST: $SLURM_JOB_NODELIST"
 
 #--- GPU 監視 -------------------------------------------------------
-nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/nvidia-smi.log &
+nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
 pid_nvsmi=$!
 
 #--- vLLM 起動（自動Ray設定）---------------------------------------
