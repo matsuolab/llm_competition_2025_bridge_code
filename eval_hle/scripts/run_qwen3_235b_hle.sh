@@ -50,7 +50,10 @@ echo "Master node: $MASTER_ADDR ($MASTER_IP)"
 
 #--- vLLM 起動（自動Ray設定）---------------------------------------
 if [ $SLURM_PROCID -eq 0 ]; then
-  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$MASTER_IP  
+  export VLLM_HOST_IP=$MASTER_IP
+  echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
+
+  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP  
 
   echo "Master node waiting for worker to join..."  
   sleep 30
@@ -64,7 +67,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
     --max-model-len 131072 \
     --gpu-memory-utilization 0.95 \
     --trust-remote-code \
-    > $EVAL_DIR/vllm.log 2>&1 &
+    > $EVAL_DIR/logs/vllm.log 2>&1 &
   pid_vllm=$!
 
   #--- ヘルスチェック -------------------------------------------------
@@ -76,17 +79,20 @@ if [ $SLURM_PROCID -eq 0 ]; then
 
   #--- 推論 -----------------------------------------------------------
   cd $EVAL_DIR
-  python predict.py > logs/predict.log 2>&1
+  python predict.py > $EVAL_DIR/logs/predict.log 2>&1
 
   #--- 評価 -----------------------------------------------------------
-  OPENAI_API_KEY=$OPENAI_API_KEY python judge.py > logs/judge.log 2>&1
+  OPENAI_API_KEY=$OPENAI_API_KEY python judge.py > $EVAL_DIR/logs/judge.log 2>&1
 
   #--- 後片付け -------------------------------------------------------
   kill $pid_vllm 2>/dev/null
   wait $pid_vllm 2>/dev/null
   ray stop
 else
-  ray start --address=$MASTER_IP:6379 --node-ip-address=$(hostname -I | awk '{print $1}')  
+  export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
+  echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
+
+  ray start --address=$MASTER_IP:6379 --node-ip-address=$VLLM_HOST_IP  
 
   # Master nodeが完了するまで待機
   echo "Worker node waiting for master to complete..."
