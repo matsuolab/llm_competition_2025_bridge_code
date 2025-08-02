@@ -30,13 +30,12 @@ export EVAL_DIR="eval_hle"
 mkdir -p "$EVAL_DIR/logs"
 echo "log dir : $EVAL_DIR/logs"
 
-# vLLMが自動でRayを使用するための環境変数設定
+export PYTHONUNBUFFERED=1
+
 export RAY_DISABLE_IMPORT_WARNING=1
-# Ray ログの重複除去を無効化
 export RAY_DEDUP_LOGS=0
 export VLLM_LOGGING_LEVEL=DEBUG
 export RAY_LOGGING_LEVEL=DEBUG
-export PYTHONUNBUFFERED=1
 echo "NODE_RANK: $SLURM_PROCID"
 echo "WORLD_SIZE: $SLURM_NNODES"
 echo "NODE_LIST: $SLURM_JOB_NODELIST"
@@ -45,22 +44,21 @@ echo "NODE_LIST: $SLURM_JOB_NODELIST"
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
 pid_nvsmi=$!
 
+MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
+MASTER_IP=$(getent hosts $MASTER_ADDR | awk '{print $1}')
+echo "Master node: $MASTER_ADDR ($MASTER_IP)"
+
 #--- vLLM 起動（自動Ray設定）---------------------------------------
 if [ $SLURM_PROCID -eq 0 ]; then
-  MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
-  MASTER_IP=$(getent hosts $MASTER_ADDR | awk '{print $1}')
-  echo "Master node: $MASTER_ADDR ($MASTER_IP)"
-  
-  ray stop --force 2>/dev/null || true
-  ray start --head --node-ip-address=$MASTER_IP --port=6379 --dashboard-host=0.0.0.0 --dashboard-port=8265 --num-gpus=8
-  sleep 5
-  ray status
+  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$MASTER_IP  
 
-  RAY_ADDRESS="ray://$MASTER_IP:10001" vllm serve Qwen/Qwen3-235B-A22B \
-    --tensor-parallel-size 16 \
-    --distributed-executor-backend ray \
-    --host 0.0.0.0 \
-    --port 8000 \
+  echo "Master node waiting for worker to join..."  
+  sleep 30
+
+  vllm serve Qwen/Qwen3-235B-A22B \
+    --tensor-parallel-size 8 \  
+    --pipeline-parallel-size 2 \
+    --distributed-executor-backend ray \  
     --reasoning-parser qwen3 \
     --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
     --max-model-len 131072 \
@@ -86,9 +84,18 @@ if [ $SLURM_PROCID -eq 0 ]; then
   #--- 後片付け -------------------------------------------------------
   kill $pid_vllm 2>/dev/null
   wait $pid_vllm 2>/dev/null
-fi
+  ray stop
+else
+  ray start --address=$MASTER_IP:6379 --node-ip-address=$(hostname -I | awk '{print $1}')  
 
-ray stop --force
+  # Master nodeが完了するまで待機
+  echo "Worker node waiting for master to complete..."
+  while kill -0 $pid_nvsmi 2>/dev/null; do
+    sleep 30
+  done
+
+  ray stop
+fi
 
 # GPU監視停止
 kill $pid_nvsmi 2>/dev/null
