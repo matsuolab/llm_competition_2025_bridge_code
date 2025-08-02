@@ -29,7 +29,8 @@ echo "HF cache dir : $HF_HOME"
 export EVAL_DIR="eval_hle"
 
 # マルチノード設定
-export MASTER_ADDR=$(scontrol show job $SLURM_JOB_ID | grep " NodeList=" | cut -d'=' -f2 | cut -d'[' -f1)
+# 連番でないノードリストに対応
+export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 export MASTER_PORT=29500
 export WORLD_SIZE=$SLURM_NNODES
 export NODE_RANK=$SLURM_PROCID
@@ -42,10 +43,15 @@ echo "WORLD_SIZE: $WORLD_SIZE"
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/nvidia-smi.log &
 pid_nvsmi=$!
 
-#--- vLLM 起動（マルチノード対応）----------------------------------
+#--- Ray クラスター起動 ---------------------------------------------
 if [ $NODE_RANK -eq 0 ]; then
-    # マスターノード
-    vllm serve Qwen/Qwen3-235B-A22B \
+    # マスターノード: Ray head を起動
+    ray start --head --port=6379 --dashboard-host=0.0.0.0 --dashboard-port=8265 --block &
+    RAY_HEAD_PID=$!
+    sleep 10
+    
+    # vLLM サーバー起動（マスターノードのみ）
+    RAY_ADDRESS="ray://localhost:10001" vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 16 \
     --pipeline-parallel-size 1 \
     --distributed-executor-backend ray \
@@ -74,21 +80,20 @@ if [ $NODE_RANK -eq 0 ]; then
     
     #--- 後片付け -------------------------------------------------------
     kill $pid_vllm
+    kill $RAY_HEAD_PID
+    ray stop
 else
-    # ワーカーノード
-    vllm serve Qwen/Qwen3-235B-A22B \
-    --tensor-parallel-size 16 \
-    --pipeline-parallel-size 1 \
-    --distributed-executor-backend ray \
-    --reasoning-parser qwen3 \
-    --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
-    --max-model-len 131072 \
-    --gpu-memory-utilization 0.95 \
-    > $EVAL_DIR/vllm_worker.log 2>&1 &
-    pid_vllm=$!
+    # ワーカーノード: Ray worker として参加
+    ray start --address="$MASTER_ADDR:6379" --block &
+    RAY_WORKER_PID=$!
     
-    # ワーカーは推論処理を待つ
-    wait $pid_vllm
+    # マスターノードの処理完了まで待機
+    while squeue -j $SLURM_JOB_ID -h | grep -q $SLURM_JOB_ID; do
+        sleep 30
+    done
+    
+    kill $RAY_WORKER_PID
+    ray stop
 fi
 
 kill $pid_nvsmi
