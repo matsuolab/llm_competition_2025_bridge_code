@@ -28,32 +28,24 @@ echo "HF cache dir : $HF_HOME"
 
 export EVAL_DIR="eval_hle"
 
-# マルチノード設定
-# 連番でないノードリストに対応
-export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
-export MASTER_PORT=29500
-export WORLD_SIZE=$SLURM_NNODES
-export NODE_RANK=$SLURM_PROCID
+# vLLMが自動でRayを使用するための環境変数設定
+export RAY_DISABLE_IMPORT_WARNING=1
 
-echo "MASTER_ADDR: $MASTER_ADDR"
-echo "NODE_RANK: $NODE_RANK"
-echo "WORLD_SIZE: $WORLD_SIZE"
+echo "NODE_RANK: $SLURM_PROCID"
+echo "WORLD_SIZE: $SLURM_NNODES"
+echo "NODE_LIST: $SLURM_JOB_NODELIST"
 
 #--- GPU 監視 -------------------------------------------------------
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/nvidia-smi.log &
 pid_nvsmi=$!
 
-#--- Ray クラスター起動 ---------------------------------------------
-if [ $NODE_RANK -eq 0 ]; then
-    # マスターノード: Ray head を起動
-    ray start --head --port=6379 --dashboard-host=0.0.0.0 --dashboard-port=8265 --block &
-    RAY_HEAD_PID=$!
-    sleep 10
+#--- vLLM 起動（自動Ray設定）---------------------------------------
+if [ $SLURM_PROCID -eq 0 ]; then
+    echo "Starting vLLM server on master node..."
     
-    # vLLM サーバー起動（マスターノードのみ）
-    RAY_ADDRESS="ray://localhost:10001" vllm serve Qwen/Qwen3-235B-A22B \
+    # vLLMが自動でマルチノード分散を処理
+    vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 16 \
-    --pipeline-parallel-size 1 \
     --distributed-executor-backend ray \
     --host 0.0.0.0 \
     --port 8000 \
@@ -61,40 +53,54 @@ if [ $NODE_RANK -eq 0 ]; then
     --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
     --max-model-len 131072 \
     --gpu-memory-utilization 0.95 \
+    --disable-log-requests \
     > $EVAL_DIR/vllm.log 2>&1 &
     pid_vllm=$!
     
+    echo "vLLM server started with PID: $pid_vllm"
+    
     #--- ヘルスチェック -------------------------------------------------
+    echo "Waiting for vLLM to be ready..."
+    max_attempts=60
+    attempt=0
     until curl -s http://127.0.0.1:8000/health >/dev/null; do
-        echo "$(date +%T) vLLM starting …"
+        attempt=$((attempt + 1))
+        if [ $attempt -gt $max_attempts ]; then
+            echo "ERROR: vLLM failed to start within $(($max_attempts * 10)) seconds"
+            kill $pid_vllm 2>/dev/null
+            exit 1
+        fi
+        echo "$(date +%T) vLLM starting … (attempt $attempt/$max_attempts)"
         sleep 10
     done
     echo "vLLM READY"
     
     #--- 推論 -----------------------------------------------------------
     cd $EVAL_DIR
+    echo "Starting inference..."
     python predict.py > predict.log 2>&1
     
     #--- 評価 -----------------------------------------------------------
+    echo "Starting evaluation..."
     OPENAI_API_KEY=$OPENAI_API_KEY python judge.py
     
     #--- 後片付け -------------------------------------------------------
-    kill $pid_vllm
-    kill $RAY_HEAD_PID
-    ray stop
-else
-    # ワーカーノード: Ray worker として参加
-    ray start --address="$MASTER_ADDR:6379" --block &
-    RAY_WORKER_PID=$!
+    echo "Cleaning up..."
+    kill $pid_vllm 2>/dev/null
+    wait $pid_vllm 2>/dev/null
     
-    # マスターノードの処理完了まで待機
-    while squeue -j $SLURM_JOB_ID -h | grep -q $SLURM_JOB_ID; do
+else
+    # ワーカーノードは静かに待機
+    echo "Worker node $SLURM_PROCID waiting for master to complete..."
+    
+    # マスターノードの完了を待つ
+    while squeue -j $SLURM_JOB_ID -h -o "%T" 2>/dev/null | grep -q "RUNNING"; do
         sleep 30
     done
     
-    kill $RAY_WORKER_PID
-    ray stop
+    echo "Worker node $SLURM_PROCID task completed."
 fi
 
-kill $pid_nvsmi
+# GPU監視停止
+kill $pid_nvsmi 2>/dev/null
 wait
