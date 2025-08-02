@@ -40,8 +40,6 @@ pid_nvsmi=$!
 
 #--- vLLM 起動（自動Ray設定）---------------------------------------
 if [ $SLURM_PROCID -eq 0 ]; then
-  echo "Starting vLLM server on master node..."
-  # vLLMが自動でマルチノード分散を処理
   vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 16 \
     --distributed-executor-backend ray \
@@ -51,10 +49,11 @@ if [ $SLURM_PROCID -eq 0 ]; then
     --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
     --max-model-len 131072 \
     --gpu-memory-utilization 0.95 \
-    --disable-log-requests \
+    --verbose \
+    --log-level DEBUG \
+    --trust-remote-code \
     > $EVAL_DIR/vllm.log 2>&1 &
   pid_vllm=$!
-  echo "vLLM server started with PID: $pid_vllm"
 
   #--- ヘルスチェック -------------------------------------------------
   until curl -s http://127.0.0.1:8000/health >/dev/null; do
@@ -73,13 +72,6 @@ if [ $SLURM_PROCID -eq 0 ]; then
   #--- 後片付け -------------------------------------------------------
   kill $pid_vllm 2>/dev/null
   wait $pid_vllm 2>/dev/null
-else
-  # ワーカーノードは静かに待機
-  echo "Worker node $SLURM_PROCID waiting for master to complete..."
-  # マスターノードの完了を待つ
-  while squeue -j $SLURM_JOB_ID -h -o "%T" 2>/dev/null | grep -q "RUNNING"; do
-    sleep 30
-  done
 fi
 
 # GPU監視停止
