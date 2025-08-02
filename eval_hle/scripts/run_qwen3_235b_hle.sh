@@ -8,9 +8,7 @@
 #SBATCH --time=08:00:00
 #SBATCH --output=eval_hle/logs/%x-%j.out
 #SBATCH --error=eval_hle/logs/%x-%j.err
-#SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>"
-#SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
-
+#SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>",HF_TOKEN="<huggingface_tokenをここに>"
 #--- モジュール & Conda --------------------------------------------
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
@@ -34,6 +32,7 @@ export PYTHONUNBUFFERED=1
 
 export RAY_DISABLE_IMPORT_WARNING=1
 export RAY_DEDUP_LOGS=0
+export RAY_USAGE_STATS_ENABLED=1
 export VLLM_LOGGING_LEVEL=DEBUG
 export RAY_LOGGING_LEVEL=DEBUG
 echo "NODE_RANK: $SLURM_PROCID"
@@ -45,15 +44,15 @@ nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
 pid_nvsmi=$!
 
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
-MASTER_IP=$(getent hosts $MASTER_ADDR | awk '{print $1}')
+MASTER_IP=$(getent ahostsv4 $MASTER_ADDR | awk '{print $1}' | head -n1)
 echo "Master node: $MASTER_ADDR ($MASTER_IP)"
 
 #--- vLLM 起動（自動Ray設定）---------------------------------------
 if [ $SLURM_PROCID -eq 0 ]; then
-  export VLLM_HOST_IP=$MASTER_IP
+  export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
   echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
 
-  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP  
+  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
 
   echo "Master node waiting for worker to join..."  
   sleep 30
