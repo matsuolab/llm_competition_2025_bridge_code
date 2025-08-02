@@ -73,7 +73,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
   pid_vllm=$!
 
   #--- ヘルスチェック -------------------------------------------------
-  # it may take about 8 min at first time!
+  # it may take about 8 min at first time
   until curl -s http://127.0.0.1:8000/health >/dev/null; do
     echo "$(date +%T) vLLM starting …"
     sleep 10
