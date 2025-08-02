@@ -8,8 +8,7 @@
 #SBATCH --time=04:00:00
 #SBATCH --output=eval_hle/logs/%x-%j.out
 #SBATCH --error=eval_hle/logs/%x-%j.err
-#SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>"
-#SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
+#SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>",HF_TOKEN="<huggingface_tokenをここに>"
 #--- モジュール & Conda --------------------------------------------
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
@@ -27,7 +26,7 @@ echo "HF cache dir : $HF_HOME"                   # デバッグ用
 export EVAL_DIR="eval_hle"
 
 #--- GPU 監視 -------------------------------------------------------
-nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/nvidia-smi.log &
+nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
 pid_nvsmi=$!
 
 #--- vLLM 起動（8GPU）----------------------------------------------
@@ -37,7 +36,7 @@ vllm serve llm-2025-sahara/Qwen3-32B-omr-peft \
   --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
-  > $EVAL_DIR/vllm.log 2>&1 &
+  > $EVAL_DIR/logs/vllm.log 2>&1 &
 pid_vllm=$!
 
 #--- ヘルスチェック -------------------------------------------------
@@ -48,7 +47,7 @@ done
 echo "vLLM READY"
 
 #--- 推論 -----------------------------------------------------------
-python $EVAL_DIR/predict.py > $EVAL_DIR/predict.log 2>&1
+python $EVAL_DIR/predict.py > $EVAL_DIR/logs/predict.log 2>&1
 
 #--- 評価 -----------------------------------------------------------
 OPENAI_API_KEY=$OPENAI_API_KEY python $EVAL_DIR/judge.py
