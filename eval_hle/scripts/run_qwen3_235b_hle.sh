@@ -5,7 +5,7 @@
 #SBATCH --nodes=2
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
-#SBATCH --time=08:00:00
+#SBATCH --time=04:00:00
 #SBATCH --output=eval_hle/logs/%x-%j.out
 #SBATCH --error=eval_hle/logs/%x-%j.err
 #SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>",HF_TOKEN="<huggingface_tokenをここに>"
@@ -17,7 +17,6 @@ module load nccl/2.24.3
 source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate llmbench
 
-# Hugging Face 認証
 export HF_HOME=${SLURM_TMPDIR:-$HOME}/.hf_cache
 export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
@@ -55,7 +54,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
   ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
 
   echo "Master node waiting for worker to join..."  
-  sleep 30
+  sleep 120
 
   vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 8 \
@@ -70,6 +69,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
   pid_vllm=$!
 
   #--- ヘルスチェック -------------------------------------------------
+  # it may take about 8 min at first time!
   until curl -s http://127.0.0.1:8000/health >/dev/null; do
     echo "$(date +%T) vLLM starting …"
     sleep 10
@@ -78,10 +78,10 @@ if [ $SLURM_PROCID -eq 0 ]; then
 
   #--- 推論 -----------------------------------------------------------
   cd $EVAL_DIR
-  python predict.py > $EVAL_DIR/logs/predict.log 2>&1
+  python predict.py > logs/predict.log 2>&1
 
   #--- 評価 -----------------------------------------------------------
-  OPENAI_API_KEY=$OPENAI_API_KEY python judge.py > $EVAL_DIR/logs/judge.log 2>&1
+  OPENAI_API_KEY=$OPENAI_API_KEY python judge.py > logs/judge.log 2>&1
 
   #--- 後片付け -------------------------------------------------------
   kill $pid_vllm 2>/dev/null
