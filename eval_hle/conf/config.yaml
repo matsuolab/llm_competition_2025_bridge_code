@@ -1,4 +1,11 @@
-dataset: cais/hle
+# sub dataset
+# NOTE: required llm-2025-sahara organization's HF_TOKEN
+# it's not your personal HF_TOKEN
+# use full dataset if cannot access to it
+dataset: llm-2025-sahara/hle-10fold
+
+# full dataset
+# dataset: cais/hle
 
 provider: vllm # [vllm]
 
