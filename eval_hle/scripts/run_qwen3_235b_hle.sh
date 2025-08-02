@@ -47,7 +47,16 @@ pid_nvsmi=$!
 
 #--- vLLM 起動（自動Ray設定）---------------------------------------
 if [ $SLURM_PROCID -eq 0 ]; then
-  vllm serve Qwen/Qwen3-235B-A22B \
+  MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
+  MASTER_IP=$(getent hosts $MASTER_ADDR | awk '{print $1}')
+  echo "Master node: $MASTER_ADDR ($MASTER_IP)"
+  
+  ray stop --force 2>/dev/null || true
+  ray start --head --node-ip-address=$MASTER_IP --port=6379 --dashboard-host=0.0.0.0 --dashboard-port=8265 --num-gpus=8
+  sleep 5
+  ray status
+
+  RAY_ADDRESS="ray://$MASTER_IP:10001" vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 16 \
     --distributed-executor-backend ray \
     --host 0.0.0.0 \
@@ -57,7 +66,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
     --max-model-len 131072 \
     --gpu-memory-utilization 0.95 \
     --trust-remote-code \
-    > $EVAL_DIR/logs/vllm.log 2>&1 &
+    > $EVAL_DIR/vllm.log 2>&1 &
   pid_vllm=$!
 
   #--- ヘルスチェック -------------------------------------------------
@@ -78,6 +87,8 @@ if [ $SLURM_PROCID -eq 0 ]; then
   kill $pid_vllm 2>/dev/null
   wait $pid_vllm 2>/dev/null
 fi
+
+ray stop --force
 
 # GPU監視停止
 kill $pid_nvsmi 2>/dev/null
