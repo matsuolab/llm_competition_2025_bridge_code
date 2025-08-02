@@ -52,7 +52,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
     --verbose \
     --log-level DEBUG \
     --trust-remote-code \
-    > $EVAL_DIR/vllm.log 2>&1 &
+    > $EVAL_DIR/logs/vllm.log 2>&1 &
   pid_vllm=$!
 
   #--- ヘルスチェック -------------------------------------------------
