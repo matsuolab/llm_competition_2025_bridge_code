@@ -56,7 +56,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
   sleep 30
 
   vllm serve Qwen/Qwen3-235B-A22B \
-    --tensor-parallel-size 8 \  
+    --tensor-parallel-size 8 \
     --pipeline-parallel-size 2 \
     --distributed-executor-backend ray \
     --reasoning-parser qwen3 \
