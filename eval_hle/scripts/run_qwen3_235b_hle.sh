@@ -42,8 +42,8 @@ echo "NODE_LIST: $SLURM_JOB_NODELIST"
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
 pid_nvsmi=$!
 
-MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
-MASTER_IP=$(getent ahostsv4 $MASTER_ADDR | awk '{print $1}' | head -n1)
+export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
+export MASTER_IP=$(getent ahostsv4 $MASTER_ADDR | awk '{print $1}' | head -n1)
 echo "Master node: $MASTER_ADDR ($MASTER_IP)"
 
 
@@ -58,7 +58,6 @@ if [ $SLURM_PROCID -eq 0 ]; then
   sleep 180
 
   ray status
-  ray list nodes
 
   VLLM_HOST_IP=$VLLM_HOST_IP vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 8 \
