@@ -1,6 +1,9 @@
 eval_hle/datasets/
 *.parquet
 
+.env
+secrets.env
+
 .venv
 .ipynb_checkpoints
 
