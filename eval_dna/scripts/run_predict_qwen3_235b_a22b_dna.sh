@@ -54,7 +54,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
   echo "Master node is starting ray..."
   ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
   echo "Master node waiting for worker to join..."  
-  sleep 180
+  sleep 300
   ray status
 
   VLLM_HOST_IP=$VLLM_HOST_IP vllm serve Qwen/Qwen3-235B-A22B \
