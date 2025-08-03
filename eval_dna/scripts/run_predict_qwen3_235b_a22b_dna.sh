@@ -42,23 +42,23 @@ echo "NODE_LIST: $SLURM_JOB_NODELIST"
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
 pid_nvsmi=$!
 
-export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
-export MASTER_IP=$(getent ahostsv4 $MASTER_ADDR | awk '{print $1}' | head -n1)
-echo "Master node: $MASTER_ADDR ($MASTER_IP)"
+# export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
+export MASTER_IP=192.168.1.66
+echo "Master node: ($MASTER_IP)"
+
+export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
+echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
 
 #--- vLLM 起動（自動Ray設定）---------------------------------------
 if [ $SLURM_PROCID -eq 0 ]; then
-  export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
-  echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
-
-  VLLM_HOST_IP=$VLLM_HOST_IP ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
+  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
 
   echo "Master node waiting for worker to join..."  
   sleep 180
 
   ray status
 
-  VLLM_HOST_IP=$VLLM_HOST_IP vllm serve Qwen/Qwen3-235B-A22B \
+  vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 8 \
     --pipeline-parallel-size 2 \
     --distributed-executor-backend ray \
@@ -94,10 +94,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
   wait $pid_vllm 2>/dev/null
   ray stop
 else
-  export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
-  echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
-
-  VLLM_HOST_IP=$VLLM_HOST_IP ray start --address=$MASTER_IP:6379 --node-ip-address=$VLLM_HOST_IP  
+  ray start --address=$MASTER_IP:6379 --node-ip-address=$VLLM_HOST_IP  
 
   # Master nodeが完了するまで待機
   echo "Worker node waiting for master to complete..."
