@@ -57,7 +57,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
   sleep 180
   ray status
 
-  vllm serve Qwen/Qwen3-235B-A22B \
+  VLLM_HOST_IP=$VLLM_HOST_IP vllm serve Qwen/Qwen3-235B-A22B \
     --tensor-parallel-size 8 \
     --pipeline-parallel-size 2 \
     --distributed-executor-backend ray \
