@@ -8,7 +8,7 @@
 #SBATCH --time=04:00:00
 #SBATCH --output=eval_dna/logs/%x-%j.out
 #SBATCH --error=eval_dna/logs/%x-%j.err
-#SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
+#SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>",HF_TOKEN="<huggingface_tokenをここに>"
 #--- モジュール & Conda --------------------------------------------
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
@@ -34,8 +34,6 @@ export RAY_DEDUP_LOGS=0
 export RAY_USAGE_STATS_ENABLED=1
 export RAY_LOGGING_LEVEL=DEBUG
 export VLLM_LOGGING_LEVEL=DEBUG
-
-export OPENAI_API_KEY=EMPTY
 
 echo "NODE_RANK: $SLURM_PROCID"
 echo "WORLD_SIZE: $SLURM_NNODES"
