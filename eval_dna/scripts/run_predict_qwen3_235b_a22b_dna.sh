@@ -22,7 +22,6 @@ export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"
-echo "HF token : $HF_TOKEN"
 
 export EVAL_DIR="eval_dna"
 mkdir -p "$EVAL_DIR/logs"
@@ -46,11 +45,12 @@ pid_nvsmi=$!
 export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 export MASTER_IP=$(getent ahostsv4 $MASTER_ADDR | awk '{print $1}' | head -n1)
 echo "Master node: $MASTER_ADDR ($MASTER_IP)"
-export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
-echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
 
 #--- vLLM 起動（自動Ray設定）---------------------------------------
 if [ $SLURM_PROCID -eq 0 ]; then
+  export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
+  echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
+
   ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
 
   echo "Master node waiting for worker to join..."  
@@ -94,6 +94,9 @@ if [ $SLURM_PROCID -eq 0 ]; then
   wait $pid_vllm 2>/dev/null
   ray stop
 else
+  export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
+  echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
+
   ray start --address=$MASTER_IP:6379 --node-ip-address=$VLLM_HOST_IP  
 
   # Master nodeが完了するまで待機
