@@ -1,4 +1,6 @@
 eval_hle/datasets/
+eval_hle/predictions/**/*.json
+eval_hle/predictions/**/*.log
 *.parquet
 
 .env
