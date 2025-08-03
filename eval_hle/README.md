@@ -41,19 +41,50 @@ conda list | grep sqlite
 sqliteのバージョンをlibsqliteに揃える:
 `conda install sqlite=3.50.3 -c conda-forge`
 
-## hle 推論
+## HLE 推論と評価
 
-推論用のslurmファイルは `eval_hle/run_qwen3_32b_hle.sh` にあります。
-実行するにはcpuノードにてsbatchコマンドを使います:
+HLE 評価は推論と採点の2段階に分かれています:
 
+### 1. secrets.env の設定
+
+まず、`eval_hle/secrets.env.example`を参考に`eval_hle/secrets.env`ファイルを作成し、以下のトークンを設定してください:
+
+```bash
+# eval_hle/secrets.env
+export HF_TOKEN="hf_..."
+export OPENAI_API_KEY="sk-..."
+export WANDB_API_KEY="..."
 ```
-sbatch \
-    --export=HF_TOKEN="hf_.." \
-    --export=OPENAI_API_KEY="sk-.." ./eval_hle/scripts/run_qwen3_32b_hle.sh
+
+### 2. 推論実行 (run_prediction.sh)
+
+モデルの推論を実行します:
+
+```bash
+sbatch eval_hle/scripts/run_prediction.sh
 ```
 
-評価結果が`leaderboard`フォルダに書き込まれています。`results.jsonl`と`summary.json`が出力されているかご確認ください。
-なお、`HF_TOKEN`あるいは `OPENAI_API_KEY`は自分のトークンに書き換えてください。
+**重要**: `run_prediction.sh`内のモデル名を評価したいモデルに書き換えてください:
+```bash
+# 42行目のモデル名を変更
+vllm serve YOUR_MODEL_NAME \
+```
+
+### 3. 採点実行 (run_judge.sh)
+
+推論結果の採点を実行します:
+
+```bash
+sbatch eval_hle/scripts/run_judge.sh
+```
+
+**重要**: 採点前に以下の設定を変更してください:
+1. `eval_hle/conf/config.yaml`の`model`フィールドを推論で使用したモデル名に合わせる
+2. `run_judge.sh`内のvLLMサーバーモデル名を採点用モデルに設定する
+
+### 結果確認
+
+評価結果が`leaderboard`フォルダに書き込まれます。`results.jsonl`と`summary.json`が出力されているか確認してください。
 
 ## 動作確認済みモデル （vLLM対応モデルのみ動作可能です）
 - Qwen3 8B
