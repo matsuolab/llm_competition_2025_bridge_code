@@ -8,8 +8,7 @@
 #SBATCH --time=04:00:00
 #SBATCH --output=eval_dna/logs/%x-%j.out
 #SBATCH --error=eval_dna/logs/%x-%j.err
-#SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>"
-#SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
+#SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>",HF_TOKEN="<huggingface_tokenをここに>"
 #--- モジュール & Conda --------------------------------------------
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
@@ -24,7 +23,10 @@ export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"                   # デバッグ用
+
 export EVAL_DIR="eval_dna"
+mkdir -p "$EVAL_DIR/logs"
+echo "log dir : $EVAL_DIR/logs"
 
 #--- GPU 監視 -------------------------------------------------------
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
