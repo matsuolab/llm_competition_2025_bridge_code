@@ -53,7 +53,7 @@ python $EVAL_DIR/llm-compe-eval/judge_huggingface_models.py \
     --dataset_path "llm-2025-sahara/dna-10fold" \
     --output_dir $EVAL_DIR/evaluation_results \
     --use_vllm \
-    --vllm_base_url http://localhost:8000/v1 > $EVAL_DIR/logs/predict.log 2>&1
+    --vllm_base_url http://localhost:8000/v1 > $EVAL_DIR/logs/judge.log 2>&1
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm

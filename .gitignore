@@ -4,6 +4,8 @@ eval_hle/predictions/**/*.json
 eval_hle/predictions/**/*.log
 eval_hle/judged/**/*.json
 eval_hle/leaderboard/**/*.json*
+eval_dna/evaluation_results/**/*.json*
+
 
 .env
 secrets.env
