@@ -51,7 +51,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
   export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
   echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
 
-  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
+  VLLM_HOST_IP=$VLLM_HOST_IP ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
 
   echo "Master node waiting for worker to join..."  
   sleep 180
@@ -97,7 +97,7 @@ else
   export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
   echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
 
-  ray start --address=$MASTER_IP:6379 --node-ip-address=$VLLM_HOST_IP  
+  VLLM_HOST_IP=$VLLM_HOST_IP ray start --address=$MASTER_IP:6379 --node-ip-address=$VLLM_HOST_IP  
 
   # Master nodeが完了するまで待機
   echo "Worker node waiting for master to complete..."
