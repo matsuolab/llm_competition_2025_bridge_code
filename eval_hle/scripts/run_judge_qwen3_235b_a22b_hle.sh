@@ -55,7 +55,8 @@ echo "vLLM READY"
 
 #--- 評価 -----------------------------------------------------------
 export BASE_URL="http://localhost:8000/v1" 
-OPENAI_API_KEY=EMPTY python $EVAL_DIR/judge.py > $EVAL_DIR/logs/judge.log 2>&1
+export OPENAI_API_KEY=EMPTY 
+cd $EVAL_DIR && python judge.py > logs/judge.log 2>&1
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm
