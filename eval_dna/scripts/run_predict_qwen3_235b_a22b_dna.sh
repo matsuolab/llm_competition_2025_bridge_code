@@ -46,15 +46,15 @@ pid_nvsmi=$!
 export MASTER_IP=192.168.1.66
 echo "Master node: ($MASTER_IP)"
 
-export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
-echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
-
 #--- vLLM 起動（自動Ray設定）---------------------------------------
 if [ $SLURM_PROCID -eq 0 ]; then
+  export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
+  echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
+
   echo "Master node is starting ray..."
   ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
   echo "Master node waiting for worker to join..."  
-  sleep 120
+  sleep 180
   ray status
 
   vllm serve Qwen/Qwen3-235B-A22B \
@@ -93,6 +93,9 @@ if [ $SLURM_PROCID -eq 0 ]; then
   wait $pid_vllm 2>/dev/null
   ray stop
 else
+  export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
+  echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
+  
   echo "Worker node waiting for master to start..."  
   sleep 60
   ray start --address=$MASTER_IP:6379 --node-ip-address=$VLLM_HOST_IP  
