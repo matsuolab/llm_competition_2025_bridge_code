@@ -1,7 +1,9 @@
 eval_hle/datasets/
+*.parquet
 eval_hle/predictions/**/*.json
 eval_hle/predictions/**/*.log
-*.parquet
+eval_hle/judged/**/*.json
+eval_hle/leaderboard/**/*.json*
 
 .env
 secrets.env
