@@ -22,6 +22,7 @@ export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"
+echo "HF token : $HF_TOKEN"
 
 export EVAL_DIR="eval_dna"
 mkdir -p "$EVAL_DIR/logs"
@@ -79,7 +80,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
 
   #--- 推論 -----------------------------------------------------------
   python $EVAL_DIR/llm-compe-eval/predict_huggingface_models.py \
-    --model_name "Qwen/Qwen3-32B" \
+    --model_name "Qwen/Qwen3-235B-A22B" \
     --dataset_path "llm-2025-sahara/dna-10fold" \
     --output_dir $EVAL_DIR/evaluation_results \
     --use_vllm \

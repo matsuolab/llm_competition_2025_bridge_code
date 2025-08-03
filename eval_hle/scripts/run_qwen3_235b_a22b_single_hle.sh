@@ -90,19 +90,6 @@ if [ $SLURM_PROCID -eq 0 ]; then
   kill $pid_vllm 2>/dev/null
   wait $pid_vllm 2>/dev/null
   ray stop
-else
-  export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
-  echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
-
-  ray start --address=$MASTER_IP:6379 --node-ip-address=$VLLM_HOST_IP  
-
-  # Master nodeが完了するまで待機
-  echo "Worker node waiting for master to complete..."
-  while kill -0 $pid_nvsmi 2>/dev/null; do
-    sleep 30
-  done
-
-  ray stop
 fi
 
 # GPU監視停止
