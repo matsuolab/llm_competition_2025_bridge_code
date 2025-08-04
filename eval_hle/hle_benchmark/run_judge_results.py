@@ -33,6 +33,7 @@ from openai import AsyncOpenAI
 from tqdm.asyncio import tqdm_asyncio
 from datasets import load_dataset
 from datetime import datetime
+import wandb # need to install it; additional dependencies
 
 client = AsyncOpenAI(
     timeout=300.0,
@@ -156,7 +157,7 @@ def calib_err(confidence, correct, p='2', beta=100):
 
     return cerr
 
-def dump_metrics(args, predictions, total_questions, all_questions):
+def dump_metrics(args, predictions, total_questions, all_questions, artifact=None):
     correct = []
     confidence = []
     correct_by_category = {
@@ -236,12 +237,45 @@ def dump_metrics(args, predictions, total_questions, all_questions):
     with open(output_folder_name + "/summary.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=4) 
 
+    if args.use_wandb:
+        wandb.run.summary["overall_accuracy"] = summary["overall_accuracy"]
+        wandb.run.summary["Math"] = summary["accuracy_per_category"]["Math"]
+        wandb.run.summary["Physics"] = summary["accuracy_per_category"]["Physics"]
+        wandb.run.summary["Biology/Medicine"] = summary["accuracy_per_category"]["Biology/Medicine"]
+        wandb.run.summary["Humanities/Social Science"] = summary["accuracy_per_category"]["Humanities/Social Science"]
+        wandb.run.summary["Computer Science/AI"] = summary["accuracy_per_category"]["Computer Science/AI"]
+        wandb.run.summary["Engineering"] = summary["accuracy_per_category"]["Engineering"]
+        wandb.run.summary["Chemistry"] = summary["accuracy_per_category"]["Chemistry"]
+        wandb.run.summary["Other"] = summary["accuracy_per_category"]["Other"]
+        wandb.run.summary["num_questions"] = n
+
+        artifact.add_file(output_folder_name + "/results.jsonl")
+        artifact.add_file(output_folder_name + "/summary.json")
+        wandb.log_artifact(artifact)
+        wandb.finish()
 
 def main(args):
     assert args.num_workers > 1, "num_workers must be 2 or greater"
 
-    output_filepath = f"judged/judged_hle_{os.path.basename(args.model)}.json"   
-    dataset = load_dataset(args.dataset, split="test").to_dict() 
+    if args.use_wandb:
+        wandb.init(
+            project="hle-judge",
+            entity="llm-2025-sahara",
+            name=os.path.basename(args.model).replace('/', '_'),
+            config={
+                "model": args.model,
+                "dataset": args.dataset,
+                "max_samples": args.max_samples,
+                "max_completion_tokens": args.max_completion_tokens,
+                "judge": args.judge
+            }
+        )
+
+    output_filepath = f"judged/judged_hle_{os.path.basename(args.model)}_{os.path.basename(args.dataset)}.json"   
+    dataset = load_dataset(args.dataset, split=args.split).to_dict() 
+    # output_filepath = f"judged/judged_hle_{os.path.basename(args.model)}.json"   
+    # dataset = load_dataset(args.dataset, split="test").to_dict() 
+    
     # convert to list of json for async parallelism
     all_questions = [dict(zip(dataset.keys(), values)) for values in zip(*dataset.values())]
 
@@ -270,4 +304,10 @@ def main(args):
     with open(output_filepath, "w", encoding="utf-8") as f:
         json.dump(judged_predictions, f, indent=4)
 
-    dump_metrics(args, judged_predictions, total_questions, all_questions)
+    if args.use_wandb:
+        artifact = wandb.Artifact("judged", type="output")
+        artifact.add_file(output_filepath)
+    else:
+        artifact = None
+
+    dump_metrics(args, judged_predictions, total_questions, all_questions, artifact)

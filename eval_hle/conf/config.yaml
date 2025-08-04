@@ -3,6 +3,8 @@
 # it's not your personal HF_TOKEN
 # use full dataset if cannot access to it
 dataset: llm-2025-sahara/hle-10fold
+# now hle-10fold have test split which is the same as validation
+split: test
 
 # full dataset
 # dataset: cais/hle
@@ -20,3 +22,6 @@ num_workers: 2500
 max_samples: 2500
 
 judge: deepseek-ai/DeepSeek-R1-Distill-Llama-70B
+
+# for saving artifacts to wandb
+use_wandb: true

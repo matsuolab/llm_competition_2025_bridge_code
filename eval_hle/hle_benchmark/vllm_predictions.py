@@ -24,6 +24,7 @@ from dataclasses import dataclass
 import os
 import json
 import asyncio
+import wandb # need to install it; additional dependencies
 from datasets import load_dataset
 from openai import AsyncOpenAI
 from tqdm.asyncio import tqdm_asyncio
@@ -103,7 +104,23 @@ def main(args: Config):
     )
 
     assert args.num_workers > 1, "num_workers must be 2 or greater"
-    dataset = load_dataset(args.dataset, split="test")
+
+    if args.use_wandb:
+        wandb.init(
+            project="hle-prediction",
+            entity="llm-2025-sahara",
+            name=os.path.basename(args.model).replace('/', '_'),
+            config={
+                "model": args.model,
+                "dataset": args.dataset,
+                "split": args.split,
+                "max_samples": args.max_samples,
+                "max_completion_tokens": args.max_completion_tokens
+            }
+        )
+
+    dataset = load_dataset(args.dataset, split=args.split)
+    # dataset = load_dataset(args.dataset, split="test")
     dataset = dataset.filter(lambda item: item['image'] == "")
     dataset = dataset.to_dict()
 
@@ -114,8 +131,8 @@ def main(args: Config):
     if args.max_samples:
         questions = questions[:args.max_samples]
     
-    output_filepath = f"predictions/hle_{os.path.basename(args.model)}.json"   
-
+    output_filepath = f"predictions/hle_{os.path.basename(args.model)}_{os.path.basename(args.dataset)}.json"   
+    # output_filepath = f"predictions/hle_{os.path.basename(args.model)}.json"   
 
     # load only questions without responses
     if os.path.exists(output_filepath):
@@ -141,3 +158,11 @@ def main(args: Config):
     # cache responses
     with open(output_filepath, "w") as f:
         json.dump(predictions, f, indent=4)
+
+    if args.use_wandb:
+        wandb.run.summary["num_predictions"] = len(predictions)
+
+        artifact = wandb.Artifact("predictions", type="output")
+        artifact.add_file(output_filepath)
+        wandb.log_artifact(artifact)
+        wandb.finish()
