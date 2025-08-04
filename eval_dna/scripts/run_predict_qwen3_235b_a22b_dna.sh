@@ -43,7 +43,7 @@ nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
 pid_nvsmi=$!
 
 # export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
-export MASTER_IP=192.168.1.66
+export MASTER_IP=192.168.1.67
 echo "Master node: ($MASTER_IP)"
 
 #--- vLLM 起動（自動Ray設定）---------------------------------------
