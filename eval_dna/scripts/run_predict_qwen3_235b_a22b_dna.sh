@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --job-name=qwen3_235b_dna_8gpu
 #SBATCH --partition=P06
-#SBATCH --nodelist=osk-gpu[66,68]
+#SBATCH --nodelist=osk-gpu[67,68]
 #SBATCH --nodes=2
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
 #SBATCH --time=04:00:00
-#SBATCH --output=eval_dna/logs/%x-%j-%N.out
-#SBATCH --error=eval_dna/logs/%x-%j-%N.err
+#SBATCH --output=eval_dna/logs/%x-%j-%t.out
+#SBATCH --error=eval_dna/logs/%x-%j-%t.err
 #SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>",HF_TOKEN="<huggingface_tokenをここに>"
 #--- モジュール & Conda --------------------------------------------
 module purge
