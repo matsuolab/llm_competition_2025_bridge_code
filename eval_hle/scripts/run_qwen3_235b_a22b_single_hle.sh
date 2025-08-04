@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=qwen3_235b_hle_8gpu
 #SBATCH --partition=P06
-#SBATCH --nodelist=osk-gpu66
+#SBATCH --nodelist=osk-gpu67
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
-#SBATCH --time=03:00:00
+#SBATCH --time=06:00:00
 #SBATCH --output=eval_hle/logs/%x-%j.out
 #SBATCH --error=eval_hle/logs/%x-%j.err
 #SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>",HF_TOKEN="<huggingface_tokenをここに>"
@@ -61,7 +61,7 @@ python predict.py > logs/predict.log 2>&1
 # OPENAI_API_KEY=$OPENAI_API_KEY python judge.py > logs/judge.log 2>&1
 
 #--- 後片付け -------------------------------------------------------
-kill $pid_vllm 2>/dev/null
+kill $pid_vllm 2>/dev/nul
 wait $pid_vllm 2>/dev/null
 
 # GPU監視停止
