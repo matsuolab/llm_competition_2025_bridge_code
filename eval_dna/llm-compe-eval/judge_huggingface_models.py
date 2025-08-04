@@ -96,6 +96,11 @@ def main():
         help="Path to Do-Not-Answer dataset CSV file"
     )
     parser.add_argument(
+        "--dataset_split",
+        default="test",
+        help=""
+    )
+    parser.add_argument(
         "--output_dir",
         default="./evaluation_results",
         help="Directory to save evaluation results"
