@@ -140,9 +140,8 @@ def main():
         questions_df = pd.read_csv(args.dataset_path)
     else:
         # For non-CSV datasets, use datasets library
-        if args.dataset_split:
-            ds = datasets.load_dataset(args.dataset_path, split=args.dataset_split)
-            print(f"Using split: {args.dataset_split}")
+        ds = datasets.load_dataset(args.dataset_path, split=args.dataset_split)
+        print(f"Using split: {args.dataset_split}")
         questions_df = ds.to_pandas()
 
     if args.max_questions:
