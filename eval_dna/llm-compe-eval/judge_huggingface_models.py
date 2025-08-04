@@ -82,6 +82,8 @@ class HuggingFaceModelJudge(HuggingFaceModelEvaluator):
         return evaluation_results
 
 def main():
+    import datasets
+
     parser = argparse.ArgumentParser(description="Evaluate Hugging Face models on Do-Not-Answer dataset")
     parser.add_argument(
         "--model_name",
@@ -152,7 +154,13 @@ def main():
 
     # Load dataset
     print(f"Loading dataset from: {args.dataset_path}")
-    questions_df = pd.read_csv(args.dataset_path)
+    if args.dataset_path.endswith('.csv'):
+        questions_df = pd.read_csv(args.dataset_path)
+    else:
+        # For non-CSV datasets, use datasets library
+        ds = datasets.load_dataset(args.dataset_path, split=args.dataset_split)
+        print(f"Using split: {args.dataset_split}")
+        questions_df = ds.to_pandas()
     
     if args.max_questions:
         questions_df = questions_df.head(args.max_questions)
