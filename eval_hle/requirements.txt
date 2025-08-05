@@ -5,4 +5,4 @@ jupyterlab>=4.4.2
 matplotlib>=3.10.3
 ollama>=0.4.8
 openai>=1.79.0
-wandb
+wandb>=0.21.0

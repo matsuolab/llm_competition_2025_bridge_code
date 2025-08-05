@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_235b_hle_8gpu
+#SBATCH --job-name=qwen3_235b_a22b_hle_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu67
 #SBATCH --nodes=1
@@ -8,7 +8,6 @@
 #SBATCH --time=06:00:00
 #SBATCH --output=eval_hle/logs/%x-%j.out
 #SBATCH --error=eval_hle/logs/%x-%j.err
-#SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>",HF_TOKEN="<huggingface_tokenをここに>"
 #--- モジュール & Conda --------------------------------------------
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
@@ -17,8 +16,14 @@ module load nccl/2.24.3
 source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate llmbench
 
+# Hugging Face 認証
+# secrets.env.exampleファイルを自分のトークンに置き換えてください
+source $EVAL_DIR/secrets.env
+
 export HF_HOME=${SLURM_TMPDIR:-$HOME}/.hf_cache
-export TRANSFORMERS_CACHE=$HF_HOME
+export HF_TOKEN=$HF_TOKEN
+export WANDB_API_KEY=$WANDB_API_KEY
+# export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"
