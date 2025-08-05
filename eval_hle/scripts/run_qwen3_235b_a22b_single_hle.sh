@@ -9,6 +9,10 @@
 #SBATCH --output=eval_hle/logs/%x-%j.out
 #SBATCH --error=eval_hle/logs/%x-%j.err
 #--- モジュール & Conda --------------------------------------------
+export EVAL_DIR="eval_hle"
+mkdir -p "$EVAL_DIR/logs"
+echo "log dir : $EVAL_DIR/logs"
+
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
 module load cudnn/9.6.0
@@ -27,10 +31,6 @@ export WANDB_API_KEY=$WANDB_API_KEY
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"
-
-export EVAL_DIR="eval_hle"
-mkdir -p "$EVAL_DIR/logs"
-echo "log dir : $EVAL_DIR/logs"
 
 export PYTHONUNBUFFERED=1
 export VLLM_LOGGING_LEVEL=DEBUG
