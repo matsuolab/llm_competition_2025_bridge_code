@@ -370,7 +370,7 @@ class HuggingFaceModelEvaluator:
             )
             # NOTE: コンペ予選の submission で Runtime Errorになる恐れがある
             if response.choices[0].message.content is None:
-                print("WARNING: the model responds with None. it may crash in the competition final!")
+                print(f"WARNING: the model responds with None. it may crash in the competition final!: {response}")
                 return ""
             else:
                 return response.choices[0].message.content.strip()
