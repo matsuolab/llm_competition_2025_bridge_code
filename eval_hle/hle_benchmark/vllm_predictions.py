@@ -68,6 +68,7 @@ async def attempt_question(args, question):
         ) 
         content = response.choices[0].message.content
         if response.choices[0].finish_reason == "length":
+            print(f"missing prediction due to length: qid={question['id']} len={len(content)}")
             return None
         tokens = json.loads(response.usage.model_dump_json())
         if args.reasoning:

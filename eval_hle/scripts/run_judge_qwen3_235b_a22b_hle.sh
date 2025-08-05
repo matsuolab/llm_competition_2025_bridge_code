@@ -8,7 +8,6 @@
 #SBATCH --time=01:00:00
 #SBATCH --output=eval_hle/logs/%x-%j.out
 #SBATCH --error=eval_hle/logs/%x-%j.err
-#SBATCH --export=HF_TOKEN="<huggingface_tokenをここに>"
 
 export EVAL_DIR="eval_hle"
 mkdir -p "$EVAL_DIR/logs"

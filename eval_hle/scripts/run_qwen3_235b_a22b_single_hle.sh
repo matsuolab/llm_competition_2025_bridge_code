@@ -8,11 +8,11 @@
 #SBATCH --time=06:00:00
 #SBATCH --output=eval_hle/logs/%x-%j.out
 #SBATCH --error=eval_hle/logs/%x-%j.err
-#--- モジュール & Conda --------------------------------------------
+
 export EVAL_DIR="eval_hle"
 mkdir -p "$EVAL_DIR/logs"
 echo "log dir : $EVAL_DIR/logs"
-
+#--- モジュール & Conda --------------------------------------------
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
 module load cudnn/9.6.0
