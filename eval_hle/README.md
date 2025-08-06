@@ -28,6 +28,9 @@ pip install \
   --extra-index-url https://pypi.org/simple \
   torch==2.7.1+cu126 torchvision==0.22.1+cu126 torchaudio==2.7.1+cu126 \
   vllm>=0.4.2
+
+# 以前に環境構築した場合のみ必要
+pip install wandb
 ```
 
 ## vllm serve が出来ないとき: undefined symbol: sqlite3_deserialize
@@ -52,7 +55,7 @@ HLE 評価は推論と採点の2段階に分かれています:
 ```bash
 # eval_hle/secrets.env
 export HF_TOKEN="hf_..."
-export OPENAI_API_KEY="sk-..."
+export OPENAI_API_KEY="sk-..."  # 最終評価まで不要
 export WANDB_API_KEY="..."
 ```
 
