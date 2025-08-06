@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_235b_hle_8gpu
+#SBATCH --job-name=predict_deepseek_r1_0528_hle_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu[66,68]
 #SBATCH --nodes=2
@@ -27,7 +27,6 @@ conda activate llmbench
 source $EVAL_DIR/secrets.env
 
 export HF_HOME=${SLURM_TMPDIR:-$HOME}/.hf_cache
-# export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"
