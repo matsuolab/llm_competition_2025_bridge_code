@@ -5,7 +5,7 @@ eval_hle/predictions/**/*.log
 eval_hle/judged/**/*.json
 eval_hle/leaderboard/**/*.json*
 eval_dna/evaluation_results/**/*.json*
-
+train/example_data
 
 .env
 secrets.env

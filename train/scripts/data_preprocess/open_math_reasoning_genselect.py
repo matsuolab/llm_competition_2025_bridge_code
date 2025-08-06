@@ -1,0 +1,251 @@
+# Copyright 2024 Bytedance Ltd. and/or its affiliates
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import argparse
+import os
+import re
+import shutil
+from typing import Dict, Tuple
+
+import datasets
+
+# hdfs_io.pyからコピーした関数
+def makedirs(name, mode=0o777, exist_ok=False, **kwargs) -> None:
+    """Works like os.makedirs() but supports hdfs."""
+    if name.startswith("hdfs://"):
+        # HDFSの場合の処理（今回は使用しないのでpass）
+        pass  
+    else:
+        os.makedirs(name, mode=mode, exist_ok=exist_ok)
+
+
+def copy(src: str, dst: str, **kwargs) -> bool:
+    """Works like shutil.copy() for file, and shutil.copytree for dir, and supports hdfs."""
+    if src.startswith("hdfs://") or dst.startswith("hdfs://"):
+        # HDFSの場合の処理（今回は使用しないのでpass）
+        pass
+    else:
+        if os.path.isdir(src):
+            return shutil.copytree(src, dst, **kwargs)
+        else:
+            return shutil.copy(src, dst, **kwargs)
+
+
+def extract_problem(text):
+    """
+    Extract the problem statement from the input text.
+    
+    Args:
+        text (str): Input text containing the problem and solutions
+        
+    Returns:
+        str: The problem statement text
+    """
+    # Look for "Problem:" followed by the problem text until "Solutions:" appears
+    problem_pattern = r'Problem:\s*\n(.*?)\n\s*Solutions:'
+    match = re.search(problem_pattern, text, re.DOTALL)
+    if match:
+        problem_text = match.group(1).strip()
+        # Clean up the problem text by removing line numbers and arrow markers
+        lines = problem_text.split('\n')
+        cleaned_lines = []
+        for line in lines:
+            # Remove line numbers and arrow markers (e.g., "    11→")
+            cleaned_line = re.sub(r'^\s*\d+→', '', line)
+            cleaned_lines.append(cleaned_line)
+        return '\n'.join(cleaned_lines).strip()
+    return ""
+
+
+def extract_solutions_dict(text):
+    """
+    Extract solutions from the input text and return a dictionary.
+    
+    Args:
+        text (str): Input text containing solutions
+        
+    Returns:
+        dict: Dictionary with keys as integers (0, 1, 2, etc.)
+              and values as dictionaries containing "answer" and "solution" keys
+    """
+    result = {}
+
+    # Pattern to match \boxed{content} where content can contain nested braces
+    boxed_pattern = r'\\boxed\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}'
+
+    # Split text into sections by "Solution X:"
+    solution_pattern = r'(Solution (\d+)):'
+    sections = re.split(solution_pattern, text)
+
+    # Process sections in triplets (full match, solution name, solution number, solution content)
+    for i in range(1, len(sections), 3):
+        if i + 2 < len(sections):
+            solution_name = sections[i]
+            solution_number = int(sections[i + 1])
+            solution_content = sections[i + 2]
+
+            # Find \boxed{} content in this solution
+            boxed_match = re.search(boxed_pattern, solution_content)
+
+            if boxed_match:
+                answer = boxed_match.group(1)
+                # The full solution text includes the solution name and content
+                full_solution = solution_name + ":" + solution_content
+
+                result[solution_number] = {
+                    "answer": answer,
+                    "solution": full_solution.strip()
+                }
+
+    return result
+
+
+def extract_judgement(text):
+    pattern = r'Judgement?:\s*(\d+)'
+    match = re.search(pattern, text)
+    if match:
+        number = match.group(1)  # This will be "2"
+    
+    return int(number)
+
+
+def convert_openmath_to_prompt_response(example: Dict) -> Tuple[str, str]:
+    """OpenMathReasoning形式のデータを単一のプロンプト-レスポンスペアに変換
+    
+    OpenMathReasoningは直接的なフィールド構造を持つ:
+    - problem: 数学問題文
+    - generated_solution: 完全な解答プロセス
+    """
+
+    problem = extract_problem(example["problem"])
+    solutions = extract_solutions_dict(example["problem"])
+
+    judgement = extract_judgement(example["generated_solution"])
+    
+    return problem, response
+
+# https://github.com/volcengine/verl/blob/0f5ab5c8/verl/utils/dataset/rl_dataset.py
+# def maybe_filter_out_long_prompts(tokenizer, dataframe: datasets.Dataset = None):
+#     pass
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--local_dir", default="~/data/open_math_reasoning")
+    parser.add_argument("--hdfs_dir", default=None)
+    parser.add_argument("--train_ratio", type=float, default=0.9, 
+                       help="訓練データの割合（残りが検証用）")
+    parser.add_argument("--seed", type=int, default=42, help="分割用のランダムシード")
+    # parser.add_argument("--program_source_to_exclude", default="aops_c4_high_school_math,aops_c6_high_school_olympiads",
+    #                    help="")
+    
+    args = parser.parse_args()
+
+    data_source = "nvidia/OpenMathReasoning"
+    split = "genselect"
+
+    # 指定されたスプリットのみをロード（高速化とメモリ節約）
+    try:
+        full_dataset = datasets.load_dataset(data_source, split=split)
+        print(f"データセット読み込み完了: {len(full_dataset)} サンプル (split: {split})")
+    except Exception as e:
+        print(f"エラー: スプリット '{split}' の読み込みに失敗しました")
+        print(f"エラー詳細: {e}")
+        # フォールバック: 全体をロードして利用可能なスプリットを表示
+        try:
+            dataset = datasets.load_dataset(data_source)
+            print(f"利用可能なスプリット: {list(dataset.keys())}")
+        except:
+            print("データセット情報の取得に失敗しました")
+        exit(1)
+
+    filtered_dataset = full_dataset
+
+    print(f"最初のサンプル構造: {list(filtered_dataset[0].keys())}")
+
+    def make_map_fn(split):
+        """データセット変換関数を生成
+        
+        OpenMathReasoningデータをVERL訓練用の統一フォーマットに変換
+        複数の推論モードに対応した処理
+        """
+        def process_fn(example, idx):
+            # OpenMathReasoningの直接的なフィールド構造を処理
+            prompt, response = convert_openmath_to_prompt_response(example)
+            
+            # 数学解答の抽出（expected_answerを優先使用）
+            expected_answer = example["expected_answer"]
+ 
+            # VERL統一フォーマット: OpenMathReasoning用に最適化
+            data = {
+                "data_source": data_source,
+                "prompt": [
+                    {
+                        "role": "user",
+                        "content": prompt,
+                    }
+                ],
+                "ability": "math_reasoning",  # OpenMathReasoningは数学推論特化
+                "reward_model": {"style": "rule", "ground_truth": expected_answer},
+                "extra_info": {  # SFT訓練で使用する元データを保持
+                    "split": split,
+                    "index": idx,
+                    "answer": response,     # 完全な推論プロセス
+                    "question": prompt,    # 元の問題文
+                    "expected_answer": expected_answer,  # ground truth
+                    "problem_type": example.get("problem_type", ""),
+                    "problem_source": example.get("problem_source", ""),
+                    "inference_mode": example.get("inference_mode", split),
+                    "original_format": "open_math_reasoning"
+                },
+            }
+            return data
+
+        return process_fn
+
+    # datasets.train_test_split()を使用してデータセットを分割
+    split_dataset = filtered_dataset.train_test_split(
+        test_size=1.0 - args.train_ratio, 
+        seed=args.seed
+    )
+    train_dataset = split_dataset["train"]
+    val_dataset = split_dataset["test"]
+    
+    print(f"分割結果: 訓練={len(train_dataset)}, 検証={len(val_dataset)}")
+
+    # データセット変換を適用
+    train_dataset = train_dataset.map(function=make_map_fn("train"), with_indices=True)
+    val_dataset = val_dataset.map(function=make_map_fn("validation"), with_indices=True)
+    
+    print(f"フィルター前: 訓練={len(train_dataset)}, 検証={len(val_dataset)}")
+
+    local_dir = os.path.expanduser(args.local_dir)
+    hdfs_dir = args.hdfs_dir
+
+    # ディレクトリ作成
+    os.makedirs(local_dir, exist_ok=True)
+
+    # ローカルディスクにparquet形式で保存
+    train_dataset.to_parquet(os.path.join(local_dir, "train.parquet"))
+    val_dataset.to_parquet(os.path.join(local_dir, "test.parquet"))  # SFTトレーナーはtest.parquetを期待
+    
+    print(f"データ保存完了: {local_dir}")
+    print(f"- 訓練データ: {len(train_dataset)} サンプル -> train.parquet")
+    print(f"- 検証データ: {len(val_dataset)} サンプル -> test.parquet")
+
+    # HDFSへのバックアップ（オプション）
+    if hdfs_dir is not None:
+        makedirs(hdfs_dir)
+        copy(src=local_dir, dst=hdfs_dir)
+        print(f"HDFSバックアップ完了: {hdfs_dir}")
