@@ -94,6 +94,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
   wait $pid_vllm 2>/dev/null
   ray stop
 else
+  # 以下は workerノードで実行する
   ray start --address=$MASTER_IP:6379 --node-ip-address=$VLLM_HOST_IP  
 
   # Master nodeが完了するまで待機

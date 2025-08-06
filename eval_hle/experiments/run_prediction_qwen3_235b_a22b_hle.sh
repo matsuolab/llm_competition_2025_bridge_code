@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_235b_a22b_hle_8gpu
+#SBATCH --job-name=predict_qwen3_235b_a22b_hle_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu67
 #SBATCH --nodes=1
@@ -9,9 +9,11 @@
 #SBATCH --output=eval_hle/logs/%x-%j.out
 #SBATCH --error=eval_hle/logs/%x-%j.err
 
+#--- 作業ディレクトリ & logs --------------------------------------------
 export EVAL_DIR="eval_hle"
 mkdir -p "$EVAL_DIR/logs"
 echo "log dir : $EVAL_DIR/logs"
+
 #--- モジュール & Conda --------------------------------------------
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
@@ -27,7 +29,6 @@ source $EVAL_DIR/secrets.env
 export HF_HOME=${SLURM_TMPDIR:-$HOME}/.hf_cache
 export HF_TOKEN=$HF_TOKEN
 export WANDB_API_KEY=$WANDB_API_KEY
-# export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"
@@ -46,6 +47,7 @@ vllm serve Qwen/Qwen3-235B-A22B \
   --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
+  --max-num-seqs 256 \
   --trust-remote-code \
   > $EVAL_DIR/logs/vllm.log 2>&1 &
 pid_vllm=$!

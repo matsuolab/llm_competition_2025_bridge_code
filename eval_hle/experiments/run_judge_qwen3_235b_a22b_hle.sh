@@ -9,9 +9,11 @@
 #SBATCH --output=eval_hle/logs/%x-%j.out
 #SBATCH --error=eval_hle/logs/%x-%j.err
 
+#--- 作業ディレクトリ & logs --------------------------------------------
 export EVAL_DIR="eval_hle"
 mkdir -p "$EVAL_DIR/logs"
 echo "log dir : $EVAL_DIR/logs"
+
 #--- モジュール & Conda --------------------------------------------
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
@@ -27,7 +29,6 @@ source $EVAL_DIR/secrets.env
 export HF_HOME=${SLURM_TMPDIR:-$HOME}/.hf_cache
 export HF_TOKEN=$HF_TOKEN
 export WANDB_API_KEY=$WANDB_API_KEY
-# export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"
@@ -44,6 +45,7 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --tensor-parallel-size 8 \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
+  --max-num-seqs 256 \
   --dtype "bfloat16" \
   > $EVAL_DIR/logs/vllm.log 2>&1 &
 pid_vllm=$!
