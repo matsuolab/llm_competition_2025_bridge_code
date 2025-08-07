@@ -13,7 +13,20 @@
 pip install -r llm-compe-eval/requirements_competition.txt
 ```
 
-### 2. APIキーの設定
+### 2. secrets.env の設定
+
+まず、`eval_dna/secrets.env.example`を参考に`eval_dna/secrets.env`ファイルを作成し、以下のトークンを設定してください：
+
+```bash
+# eval_dna/secrets.env
+export HF_TOKEN="hf_..."
+export OPENAI_API_KEY="sk-..."
+export GEMINI_API_KEY="your_gemini_api_key_here"
+export ANTHROPIC_API_KEY="your_anthropic_api_key_here"
+export WANDB_API_KEY="..."  # 必要に応じて
+```
+
+### 3. APIキーの設定（代替方法）
 
 `do_not_answer/utils/info.yaml`ファイルを編集して、APIキーを設定してください：
 
