@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_32b_dna_8gpu
+#SBATCH --job-name=predict_dna_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
@@ -8,7 +8,12 @@
 #SBATCH --time=04:00:00
 #SBATCH --output=eval_dna/logs/%x-%j.out
 #SBATCH --error=eval_dna/logs/%x-%j.err
-#SBATCH --export=OPENAI_API_KEY="<openai_api_keyをここに>",HF_TOKEN="<huggingface_tokenをここに>"
+
+#--- 作業ディレクトリ & logs --------------------------------------------
+export EVAL_DIR="eval_dna"
+mkdir -p "$EVAL_DIR/logs"
+echo "log dir : $EVAL_DIR/logs"
+
 #--- モジュール & Conda --------------------------------------------
 module purge
 module load cuda/12.6 miniconda/24.7.1-py312
@@ -18,23 +23,26 @@ source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate llmbench
 
 # Hugging Face 認証
+# secrets.env.exampleファイルを自分のトークンに置き換えてください
+source $EVAL_DIR/secrets.env
+
+export HF_TOKEN=$HF_TOKEN
+export WANDB_API_KEY=$WANDB_API_KEY
 export HF_HOME=${SLURM_TMPDIR:-$HOME}/.hf_cache
-export TRANSFORMERS_CACHE=$HF_HOME
+# export TRANSFORMERS_CACHE=$HF_HOME
 export HUGGINGFACE_HUB_TOKEN=$HF_TOKEN
 mkdir -p "$HF_HOME"
 echo "HF cache dir : $HF_HOME"                   # デバッグ用
 
-export EVAL_DIR="eval_dna"
-mkdir -p "$EVAL_DIR/logs"
-echo "log dir : $EVAL_DIR/logs"
-
 #--- GPU 監視 -------------------------------------------------------
-nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
-pid_nvsmi=$!
+# nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
+# pid_nvsmi=$!
 
 #--- vLLM 起動（8GPU）----------------------------------------------
-vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
+vllm serve Qwen/Qwen3-32B \
   --tensor-parallel-size 8 \
+  --reasoning-parser qwen3 \
+  --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
   --dtype "bfloat16" \
@@ -49,15 +57,14 @@ done
 echo "vLLM READY"
 
 #--- 推論 -----------------------------------------------------------
-python $EVAL_DIR/llm-compe-eval/judge_huggingface_models.py \
+python $EVAL_DIR/llm-compe-eval/predict_huggingface_models.py \
     --model_name "Qwen/Qwen3-32B" \
-    --eval_models "deepseek-ai/DeepSeek-R1-Distill-Llama-70B" \
     --dataset_path "llm-2025-sahara/dna-10fold" \
     --output_dir $EVAL_DIR/evaluation_results \
     --use_vllm \
-    --vllm_base_url http://localhost:8000/v1 > $EVAL_DIR/logs/judge.log 2>&1
+    --vllm_base_url http://localhost:8000/v1 > $EVAL_DIR/logs/predict.log 2>&1
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm
-kill $pid_nvsmi
+# kill $pid_nvsmi
 wait
