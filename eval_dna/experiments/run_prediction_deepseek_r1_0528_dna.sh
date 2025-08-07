@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=predict_deepseek_r1_0528_hle_8gpu
+#SBATCH --job-name=predict_deepseek_r1_0528_dna_8gpu
 #SBATCH --partition=P06
-#SBATCH --nodelist=osk-gpu[66,68]
+#SBATCH --nodelist=osk-gpu[66,67]
 #SBATCH --nodes=2
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
