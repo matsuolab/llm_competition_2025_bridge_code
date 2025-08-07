@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_235b_a22b_hle_8gpu
+#SBATCH --job-name=deepseek_r1_0528_hle_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
@@ -45,7 +45,7 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --tensor-parallel-size 8 \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
-  --max-num-seqs 256 \
+  --max-num-seqs 512 \
   --dtype "bfloat16" \
   > $EVAL_DIR/logs/vllm.log 2>&1 &
 pid_vllm=$!
