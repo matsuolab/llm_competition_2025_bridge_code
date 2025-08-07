@@ -69,6 +69,7 @@ if [ $SLURM_PROCID -eq 0 ]; then
     --reasoning-parser deepseek_r1 \
     --max-model-len 131072 \
     --gpu-memory-utilization 0.92 \
+    --max-num-seqs 512 \
     --dtype auto \
     --trust-remote-code \
     > $EVAL_DIR/logs/vllm.log 2>&1 &
