@@ -57,7 +57,7 @@ echo "vLLM READY"
 
 #--- 推論 -----------------------------------------------------------
 python $EVAL_DIR/llm-compe-eval/judge_huggingface_models.py \
-    --model_name "Qwen/Qwen3-235B-A22B" \
+    --model_name "deepseek-ai/DeepSeek-R1-0528" \
     --eval_models "deepseek-ai/DeepSeek-R1-Distill-Llama-70B" \
     --dataset_path "llm-2025-sahara/dna-10fold" \
     --output_dir $EVAL_DIR/evaluation_results \
