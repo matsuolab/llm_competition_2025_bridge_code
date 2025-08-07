@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=sft_qwen3_235b_a22b_hle_8gpu
+#SBATCH --job-name=qwen3_235b_a22b_sft_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu[66,68]
 #SBATCH --nodes=2

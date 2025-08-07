@@ -1,16 +1,16 @@
 #!/bin/bash
-#SBATCH --job-name=predict_deepseek_r1_0528_dna_8gpu
+#SBATCH --job-name=deepseek_r1_0528_dna_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu[66,67]
 #SBATCH --nodes=2
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
 #SBATCH --time=04:00:00
-#SBATCH --output=eval_hle/logs/%x-%j.out
-#SBATCH --error=eval_hle/logs/%x-%j.err
+#SBATCH --output=eval_dna/logs/%x-%j.out
+#SBATCH --error=eval_dna/logs/%x-%j.err
 
 #--- 作業ディレクトリ & logs --------------------------------------------
-export EVAL_DIR="eval_hle"
+export EVAL_DIR="eval_dna"
 mkdir -p "$EVAL_DIR/logs"
 echo "log dir : $EVAL_DIR/logs"
 
