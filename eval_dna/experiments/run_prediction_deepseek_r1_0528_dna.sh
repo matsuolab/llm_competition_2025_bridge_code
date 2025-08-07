@@ -46,69 +46,88 @@ echo "NODE_LIST: $SLURM_JOB_NODELIST"
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
 pid_nvsmi=$!
 
-export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
-export MASTER_IP=192.168.1.66
-echo "Master node: $MASTER_ADDR ($MASTER_IP)"
-export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
-echo "VLLM_HOST_IP: $VLLM_HOST_IP"  
+# https://docs.ray.io/en/latest/cluster/vms/user-guides/community/slurm.html
+# Getting the node names
+nodes=$(scontrol show hostnames "$SLURM_JOB_NODELIST")
+nodes_array=($nodes)
+
+head_node=${nodes_array[0]}
+head_node_ip=$(srun --nodes=1 --ntasks=1 -w "$head_node" hostname --ip-address)
+
+# if we detect a space character in the head node IP, we'll
+# convert it to an ipv4 address. This step is optional.
+if [[ "$head_node_ip" == *" "* ]]; then
+  IFS=' ' read -ra ADDR <<<"$head_node_ip"
+  if [[ ${#ADDR[0]} -gt 16 ]]; then
+    head_node_ip=${ADDR[1]}
+  else
+    head_node_ip=${ADDR[0]}
+  fi
+  echo "IPV6 address detected. We split the IPV4 address as $head_node_ip"
+fi
+
+port=6379
+ip_head=$head_node_ip:$port
+export ip_head
+echo "IP Head: $ip_head"
+
+echo "Starting HEAD at $head_node"
+srun --nodes=1 --ntasks=1 -w "$head_node" \
+  ray start --head --node-ip-address="$head_node_ip" --port=$port \
+    --num-cpus "${SLURM_CPUS_PER_TASK}" --num-gpus "${SLURM_GPUS_PER_TASK}" --block &
+
+# optional, though may be useful in certain versions of Ray < 1.0.
+sleep 10
+
+# number of nodes other than the head node
+worker_num=$((SLURM_JOB_NUM_NODES - 1))
+
+for ((i = 1; i <= worker_num; i++)); do
+  node_i=${nodes_array[$i]}
+  echo "Starting WORKER $i at $node_i"
+  srun --nodes=1 --ntasks=1 -w "$node_i" \
+    ray start --address "$ip_head" \
+      --num-cpus "${SLURM_CPUS_PER_TASK}" --num-gpus "${SLURM_GPUS_PER_TASK}" --block &
+  sleep 5
+done
+
+ray status
 
 #--- vLLM 起動（自動Ray設定）---------------------------------------
-if [ $SLURM_PROCID -eq 0 ]; then
-  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
+# https://github.com/vllm-project/vllm/blob/f5d0f4784fdd93f1032f3bb81220af10d7588f5a/examples/online_serving/ray_serve_deepseek.py
+vllm serve deepseek-ai/DeepSeek-R1-0528 \
+  --tensor-parallel-size 8 \
+  --pipeline-parallel-size 2 \
+  --distributed-executor-backend ray \
+  --reasoning-parser deepseek_r1 \
+  --max-model-len 131072 \
+  --gpu-memory-utilization 0.92 \
+  --max-num-seqs 512 \
+  --dtype auto \
+  --trust-remote-code \
+  > $EVAL_DIR/logs/vllm.log 2>&1 &
+pid_vllm=$!
 
-  echo "Master node waiting for worker to join..."  
-  sleep 60
+#--- ヘルスチェック -------------------------------------------------
+# it may take about 8 min at first time
+until curl -s http://127.0.0.1:8000/health >/dev/null; do
+  echo "$(date +%T) vLLM starting …"
+  sleep 10
+done
+echo "vLLM READY"
 
-  ray status
+#--- 推論 -----------------------------------------------------------
+python $EVAL_DIR/llm-compe-eval/predict_huggingface_models.py \
+  --model_name "deepseek-ai/DeepSeek-R1-0528" \
+  --dataset_path "llm-2025-sahara/dna-10fold" \
+  --output_dir $EVAL_DIR/evaluation_results \
+  --use_vllm \
+  --vllm_base_url http://localhost:8000/v1 > $EVAL_DIR/logs/predict.log 2>&1
 
-  # https://github.com/vllm-project/vllm/blob/f5d0f4784fdd93f1032f3bb81220af10d7588f5a/examples/online_serving/ray_serve_deepseek.py
-  vllm serve deepseek-ai/DeepSeek-R1-0528 \
-    --tensor-parallel-size 8 \
-    --pipeline-parallel-size 2 \
-    --distributed-executor-backend ray \
-    --reasoning-parser deepseek_r1 \
-    --max-model-len 131072 \
-    --gpu-memory-utilization 0.92 \
-    --max-num-seqs 512 \
-    --dtype auto \
-    --trust-remote-code \
-    > $EVAL_DIR/logs/vllm.log 2>&1 &
-  pid_vllm=$!
-
-  #--- ヘルスチェック -------------------------------------------------
-  # it may take about 8 min at first time
-  until curl -s http://127.0.0.1:8000/health >/dev/null; do
-    echo "$(date +%T) vLLM starting …"
-    sleep 10
-  done
-  echo "vLLM READY"
-
-  #--- 推論 -----------------------------------------------------------
-  python $EVAL_DIR/llm-compe-eval/predict_huggingface_models.py \
-    --model_name "deepseek-ai/DeepSeek-R1-0528" \
-    --dataset_path "llm-2025-sahara/dna-10fold" \
-    --output_dir $EVAL_DIR/evaluation_results \
-    --use_vllm \
-    --vllm_base_url http://localhost:8000/v1 > $EVAL_DIR/logs/predict.log 2>&1
-
-  #--- 評価 -----------------------------------------------------------
-  # OPENAI_API_KEY=$OPENAI_API_KEY python judge.py > logs/judge.log 2>&1
-
-  #--- 後片付け -------------------------------------------------------
-  kill $pid_vllm 2>/dev/null
-  wait $pid_vllm 2>/dev/null
-  ray stop
-else
-  ray start --address=$MASTER_IP:6379 --node-ip-address=$VLLM_HOST_IP  
-
-  # Master nodeが完了するまで待機
-  echo "Worker node waiting for master to complete..."
-  while kill -0 $pid_nvsmi 2>/dev/null; do
-    sleep 30
-  done
-
-  ray stop
-fi
+#--- 後片付け -------------------------------------------------------
+kill $pid_vllm 2>/dev/null
+wait $pid_vllm 2>/dev/null
+ray stop
 
 # GPU監視停止
 kill $pid_nvsmi 2>/dev/null
