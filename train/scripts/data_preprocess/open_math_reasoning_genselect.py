@@ -135,7 +135,8 @@ def extract_solutions_dict(text):
 
                 result[solution_number] = {
                     "answer": answer,
-                    "solution": full_solution.strip()
+                    "full_solution": full_solution.strip(),
+                    "solution_content": solution_content.strip()
                 }
 
     return result
@@ -172,14 +173,11 @@ def convert_openmath_to_prompt_response(example: Dict) -> Tuple[str, str]:
 
     judgement = extract_judgement(example["generated_solution"])
 
-    solution_part = "\n\n".join([solutions[k]["solution"] for k in solutions])
-    prompt = "\n\n".join([problem, solution_part])
-    
-    return prompt, solutions[judgement]["answer"]
+    solution_part = "\n\n".join([solutions[k]["full_solution"] for k in solutions])
+    chosen_solution = solutions[judgement]["solution_content"]
+    response = "\n\n".join([f"<think>\n{solution_part}", f"Judgement: {judgement}\n</think>\n{chosen_solution}"])
 
-# https://github.com/volcengine/verl/blob/0f5ab5c8/verl/utils/dataset/rl_dataset.py
-# def maybe_filter_out_long_prompts(tokenizer, dataframe: datasets.Dataset = None):
-#     pass
+    return problem, response
 
 
 if __name__ == "__main__":
