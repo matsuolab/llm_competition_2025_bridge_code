@@ -81,8 +81,34 @@ def extract_solutions_dict(text):
     """
     result = {}
 
-    # Pattern to match \boxed{content} where content can contain nested braces
-    boxed_pattern = r'\\boxed\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}'
+    def extract_boxed_content(text):
+        """Extract content from \boxed{...} handling nested braces properly"""
+        start_pattern = r'\\boxed\{'
+        # Find all matches and use the last one (closest to the end)
+        matches = list(re.finditer(start_pattern, text))
+        if not matches:
+            return None
+        
+        # Use the last match (closest to the end of the text)
+        match = matches[-1]
+        start_pos = match.end() - 1  # Position of opening brace
+        brace_count = 1
+        pos = start_pos + 1
+        
+        # ネストした括弧を正しく処理するためのカウンター方式
+        # 例: \dfrac{2a}{1 + \sqrt{1 - a^2}} のような複雑なLaTeX数式でも対応可能
+        while pos < len(text) and brace_count > 0:
+            if text[pos] == '{':
+                brace_count += 1      # 開き括弧を見つけたらカウント+1（ネストレベル増加）
+            elif text[pos] == '}':
+                brace_count -= 1      # 閉じ括弧を見つけたらカウント-1（ネストレベル減少）
+            pos += 1                  # 次の文字へ移動
+        
+        # brace_count が 0 になった時点で、最初の { に対応する } が見つかった
+        
+        if brace_count == 0:
+            return text[start_pos + 1:pos - 1]  # Content between braces
+        return None
 
     # Split text into sections by "Solution X:"
     solution_pattern = r'(Solution (\d+)):'
@@ -95,11 +121,15 @@ def extract_solutions_dict(text):
             solution_number = int(sections[i + 1])
             solution_content = sections[i + 2]
 
-            # Find \boxed{} content in this solution
-            boxed_match = re.search(boxed_pattern, solution_content)
+            # Remove "Evaluation Process:" section from solution content BEFORE extracting boxed content
+            if "Evaluation Process:" in solution_content:
+                solution_content = solution_content.split("Evaluation Process:")[0].strip()
 
-            if boxed_match:
-                answer = boxed_match.group(1)
+            # Find \boxed{} content in this solution using improved extraction
+            answer = extract_boxed_content(solution_content)
+
+            if answer:
+                
                 # The full solution text includes the solution name and content
                 full_solution = solution_name + ":" + solution_content
 
@@ -112,12 +142,21 @@ def extract_solutions_dict(text):
 
 
 def extract_judgement(text):
-    pattern = r'Judgement?:\s*(\d+)'
+    # Match both "Judgment:" and "Judgement:" patterns (fix spelling issue)
+    pattern = r'Judgements?:\s*(\d+)'
     match = re.search(pattern, text)
     if match:
         number = match.group(1)  # This will be "2"
+        return int(number)
     
-    return int(number)
+    # Also try without the 'e' (American spelling)
+    pattern2 = r'Judgment:\s*(\d+)'
+    match2 = re.search(pattern2, text)
+    if match2:
+        number = match2.group(1)  # This will be "2"
+        return int(number)
+    
+    return 0  # Default to 0 if no judgment found
 
 
 def convert_openmath_to_prompt_response(example: Dict) -> Tuple[str, str]:
@@ -132,8 +171,11 @@ def convert_openmath_to_prompt_response(example: Dict) -> Tuple[str, str]:
     solutions = extract_solutions_dict(example["problem"])
 
     judgement = extract_judgement(example["generated_solution"])
+
+    solution_part = "\n\n".join([solutions[k]["solution"] for k in solutions])
+    prompt = "\n\n".join([problem, solution_part])
     
-    return problem, response
+    return prompt, solutions[judgement]["answer"]
 
 # https://github.com/volcengine/verl/blob/0f5ab5c8/verl/utils/dataset/rl_dataset.py
 # def maybe_filter_out_long_prompts(tokenizer, dataframe: datasets.Dataset = None):

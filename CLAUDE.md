@@ -295,3 +295,15 @@ python eval_dna/llm-compe-eval/evaluate_huggingface_models.py \
 2. Step 1: シングルノードSFT+PPO（README_single_node_SFT_PPO.md）  
 3. Step 2: マルチノードSFT+PPO（README_multi_node_SFT_PPO.md）
 4. Step 3: DNA安全性評価の実行
+
+## 開発環境（ローカル）
+
+ローカル開発環境では **uv** を使用してPython環境を管理する。
+
+### uvを使用したテスト実行
+```bash
+# テスト実行
+uv run python train/tests/
+
+# 特定のテストファイル実行
+uv run python train/tests/test_open_math_reasoning_genselect.py
