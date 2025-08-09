@@ -186,7 +186,7 @@ def convert_openmath_to_prompt_response(example: Dict) -> Tuple[str, str]:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--local_dir", default="~/data/open_math_reasoning")
+    parser.add_argument("--local_dir", default="~/data/open_math_reasoning_genselect")
     parser.add_argument("--hdfs_dir", default=None)
     parser.add_argument("--train_ratio", type=float, default=0.9, 
                        help="訓練データの割合（残りが検証用）")
