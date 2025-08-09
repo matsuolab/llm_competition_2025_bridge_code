@@ -294,29 +294,29 @@ if __name__ == "__main__":
     print(f"- 検証データ: {len(val_data)} サンプル -> test.parquet")
 
     # HuggingFace Hubへのアップロード
-    if args.hf_repo_id:
-        print(f"HuggingFace Hubにアップロード中: {args.hf_repo_id}")
+    # if args.hf_repo_id:
+    #     print(f"HuggingFace Hubにアップロード中: {args.hf_repo_id}")
         
-        # DataFrameからDatasetsに変換（メモリ最適化）
-        train_dataset = datasets.Dataset.from_pandas(train_df, preserve_index=False)
-        val_dataset = datasets.Dataset.from_pandas(val_df, preserve_index=False)
+    #     # DataFrameからDatasetsに変換（メモリ最適化）
+    #     train_dataset = datasets.Dataset.from_pandas(train_df, preserve_index=False)
+    #     val_dataset = datasets.Dataset.from_pandas(val_df, preserve_index=False)
         
-        # DatasetDictを作成
-        dataset_dict = datasets.DatasetDict({
-            "train": train_dataset,
-            "test": val_dataset  # SFT用にtestとして保存
-        })
+    #     # DatasetDictを作成
+    #     dataset_dict = datasets.DatasetDict({
+    #         "train": train_dataset,
+    #         "test": val_dataset  # SFT用にtestとして保存
+    #     })
         
-        # HuggingFace Hubにアップロード（メモリ最適化）
-        print(f"メモリ最適化設定: max_shard_size={args.max_shard_size}")
-        dataset_dict.push_to_hub(
-            args.hf_repo_id, 
-            token=args.hf_token, 
-            private=not args.public,  # --publicが指定されない限りprivate=True
-            max_shard_size=args.max_shard_size  # メモリ使用量を制限
-        )
+    #     # HuggingFace Hubにアップロード（メモリ最適化）
+    #     print(f"メモリ最適化設定: max_shard_size={args.max_shard_size}")
+    #     dataset_dict.push_to_hub(
+    #         args.hf_repo_id, 
+    #         token=args.hf_token, 
+    #         private=not args.public,  # --publicが指定されない限りprivate=True
+    #         max_shard_size=args.max_shard_size  # メモリ使用量を制限
+    #     )
         
-        print(f"アップロード完了: https://huggingface.co/datasets/{args.hf_repo_id}")
+    #     print(f"アップロード完了: https://huggingface.co/datasets/{args.hf_repo_id}")
 
     del train_df
     del val_df
