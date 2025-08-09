@@ -6,8 +6,8 @@ eval_hle/judged/**/*.json
 eval_hle/leaderboard/**/*.json*
 eval_dna/evaluation_results/**/*.json*
 eval_dna/evaluation_results/**/*.csv
-train/example_data
-train/tests/output
+train/tests/input/*
+train/tests/output/*
 
 .env
 secrets.env

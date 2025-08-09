@@ -130,13 +130,14 @@ def extract_solutions_dict(text):
             # Find \boxed{} content in this solution using improved extraction
             answer = extract_boxed_content(solution_content)
 
+            # wont need answer actually:
             # \boxed{} (The answer is a description of the graph; as per instructions, no numerical answer is boxed here.)\
-            # if answer:
-                
+        
             # The full solution text includes the solution name and content
             full_solution = solution_name + ":" + solution_content
-            assert 0 < len(full_solution.strip()) and (
-                0 < len(solution_content.strip())
+            # 
+            assert 0 < len(full_solution.strip()) and 0 < len(solution_content.strip()), (
+                "full_solution and solution_content are missing: %s" % text
             )
             result[solution_number] = {
                 "answer": answer,

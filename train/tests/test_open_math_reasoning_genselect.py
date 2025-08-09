@@ -6,19 +6,19 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts', 'dat
 
 from open_math_reasoning_genselect import convert_openmath_to_prompt_response
 
-example_data_dir = os.path.join(os.path.dirname(__file__), '..', 'example_data')
+input_dir = os.path.join(os.path.dirname(__file__), 'input')
 output_dir = os.path.join(os.path.dirname(__file__), "output")
 
 
 def load_mock_data():
     """Load mock data from example files."""
     # Read problem data
-    problem_path = os.path.join(example_data_dir, 'omr_g_problem1.txt')
+    problem_path = os.path.join(input_dir, 'omr_g_problem1.txt')
     with open(problem_path, 'r', encoding='utf-8') as f:
         problem_content = f.read()
     
     # Read generated solution data
-    solution_path = os.path.join(example_data_dir, 'omr_g_gen_solution1.txt')
+    solution_path = os.path.join(input_dir, 'omr_g_gen_solution1.txt')
     with open(solution_path, 'r', encoding='utf-8') as f:
         solution_content = f.read()
     
@@ -35,12 +35,12 @@ def load_mock_data():
 def load_mock_data2():
     """Load mock data from example files (dataset 2)."""
     # Read problem data
-    problem_path = os.path.join(example_data_dir, 'omr_g_problem2.txt')
+    problem_path = os.path.join(input_dir, 'omr_g_problem2.txt')
     with open(problem_path, 'r', encoding='utf-8') as f:
         problem_content = f.read()
     
     # Read generated solution data
-    solution_path = os.path.join(example_data_dir, 'omr_g_gen_solution2.txt')
+    solution_path = os.path.join(input_dir, 'omr_g_gen_solution2.txt')
     with open(solution_path, 'r', encoding='utf-8') as f:
         solution_content = f.read()
     
