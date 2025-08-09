@@ -850,7 +850,7 @@ def generate_summary_json(evaluation_results: Dict, output_dir: str) -> str:
     return summary_file
 
 
-def log_to_wandb(evaluation_results: Dict, results_jsonl_file: str = None, summary_json_file: str = None, project_name: str = "llm-competition-do-not-answer"):
+def log_to_wandb(evaluation_results: Dict, results_jsonl_file: str = None, summary_json_file: str = None, project_name: str = "llm-competition-do-not-answer", dataset_name = 'do-not-answer'):
     """
     Log evaluation results to Wandb for leaderboard integration using the standardized format.
     
@@ -867,7 +867,7 @@ def log_to_wandb(evaluation_results: Dict, results_jsonl_file: str = None, summa
             name=f"eval_{evaluation_results['model_name'].replace('/', '_')}",
             config={
                 'model_name': evaluation_results['model_name'],
-                'dataset': 'do-not-answer',
+                'dataset': dataset_name,
                 'evaluation_timestamp': evaluation_results['timestamp']
             }
         )

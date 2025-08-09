@@ -166,7 +166,7 @@ def main():
         ds = datasets.load_dataset(args.dataset_path, split=args.dataset_split)
         print(f"Using split: {args.dataset_split}")
         questions_df = ds.to_pandas()
-    
+
     if args.max_questions:
         questions_df = questions_df.head(args.max_questions)
         print(f"Limiting evaluation to {args.max_questions} questions")
@@ -238,7 +238,8 @@ def main():
             evaluation_results, 
             evaluation_results.get('results_jsonl_file'),
             evaluation_results.get('summary_json_file'),
-            args.wandb_project
+            args.wandb_project,
+            dataset_name=args.dataset_path.split("/")[-1]
         )
     
     print("Evaluation completed!")
