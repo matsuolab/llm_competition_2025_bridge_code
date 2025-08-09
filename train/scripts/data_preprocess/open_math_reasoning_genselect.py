@@ -197,6 +197,8 @@ if __name__ == "__main__":
                        help="HuggingFace Hub認証トークン")
     parser.add_argument("--public", action="store_true", 
                        help="パブリックリポジトリとしてアップロード（デフォルト: プライベート）")
+    parser.add_argument("--max_shard_size", type=str, default="50MB", 
+                       help="HuggingFace Hubアップロード時の最大シャードサイズ（メモリ使用量を制御）")
 
     args = parser.parse_args()
     random.seed(args.seed)
@@ -295,9 +297,9 @@ if __name__ == "__main__":
     if args.hf_repo_id:
         print(f"HuggingFace Hubにアップロード中: {args.hf_repo_id}")
         
-        # DataFrameからDatasetsに変換
-        train_dataset = datasets.Dataset.from_pandas(train_df)
-        val_dataset = datasets.Dataset.from_pandas(val_df)
+        # DataFrameからDatasetsに変換（メモリ最適化）
+        train_dataset = datasets.Dataset.from_pandas(train_df, preserve_index=False)
+        val_dataset = datasets.Dataset.from_pandas(val_df, preserve_index=False)
         
         # DatasetDictを作成
         dataset_dict = datasets.DatasetDict({
@@ -305,14 +307,19 @@ if __name__ == "__main__":
             "test": val_dataset  # SFT用にtestとして保存
         })
         
-        # HuggingFace Hubにアップロード
+        # HuggingFace Hubにアップロード（メモリ最適化）
+        print(f"メモリ最適化設定: max_shard_size={args.max_shard_size}")
         dataset_dict.push_to_hub(
             args.hf_repo_id, 
             token=args.hf_token, 
-            private=not args.public  # --publicが指定されない限りprivate=True
+            private=not args.public,  # --publicが指定されない限りprivate=True
+            max_shard_size=args.max_shard_size  # メモリ使用量を制限
         )
         
         print(f"アップロード完了: https://huggingface.co/datasets/{args.hf_repo_id}")
+
+    del train_df
+    del val_df
 
     # HDFSへのバックアップ（オプション）
     if hdfs_dir is not None:
