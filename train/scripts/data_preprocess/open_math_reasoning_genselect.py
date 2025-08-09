@@ -191,8 +191,12 @@ if __name__ == "__main__":
     parser.add_argument("--train_ratio", type=float, default=0.9, 
                        help="訓練データの割合（残りが検証用）")
     parser.add_argument("--seed", type=int, default=42, help="分割用のランダムシード")
-    # parser.add_argument("--program_source_to_exclude", default="aops_c4_high_school_math,aops_c6_high_school_olympiads",
-    #                    help="")
+    parser.add_argument("--hf_repo_id", type=str, default=None, 
+                       help="HuggingFace Hubにアップロードするリポジトリ名 (例: team_name/dataset_name)")
+    parser.add_argument("--hf_token", type=str, default=None, 
+                       help="HuggingFace Hub認証トークン")
+    parser.add_argument("--public", action="store_true", 
+                       help="パブリックリポジトリとしてアップロード（デフォルト: プライベート）")
 
     args = parser.parse_args()
     random.seed(args.seed)
@@ -286,6 +290,29 @@ if __name__ == "__main__":
     print(f"データ保存完了: {local_dir}")
     print(f"- 訓練データ: {len(train_data)} サンプル -> train.parquet")
     print(f"- 検証データ: {len(val_data)} サンプル -> test.parquet")
+
+    # HuggingFace Hubへのアップロード
+    if args.hf_repo_id:
+        print(f"HuggingFace Hubにアップロード中: {args.hf_repo_id}")
+        
+        # DataFrameからDatasetsに変換
+        train_dataset = datasets.Dataset.from_pandas(train_df)
+        val_dataset = datasets.Dataset.from_pandas(val_df)
+        
+        # DatasetDictを作成
+        dataset_dict = datasets.DatasetDict({
+            "train": train_dataset,
+            "test": val_dataset  # SFT用にtestとして保存
+        })
+        
+        # HuggingFace Hubにアップロード
+        dataset_dict.push_to_hub(
+            args.hf_repo_id, 
+            token=args.hf_token, 
+            private=not args.public  # --publicが指定されない限りprivate=True
+        )
+        
+        print(f"アップロード完了: https://huggingface.co/datasets/{args.hf_repo_id}")
 
     # HDFSへのバックアップ（オプション）
     if hdfs_dir is not None:
