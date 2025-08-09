@@ -16,9 +16,11 @@ import argparse
 import os
 import re
 import shutil
+import pandas as pd
+import random
+import datasets
 from typing import Dict, Tuple
 
-import datasets
 
 # hdfs_io.pyからコピーした関数
 def makedirs(name, mode=0o777, exist_ok=False, **kwargs) -> None:
@@ -128,17 +130,20 @@ def extract_solutions_dict(text):
             # Find \boxed{} content in this solution using improved extraction
             answer = extract_boxed_content(solution_content)
 
-            if answer:
+            # \boxed{} (The answer is a description of the graph; as per instructions, no numerical answer is boxed here.)\
+            # if answer:
                 
-                # The full solution text includes the solution name and content
-                full_solution = solution_name + ":" + solution_content
-
-                result[solution_number] = {
-                    "answer": answer,
-                    "full_solution": full_solution.strip(),
-                    "solution_content": solution_content.strip()
-                }
-
+            # The full solution text includes the solution name and content
+            full_solution = solution_name + ":" + solution_content
+            assert 0 < len(full_solution.strip()) and (
+                0 < len(solution_content.strip())
+            )
+            result[solution_number] = {
+                "answer": answer,
+                "full_solution": full_solution.strip(),
+                "solution_content": solution_content.strip()
+            }
+    
     return result
 
 
@@ -170,13 +175,11 @@ def convert_openmath_to_prompt_response(example: Dict) -> Tuple[str, str]:
 
     problem = extract_problem(example["problem"])
     solutions = extract_solutions_dict(example["problem"])
-
     judgement = extract_judgement(example["generated_solution"])
 
     solution_part = "\n\n".join([solutions[k]["full_solution"] for k in solutions])
     chosen_solution = solutions[judgement]["solution_content"]
-    response = "\n\n".join([f"<think>\n{solution_part}", f"Judgement: {judgement}\n</think>\n{chosen_solution}"])
-
+    response = "\n\n".join([f"<think>\n{solution_part}", f"Judgement: Solution {judgement}\n</think>\n{chosen_solution}"])
     return problem, response
 
 
@@ -189,100 +192,99 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=42, help="分割用のランダムシード")
     # parser.add_argument("--program_source_to_exclude", default="aops_c4_high_school_math,aops_c6_high_school_olympiads",
     #                    help="")
-    
+
     args = parser.parse_args()
+    random.seed(args.seed)
 
     data_source = "nvidia/OpenMathReasoning"
     split = "genselect"
 
-    # 指定されたスプリットのみをロード（高速化とメモリ節約）
+    # 指定されたスプリットをストリーミングモードでロード（高速化とメモリ節約）
     try:
-        full_dataset = datasets.load_dataset(data_source, split=split)
-        print(f"データセット読み込み完了: {len(full_dataset)} サンプル (split: {split})")
+        full_dataset = datasets.load_dataset(data_source, split=split, streaming=True)
+        print(f"データセットストリーミング開始: (split: {split})")
     except Exception as e:
         print(f"エラー: スプリット '{split}' の読み込みに失敗しました")
         print(f"エラー詳細: {e}")
-        # フォールバック: 全体をロードして利用可能なスプリットを表示
-        try:
-            dataset = datasets.load_dataset(data_source)
-            print(f"利用可能なスプリット: {list(dataset.keys())}")
-        except:
-            print("データセット情報の取得に失敗しました")
-        exit(1)
+        raise
 
-    filtered_dataset = full_dataset
+    # ストリーミングモードでは最初のサンプルを取得してキー構造を確認
+    try:
+        first_sample = next(iter(full_dataset))
+        print(f"最初のサンプル構造: {list(first_sample.keys())}")
+    except Exception as e:
+        print(f"警告: 最初のサンプル取得に失敗: {e}")
+        print("データセット処理を続行します...")
 
-    print(f"最初のサンプル構造: {list(filtered_dataset[0].keys())}")
-
-    def make_map_fn(split):
-        """データセット変換関数を生成
-        
+    def process_example(example, idx, split_name):
+        """ 
         OpenMathReasoningデータをVERL訓練用の統一フォーマットに変換
-        複数の推論モードに対応した処理
         """
-        def process_fn(example, idx):
-            # OpenMathReasoningの直接的なフィールド構造を処理
-            prompt, response = convert_openmath_to_prompt_response(example)
-            
-            # 数学解答の抽出（expected_answerを優先使用）
-            expected_answer = example["expected_answer"]
- 
-            # VERL統一フォーマット: OpenMathReasoning用に最適化
-            data = {
-                "data_source": data_source,
-                "prompt": [
-                    {
-                        "role": "user",
-                        "content": prompt,
-                    }
-                ],
-                "ability": "math_reasoning",  # OpenMathReasoningは数学推論特化
-                "reward_model": {"style": "rule", "ground_truth": expected_answer},
-                "extra_info": {  # SFT訓練で使用する元データを保持
-                    "split": split,
-                    "index": idx,
-                    "answer": response,     # 完全な推論プロセス
-                    "question": prompt,    # 元の問題文
-                    "expected_answer": expected_answer,  # ground truth
-                    "problem_type": example.get("problem_type", ""),
-                    "problem_source": example.get("problem_source", ""),
-                    "inference_mode": example.get("inference_mode", split),
-                    "original_format": "open_math_reasoning"
-                },
-            }
-            return data
+        # OpenMathReasoningの直接的なフィールド構造を処理
+        prompt, response = convert_openmath_to_prompt_response(example)
+        
+        # 数学解答の抽出（expected_answerを優先使用）
+        expected_answer = example["expected_answer"]
 
-        return process_fn
+        # VERL統一フォーマット: OpenMathReasoning用に最適化
+        data = {
+            "data_source": data_source,
+            "prompt": [
+                {
+                    "role": "user",
+                    "content": prompt,
+                }
+            ],
+            "ability": "math_reasoning",  # OpenMathReasoningは数学推論特化
+            "reward_model": {"style": "rule", "ground_truth": expected_answer},
+            "extra_info": {  # SFT訓練で使用する元データを保持
+                "split": split_name,
+                "index": idx,
+                "answer": response,     # 完全な推論プロセス
+                "question": prompt,    # 元の問題文
+                "expected_answer": expected_answer,  # ground truth
+                "problem_type": example.get("problem_type", ""),
+                "problem_source": example.get("problem_source", ""),
+                "inference_mode": example.get("inference_mode", split),
+                "original_format": "open_math_reasoning"
+            },
+        }
+        return data
 
-    # datasets.train_test_split()を使用してデータセットを分割
-    split_dataset = filtered_dataset.train_test_split(
-        test_size=1.0 - args.train_ratio, 
-        seed=args.seed
-    )
-    train_dataset = split_dataset["train"]
-    val_dataset = split_dataset["test"]
-    
-    print(f"分割結果: 訓練={len(train_dataset)}, 検証={len(val_dataset)}")
+    train_data = []
+    val_data = []
+    total_processed = 0
+    print("ストリーミングデータセットを分割中...")
+    for idx, example in enumerate(full_dataset):
+        # train_ratioに基づいて分割
+        if random.random() < args.train_ratio:
+            processed_example = process_example(example, idx, "train")
+            train_data.append(processed_example)
+        else:
+            processed_example = process_example(example, idx, "validation") 
+            val_data.append(processed_example)            
+        total_processed += 1  
+        # 進捗表示（1000サンプルごと）
+        if total_processed % 1000 == 0:
+            print(f"処理済み: {total_processed} サンプル (訓練: {len(train_data)}, 検証: {len(val_data)})")
 
-    # データセット変換を適用
-    train_dataset = train_dataset.map(function=make_map_fn("train"), with_indices=True)
-    val_dataset = val_dataset.map(function=make_map_fn("validation"), with_indices=True)
-    
-    print(f"フィルター前: 訓練={len(train_dataset)}, 検証={len(val_dataset)}")
 
     local_dir = os.path.expanduser(args.local_dir)
     hdfs_dir = args.hdfs_dir
 
     # ディレクトリ作成
     os.makedirs(local_dir, exist_ok=True)
-
-    # ローカルディスクにparquet形式で保存
-    train_dataset.to_parquet(os.path.join(local_dir, "train.parquet"))
-    val_dataset.to_parquet(os.path.join(local_dir, "test.parquet"))  # SFTトレーナーはtest.parquetを期待
+    
+    # リストをDataFrameに変換してparquet保存
+    train_df = pd.DataFrame(train_data)
+    val_df = pd.DataFrame(val_data)
+    
+    train_df.to_parquet(os.path.join(local_dir, "train.parquet"), index=False)
+    val_df.to_parquet(os.path.join(local_dir, "test.parquet"), index=False)  # SFTトレーナーはtest.parquetを期待
     
     print(f"データ保存完了: {local_dir}")
-    print(f"- 訓練データ: {len(train_dataset)} サンプル -> train.parquet")
-    print(f"- 検証データ: {len(val_dataset)} サンプル -> test.parquet")
+    print(f"- 訓練データ: {len(train_data)} サンプル -> train.parquet")
+    print(f"- 検証データ: {len(val_data)} サンプル -> test.parquet")
 
     # HDFSへのバックアップ（オプション）
     if hdfs_dir is not None:
