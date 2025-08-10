@@ -46,6 +46,7 @@ vllm serve llm-2025-sahara/Qwen3-4B-omr-genselect-peft \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
   --max-num-seqs 512 \
+  --max_num_batched_tokens 16384 \
   --dtype "bfloat16" \
   > $EVAL_DIR/logs/vllm.log 2>&1 &
 pid_vllm=$!

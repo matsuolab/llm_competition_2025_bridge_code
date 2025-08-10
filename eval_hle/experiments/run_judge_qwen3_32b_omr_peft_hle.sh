@@ -39,6 +39,7 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --tensor-parallel-size 8 \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
+  --max-num-seqs 512 \
   --dtype "bfloat16" \
   > $EVAL_DIR/logs/vllm.log 2>&1 &
 pid_vllm=$!
