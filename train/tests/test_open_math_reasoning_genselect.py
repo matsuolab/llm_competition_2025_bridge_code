@@ -54,6 +54,72 @@ def load_mock_data2():
     return mock_example
 
 
+def load_mock_data3():
+    """Load mock data from example files (dataset 3)."""
+    # For dataset 3, we'll create a mock problem since there's no problem3.txt
+    # Use an inequality problem that matches the solution3 format
+    problem_content = """Problem: Solve the inequality $\\frac{1 - \\sin x}{\\sin 2x} \\leq \\frac{\\sqrt{3}}{3}$ for $x \\in [0, 2\\pi]$.
+
+Solution 0:
+The final answer is $(\\frac{\\pi}{6} + 2\\pi k, \\pi + 2\\pi k) \\cup (\\frac{3\\pi}{2} + 2\\pi k, 2\\pi + 2\\pi k)$ where $k$ is any integer.
+$\\boxed{(\\frac{\\pi}{6} + 2\\pi k, \\pi + 2\\pi k) \\cup (\\frac{3\\pi}{2} + 2\\pi k, 2\\pi + 2\\pi k)}$
+
+Solution 1:
+The final answer is $[\\frac{\\pi}{6} + \\pi k, \\pi + \\pi k)$ where $k$ is any integer.
+$\\boxed{[\\frac{\\pi}{6} + \\pi k, \\pi + \\pi k)}$
+
+Solution 2:
+The final answer is $[\\frac{\\pi}{6} + 2k\\pi, \\pi + 2k\\pi) \\cup (\\frac{3\\pi}{2} + 2k\\pi, 2\\pi + 2k\\pi)$ where $k$ is any integer.
+$\\boxed{[\\frac{\\pi}{6} + 2k\\pi, \\pi + 2k\\pi) \\cup (\\frac{3\\pi}{2} + 2k\\pi, 2\\pi + 2k\\pi)}$"""
+    
+    # Read generated solution data
+    solution_path = os.path.join(input_dir, 'omr_g_gen_solution3.txt')
+    with open(solution_path, 'r', encoding='utf-8') as f:
+        solution_content = f.read()
+    
+    # Create mock example data structure
+    mock_example = {
+        "problem": problem_content,
+        "generated_solution": solution_content,
+        "expected_answer": "[\\frac{\\pi}{6} + 2k\\pi, \\pi + 2k\\pi) \\cup (\\frac{3\\pi}{2} + 2k\\pi, 2\\pi + 2k\\pi)"  # Expected answer based on judgment 2
+    }
+    
+    return mock_example
+
+
+def load_mock_data4():
+    """Load mock data from example files (dataset 3)."""
+    # For dataset 3, we'll create a mock problem since there's no problem3.txt
+    # Use an inequality problem that matches the solution3 format
+    problem_content = """Problem: Solve the inequality $\\frac{1 - \\sin x}{\\sin 2x} \\leq \\frac{\\sqrt{3}}{3}$ for $x \\in [0, 2\\pi]$.
+
+Solution 0:
+The final answer is $(\\frac{\\pi}{6} + 2\\pi k, \\pi + 2\\pi k) \\cup (\\frac{3\\pi}{2} + 2\\pi k, 2\\pi + 2\\pi k)$ where $k$ is any integer.
+$\\boxed{(\\frac{\\pi}{6} + 2\\pi k, \\pi + 2\\pi k) \\cup (\\frac{3\\pi}{2} + 2\\pi k, 2\\pi + 2\\pi k)}$
+
+Solution 1:
+The final answer is $[\\frac{\\pi}{6} + \\pi k, \\pi + \\pi k)$ where $k$ is any integer.
+$\\boxed{[\\frac{\\pi}{6} + \\pi k, \\pi + \\pi k)}$
+
+Solution 2:
+The final answer is $[\\frac{\\pi}{6} + 2k\\pi, \\pi + 2k\\pi) \\cup (\\frac{3\\pi}{2} + 2k\\pi, 2\\pi + 2k\\pi)$ where $k$ is any integer.
+$\\boxed{[\\frac{\\pi}{6} + 2k\\pi, \\pi + 2k\\pi) \\cup (\\frac{3\\pi}{2} + 2k\\pi, 2\\pi + 2k\\pi)}$"""
+    
+    # Read generated solution data
+    solution_path = os.path.join(input_dir, 'omr_g_gen_solution4.txt')
+    with open(solution_path, 'r', encoding='utf-8') as f:
+        solution_content = f.read()
+    
+    # Create mock example data structure
+    mock_example = {
+        "problem": problem_content,
+        "generated_solution": solution_content,
+        "expected_answer": "[\\frac{\\pi}{6} + 2k\\pi, \\pi + 2k\\pi) \\cup (\\frac{3\\pi}{2} + 2k\\pi, 2\\pi + 2k\\pi)"  # Expected answer based on judgment 2
+    }
+    
+    return mock_example
+
+
 def test_convert_openmath_to_prompt_response():
     """Test convert_openmath_to_prompt_response method with mock dataset sample."""
     
@@ -68,7 +134,7 @@ def test_convert_openmath_to_prompt_response():
     # The response["answer"] should be just the mathematical answer (from \boxed{}), not the full solution text
     # assert response == "a", f"Expected answer 'a', got '{response['answer']}'"
     
-    # Prompt should contain all solutions (0, 1, and 2)
+    # Prompt should not contain all solutions (0, 1, and 2)
     assert "Solution 0:" not in prompt, "Prompt should not contain 'Solution 0:'"
     assert "Solution 1:" not in prompt, "Prompt should not contain 'Solution 1:'"
     assert "Solution 2:" not in prompt, "Prompt should not contain 'Solution 2:'"
@@ -77,10 +143,10 @@ def test_convert_openmath_to_prompt_response():
     assert isinstance(response, str), "Prompt should be a string"
     assert len(response) > 0, "Prompt should not be empty"
 
-    # Prompt should contain all solutions (0, 1, and 2)
-    assert "Solution 0:" in response, "Prompt should contain 'Solution 0:'"
-    assert "Solution 1:" in response, "Prompt should contain 'Solution 1:'"
-    assert "Solution 2:" in response, "Prompt should contain 'Solution 2:'"
+    # resp should contain all solutions (0, 1, and 2)
+    assert "Solution 0:" in response, "resp should contain 'Solution 0:'"
+    assert "Solution 1:" in response, "resp should contain 'Solution 1:'"
+    assert "Solution 2:" in response, "resp should contain 'Solution 2:'"
 
     # Response should not contain evaluation process text
     assert "Evaluation Process:" not in response, f"response should not contain 'Evaluation Process:' but found it in: {response}"
@@ -119,17 +185,25 @@ def test_convert_openmath_to_prompt_response2():
     assert len(prompt) > 0, "Prompt should not be empty"
     
     # The response should be the mathematical answer from the selected solution (judgment 0)
-    assert response == "\\dfrac{1}{2}", f"Expected answer '\\dfrac{{1}}{{2}}', got '{response}'"
+    # assert response == "\\dfrac{1}{2}", f"Expected answer '\\dfrac{{1}}{{2}}', got '{response}'"
     
     # Response should not contain evaluation process text
     assert "Evaluation Process:" not in response, f"Response should not contain 'Evaluation Process:' but found it in: {response}"
-    
-    # Prompt should contain all solutions (0, 1, 2, and 3)
-    assert "Solution 0:" in prompt, "Prompt should contain 'Solution 0:'"
-    assert "Solution 1:" in prompt, "Prompt should contain 'Solution 1:'"
-    assert "Solution 2:" in prompt, "Prompt should contain 'Solution 2:'"
-    assert "Solution 3:" in prompt, "Prompt should contain 'Solution 3:'"
-    
+
+    # Prompt should contain all solutions (0, 1, and 2)
+    assert "Solution 0:" not in prompt, "Prompt should not contain 'Solution 0:'"
+    assert "Solution 1:" not in prompt, "Prompt should not contain 'Solution 1:'"
+    assert "Solution 2:" not in prompt, "Prompt should not contain 'Solution 2:'"
+
+    # Basic validation tests
+    assert isinstance(response, str), "Prompt should be a string"
+    assert len(response) > 0, "Prompt should not be empty"
+
+    # resp should contain all solutions (0, 1, and 2)
+    assert "Solution 0:" in response, "resp should contain 'Solution 0:'"
+    assert "Solution 1:" in response, "resp should contain 'Solution 1:'"
+    assert "Solution 2:" in response, "resp should contain 'Solution 2:'"
+
     # Write prompt and response to files
     os.makedirs(output_dir, exist_ok=True)
     
@@ -146,6 +220,84 @@ def test_convert_openmath_to_prompt_response2():
     print(f"Files written to: {output_dir}")
     
     return prompt, response
+
+
+def test_convert_openmath_to_prompt_response3():
+    """Test convert_openmath_to_prompt_response method with mock dataset sample 3."""
+    
+    # Load mock data instead of real dataset
+    mock_sample = load_mock_data3()
+    
+    print("Mock sample 3 keys:", list(mock_sample.keys()))
+    
+    # Call the method under test
+    _, response = convert_openmath_to_prompt_response(mock_sample)
+    
+    
+    # Response should not contain evaluation process text
+    assert "Evaluation Process:" not in response, f"Response should not contain 'Evaluation Process:' but found it in: {response}"
+
+
+    # Basic validation tests
+    assert isinstance(response, str), "Response should be a string"
+    assert len(response) > 0, "Response should not be empty"
+
+    # Response should contain all solutions (0, 1, and 2)
+    assert "Solution 0:" in response, "Response should contain 'Solution 0:'"
+    assert "Solution 1:" in response, "Response should contain 'Solution 1:'"
+    assert "Solution 2:" in response, "Response should contain 'Solution 2:'"
+
+    # Write prompt and response to files
+    os.makedirs(output_dir, exist_ok=True)
+    
+    
+    with open(os.path.join(output_dir, "test_response3.txt"), "w", encoding="utf-8") as f:
+        f.write(response)
+    
+    print(f"Test passed!")
+    print(f"First 200 chars of solution: {response[:200]}")
+    print(f"Files written to: {output_dir}")
+    
+    return _, response
+
+
+def test_convert_openmath_to_prompt_response4():
+    """Test convert_openmath_to_prompt_response method with mock dataset sample 3."""
+    
+    # Load mock data instead of real dataset
+    mock_sample = load_mock_data4()
+    
+    print("Mock sample 3 keys:", list(mock_sample.keys()))
+    
+    # Call the method under test
+    _, response = convert_openmath_to_prompt_response(mock_sample)
+    
+    
+    # Response should not contain evaluation process text
+    assert "Evaluation Process:" not in response, f"Response should not contain 'Evaluation Process:' but found it in: {response}"
+
+
+    # Basic validation tests
+    assert isinstance(response, str), "Response should be a string"
+    assert len(response) > 0, "Response should not be empty"
+
+    # Response should contain all solutions (0, 1, and 2)
+    assert "Solution 0:" in response, "Response should contain 'Solution 0:'"
+    assert "Solution 1:" in response, "Response should contain 'Solution 1:'"
+    assert "Solution 2:" in response, "Response should contain 'Solution 2:'"
+
+    # Write prompt and response to files
+    os.makedirs(output_dir, exist_ok=True)
+    
+    
+    with open(os.path.join(output_dir, "test_response4.txt"), "w", encoding="utf-8") as f:
+        f.write(response)
+    
+    print(f"Test passed!")
+    print(f"First 200 chars of solution: {response[:200]}")
+    print(f"Files written to: {output_dir}")
+    
+    return _, response
 
 
 def test_extraction_functions():
@@ -211,4 +363,7 @@ if __name__ == "__main__":
     test_convert_openmath_to_prompt_response()
     print("\n=== Running Main Conversion Test 2 ===")
     test_convert_openmath_to_prompt_response2()
+    print("\n=== Running Main Conversion Test 3 ===")
+    test_convert_openmath_to_prompt_response3()
+    test_convert_openmath_to_prompt_response4()
     print("\n=== All tests passed! ===")

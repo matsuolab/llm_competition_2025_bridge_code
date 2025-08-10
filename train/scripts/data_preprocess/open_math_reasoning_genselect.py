@@ -167,6 +167,27 @@ def extract_judgement(text):
     return 0  # Default to 0 if no judgment found
 
 
+def extract_last_section(text):
+    judgment_pos = text.rfind('Judgment:')
+    judgment_pos = text.rfind('Judgement:') if judgment_pos == -1 else judgment_pos
+    judgment_pos = text.rfind('Judgements:') if judgment_pos == -1 else judgment_pos
+    if judgment_pos != -1:
+        # Judgment: より前の部分で最後の ### を探す
+        text_before = text[:judgment_pos]
+        last_hash = text_before.rfind('###')
+        if last_hash != -1:
+            # ### の後の内容を抽出
+            section_parag = text_before[last_hash:]
+            pattern = r'###\s*([^#\n]+?)\s*\n(.*)'
+            match = re.match(pattern, section_parag, re.DOTALL)
+            if match:
+                section_title = match[1].rstrip(':').strip()
+                section_content = match[2].strip()
+                return f"{section_title}:\n{section_content}"
+
+    return ""  # Default to "" if not found
+
+
 def convert_openmath_to_prompt_response(example: Dict) -> Tuple[str, str]:
     """OpenMathReasoning形式のデータを単一のプロンプト-レスポンスペアに変換
     
@@ -177,11 +198,16 @@ def convert_openmath_to_prompt_response(example: Dict) -> Tuple[str, str]:
 
     problem = extract_problem(example["problem"])
     solutions = extract_solutions_dict(example["problem"])
+    last_section = extract_last_section(example["generated_solution"])
     judgement = extract_judgement(example["generated_solution"])
 
     solution_part = "\n\n".join([solutions[k]["full_solution"] for k in solutions])
     chosen_solution = solutions[judgement]["solution_content"]
-    response = "\n\n".join([f"<think>\n{solution_part}", f"Judgement: Solution {judgement}\n</think>\n{chosen_solution}"])
+
+    if last_section:
+        response = "\n\n".join([f"<think>\n{solution_part}", last_section, f"Judgement: Solution {judgement}\n</think>\n{chosen_solution}"])
+    else:
+        response = "\n\n".join([f"<think>\n{solution_part}", f"Judgement: Solution {judgement}\n</think>\n{chosen_solution}"])
     return problem, response
 
 
