@@ -286,24 +286,24 @@ if __name__ == "__main__":
     # リストをDataFrameに変換してparquet保存
     train_df = pd.DataFrame(train_data)
     val_df = pd.DataFrame(val_data)
+
+    del train_data
+    del val_data
     
     train_df.to_parquet(os.path.join(local_dir, "train.parquet"), index=False)
     val_df.to_parquet(os.path.join(local_dir, "test.parquet"), index=False)  # SFTトレーナーはtest.parquetを期待
     val_df.to_csv(os.path.join(local_dir, "test.csv"), index=False)
 
-    del train_df
-    del val_df
-
     print(f"データ保存完了: {local_dir}")
-    print(f"- 訓練データ: {len(train_data)} サンプル -> train.parquet")
-    print(f"- 検証データ: {len(val_data)} サンプル -> test.parquet")
+    print(f"- 訓練データ: {len(train_df)} サンプル -> train.parquet")
+    print(f"- 検証データ: {len(val_df)} サンプル -> test.parquet")
 
     if args.hf_repo_id:
         print(f"HuggingFace Hubにアップロード中: {args.hf_repo_id}")       
         # DatasetDictを作成
         dataset_dict = datasets.DatasetDict({
-            "train": train_data,
-            "test": val_data  # SFT用にtestとして保存
+            "train": datasets.Dataset.from_pandas(train_df, preserve_index=False),
+            "test": datasets.Dataset.from_pandas(val_df, preserve_index=False)
         })
         # HuggingFace Hubにアップロード（メモリ最適化）
         # print(f"メモリ最適化設定: max_shard_size={args.max_shard_size}")
@@ -316,6 +316,8 @@ if __name__ == "__main__":
         print(f"アップロード完了: https://huggingface.co/datasets/{args.hf_repo_id}")
         del dataset_dict
 
+    del train_df
+    del val_df
 
     # HDFSへのバックアップ（オプション）
     if hdfs_dir is not None:
