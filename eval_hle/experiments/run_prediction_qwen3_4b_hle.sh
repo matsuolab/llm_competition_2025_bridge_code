@@ -58,7 +58,8 @@ done
 echo "vLLM READY"
 
 ##--- 推論 -----------------------------------------------------------
-python $EVAL_DIR/predict.py > $EVAL_DIR/logs/predict.log 2>&1
+cd $EVAL_DIR
+python predict.py > logs/predict.log 2>&1
 
 #--- 評価 -----------------------------------------------------------
 # OPENAI_API_KEY=xxx python judge.py

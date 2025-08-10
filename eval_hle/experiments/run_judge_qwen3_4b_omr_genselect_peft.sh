@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=predict_hle_8gpu
+#SBATCH --job-name=judge_qwen3_4b_omr_genselect_peft_hle_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu66
 #SBATCH --nodes=1
@@ -39,12 +39,11 @@ echo "HF cache dir : $HF_HOME"                   # デバッグ用
 # pid_nvsmi=$!
 
 #--- vLLM 起動（8GPU）----------------------------------------------
-vllm serve Qwen/Qwen3-32B \
+vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --tensor-parallel-size 8 \
-  --reasoning-parser qwen3 \
-  --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
+  --max-num-seqs 512 \
   --dtype "bfloat16" \
   > $EVAL_DIR/logs/vllm.log 2>&1 &
 pid_vllm=$!
@@ -57,11 +56,12 @@ done
 echo "vLLM READY"
 
 ##--- 推論 -----------------------------------------------------------
-cd $EVAL_DIR
-python predict.py > logs/predict.log 2>&1
+# python predict.py > logs/predict.log 2>&11
 
 #--- 評価 -----------------------------------------------------------
-# OPENAI_API_KEY=xxx python judge.py
+export OPENAI_API_KEY=EMPTY 
+export BASE_URL="http://localhost:8000/v1" 
+python $EVAL_DIR/judge.py > $EVAL_DIR/logs/judge.log 2>&1
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm
