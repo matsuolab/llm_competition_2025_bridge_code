@@ -54,8 +54,7 @@ def extract_problem(text):
     Returns:
         str: The problem statement text
     """
-    # Look for "Problem:" followed by the problem text until "Solutions:" appears
-    problem_pattern = r'Problem:\s*\n(.*?)\n\s*Solutions:'
+    problem_pattern = r'YOUR TASK\s*Problem:\s*(.*?)\s*Solutions:'
     match = re.search(problem_pattern, text, re.DOTALL)
     if match:
         problem_text = match.group(1).strip()
@@ -67,7 +66,9 @@ def extract_problem(text):
             cleaned_line = re.sub(r'^\s*\d+→', '', line)
             cleaned_lines.append(cleaned_line)
         return '\n'.join(cleaned_lines).strip()
-    return ""
+    else:
+        print("problem is missing: %s" % text[:200])
+        return ""
 
 
 def extract_solutions_dict(text):
@@ -288,38 +289,33 @@ if __name__ == "__main__":
     
     train_df.to_parquet(os.path.join(local_dir, "train.parquet"), index=False)
     val_df.to_parquet(os.path.join(local_dir, "test.parquet"), index=False)  # SFTトレーナーはtest.parquetを期待
-    
+    val_df.to_csv(os.path.join(local_dir, "test.csv"), index=False)
+
+    del train_df
+    del val_df
+
     print(f"データ保存完了: {local_dir}")
     print(f"- 訓練データ: {len(train_data)} サンプル -> train.parquet")
     print(f"- 検証データ: {len(val_data)} サンプル -> test.parquet")
 
-    # HuggingFace Hubへのアップロード
-    # if args.hf_repo_id:
-    #     print(f"HuggingFace Hubにアップロード中: {args.hf_repo_id}")
-        
-    #     # DataFrameからDatasetsに変換（メモリ最適化）
-    #     train_dataset = datasets.Dataset.from_pandas(train_df, preserve_index=False)
-    #     val_dataset = datasets.Dataset.from_pandas(val_df, preserve_index=False)
-        
-    #     # DatasetDictを作成
-    #     dataset_dict = datasets.DatasetDict({
-    #         "train": train_dataset,
-    #         "test": val_dataset  # SFT用にtestとして保存
-    #     })
-        
-    #     # HuggingFace Hubにアップロード（メモリ最適化）
-    #     print(f"メモリ最適化設定: max_shard_size={args.max_shard_size}")
-    #     dataset_dict.push_to_hub(
-    #         args.hf_repo_id, 
-    #         token=args.hf_token, 
-    #         private=not args.public,  # --publicが指定されない限りprivate=True
-    #         max_shard_size=args.max_shard_size  # メモリ使用量を制限
-    #     )
-        
-    #     print(f"アップロード完了: https://huggingface.co/datasets/{args.hf_repo_id}")
+    if args.hf_repo_id:
+        print(f"HuggingFace Hubにアップロード中: {args.hf_repo_id}")       
+        # DatasetDictを作成
+        dataset_dict = datasets.DatasetDict({
+            "train": train_data,
+            "test": val_data  # SFT用にtestとして保存
+        })
+        # HuggingFace Hubにアップロード（メモリ最適化）
+        print(f"メモリ最適化設定: max_shard_size={args.max_shard_size}")
+        dataset_dict.push_to_hub(
+            args.hf_repo_id, 
+            token=args.hf_token, 
+            private=not args.public,  # --publicが指定されない限りprivate=True
+            max_shard_size=args.max_shard_size  # メモリ使用量を制限
+        )        
+        print(f"アップロード完了: https://huggingface.co/datasets/{args.hf_repo_id}")
+        del dataset_dict
 
-    del train_df
-    del val_df
 
     # HDFSへのバックアップ（オプション）
     if hdfs_dir is not None:
