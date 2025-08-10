@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=predict_qwen3_4b_hle_8gpu
 #SBATCH --partition=P06
-#SBATCH --nodelist=osk-gpu67
+#SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
-#SBATCH --cpus-per-task=64
-#SBATCH --time=04:00:00
+#SBATCH --cpus-per-task=240
+#SBATCH --time=01:00:00
 #SBATCH --output=eval_hle/logs/%x-%j.out
 #SBATCH --error=eval_hle/logs/%x-%j.err
 
