@@ -14,6 +14,9 @@
 export TRAIN_DIR="train"
 mkdir -p "$TRAIN_DIR/logs"
 echo "log dir : $TRAIN_DIR/logs"
+# Hugging Face 認証
+# secrets.env.exampleファイルを自分のトークンに置き換えてください
+source $TRAIN_DIR/secrets.env
 
 #--- モジュール & Conda --------------------------------------------
 module reset
@@ -24,10 +27,7 @@ source /home/appli/miniconda3/24.7.1-py311/etc/profile.d/conda.sh
 conda init
 conda config --set auto_activate_base false
 conda activate $CONDA_PATH
-
-# Hugging Face 認証
-# secrets.env.exampleファイルを自分のトークンに置き換えてください
-source $TRAIN_DIR/secrets.env
+echo "conda dir : $CONDA_PATH"
 
 huggingface-cli login --token $HF_TOKEN
 wandb login
