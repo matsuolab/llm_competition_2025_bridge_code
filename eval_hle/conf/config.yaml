@@ -13,7 +13,7 @@ provider: vllm # [vllm]
 
 base_url: http://localhost:8000/v1
 
-model: Qwen/Qwen3-4B
+model: llm-2025-sahara/Qwen3-4B-omr-genselect-peft
 max_completion_tokens: 65536
 reasoning: true
 
