@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_32b_omr_mini_peft
+#SBATCH --job-name=qwen3_4b_omr_genselect_peft
 #SBATCH --partition=P06
-#SBATCH --nodelist=osk-gpu66
+#SBATCH --nodelist=osk-gpu67
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
