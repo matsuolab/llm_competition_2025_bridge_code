@@ -68,7 +68,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.train_batch_size=256 \
     optim.lr=1e-4 \
     data.micro_batch_size_per_gpu=4 \
-    model.partial_pretrain=Qwen/Qwen3-4B \
+    model.partial_pretrain=Qwen/Qwen3-32B \
     model.fsdp_config.model_dtype=bf16 \
     model.lora_rank=32 \
     model.lora_alpha=32 \
