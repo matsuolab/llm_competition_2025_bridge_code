@@ -64,8 +64,8 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.response_key=extra_info \
     data.prompt_dict_keys=['question'] \
     +data.response_dict_keys=['answer'] \
-    data.train_batch_size=48 \
-    data.micro_batch_size_per_gpu=6 \
+    data.train_batch_size=64 \
+    data.micro_batch_size_per_gpu=8 \
     model.partial_pretrain=Qwen/Qwen3-4B \
     data.max_length=8192 \
     use_remove_padding=True \
