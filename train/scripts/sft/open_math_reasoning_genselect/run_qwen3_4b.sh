@@ -5,7 +5,7 @@
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
-#SBATCH --time=01:00:00
+#SBATCH --time=02:00:00
 #SBATCH --output=train/logs/%x-%j.out
 #SBATCH --error=train/logs/%x-%j.err
 
@@ -49,8 +49,8 @@ export WANDB_RUN_NAME=$SLURM_JOBID
 export VERL_LOGGING_LEVEL=INFO  
 export VERL_SFT_LOGGING_LEVEL=DEBUG
 export PYTHONUNBUFFERED=1
-mkdir -p "$HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints"
-echo "trainer.default_local_dir : $HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints"
+mkdir -p "$HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints"
+echo "trainer.default_local_dir : $HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints"
 
 # FSDP (Fully Sharded Data Parallel) を使用した分散訓練実行
 # --standalone: 単一ノードでの実行
@@ -64,18 +64,18 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.response_key=extra_info \
     data.prompt_dict_keys=['question'] \
     +data.response_dict_keys=['answer'] \
-    data.train_batch_size=32 \
-    data.micro_batch_size_per_gpu=4 \
+    data.train_batch_size=48 \
+    data.micro_batch_size_per_gpu=6 \
     model.partial_pretrain=Qwen/Qwen3-4B \
     data.max_length=8192 \
     use_remove_padding=True \
-    ulysses_sequence_parallel_size=2 \
+    ulysses_sequence_parallel_size=8 \
     data.truncation=right \
     trainer.project_name=$SLURM_JOB_NAME \
     trainer.experiment_name=$SLURM_JOB_NAME-$SLURM_JOBID \
     trainer.total_epochs=1 \
     trainer.save_freq=100 \
     trainer.max_ckpt_to_keep=1 \
-    trainer.default_local_dir=$HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints \
+    trainer.default_local_dir=$HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints \
     trainer.seed=42 \
     trainer.logger=['console','wandb'] 2>&1
