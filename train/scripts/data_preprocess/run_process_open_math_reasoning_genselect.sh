@@ -1,10 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=open_math_reasoning_genselect
+#SBATCH --job-name=process_open_math_reasoning_genselect
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=0
 #SBATCH --cpus-per-task=32
+#SBATCH --mem=100G
 #SBATCH --time=01:00:00
 #SBATCH --output=train/logs/%x-%j.out
 #SBATCH --error=train/logs/%x-%j.err

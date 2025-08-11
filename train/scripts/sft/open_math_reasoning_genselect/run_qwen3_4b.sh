@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_4b_omr_genselect
+#SBATCH --job-name=qwen3_4b_omr_genselect_100k
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
-#SBATCH --time=02:00:00
+#SBATCH --time=05:00:00
 #SBATCH --output=train/logs/%x-%j.out
 #SBATCH --error=train/logs/%x-%j.err
 
