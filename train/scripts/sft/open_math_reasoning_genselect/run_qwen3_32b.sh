@@ -3,8 +3,8 @@
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
-#SBATCH --gpus-per-node=8
-#SBATCH --cpus-per-task=240
+#SBATCH --gpus-per-node=6
+#SBATCH --cpus-per-task=64
 #SBATCH --time=04:00:00
 #SBATCH --output=train/logs/%x-%j.out
 #SBATCH --error=train/logs/%x-%j.err
@@ -63,7 +63,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.response_key=extra_info \
     data.prompt_dict_keys=['question'] \
     +data.response_dict_keys=['answer'] \
-    data.train_batch_size=64 \
+    data.train_batch_size=60 \
     data.micro_batch_size_per_gpu=2 \
     model.partial_pretrain=Qwen/Qwen3-32B \
     data.max_length=8192 \
