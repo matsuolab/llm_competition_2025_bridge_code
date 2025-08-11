@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_32b_omr_genselect_peft
+#SBATCH --job-name=qwen3_4b_omr_genselect
 #SBATCH --partition=P06
-#SBATCH --nodelist=osk-gpu67
+#SBATCH --nodelist=osk-gpu68
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240
-#SBATCH --time=08:00:00
+#SBATCH --time=01:00:00
 #SBATCH --output=train/logs/%x-%j.out
 #SBATCH --error=train/logs/%x-%j.err
 
@@ -31,7 +31,6 @@ echo "conda dir : $CONDA_PATH"
 huggingface-cli login --token $HF_TOKEN
 wandb login
 
-export NCCL_DEBUG=INFO
 export NCCL_SOCKET_IFNAME=enp25s0np0
 export NVTE_FUSED_ATTN=0
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
@@ -50,8 +49,8 @@ export WANDB_RUN_NAME=$SLURM_JOBID
 export VERL_LOGGING_LEVEL=INFO  
 export VERL_SFT_LOGGING_LEVEL=DEBUG
 export PYTHONUNBUFFERED=1
-mkdir -p "$HOME/training/sft/open_math_reasoning_mini/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints"
-echo "trainer.default_local_dir : $HOME/training/sft/open_math_reasoning_mini/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints"
+mkdir -p "$HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints"
+echo "trainer.default_local_dir : $HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints"
 
 # FSDP (Fully Sharded Data Parallel) を使用した分散訓練実行
 # --standalone: 単一ノードでの実行
@@ -65,13 +64,9 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     data.response_key=extra_info \
     data.prompt_dict_keys=['question'] \
     +data.response_dict_keys=['answer'] \
-    data.train_batch_size=256 \
-    optim.lr=1e-4 \
+    data.train_batch_size=32 \
     data.micro_batch_size_per_gpu=4 \
-    model.partial_pretrain=Qwen/Qwen3-32B \
-    model.fsdp_config.model_dtype=bf16 \
-    model.lora_rank=32 \
-    model.lora_alpha=32 \
+    model.partial_pretrain=Qwen/Qwen3-4B \
     data.max_length=8192 \
     use_remove_padding=True \
     ulysses_sequence_parallel_size=2 \
@@ -83,4 +78,4 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     trainer.max_ckpt_to_keep=1 \
     trainer.default_local_dir=$HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints \
     trainer.seed=42 \
-    trainer.logger=['console','wandb']
+    trainer.logger=['console','wandb'] 2>&1
