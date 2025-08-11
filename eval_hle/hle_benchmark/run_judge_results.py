@@ -257,9 +257,10 @@ def dump_metrics(args, predictions, total_questions, all_questions, artifact=Non
 def main(args):
     assert args.num_workers > 1, "num_workers must be 2 or greater"
 
+    project_name = f"hle-judge-{args.category}" if args.category else "hle-judge"
     if args.use_wandb:
         wandb.init(
-            project="hle-judge",
+            project=project_name,
             entity="llm-2025-sahara",
             name=os.path.basename(args.model).replace('/', '_'),
             config={
@@ -271,7 +272,14 @@ def main(args):
             }
         )
 
-    output_filepath = f"judged/judged_hle_{os.path.basename(args.model)}_{os.path.basename(args.dataset)}.json"   
+    # output_filepath = f"judged/judged_hle_{os.path.basename(args.model)}_{os.path.basename(args.dataset)}.json"
+    model_name = os.path.basename(args.model)
+    dataset_name = os.path.basename(args.dataset)
+    category_suffix = f"_{args.category}" if args.category else ""
+    
+    output_filepath = f"judged/judged_hle_{model_name}_{dataset_name}{category_suffix}.json"
+    prediction_path = f"predictions/hle_{model_name}_{dataset_name}{category_suffix}.json"
+
     dataset = load_dataset(args.dataset, split=args.split).to_dict() 
     # output_filepath = f"judged/judged_hle_{os.path.basename(args.model)}.json"   
     # dataset = load_dataset(args.dataset, split="test").to_dict() 
@@ -281,7 +289,7 @@ def main(args):
 
     total_questions = len(all_questions)
 
-    with open(f"predictions/hle_{os.path.basename(args.model)}_{os.path.basename(args.dataset)}.json", "r", encoding="utf-8") as f:
+    with open(prediction_path, "r", encoding="utf-8") as f:
         predictions = json.load(f)
     
     # load only unjudged responses

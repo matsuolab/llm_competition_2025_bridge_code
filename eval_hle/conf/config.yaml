@@ -6,6 +6,10 @@ dataset: llm-2025-sahara/hle-10fold
 # now hle-10fold have test split which is the same as validation
 split: test
 
+# Category filter: Biology/Medicine, Chemistry, Computer Science/AI, Engineering, 
+# Humanities/Social Science, Math, Other, Physics. If empty, use full dataset
+category:
+
 # full dataset
 # dataset: cais/hle
 
