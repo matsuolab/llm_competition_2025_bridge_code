@@ -106,9 +106,10 @@ def main(args: Config):
 
     assert args.num_workers > 1, "num_workers must be 2 or greater"
 
+    project_name = f"hle-prediction-{args.category}" if args.category else "hle-prediction"
     if args.use_wandb:
         wandb.init(
-            project="hle-prediction",
+            project=project_name,
             entity="llm-2025-sahara",
             name=os.path.basename(args.model).replace('/', '_'),
             config={
@@ -123,6 +124,8 @@ def main(args: Config):
     dataset = load_dataset(args.dataset, split=args.split)
     # dataset = load_dataset(args.dataset, split="test")
     dataset = dataset.filter(lambda item: item['image'] == "")
+    if args.category:
+        dataset = dataset.filter(lambda item: item['category'] == args.category)
     dataset = dataset.to_dict()
 
     # convert to list of json for async parallelism
@@ -132,8 +135,13 @@ def main(args: Config):
     if args.max_samples:
         questions = questions[:args.max_samples]
     
-    output_filepath = f"predictions/hle_{os.path.basename(args.model)}_{os.path.basename(args.dataset)}.json"   
+    # output_filepath = f"predictions/hle_{os.path.basename(args.model)}_{os.path.basename(args.dataset)}.json"   
     # output_filepath = f"predictions/hle_{os.path.basename(args.model)}.json"   
+    model_name = os.path.basename(args.model)
+    dataset_name = os.path.basename(args.dataset)
+    category_suffix = f"_{args.category}" if args.category else ""
+    
+    output_filepath = f"predictions/hle_{model_name}_{dataset_name}{category_suffix}.json"
 
     # load only questions without responses
     if os.path.exists(output_filepath):
