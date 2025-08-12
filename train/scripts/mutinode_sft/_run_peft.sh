@@ -59,6 +59,9 @@ for node in "${NODES[@]}"; do
 done
 echo ")"
 
+nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $SCRIPT_ROOT/logs/nvidia-smi.log &
+pid_nvsmi=$!
+
 # Launch training on each node in parallel
 NODE_RANK=0
 for node in "${NODES[@]}"; do
@@ -80,4 +83,5 @@ for node in "${NODES[@]}"; do
 done
 
 # Wait for all background training processes to complete
+kill $pid_nvsmi 2>/dev/null
 wait
