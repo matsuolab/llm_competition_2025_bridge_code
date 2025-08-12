@@ -14,6 +14,7 @@ export NCCL_SOCKET_IFNAME=enp25s0np0
 export NVTE_FUSED_ATTN=0
 export NVTE_DEBUG=1
 export NVTE_DEBUG_LEVEL=0
+export TORCH_DISTRIBUTED_DEBUG=DETAIL
 
 conda activate $CONDA_PATH
 
@@ -28,7 +29,6 @@ NNODES=${4}
 echo "Node num: "$NNODES
 GPUS_PER_NODE=${5}
 echo "Node num: "$GPUS_PER_NODE
-
 
 export NCCL_SOCKET_IFNAME=enp25s0np0
 export NVTE_FUSED_ATTN=0

@@ -1,4 +1,6 @@
 #!/bin/bash
+export SLURM_JOB_NAME=qwen3_235b_a22b_peft_8gpu
+export DATETIME=$(TZ=Asia/Tokyo date +%Y-%m-%dT-%H-%M-%S)
 
 source /etc/profile.d/modules.sh
 module reset
@@ -41,7 +43,7 @@ ulimit -v unlimited
 #YOU_TEAM_ENTITY_NAME を wandb の組織名に置き換えてください。
 export WANDB_ENTITY="llm-2025-sahara"
 export WANDB_PROJECT_NAME=$SLURM_JOB_NAME
-export WANDB_RUN_NAME=$SLURM_JOBID
+export WANDB_RUN_NAME=DATETIME
 
 mkdir -p "$HOME/training/multinode_sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints"
 echo "trainer.default_local_dir : $HOME/training/multinode_sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints"
@@ -66,7 +68,7 @@ torchrun --rdzv_backend c10d \
          ulysses_sequence_parallel_size=8 \
          data.truncation=right \
          trainer.project_name=$SLURM_JOB_NAME \
-         trainer.experiment_name=$SLURM_JOB_NAME-$SLURM_JOBID \
+         trainer.experiment_name=$SLURM_JOB_NAME-DATETIME \
          trainer.total_epochs=1 \
          trainer.save_freq=100 \
          trainer.max_ckpt_to_keep=1 \
