@@ -1,5 +1,5 @@
 #!/bin/bash
-export SLURM_JOB_NAME=qwen3_235b_a22b_peft_8gpu
+export SLURM_JOB_NAME=deepseek_r1_0528_peft_8gpu
 export DATETIME=$(TZ=Asia/Tokyo date +%Y-%m-%dT-%H-%M-%S)
 
 source /etc/profile.d/modules.sh
@@ -59,7 +59,7 @@ torchrun --rdzv_backend c10d \
          data.prompt_dict_keys=['question'] \
          +data.response_dict_keys=['answer'] \
          data.micro_batch_size_per_gpu=1 \
-         model.partial_pretrain=Qwen/Qwen3-32B \
+         model.partial_pretrain=deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
          model.fsdp_config.model_dtype=bf16 \
          model.lora_rank=32 \
          model.lora_alpha=32 \
