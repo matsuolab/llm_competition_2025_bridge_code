@@ -9,7 +9,7 @@
 #SBATCH --output=train/logs/%x-%j.out
 #SBATCH --error=train/logs/%x-%j.err
 
-SCRIPT_ROOT="$HOME/llm_bridge_prod/train"
+SCRIPT_ROOT="$HOME/llm-bridge-sahara/train"
 
 echo script: $SCRIPT_ROOT
 
