@@ -15,6 +15,8 @@ echo script: $SCRIPT_ROOT
 source $SCRIPT_ROOT/secrets.env
 
 export NCCL_SOCKET_IFNAME=enp25s0np0
+export NCCL_DEBUG=INFO  # NCCLの通信ログ
+export NCCL_DEBUG_SUBSYS=ALL  # NCCLの全サブシステムのログ
 export NVTE_FUSED_ATTN=0
 export NVTE_DEBUG=1
 export NVTE_DEBUG_LEVEL=0
