@@ -7,7 +7,10 @@ module load miniconda/24.7.1-py311
 source /home/appli/miniconda3/24.7.1-py311/etc/profile.d/conda.sh
 conda init             
 conda config --set auto_activate_base false
-source $TRAIN_DIR/secrets.env
+
+SCRIPT_ROOT="$HOME/llm-bridge-sahara/train"
+echo script: $SCRIPT_ROOT
+source $SCRIPT_ROOT/secrets.env
 
 export NCCL_SOCKET_IFNAME=enp25s0np0
 export NVTE_FUSED_ATTN=0
