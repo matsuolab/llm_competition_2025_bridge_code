@@ -50,8 +50,8 @@ export WANDB_RUN_NAME=$SLURM_JOBID
 export VERL_LOGGING_LEVEL=INFO  
 export VERL_SFT_LOGGING_LEVEL=DEBUG
 export PYTHONUNBUFFERED=1
-mkdir -p "$HOME/training/sft/open_math_reasoning_mini/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints"
-echo "trainer.default_local_dir : $HOME/training/sft/open_math_reasoning_mini/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints"
+mkdir -p "$HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints"
+echo "trainer.default_local_dir : $HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints"
 
 # FSDP (Fully Sharded Data Parallel) を使用した分散訓練実行
 # --standalone: 単一ノードでの実行
@@ -81,6 +81,6 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
     trainer.total_epochs=1 \
     trainer.save_freq=100 \
     trainer.max_ckpt_to_keep=1 \
-    trainer.default_local_dir=$HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME-$SLURM_JOBID/checkpoints \
+    trainer.default_local_dir=$HOME/training/sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints \
     trainer.seed=42 \
     trainer.logger=['console','wandb']
