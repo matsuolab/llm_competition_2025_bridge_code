@@ -1,6 +1,4 @@
 #!/bin/bash
-export SLURM_JOB_NAME=qwen3_235b_a22b_peft_8gpu
-export DATETIME=$(TZ=Asia/Tokyo date +%Y-%m-%dT-%H-%M-%S)
 
 source /etc/profile.d/modules.sh
 module reset
@@ -9,11 +7,10 @@ module load miniconda/24.7.1-py311
 source /home/appli/miniconda3/24.7.1-py311/etc/profile.d/conda.sh
 conda init             
 conda config --set auto_activate_base false
+source ~/.bashrc
 
-SCRIPT_ROOT="$HOME/llm-bridge-sahara/train"
-echo script: $SCRIPT_ROOT
-source $SCRIPT_ROOT/secrets.env
-
+export SLURM_JOB_NAME=qwen3_235b_a22b_peft_8gpu
+# export CONDA_PATH="~/conda_env"
 export NCCL_SOCKET_IFNAME=enp25s0np0
 export NCCL_DEBUG=INFO  # NCCLの通信ログ
 export NCCL_DEBUG_SUBSYS=ALL  # NCCLの全サブシステムのログ
@@ -45,7 +42,7 @@ ulimit -v unlimited
 #YOU_TEAM_ENTITY_NAME を wandb の組織名に置き換えてください。
 export WANDB_ENTITY="llm-2025-sahara"
 export WANDB_PROJECT_NAME=$SLURM_JOB_NAME
-export WANDB_RUN_NAME=$DATETIME
+export WANDB_RUN_NAME=$(TZ=Asia/Tokyo date +%Y-%m-%dT-%H-%M-%S)
 
 mkdir -p "$HOME/training/multinode_sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints"
 echo "trainer.default_local_dir : $HOME/training/multinode_sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints"
@@ -70,7 +67,7 @@ torchrun --rdzv_backend c10d \
          ulysses_sequence_parallel_size=8 \
          data.truncation=right \
          trainer.project_name=$SLURM_JOB_NAME \
-         trainer.experiment_name=$SLURM_JOB_NAME-$DATETIME \
+         trainer.experiment_name=$SLURM_JOB_NAME-$WANDB_RUN_NAME \
          trainer.total_epochs=1 \
          trainer.save_freq=100 \
          trainer.max_ckpt_to_keep=1 \
