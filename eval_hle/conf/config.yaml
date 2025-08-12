@@ -17,7 +17,7 @@ provider: vllm # [vllm]
 
 base_url: http://localhost:8000/v1
 
-model: kumapo/Qwen3-32B-omr-genselect-100k-peft
+model: /home/Competition2025/P06/P06U023/training/sft/open_math_reasoning_genselect/qwen3_32b_omr_genselect_peft-346433/checkpoints/global_step_100/huggingface/
 max_completion_tokens: 65536
 reasoning: true
 

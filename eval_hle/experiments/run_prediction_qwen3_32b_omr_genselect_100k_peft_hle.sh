@@ -39,7 +39,7 @@ echo "HF cache dir : $HF_HOME"                   # デバッグ用
 # pid_nvsmi=$!
 
 #--- vLLM 起動（8GPU）----------------------------------------------
-vllm serve kumapo/Qwen3-32B-omr-genselect-100k-peft \
+vllm serve /home/Competition2025/P06/P06U023/training/sft/open_math_reasoning_genselect/qwen3_32b_omr_genselect_peft-346433/checkpoints/global_step_100/huggingface/ \
   --tensor-parallel-size 8 \
   --reasoning-parser qwen3 \
   --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
