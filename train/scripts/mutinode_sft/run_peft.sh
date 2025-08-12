@@ -59,7 +59,7 @@ torchrun --rdzv_backend c10d \
          data.prompt_dict_keys=['question'] \
          +data.response_dict_keys=['answer'] \
          data.micro_batch_size_per_gpu=1 \
-         model.partial_pretrain=Qwen/Qwen3-32B \
+         model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
          model.lora_rank=32 \
          model.lora_alpha=32 \
