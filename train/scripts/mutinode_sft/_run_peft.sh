@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=qwen3_235b_a22b_peft_8gpu
 #SBATCH --partition=P06
-#SBATCH --nodelist=osk-gpu[67,68]
+#SBATCH --nodelist=osk-gpu[66-67]
 #SBATCH --nodes=2
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=240

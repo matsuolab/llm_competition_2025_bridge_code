@@ -26,7 +26,7 @@ wandb login
 export NCCL_SOCKET_IFNAME=enp25s0np0
 export NVTE_FUSED_ATTN=0
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-ulimit -v unlimited
+ulimit -v 134217728
 
 export HF_HOME=${SLURM_TMPDIR:-$HOME}/.hf_cache
 export TRANSFORMERS_CACHE=$HF_HOME
