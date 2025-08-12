@@ -10,8 +10,12 @@
 #SBATCH --error=train/logs/%x-%j.err
 
 SCRIPT_ROOT="$HOME/llm-bridge-sahara/train"
-
 echo script: $SCRIPT_ROOT
+
+#--- 作業ディレクトリ & logs --------------------------------------------
+export TRAIN_DIR="train"
+mkdir -p "$SCRIPT_ROOT/logs"
+echo "log dir : $SCRIPT_ROOT/logs"
 
 # Setup distributed training configuration
 MASTER_ADDR=$(scontrol show hostname $SLURM_JOB_NODELIST | head -n1)  # First node as master
