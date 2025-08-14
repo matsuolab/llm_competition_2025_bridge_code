@@ -40,7 +40,7 @@ export VLLM_LOGGING_LEVEL=DEBUG
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > $EVAL_DIR/logs/nvidia-smi.log &
 pid_nvsmi=$!
 
-vllm serve $HOME/training/multinode_sft/open_math_reasoning_genselect/qwen3_235b_a22b_peft_8gpu/checkpoints/global_step_1/huggingface \
+vllm serve /home/Competition2025/P06/P06U023/training/multinode_sft/open_math_reasoning_genselect/qwen3_235b_a22b_peft_8gpu/checkpoints/global_step_1/huggingface \
   --tensor-parallel-size 8 \
   --pipeline-parallel-size 1 \
   --reasoning-parser qwen3 \
