@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=judge_hle_8gpu
+#SBATCH --job-name=predict_hle_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu66
 #SBATCH --nodes=1
@@ -14,6 +14,7 @@ export EVAL_HLE="eval_hle"
 mkdir -p "$EVAL_HLE/logs"
 echo "eval_hle dir : $EVAL_HLE/logs"
 
+#--- 作業ディレクトリ & logs --------------------------------------------
 export EVAL_DNA="eval_dna"
 mkdir -p "$EVAL_DNA/logs"
 echo "eval_dna dir : $EVAL_DNA/logs"
@@ -43,8 +44,10 @@ echo "HF cache dir : $HF_HOME"                   # デバッグ用
 # pid_nvsmi=$!
 
 #--- vLLM 起動（8GPU）----------------------------------------------
-vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
+vllm serve Qwen/Qwen3-32B \
   --tensor-parallel-size 8 \
+  --reasoning-parser qwen3 \
+  --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
   --max-model-len 131072 \
   --gpu-memory-utilization 0.95 \
   --dtype "bfloat16" \
@@ -59,24 +62,22 @@ done
 echo "vLLM READY"
 
 ##--- 推論 -----------------------------------------------------------
-# python predict.py > logs/predict.log 2>&11
-
-#--- 評価 -----------------------------------------------------------
-export OPENAI_API_KEY=EMPTY 
-export BASE_URL="http://localhost:8000/v1" 
 cd $EVAL_HLE
-python judge.py > logs/judge.log 2>&1
+python predict.py > logs/predict.log 2>&1
 cd ../
 
+#--- 推論 -----------------------------------------------------------
 cd $EVAL_DNA
-python llm-compe-eval/judge_huggingface_models.py \
-    --model_name /home/Competition2025/P06/P06U023/training/multinode_sft/open_math_reasoning_genselect/qwen3_235b_a22b_peft_8gpu/checkpoints/global_step_1/huggingface \
-    --eval_models "deepseek-ai/DeepSeek-R1-Distill-Llama-70B" \
+python llm-compe-eval/predict_huggingface_models.py \
+    --model_name "Qwen/Qwen3-32B" \
     --dataset_path "llm-2025-sahara/dna-10fold" \
     --output_dir evaluation_results \
     --use_vllm \
-    --vllm_base_url http://localhost:8000/v1 > logs/judge.log 2>&1
+    --vllm_base_url http://localhost:8000/v1 > logs/predict.log 2>&1
 cd ../
+
+#--- 評価 -----------------------------------------------------------
+# OPENAI_API_KEY=xxx python judge.py
 
 #--- 後片付け -------------------------------------------------------
 kill $pid_vllm
