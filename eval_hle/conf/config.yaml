@@ -17,7 +17,7 @@ provider: vllm # [vllm]
 
 base_url: http://localhost:8000/v1
 
-model: /home/Competition2025/P06/P06U023/training/multinode_sft/open_math_reasoning_genselect/qwen3_235b_a22b_peft_8gpu/checkpoints/global_step_1/huggingface
+model: Qwen3-235B-A22B-peft
 max_completion_tokens: 65536
 reasoning: true
 
