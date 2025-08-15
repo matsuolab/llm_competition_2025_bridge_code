@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=judge_hle_8gpu
+#SBATCH --job-name=judge_qwen3_235b_a22b_peft_hle_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu66
 #SBATCH --nodes=1
@@ -62,7 +62,7 @@ echo "vLLM READY"
 #--- 評価 -----------------------------------------------------------
 export OPENAI_API_KEY=EMPTY 
 export BASE_URL="http://localhost:8000/v1" 
-cd $EVAL_HLE
+cd $EVAL_DIR
 python judge.py > logs/judge.log 2>&1
 cd ../
 
