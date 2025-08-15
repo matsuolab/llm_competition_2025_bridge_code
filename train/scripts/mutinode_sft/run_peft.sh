@@ -21,11 +21,11 @@ export NVTE_DEBUG_LEVEL=0
 conda activate $CONDA_PATH
 
 # distributed settings
-MASTER_ADDR=osk-gpu66
+MASTER_ADDR=osk-gpu68
 echo "MASTER_ADDR=${MASTER_ADDR}"
 MASTER_PORT=37171
 echo "MASTER_PORT=${MASTER_PORT}"
-NODE_RANK=0
+NODE_RANK=1
 echo "Node rank: "$NODE_RANK
 NNODES=2
 echo "Node num: "$NNODES
@@ -60,8 +60,8 @@ torchrun --rdzv_backend c10d \
          data.micro_batch_size_per_gpu=1 \
          model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
-         model.lora_rank=32 \
-         model.lora_alpha=32 \
+         model.lora_rank=8 \
+         model.lora_alpha=8 \
          model.strategy=fsdp \
          data.max_length=1024 \
          use_remove_padding=True \
@@ -70,7 +70,7 @@ torchrun --rdzv_backend c10d \
          trainer.project_name=$SLURM_JOB_NAME \
          trainer.experiment_name=$SLURM_JOB_NAME-$WANDB_RUN_NAME \
          trainer.total_epochs=1 \
-         trainer.save_freq=100 \
+         trainer.save_freq=1 \
          trainer.max_ckpt_to_keep=1 \
          trainer.default_local_dir=$HOME/training/multinode_sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints \
          trainer.seed=42 \
