@@ -21,14 +21,13 @@ export NVTE_DEBUG_LEVEL=0
 conda activate $CONDA_PATH
 
 # distributed settings
-MASTER_ADDR=osk-gpu68
+MASTER_ADDR=osk-gpu66
 echo "MASTER_ADDR=${MASTER_ADDR}"
-MASTER_PORT=37172
-# MASTER_PORT=37171
+MASTER_PORT=37171
 echo "MASTER_PORT=${MASTER_PORT}"
-NODE_RANK=1
+NODE_RANK=2
 echo "Node rank: "$NODE_RANK
-NNODES=2
+NNODES=3
 echo "Node num: "$NNODES
 GPUS_PER_NODE=8
 echo "Gpu num: "$GPUS_PER_NODE
@@ -61,6 +60,7 @@ torchrun --rdzv_backend c10d \
          data.response_key=extra_info \
          data.prompt_dict_keys=['question'] \
          +data.response_dict_keys=['answer'] \
+         data.train_batch_size=264 \
          data.micro_batch_size_per_gpu=1 \
          model.partial_pretrain=deepseek-ai/DeepSeek-R1-0528 \
          model.fsdp_config.model_dtype=bf16 \
