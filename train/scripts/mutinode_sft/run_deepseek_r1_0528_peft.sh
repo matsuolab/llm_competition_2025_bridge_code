@@ -9,7 +9,7 @@ conda init
 conda config --set auto_activate_base false
 source ~/.bashrc
 
-export SLURM_JOB_NAME=qwen3_235b_a22b_peft_8gpu_3node
+export SLURM_JOB_NAME=deepseek_r1_0528_peft_8gpu
 export NCCL_SOCKET_IFNAME=bond0
 # export NCCL_SOCKET_IFNAME=enp25s0np0
 export NCCL_DEBUG=INFO
@@ -72,11 +72,11 @@ torchrun --rdzv_backend c10d \
          +data.response_dict_keys=['answer'] \
          data.train_batch_size=24 \
          data.micro_batch_size_per_gpu=1 \
-         model.partial_pretrain=Qwen/Qwen3-235B-A22B \
+         model.partial_pretrain=deepseek-ai/DeepSeek-R1-0528 \
          model.fsdp_config.model_dtype=bf16 \
          model.lora_rank=1 \
          model.lora_alpha=1 \
-         model.strategy=fsdp2 \
+         model.strategy=fsdp \
          data.max_length=1024 \
          use_remove_padding=True \
          ulysses_sequence_parallel_size=1 \
