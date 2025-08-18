@@ -10,13 +10,34 @@ conda config --set auto_activate_base false
 source ~/.bashrc
 
 export SLURM_JOB_NAME=deepseek_r1_0528_peft_8gpu
-# export CONDA_PATH="~/conda_env"
 export NCCL_SOCKET_IFNAME=enp25s0np0
-export NCCL_DEBUG=INFO
+export NCCL_DEBUG=TRACE
 export NCCL_DEBUG_SUBSYS=ALL
 export NVTE_FUSED_ATTN=0
 export NVTE_DEBUG=1
 export NVTE_DEBUG_LEVEL=0
+export HYDRA_FULL_ERROR=1
+export VERL_LOGGING_LEVEL=DEBUG
+export VERL_SFT_LOGGING_LEVEL=DEBUG
+# Custom variables such as PATH / CUDA / NCCL
+export CUDA_DEVICE_MAX_CONNECTIONS=1
+
+# Cluster Network Setting
+export GPU_MAX_HW_QUEUES=2
+export TORCH_NCCL_HIGH_PRIORITY=1
+export NCCL_CHECKS_DISABLE=1
+export NCCL_IB_DISABLE=0
+export NCCL_IB_HCA=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_11
+export NCCL_IB_GID_INDEX=3
+export NCCL_CROSS_NIC=0
+export NCCL_PROTO=Simple
+export RCCL_MSCCL_ENABLE=0
+export TOKENIZERS_PARALLELISM=false
+
+# can make training faster, depends on your infrastructure
+export NCCL_IBEXT_DISABLE=1
+export NCCL_NVLS_ENABLE=1
+export UCX_NET_DEVICES=mlx5_0:1,mlx5_1:1,mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_11:1
 
 conda activate $CONDA_PATH
 
@@ -60,7 +81,7 @@ torchrun --rdzv_backend c10d \
          data.response_key=extra_info \
          data.prompt_dict_keys=['question'] \
          +data.response_dict_keys=['answer'] \
-         data.train_batch_size=264 \
+         data.train_batch_size=24 \
          data.micro_batch_size_per_gpu=1 \
          model.partial_pretrain=deepseek-ai/DeepSeek-R1-0528 \
          model.fsdp_config.model_dtype=bf16 \
