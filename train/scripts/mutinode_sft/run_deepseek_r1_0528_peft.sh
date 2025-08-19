@@ -76,7 +76,7 @@ torchrun --rdzv_backend c10d \
          model.fsdp_config.model_dtype=bf16 \
          model.lora_rank=1 \
          model.lora_alpha=1 \
-         model.strategy=fsdp \
+         model.strategy=fsdp2 \
          data.max_length=1024 \
          use_remove_padding=True \
          ulysses_sequence_parallel_size=1 \
