@@ -8,6 +8,7 @@ eval_dna/evaluation_results/**/*.json*
 eval_dna/evaluation_results/**/*.csv
 train/tests/input/*
 train/tests/output/*
+train/logs
 
 .env
 secrets.env
