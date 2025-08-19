@@ -199,8 +199,9 @@ if __name__ == "__main__":
 
     # ローカルディスクにparquet形式で保存
     train_dataset.to_parquet(os.path.join(local_dir, "train.parquet"))
+    train_dataset.to_csv(os.path.join(local_dir, "train.csv"))
     print(f"データ保存完了: {local_dir}")
-    print(f"- 訓練データ: {len(train_dataset)} サンプル -> train.parquet")
+    print(f"- 訓練データ: {len(train_dataset)} サンプル -> train.parquet, train.csv")
     if 0 < len(val_dataset):
         val_dataset.to_parquet(os.path.join(local_dir, "test.parquet"))  # SFTトレーナーはtest.parquetを期待
         print(f"- 検証データ: {len(val_dataset)} サンプル -> test.parquet, test.csv")
