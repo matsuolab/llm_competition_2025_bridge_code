@@ -26,12 +26,12 @@ export NCCL_NET_GDR_READ=1
 conda activate $CONDA_PATH
 
 # distributed settings
-LOCAL_ADDR=osk-gpu66
-echo "LOCAL_ADDR=${LOCAL_ADDR}"
+LOCAL_ADDR=osk-gpu67
 NODE_RANK=0
+echo "LOCAL_ADDR=${LOCAL_ADDR}"
 echo "Node rank: "$NODE_RANK
 
-MASTER_ADDR=osk-gpu66
+MASTER_ADDR=osk-gpu67
 echo "MASTER_ADDR=${MASTER_ADDR}"
 MASTER_PORT=37171
 echo "MASTER_PORT=${MASTER_PORT}"
@@ -63,7 +63,7 @@ torchrun --rdzv_backend c10d \
          data.train_files=$HOME/data/textbook_reasoning_balanced/train.parquet \
          data.multiturn.enable=true \
          data.multiturn.messages_key=messages \
-         data.enable_thinking_key=enable_thinking \
+         data.multiturn.enable_thinking_key=enable_thinking \
          data.train_batch_size=16 \
          data.micro_batch_size_per_gpu=1 \
          model.partial_pretrain=Qwen/Qwen3-32B \

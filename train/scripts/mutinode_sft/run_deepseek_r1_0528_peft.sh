@@ -21,17 +21,17 @@ export VERL_LOGGING_LEVEL=DEBUG
 export VERL_SFT_LOGGING_LEVEL=DEBUG
 export NCCL_IB_DISABLE=0
 export NCCL_IB_HCA=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_11,mlx5_bond_0
-export NCCL_NET_GDR_READ=1
+# export NCCL_NET_GDR_READ=1
 
 conda activate $CONDA_PATH
 
 # distributed settings
-LOCAL_ADDR=osk-gpu68
-echo "LOCAL_ADDR=${LOCAL_ADDR}"
+LOCAL_ADDR=osk-gpu66
 NODE_RANK=2
+echo "LOCAL_ADDR=${LOCAL_ADDR}"
 echo "Node rank: "$NODE_RANK
 
-MASTER_ADDR=osk-gpu66
+MASTER_ADDR=osk-gpu68
 echo "MASTER_ADDR=${MASTER_ADDR}"
 MASTER_PORT=37171
 echo "MASTER_PORT=${MASTER_PORT}"
@@ -74,8 +74,8 @@ torchrun --rdzv_backend c10d \
          data.micro_batch_size_per_gpu=1 \
          model.partial_pretrain=deepseek-ai/DeepSeek-R1-0528 \
          model.fsdp_config.model_dtype=bf16 \
-         model.lora_rank=1 \
-         model.lora_alpha=1 \
+         model.lora_rank=2 \
+         model.lora_alpha=2 \
          model.strategy=fsdp2 \
          data.max_length=1024 \
          use_remove_padding=True \

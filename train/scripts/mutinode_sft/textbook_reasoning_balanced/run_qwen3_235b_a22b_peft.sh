@@ -21,7 +21,7 @@ export VERL_LOGGING_LEVEL=DEBUG
 export VERL_SFT_LOGGING_LEVEL=DEBUG
 export NCCL_IB_DISABLE=0
 export NCCL_IB_HCA=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_11,mlx5_bond_0
-export NCCL_NET_GDR_READ=1
+# export NCCL_NET_GDR_READ=1
 
 conda activate $CONDA_PATH
 
@@ -57,6 +57,7 @@ echo "trainer.default_local_dir : $HOME/training/multinode_sft/textbook_reasonin
 
 torchrun --rdzv_backend c10d \
          --rdzv_endpoint ${MASTER_ADDR}:${MASTER_PORT} \
+         --rdzv_id $SLURM_JOB_NAME-$WANDB_RUN_NAME \
          --nnodes ${NNODES} --nproc_per_node ${GPUS_PER_NODE} \
          --node_rank ${NODE_RANK} \
          -m verl.trainer.fsdp_sft_trainer \
