@@ -17,6 +17,7 @@ export NCCL_DEBUG_SUBSYS=ALL
 export NVTE_FUSED_ATTN=0
 export NVTE_DEBUG=1
 export NVTE_DEBUG_LEVEL=0
+export HYDRA_FULL_ERROR=1
 
 conda activate $CONDA_PATH
 
@@ -72,6 +73,6 @@ torchrun --rdzv_backend c10d \
          trainer.total_epochs=1 \
          trainer.save_freq=1 \
          trainer.max_ckpt_to_keep=1 \
-         trainer.default_local_dir=$HOME/training/multinode_sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints \
+         trainer.default_local_dir=$HOME/training/multinode_sft/open_math_reasoning_genselect/$SLURM_JOB_NAME-debug/checkpoints \
          trainer.seed=42 \
          trainer.logger=['console','wandb'] > train/logs/train-${NODE_RANK}.log 2>&1
