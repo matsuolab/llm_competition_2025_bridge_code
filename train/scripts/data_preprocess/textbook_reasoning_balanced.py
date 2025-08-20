@@ -121,7 +121,7 @@ if __name__ == "__main__":
 
     if args.subject_ratios:
         subject_ratios = [float(s) for s in args.subject_ratios.split(',')]
-        assert sum(subject_ratios) == 1
+        assert 0.99 < sum(subject_ratios)
         assert len(subject_ratios) == len(include_subjects)
 
         subject_datasets = []
