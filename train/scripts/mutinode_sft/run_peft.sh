@@ -22,12 +22,15 @@ export HYDRA_FULL_ERROR=1
 conda activate $CONDA_PATH
 
 # distributed settings
-MASTER_ADDR=osk-gpu68
+LOCAL_ADDR=osk-gpu68
+echo "LOCAL_ADDR=${LOCAL_ADDR}"
+NODE_RANK=1
+echo "Node rank: "$NODE_RANK
+
+MASTER_ADDR=osk-gpu66
 echo "MASTER_ADDR=${MASTER_ADDR}"
 MASTER_PORT=37171
 echo "MASTER_PORT=${MASTER_PORT}"
-NODE_RANK=1
-echo "Node rank: "$NODE_RANK
 NNODES=2
 echo "Node num: "$NNODES
 GPUS_PER_NODE=8
@@ -73,6 +76,6 @@ torchrun --rdzv_backend c10d \
          trainer.total_epochs=1 \
          trainer.save_freq=1 \
          trainer.max_ckpt_to_keep=1 \
-         trainer.default_local_dir=$HOME/training/multinode_sft/open_math_reasoning_genselect/$SLURM_JOB_NAME-debug/checkpoints \
+         trainer.default_local_dir=$HOME/training/multinode_sft/open_math_reasoning_genselect/$SLURM_JOB_NAME/checkpoints \
          trainer.seed=42 \
          trainer.logger=['console','wandb'] > train/logs/train-${NODE_RANK}.log 2>&1

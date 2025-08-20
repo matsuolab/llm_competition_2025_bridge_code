@@ -9,7 +9,7 @@ conda init
 conda config --set auto_activate_base false
 source ~/.bashrc
 
-export SLURM_JOB_NAME=deepseek_r1_0528_peft_8gpu
+export SLURM_JOB_NAME=qwen3_32b_tbr_balanced_peft_8gpu
 export NCCL_SOCKET_IFNAME=bond0
 export NCCL_DEBUG=INFO
 export NCCL_DEBUG_SUBSYS=ALL
@@ -26,16 +26,16 @@ export NCCL_NET_GDR_READ=1
 conda activate $CONDA_PATH
 
 # distributed settings
-LOCAL_ADDR=osk-gpu68
+LOCAL_ADDR=osk-gpu66
 echo "LOCAL_ADDR=${LOCAL_ADDR}"
-NODE_RANK=2
+NODE_RANK=0
 echo "Node rank: "$NODE_RANK
 
 MASTER_ADDR=osk-gpu66
 echo "MASTER_ADDR=${MASTER_ADDR}"
 MASTER_PORT=37171
 echo "MASTER_PORT=${MASTER_PORT}"
-NNODES=3
+NNODES=2
 echo "Node num: "$NNODES
 GPUS_PER_NODE=8
 echo "Gpu num: "$GPUS_PER_NODE
@@ -45,7 +45,6 @@ echo "Gpu num: "$GPUS_PER_NODE
 #export CUDA_VISIBLE_DEVICES=0
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export PYTHONUNBUFFERED=1
-export NCCL_DEBUG_FILE=train/logs/nccl-debug-${NODE_RANK}.log
 ulimit -v unlimited
 
 #YOU_TEAM_ENTITY_NAME を wandb の組織名に置き換えてください。
@@ -53,30 +52,25 @@ export WANDB_ENTITY="llm-2025-sahara"
 export WANDB_PROJECT_NAME=$SLURM_JOB_NAME
 export WANDB_RUN_NAME=$(TZ=Asia/Tokyo date +%Y-%m-%dT-%H-%M-%S)
 
-mkdir -p "$HOME/training/multinode_sft/open_math_reasoning_mini/$SLURM_JOB_NAME/checkpoints"
-echo "trainer.default_local_dir : $HOME/training/multinode_sft/open_math_reasoning_mini/$SLURM_JOB_NAME/checkpoints"
-
-nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > train/logs/nvidia-smi-${NODE_RANK}.log &
-pid_nvsmi=$!
+mkdir -p "$HOME/training/multinode_sft/textbook_reasoning_balanced/$SLURM_JOB_NAME/checkpoints"
+echo "trainer.default_local_dir : $HOME/training/multinode_sft/textbook_reasoning_balanced/$SLURM_JOB_NAME/checkpoints"
 
 torchrun --rdzv_backend c10d \
          --rdzv_endpoint ${MASTER_ADDR}:${MASTER_PORT} \
-         --local-addr ${LOCAL_ADDR} \
          --nnodes ${NNODES} --nproc_per_node ${GPUS_PER_NODE} \
          --node_rank ${NODE_RANK} \
          -m verl.trainer.fsdp_sft_trainer \
-         data.train_files=$HOME/data/open_math_reasoning_mini/train.parquet \
-         data.prompt_key=extra_info \
-         data.response_key=extra_info \
-         data.prompt_dict_keys=['question'] \
-         +data.response_dict_keys=['answer'] \
-         data.train_batch_size=24 \
+         data.train_files=$HOME/data/textbook_reasoning_balanced/train.parquet \
+         data.multiturn.enable=true \
+         data.multiturn.messages_key=messages \
+         data.enable_thinking_key=enable_thinking \
+         data.train_batch_size=16 \
          data.micro_batch_size_per_gpu=1 \
-         model.partial_pretrain=deepseek-ai/DeepSeek-R1-0528 \
+         model.partial_pretrain=Qwen/Qwen3-32B \
          model.fsdp_config.model_dtype=bf16 \
-         model.lora_rank=1 \
-         model.lora_alpha=1 \
-         model.strategy=fsdp2 \
+         model.lora_rank=8 \
+         model.lora_alpha=8 \
+         model.strategy=fsdp \
          data.max_length=1024 \
          use_remove_padding=True \
          ulysses_sequence_parallel_size=1 \
@@ -86,6 +80,6 @@ torchrun --rdzv_backend c10d \
          trainer.total_epochs=1 \
          trainer.save_freq=1 \
          trainer.max_ckpt_to_keep=1 \
-         trainer.default_local_dir=$HOME/training/multinode_sft/open_math_reasoning_mini/$SLURM_JOB_NAME/checkpoints \
+         trainer.default_local_dir=$HOME/training/multinode_sft/textbook_reasoning_balanced/$SLURM_JOB_NAME/checkpoints \
          trainer.seed=42 \
          trainer.logger=['console','wandb'] > train/logs/train-${NODE_RANK}.log 2>&1
