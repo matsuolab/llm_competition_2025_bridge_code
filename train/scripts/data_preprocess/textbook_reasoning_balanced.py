@@ -68,17 +68,25 @@ def copy(src: str, dst: str, **kwargs) -> bool:
             return shutil.copy(src, dst, **kwargs)
 
 
-def convert_textbook_to_prompt_response(example: Dict) -> Tuple[str, str]:
-    """TextbookReasoning形式のデータを単一のプロンプト-レスポンスペアに変換
-    
-    TextbookReasoningは直接的なフィールド構造を持つ:
-    - question: 科学分野の問題文
-    - answer: 詳細な解答説明
-    """
-    prompt = example.get("question", "")
-    response = example.get("answer", "")
-    
-    return prompt, response
+SYSTEM_MC = "Your response should be in the following format:\nAnswer: {your chosen answer}"
+# SYSTEM_MC = "Your response should be in the following format:\nExplanation: {your explanation for your answer choice}\nAnswer: {your chosen answer}\nConfidence: {your confidence score between 0% and 100% for your answer}"
+
+def format_message(example):
+    system_prompt = SYSTEM_MC
+    question_text = example['question']
+
+    answer = example["answer"]
+    reference_answer = example["reference_answer"]
+    answer_with_reasoning = f"<think>{answer}</think>\n\nAnswer: {reference_answer}"
+
+    system_role = "system" # o1 no sys prompt
+    messages = [
+        {"role": system_role, "content": system_prompt}, 
+        {"role": "user", "content": question_text},
+        {"role": "assistant", "content": answer_with_reasoning}
+    ]
+    return messages
+
 
 
 if __name__ == "__main__":
@@ -140,31 +148,25 @@ if __name__ == "__main__":
         多分野科学推論に対応した処理
         """
         def process_fn(example, idx):
-            # TextbookReasoningの直接的なフィールド構造を処理
-            prompt, response = convert_textbook_to_prompt_response(example)
-            
+            question = example.get("question", "")
+            answer = example.get("answer", "")            
             # 参考解答の取得（reference_answerをground truthとして使用）
             reference_answer = example["reference_answer"]
+            messages  = format_message(example)
  
-            # VERL統一フォーマット: TextbookReasoning用に最適化
             data = {
                 "data_source": data_source,
-                "prompt": [
-                    {
-                        "role": "user",
-                        "content": prompt,
-                    }
-                ],
-                "ability": "science_reasoning",  # TextbookReasoningは科学推論特化
+                "messages": messages,
+                "enable_thinking": True,
+                "ability": f"{example['subject']}_reasoning" if example.get("subject") is not None else "reasoning",
                 "reward_model": {"style": "rule", "ground_truth": reference_answer},
-                "extra_info": {  # SFT訓練で使用する元データを保持
+                "extra_info": {
                     "split": split,
                     "index": idx,
-                    "answer": response,           # 詳細な解答説明
-                    "question": prompt,          # 元の問題文
-                    "reference_answer": reference_answer,  # ground truth
+                    "answer": answer,
+                    "question": question,
+                    "reference_answer": reference_answer,
                     "subject": example.get("subject", ""),
-                    "original_format": "textbook_reasoning"
                 },
             }
             return data
