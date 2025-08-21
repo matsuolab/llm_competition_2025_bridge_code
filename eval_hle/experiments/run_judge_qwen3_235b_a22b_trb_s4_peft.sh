@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=judge_qwen3_235b_a22b_trb_s4_256_peft_hle_8gpu
+#SBATCH --job-name=judge_qwen3_235b_a22b_trb_s4_peft_hle_8gpu
 #SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu66
 #SBATCH --nodes=1
