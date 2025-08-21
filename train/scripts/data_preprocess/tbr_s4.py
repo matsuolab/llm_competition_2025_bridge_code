@@ -192,9 +192,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     try:
+        # Expand paths with ~
+        tbr_file = os.path.expanduser(args.tbr_file)
+        s4_file = os.path.expanduser(args.s4_file)
+        
         # Load and filter datasets
-        tbr_df = load_and_filter_dataset(args.tbr_file, "Textbook Reasoning Balanced")
-        s4_df = load_and_filter_dataset(args.s4_file, "Safety SFT Star1 Summarized")
+        tbr_df = load_and_filter_dataset(tbr_file, "Textbook Reasoning Balanced")
+        s4_df = load_and_filter_dataset(s4_file, "Safety SFT Star1 Summarized")
         
         # Concatenate and shuffle
         combined_df = concatenate_and_shuffle_datasets(tbr_df, s4_df, args.seed)
