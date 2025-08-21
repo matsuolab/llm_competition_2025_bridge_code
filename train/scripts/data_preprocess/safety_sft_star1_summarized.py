@@ -79,7 +79,8 @@ def format_message(example):
     
     system_role = "system"
     messages = [
-        {"role": system_role, "content": system_prompt}, 
+        # NOTE: remove sys prompt based on yuzu san advice.
+        # {"role": system_role, "content": system_prompt}, 
         {"role": "user", "content": question_text},
         {"role": "assistant", "content": trunc_response}
     ]
@@ -93,8 +94,7 @@ if __name__ == "__main__":
     parser.add_argument("--train_ratio", type=float, default=1.0, 
                        help="訓練データの割合（残りが検証用）")
     parser.add_argument("--seed", type=int, default=42, help="分割用のランダムシード")
-    parser.add_argument("--target_size", type=int, default=1000)
-    parser.add_argument("--categories_to_include", type=str, default="Self-Harm")
+    parser.add_argument("--categories_to_exclude", type=str, default=None)
     args = parser.parse_args()
 
     data_source = "llm-2025-sahara/safety_sft_star1_summarized"
@@ -109,16 +109,16 @@ if __name__ == "__main__":
         exit(1)
 
     # Category based filtering (optional)
-    if args.categories_to_include:
-        include_categories = args.categories_to_include.split(',')
-        print(f"含めるcategory: {include_categories}")
+    if args.categories_to_exclude:
+        exclude_categories = args.categories_to_exclude.split(',')
+        print(f"除外するcategory: {exclude_categories}")
         
         # カテゴリーフィルタリング（カテゴリーがリストの場合に対応）
         def category_filter(example):
             if isinstance(example['category'], list):
-                return any(cat in include_categories for cat in example['category'])
+                return not any(cat in exclude_categories for cat in example['category'])
             else:
-                return example['category'] in include_categories
+                return example['category'] not in exclude_categories
         
         filtered_dataset = full_dataset.filter(category_filter)
     else:

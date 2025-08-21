@@ -81,7 +81,8 @@ def format_message(example):
 
     system_role = "system" # o1 no sys prompt
     messages = [
-        {"role": system_role, "content": system_prompt}, 
+        # NOTE: should be same as safety_sft_star1_summarized.py.
+        # {"role": system_role, "content": system_prompt}, 
         {"role": "user", "content": question_text},
         {"role": "assistant", "content": answer_with_reasoning}
     ]
