@@ -26,16 +26,16 @@ export NCCL_NET_GDR_READ=1
 conda activate $CONDA_PATH
 
 # distributed settings
-LOCAL_ADDR=osk-gpu68
-NODE_RANK=0
+LOCAL_ADDR=osk-gpu67
+NODE_RANK=1
 echo "LOCAL_ADDR=${LOCAL_ADDR}"
 echo "Node rank: "$NODE_RANK
 
-MASTER_ADDR=osk-gpu68
+MASTER_ADDR=osk-gpu66
 echo "MASTER_ADDR=${MASTER_ADDR}"
 MASTER_PORT=37171
 echo "MASTER_PORT=${MASTER_PORT}"
-NNODES=3
+NNODES=2
 echo "Node num: "$NNODES
 GPUS_PER_NODE=8
 echo "Gpu num: "$GPUS_PER_NODE
@@ -70,17 +70,19 @@ torchrun --rdzv_backend c10d \
          data.multiturn.enable=true \
          data.multiturn.messages_key=messages \
          data.multiturn.enable_thinking_key=enable_thinking \
-         data.train_batch_size=240 \
-         data.micro_batch_size_per_gpu=2 \
+         data.train_batch_size=16 \
+         data.micro_batch_size_per_gpu=1 \
+         data.truncation=right \
+         data.max_length=1024 \
          model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
-         model.lora_rank=16 \
-         model.lora_alpha=32 \
+         model.lora_rank=8 \
+         model.lora_alpha=16 \
          model.strategy=fsdp \
-         data.max_length=1024 \
-         use_remove_padding=True \
+         optim.lr=1e-6 \
+         optim.warmup_steps_ratio=0 \
          ulysses_sequence_parallel_size=1 \
-         data.truncation=right \
+         use_remove_padding=True \
          trainer.project_name=$SLURM_JOB_NAME \
          trainer.experiment_name=$SLURM_JOB_NAME-$WANDB_RUN_NAME \
          trainer.total_epochs=1 \
