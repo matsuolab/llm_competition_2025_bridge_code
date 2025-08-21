@@ -9,6 +9,7 @@ eval_dna/evaluation_results/**/*.csv
 train/tests/input/*
 train/tests/output/*
 train/logs
+train/datasets
 
 .env
 secrets.env
