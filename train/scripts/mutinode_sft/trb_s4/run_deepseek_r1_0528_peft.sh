@@ -27,8 +27,8 @@ conda activate $CONDA_PATH
 
 # distributed settings
 LOCAL_ADDR=osk-gpu66
-echo "LOCAL_ADDR=${LOCAL_ADDR}"
 NODE_RANK=0
+echo "LOCAL_ADDR=${LOCAL_ADDR}"
 echo "Node rank: "$NODE_RANK
 
 MASTER_ADDR=osk-gpu66
@@ -61,8 +61,8 @@ torchrun --rdzv_backend c10d \
          --nnodes ${NNODES} --nproc_per_node ${GPUS_PER_NODE} \
          --node_rank ${NODE_RANK} \
          -m verl.trainer.fsdp_sft_trainer \
-         data.train_files="['$HOME/data/textbook_reasoning_balanced/train.parquet','$HOME/data/safety_sft_star1_summarized/train.parquet']" \
-         data.val_files="['$HOME/data/textbook_reasoning_balanced/train.parquet','$HOME/data/safety_sft_star1_summarized/train.parquet']" \
+         data.train_files=$HOME/data/tbr_s4/train.parquet \
+         data.val_files=$HOME/data/tbr_s4/train.parquet \
          data.multiturn.enable=true \
          data.multiturn.messages_key=messages \
          data.multiturn.enable_thinking_key=enable_thinking \
