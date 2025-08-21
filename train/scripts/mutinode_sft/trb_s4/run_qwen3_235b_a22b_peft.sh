@@ -9,7 +9,7 @@ conda init
 conda config --set auto_activate_base false
 source ~/.bashrc
 
-export SLURM_JOB_NAME=qwen3_235b_a22b_tbr_balanced_peft_8gpu
+export SLURM_JOB_NAME=qwen3_235b_a22b_tbr_s4_peft_8gpu
 export NCCL_SOCKET_IFNAME=bond0
 export NCCL_DEBUG=INFO
 export NCCL_DEBUG_SUBSYS=ALL

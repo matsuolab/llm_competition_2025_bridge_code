@@ -53,8 +53,8 @@ export WANDB_ENTITY="llm-2025-sahara"
 export WANDB_PROJECT_NAME=$SLURM_JOB_NAME
 export WANDB_RUN_NAME=$(TZ=Asia/Tokyo date +%Y-%m-%dT-%H-%M-%S)
 
-mkdir -p "$HOME/training/multinode_sft/open_math_reasoning_mini/$SLURM_JOB_NAME/checkpoints"
-echo "trainer.default_local_dir : $HOME/training/multinode_sft/open_math_reasoning_mini/$SLURM_JOB_NAME/checkpoints"
+mkdir -p "$HOME/training/multinode_sft/trb_s4/$SLURM_JOB_NAME/checkpoints"
+echo "trainer.default_local_dir : $HOME/training/multinode_sft/trb_s4/$SLURM_JOB_NAME/checkpoints"
 
 nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > train/logs/nvidia-smi-${NODE_RANK}.log &
 pid_nvsmi=$!
@@ -74,8 +74,8 @@ torchrun --rdzv_backend c10d \
          data.micro_batch_size_per_gpu=1 \
          model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
-         model.lora_rank=8 \
-         model.lora_alpha=16 \
+         model.lora_rank=16 \
+         model.lora_alpha=32 \
          model.strategy=fsdp \
          data.max_length=1024 \
          use_remove_padding=True \
