@@ -62,9 +62,10 @@ torchrun --rdzv_backend c10d \
          --node_rank ${NODE_RANK} \
          -m verl.trainer.fsdp_sft_trainer \
          data.train_files=$HOME/data/textbook_reasoning_balanced/train.parquet \
+         data.val_files=$HOME/data/textbook_reasoning_balanced/train.parquet \
          data.multiturn.enable=true \
          data.multiturn.messages_key=messages \
-         data.enable_thinking_key=enable_thinking \
+         data.multiturn.enable_thinking_key=enable_thinking \
          data.micro_batch_size_per_gpu=1 \
          model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
