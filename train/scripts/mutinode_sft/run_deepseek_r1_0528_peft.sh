@@ -65,7 +65,7 @@ torchrun --rdzv_backend c10d \
          --nnodes ${NNODES} --nproc_per_node ${GPUS_PER_NODE} \
          --node_rank ${NODE_RANK} \
          -m verl.trainer.fsdp_sft_trainer \
-         data.train_files=$HOME/data/open_math_reasoning_mini/train.parquet \
+         data.train_files=$HOME/data/open_math_reasoning_mini/train.parquet,$HOME/data/safety_sft_star1_summarized/train.parquet \
          data.prompt_key=extra_info \
          data.response_key=extra_info \
          data.prompt_dict_keys=['question'] \
@@ -74,9 +74,11 @@ torchrun --rdzv_backend c10d \
          data.micro_batch_size_per_gpu=1 \
          model.partial_pretrain=deepseek-ai/DeepSeek-R1-0528 \
          model.fsdp_config.model_dtype=bf16 \
-         model.lora_rank=2 \
+         model.fsdp_confg.cpu_offload=True \
+         model.fsdp_confg.offload_params=True \
+         model.lora_rank=1 \
          model.lora_alpha=2 \
-         model.strategy=fsdp2 \
+         model.strategy=fsdp \
          data.max_length=1024 \
          use_remove_padding=True \
          ulysses_sequence_parallel_size=1 \

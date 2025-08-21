@@ -70,7 +70,7 @@ torchrun --rdzv_backend c10d \
          model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
          model.lora_rank=8 \
-         model.lora_alpha=8 \
+         model.lora_alpha=16 \
          model.strategy=fsdp \
          data.max_length=1024 \
          use_remove_padding=True \
