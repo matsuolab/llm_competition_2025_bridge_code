@@ -81,7 +81,7 @@ torchrun --rdzv_backend c10d \
          model.strategy=fsdp \
          optim.lr=1e-6 \
          optim.warmup_steps_ratio=0 \
-         ulysses_sequence_parallel_size=1 \
+         ulysses_sequence_parallel_size=8 \
          use_remove_padding=True \
          trainer.project_name=$SLURM_JOB_NAME \
          trainer.experiment_name=$SLURM_JOB_NAME-$WANDB_RUN_NAME \
