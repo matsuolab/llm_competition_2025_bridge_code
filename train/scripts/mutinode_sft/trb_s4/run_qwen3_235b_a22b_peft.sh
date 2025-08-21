@@ -65,13 +65,13 @@ torchrun --rdzv_backend c10d \
          --nnodes ${NNODES} --nproc_per_node ${GPUS_PER_NODE} \
          --node_rank ${NODE_RANK} \
          -m verl.trainer.fsdp_sft_trainer \
-         data.train_files=$HOME/data/textbook_reasoning_balanced/train.parquet \
-         data.val_files=$HOME/data/textbook_reasoning_balanced/train.parquet \
+         data.train_files=$HOME/data/tbr_s4/train.parquet \
+         data.val_files=$HOME/data/tbr_s4/train.parquet \
          data.multiturn.enable=true \
          data.multiturn.messages_key=messages \
          data.multiturn.enable_thinking_key=enable_thinking \
          data.train_batch_size=240 \
-         data.micro_batch_size_per_gpu=1 \
+         data.micro_batch_size_per_gpu=2 \
          model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
          model.lora_rank=16 \
