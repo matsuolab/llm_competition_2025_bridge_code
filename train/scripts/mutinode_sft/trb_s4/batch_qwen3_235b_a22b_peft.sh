@@ -81,7 +81,7 @@ torchrun --rdzv_backend c10d \
          data.multiturn.enable=true \
          data.multiturn.messages_key=messages \
          data.multiturn.enable_thinking_key=enable_thinking \
-         data.train_batch_size=16 \
+         data.train_batch_size=24 \
          data.micro_batch_size_per_gpu=1 \
          data.truncation=right \
          data.max_length=1024 \
