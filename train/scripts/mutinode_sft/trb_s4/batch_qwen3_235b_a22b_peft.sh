@@ -55,7 +55,7 @@ export WANDB_RUN_NAME=$(TZ=Asia/Tokyo date +%Y-%m-%dT-%H-%M-%S)
 mkdir -p "$HOME/training/multinode_sft/trb_s4/$SLURM_JOB_NAME/checkpoints"
 echo "trainer.default_local_dir : $HOME/training/multinode_sft/trb_s4/$SLURM_JOB_NAME/checkpoints"
 
-nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > train/logs/nvidia-smi-${NODE_RANK}.log &
+nvidia-smi -i 0,1,2,3,4,5,6,7 -l 3 > logs/nvidia-smi-${NODE_RANK}.log &
 pid_nvsmi=$!
 
 # Kill any existing torchrun processes before starting
