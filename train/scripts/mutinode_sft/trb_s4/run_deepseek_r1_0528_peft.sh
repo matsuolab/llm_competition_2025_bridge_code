@@ -19,9 +19,13 @@ export NVTE_DEBUG_LEVEL=0
 export HYDRA_FULL_ERROR=1
 export VERL_LOGGING_LEVEL=DEBUG
 export VERL_SFT_LOGGING_LEVEL=DEBUG
+
+export TORCH_NCCL_HIGH_PRIORITY=1
 export NCCL_IB_DISABLE=0
 export NCCL_IB_HCA=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_11,mlx5_bond_0
 export NCCL_NET_GDR_READ=1
+export NCCL_PROTO=Simple
+export NCCL_CHECKS_DISABLE=1
 
 conda activate $CONDA_PATH
 
