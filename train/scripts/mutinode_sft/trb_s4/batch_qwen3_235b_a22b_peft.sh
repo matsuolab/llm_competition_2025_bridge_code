@@ -91,7 +91,7 @@ torchrun --rdzv_backend c10d \
          model.lora_rank=4 \
          model.lora_alpha=8 \
          use_liger=True \
-         model.strategy=fsdp \
+         model.strategy=fsdp2 \
          optim.lr=1e-6 \
          optim.warmup_steps_ratio=0 \
          ulysses_sequence_parallel_size=8 \
