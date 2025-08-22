@@ -19,9 +19,13 @@ export NVTE_DEBUG_LEVEL=0
 export HYDRA_FULL_ERROR=1
 export VERL_LOGGING_LEVEL=DEBUG
 export VERL_SFT_LOGGING_LEVEL=DEBUG
+
+export TORCH_NCCL_HIGH_PRIORITY=1
 export NCCL_IB_DISABLE=0
 export NCCL_IB_HCA=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_11,mlx5_bond_0
 export NCCL_NET_GDR_READ=1
+export NCCL_PROTO=Simple
+export NCCL_CHECKS_DISABLE=1
 
 conda activate $CONDA_PATH
 
@@ -45,7 +49,6 @@ echo "Gpu num: "$GPUS_PER_NODE
 #export CUDA_VISIBLE_DEVICES=0
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export PYTHONUNBUFFERED=1
-export NCCL_DEBUG_FILE=train/logs/nccl-debug-${NODE_RANK}.log
 ulimit -v unlimited
 
 #YOU_TEAM_ENTITY_NAME を wandb の組織名に置き換えてください。
@@ -76,8 +79,9 @@ torchrun --rdzv_backend c10d \
          data.max_length=1024 \
          model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
-         model.lora_rank=8 \
-         model.lora_alpha=16 \
+         model.lora_rank=4 \
+         model.lora_alpha=8 \
+         use_liger=True \
          model.strategy=fsdp \
          optim.lr=1e-6 \
          optim.warmup_steps_ratio=0 \
