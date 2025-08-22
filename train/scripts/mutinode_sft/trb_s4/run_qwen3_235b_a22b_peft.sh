@@ -76,7 +76,7 @@ torchrun --rdzv_backend c10d \
          data.train_batch_size=16 \
          data.micro_batch_size_per_gpu=1 \
          data.truncation=right \
-         data.max_length=512 \
+         data.max_length=256 \
          model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
          model.lora_rank=4 \
