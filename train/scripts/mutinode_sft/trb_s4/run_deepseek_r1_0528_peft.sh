@@ -30,12 +30,12 @@ export NCCL_CHECKS_DISABLE=1
 conda activate $CONDA_PATH
 
 # distributed settings
-LOCAL_ADDR=osk-gpu66
-NODE_RANK=0
+LOCAL_ADDR=osk-gpu68
+NODE_RANK=2
 echo "LOCAL_ADDR=${LOCAL_ADDR}"
 echo "Node rank: "$NODE_RANK
 
-MASTER_ADDR=osk-gpu66
+MASTER_ADDR=osk-gpu68
 echo "MASTER_ADDR=${MASTER_ADDR}"
 MASTER_PORT=37171
 echo "MASTER_PORT=${MASTER_PORT}"
@@ -77,9 +77,11 @@ torchrun --rdzv_backend c10d \
          model.lora_rank=1 \
          model.lora_alpha=2 \
          model.strategy=fsdp \
-         data.max_length=1024 \
+         optim.lr=1e-6 \
+         optim.warmup_steps_ratio=0 \
+         data.max_length=512 \
          use_remove_padding=True \
-         ulysses_sequence_parallel_size=1 \
+         ulysses_sequence_parallel_size=8 \
          data.truncation=right \
          trainer.project_name=$SLURM_JOB_NAME \
          trainer.experiment_name=$SLURM_JOB_NAME-$WANDB_RUN_NAME \
