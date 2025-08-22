@@ -72,7 +72,6 @@ ping -c 1 -W 2 $MASTER_ADDR && echo "Ping successful" || echo "Ping failed"
 
 torchrun --rdzv_backend c10d \
          --rdzv_endpoint ${MASTER_ADDR}:${MASTER_PORT} \
-         --rdzv_id ${SLURM_JOB_NAME} \
          --rdzv_conf timeout=1800 \
          --nnodes ${NNODES} --nproc_per_node ${GPUS_PER_NODE} \
          --node_rank ${NODE_RANK} \
