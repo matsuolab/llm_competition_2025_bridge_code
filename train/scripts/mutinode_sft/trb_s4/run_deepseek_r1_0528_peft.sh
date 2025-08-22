@@ -30,7 +30,7 @@ export NCCL_CHECKS_DISABLE=1
 conda activate $CONDA_PATH
 
 # distributed settings
-LOCAL_ADDR=osk-gpu68
+LOCAL_ADDR=osk-gpu66
 NODE_RANK=2
 echo "LOCAL_ADDR=${LOCAL_ADDR}"
 echo "Node rank: "$NODE_RANK
@@ -61,7 +61,6 @@ echo "trainer.default_local_dir : $HOME/training/multinode_sft/trb_s4/$SLURM_JOB
 
 torchrun --rdzv_backend c10d \
          --rdzv_endpoint ${MASTER_ADDR}:${MASTER_PORT} \
-         --rdzv_id $SLURM_JOB_NAME-$WANDB_RUN_NAME \
          --nnodes ${NNODES} --nproc_per_node ${GPUS_PER_NODE} \
          --node_rank ${NODE_RANK} \
          -m verl.trainer.fsdp_sft_trainer \
@@ -79,7 +78,7 @@ torchrun --rdzv_backend c10d \
          model.strategy=fsdp \
          optim.lr=1e-6 \
          optim.warmup_steps_ratio=0 \
-         data.max_length=512 \
+         data.max_length=128 \
          use_remove_padding=True \
          ulysses_sequence_parallel_size=8 \
          data.truncation=right \
