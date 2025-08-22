@@ -19,19 +19,15 @@ export NVTE_DEBUG_LEVEL=0
 export HYDRA_FULL_ERROR=1
 export VERL_LOGGING_LEVEL=DEBUG
 export VERL_SFT_LOGGING_LEVEL=DEBUG
-
-# export TORCH_NCCL_HIGH_PRIORITY=1
 export NCCL_IB_DISABLE=0
 export NCCL_IB_HCA=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_11,mlx5_bond_0
 export NCCL_NET_GDR_READ=1
-export NCCL_PROTO=Simple
-# export NCCL_CHECKS_DISABLE=1
 
 conda activate $CONDA_PATH
 
 # distributed settings
-LOCAL_ADDR=osk-gpu66
-NODE_RANK=0
+LOCAL_ADDR=osk-gpu67
+NODE_RANK=1
 echo "LOCAL_ADDR=${LOCAL_ADDR}"
 echo "Node rank: "$NODE_RANK
 
@@ -49,6 +45,7 @@ echo "Gpu num: "$GPUS_PER_NODE
 #export CUDA_VISIBLE_DEVICES=0
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export PYTHONUNBUFFERED=1
+export NCCL_DEBUG_FILE=train/logs/nccl-debug-${NODE_RANK}.log
 ulimit -v unlimited
 
 #YOU_TEAM_ENTITY_NAME を wandb の組織名に置き換えてください。
@@ -84,7 +81,7 @@ torchrun --rdzv_backend c10d \
          model.strategy=fsdp \
          optim.lr=1e-6 \
          optim.warmup_steps_ratio=0 \
-         ulysses_sequence_parallel_size=1 \
+         ulysses_sequence_parallel_size=8 \
          use_remove_padding=True \
          trainer.project_name=$SLURM_JOB_NAME \
          trainer.experiment_name=$SLURM_JOB_NAME-$WANDB_RUN_NAME \
