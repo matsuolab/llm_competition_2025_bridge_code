@@ -103,4 +103,4 @@ torchrun --rdzv_backend c10d \
          trainer.max_ckpt_to_keep=10 \
          trainer.default_local_dir=$HOME/training/multinode_sft/trb_s4/$SLURM_JOB_NAME/checkpoints \
          trainer.seed=42 \
-         trainer.logger=['console','wandb'] > train/logs/train-${NODE_RANK}.log 2>&1
+         trainer.logger=['console','wandb'] > logs/train-${NODE_RANK}.log 2>&1

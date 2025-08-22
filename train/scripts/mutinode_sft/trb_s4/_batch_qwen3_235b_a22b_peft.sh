@@ -65,7 +65,7 @@ for node in "${NODES[@]}"; do
     
     ssh -q $node "
         cd $SCRIPT_ROOT && \
-        bash $SCRIPT_ROOT/scripts/mutinode_sft/batch_qwen3_235b_a22b_peft.sh $MASTER_ADDR $MASTER_PORT $NODE_RANK $NNODES $GPUS_PER_NODE
+        bash $SCRIPT_ROOT/scripts/mutinode_sft/trb_s4/batch_qwen3_235b_a22b_peft.sh $MASTER_ADDR $MASTER_PORT $NODE_RANK $NNODES $GPUS_PER_NODE
     " 2>&1 | while IFS= read -r line; do
         echo "[$node] $line"
     done &
