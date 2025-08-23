@@ -51,7 +51,7 @@ export CUDA_DEVICE_MAX_CONNECTIONS=1
 export NUMEXPR_MAX_THREADS=$SLURM_CPUS_PER_TASK
 unset ROCR_VISIBLE_DEVICES
 
-export RAY_TMPDIR=/tmp/ray
+export RAY_TMPDIR=/tmp/ray2
 
 ulimit -v unlimited
 
@@ -97,7 +97,7 @@ srun --nodes=1 --ntasks=1 -w "$head_node" \
            source activate $CONDA_PATH && \
            ray start --head --node-ip-address=$MASTER_IP --port=$port \
            --dashboard-port=$dashboard_port --dashboard-host=0.0.0.0\
-           --temp-dir=/tmp/ray \
+           --temp-dir=/tmp/ray2 \
            --num-cpus=$SLURM_CPUS_PER_TASK --num-gpus=$SLURM_GPUS_PER_NODE --block" &
 sleep 10
 
@@ -111,7 +111,7 @@ for ((i = 1; i <= worker_num; i++)); do
     bash -c "unset ROCR_VISIBLE_DEVICES; \
              source activate $CONDA_PATH && \
              ray start --address $MASTER_IP:$port \
-             --temp-dir=/tmp/ray \
+             --temp-dir=/tmp/ray2 \
              --num-cpus=$SLURM_CPUS_PER_TASK --num-gpus=$SLURM_GPUS_PER_NODE --block" &
   sleep 5
 done
