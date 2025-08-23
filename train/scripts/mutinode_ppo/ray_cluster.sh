@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=verl-ray-ppo
-#SBATCH -p YOU_TEAM_ENTITY_NAME
-#SBATCH --nodelist=osk-gpu[94-95]
-#SBATCH --nodes=2
+#SBATCH -p P06
+#SBATCH --nodelist=osk-gpu[66-68]
+#SBATCH --nodes=3
 #SBATCH --ntasks-per-node=2
 #SBATCH --gpus-per-node=8
-#SBATCH --cpus-per-task=64
+#SBATCH --cpus-per-task=240
 #SBATCH --time=6-00:00:00
 #SBATCH --mem=0
 #SBATCH --output=/home/%u/training/multinode/ppo/ray_cluster/logs/slurm-%j.out
@@ -41,7 +41,7 @@ export TOKENIZERS_PARALLELISM=false
 export HSA_NO_SCRATCH_RECLAIM=1
 
 ######## 2. Custom variables such as PATH / CUDA / NCCL ########
-export CONDA_PATH="~/conda_env"
+# export CONDA_PATH="~/conda_env"
 export NCCL_SOCKET_IFNAME=enp25s0np0
 export NVTE_FUSED_ATTN=0
 export NVTE_DEBUG=1

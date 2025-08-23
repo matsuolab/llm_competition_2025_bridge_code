@@ -26,12 +26,12 @@ export NCCL_NET_GDR_READ=1
 conda activate $CONDA_PATH
 
 # distributed settings
-LOCAL_ADDR=osk-gpu66
+LOCAL_ADDR=osk-gpu67
 NODE_RANK=1
 echo "LOCAL_ADDR=${LOCAL_ADDR}"
 echo "Node rank: "$NODE_RANK
 
-MASTER_ADDR=osk-gpu67
+MASTER_ADDR=osk-gpu66
 echo "MASTER_ADDR=${MASTER_ADDR}"
 MASTER_PORT=37171
 echo "MASTER_PORT=${MASTER_PORT}"
