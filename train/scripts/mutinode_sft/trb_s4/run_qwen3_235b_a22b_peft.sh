@@ -10,28 +10,48 @@ conda config --set auto_activate_base false
 source ~/.bashrc
 
 export SLURM_JOB_NAME=qwen3_235b_a22b_trb_s4_peft
-export NCCL_SOCKET_IFNAME=bond0
-export NCCL_DEBUG=INFO
-export NCCL_DEBUG_SUBSYS=ALL
-export NVTE_FUSED_ATTN=0
+
+export NCCL_SOCKET_IFNAME=enp25s0np0
+
+export NVTE_FUSED_ATTN=1
 export NVTE_DEBUG=1
 export NVTE_DEBUG_LEVEL=0
-export HYDRA_FULL_ERROR=1
-export VERL_LOGGING_LEVEL=DEBUG
-export VERL_SFT_LOGGING_LEVEL=DEBUG
+
 export NCCL_IB_DISABLE=0
-export NCCL_IB_HCA=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_11,mlx5_bond_0
-export NCCL_NET_GDR_READ=1
+export NCCL_IB_GID_INDEX=3
+export NCCL_NET_GDR_LEVEL=2
+
+export NCCL_DEBUG=INFO            
+export NCCL_DEBUG_SUBSYS=INIT,NET
+
+# export NCCL_SOCKET_IFNAME=enp25s0np0
+# #export NCCL_SOCKET_IFNAME=bond0
+# export NCCL_DEBUG=INFO
+# export NCCL_DEBUG_SUBSYS=ALL
+# export NVTE_FUSED_ATTN=0
+# export NVTE_DEBUG=1
+# export NVTE_DEBUG_LEVEL=0
+# export HYDRA_FULL_ERROR=1
+# export VERL_LOGGING_LEVEL=DEBUG
+# export VERL_SFT_LOGGING_LEVEL=DEBUG
+# export NCCL_IB_DISABLE=0
+# export NCCL_IB_HCA=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_11,mlx5_bond_0
+# export NCCL_NET_GDR_READ=1
+# export NCCL_NVLS_ENABLE=1
+# export NCCL_ALGO=NVLS,Tree,Ring
+
+# export NCCL_PROTO=Simple
+# export NCCL_CHECKS_DISABLE=1
 
 conda activate $CONDA_PATH
 
 # distributed settings
-LOCAL_ADDR=osk-gpu67
-NODE_RANK=1
+LOCAL_ADDR=osk-gpu68
+NODE_RANK=0
 echo "LOCAL_ADDR=${LOCAL_ADDR}"
 echo "Node rank: "$NODE_RANK
 
-MASTER_ADDR=osk-gpu66
+MASTER_ADDR=osk-gpu67
 echo "MASTER_ADDR=${MASTER_ADDR}"
 MASTER_PORT=37171
 echo "MASTER_PORT=${MASTER_PORT}"
