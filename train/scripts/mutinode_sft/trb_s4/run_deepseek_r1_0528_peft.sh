@@ -78,7 +78,7 @@ torchrun --rdzv_backend c10d \
          model.strategy=fsdp \
          optim.lr=1e-6 \
          optim.warmup_steps_ratio=0 \
-         data.max_length=128 \
+         data.max_length=512 \
          use_remove_padding=True \
          ulysses_sequence_parallel_size=8 \
          data.truncation=right \

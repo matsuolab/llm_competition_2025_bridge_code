@@ -200,6 +200,11 @@ cd ../
 ulimit -v unlimited
 MAX_JOBS=64 pip install flash-attn==2.6.3 --no-build-isolation
 ```
+or
+```
+MAX_JOBS=64 pip install flash-attn==2.7.4.post1 --no-build-isolation
+```
+
 
 ### Step 0-9. TransformerEngineのインストール
 
