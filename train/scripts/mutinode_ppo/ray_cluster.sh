@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=verl-ray-ppo
-#SBATCH -p P06
+#SBATCH --partition=P06
 #SBATCH --nodelist=osk-gpu[66-68]
 #SBATCH --nodes=3
 #SBATCH --ntasks-per-node=2
