@@ -52,6 +52,7 @@ export NUMEXPR_MAX_THREADS=$SLURM_CPUS_PER_TASK
 unset ROCR_VISIBLE_DEVICES
 
 export RAY_TMPDIR=/home/Competition2025/P06/shareP06/tmp
+export RAY_SESSION_NAME=s1
 
 ulimit -v unlimited
 
