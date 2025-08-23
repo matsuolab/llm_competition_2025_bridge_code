@@ -10,7 +10,7 @@ conda init
 conda config --set auto_activate_base false
 source ~/.bashrc
 
-export CONDA_PATH="~/conda_env"
+# export CONDA_PATH="~/conda_env"
 export NCCL_SOCKET_IFNAME=enp25s0np0
 export NVTE_FUSED_ATTN=0
 export NVTE_DEBUG=1
