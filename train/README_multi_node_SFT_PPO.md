@@ -315,7 +315,7 @@ Total Demands:
 強化学習PPOの実行
 
 ```sh
-bash $HOME/llm_bridge_prod/train/scripts/mutinode_ppo/job_submit.sh
+bash $HOME/llm-bridge-sahara/train/scripts/mutinode_ppo/job_submit.sh
 ```
 
 以下の内容が表示されれば、ジョブの提出が成功したことを示します。

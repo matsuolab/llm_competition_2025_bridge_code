@@ -38,6 +38,7 @@ args = [
     "actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=1",
     "critic.optim.lr=1e-5",
     f"critic.model.path={os.environ['HOME']}/model/Llama-3.2-1B-Instruct",
+    f"critic.model.tokenizer_path={os.environ['HOME']}/model/Llama-3.2-1B-Instruct",    
     "critic.model.lora_rank=0",
     "critic.model.lora_alpha=0",
     "critic.model.target_modules=['q_proj','v_proj']",
