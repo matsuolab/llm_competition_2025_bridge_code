@@ -23,4 +23,4 @@ HEAD_IP="192.168.11.94:37173"
 ray job submit --address=$HEAD_IP \
     --no-wait \
     -- \
-    $CONDA_PATH/bin/python $HOME/llm_bridge_prod/train/scripts/mutinode_ppo/launch_training.py
+    $CONDA_PATH/bin/python $HOME/llm-bridge-sahara/train/scripts/mutinode_ppo/launch_training.py
