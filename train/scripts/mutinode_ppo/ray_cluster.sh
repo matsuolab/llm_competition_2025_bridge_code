@@ -4,12 +4,12 @@
 #SBATCH --nodelist=osk-gpu[66-68]
 #SBATCH --nodes=3
 #SBATCH --ntasks-per-node=2
-#SBATCH --gpus-per-node=8
-#SBATCH --cpus-per-task=64
+#SBATCH --gpus-per-node=1
+#SBATCH --cpus-per-task=1
 #SBATCH --time=6-00:00:00
 #SBATCH --mem=0
-#SBATCH --output=train/logs/ray-cluster%x-%j.out
-#SBATCH --error=train/logs/ray-cluster-%x-%j.err
+#SBATCH --output=slurm-%j.out
+#SBATCH --error=slurm-%j.err
 
 ############## Slurm pre-amble finished ##############
 
