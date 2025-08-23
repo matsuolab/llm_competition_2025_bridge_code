@@ -8,8 +8,8 @@
 #SBATCH --cpus-per-task=240
 #SBATCH --time=6-00:00:00
 #SBATCH --mem=0
-#SBATCH --output=/home/%u/training/multinode/ppo/ray_cluster/logs/slurm-%j.out
-#SBATCH --error=/home/%u/training/multinode/ppo/ray_cluster/logs/slurm-%j.err
+#SBATCH --output=/home/%u/training/multinode_ppo/ray_cluster/logs/slurm-%j.out
+#SBATCH --error=/home/%u/training/multinode_ppo/ray_cluster/logs/slurm-%j.err
 
 
 ############## Slurm pre-amble finished ##############
