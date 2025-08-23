@@ -51,7 +51,7 @@ export CUDA_DEVICE_MAX_CONNECTIONS=1
 export NUMEXPR_MAX_THREADS=$SLURM_CPUS_PER_TASK
 unset ROCR_VISIBLE_DEVICES
 
-export RAY_TMPDIR=$HOME/tmp/ray
+export RAY_TMPDIR=/home/Competition2025/P06/shareP06/tmp
 
 ulimit -v unlimited
 
@@ -88,7 +88,7 @@ ip_head=$head_node_ip:$port
 export ip_head
 echo "[INFO] Head IP → $ip_head"
 
-printenv
+# printenv
 
 ######## 4. Start the Ray head ########
 #  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
