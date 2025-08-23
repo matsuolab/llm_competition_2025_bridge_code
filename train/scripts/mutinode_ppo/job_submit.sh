@@ -18,7 +18,7 @@ export NVTE_DEBUG_LEVEL=0
 
 conda activate $CONDA_PATH
 
-HEAD_IP="192.168.11.94:37173"
+HEAD_IP="192.168.11.66:37173"
 
 ray job submit --address=$HEAD_IP \
     --no-wait \
