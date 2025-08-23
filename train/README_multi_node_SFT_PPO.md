@@ -282,9 +282,7 @@ source /home/appli/miniconda3/24.7.1-py311/etc/profile.d/conda.sh
 conda init             
 conda config --set auto_activate_base false
 source ~/.bashrc
-export CONDA_PATH="~/conda_env"
 conda activate $CONDA_PATH
-#rayのステータスの確認
 ray status
 ```
 以下のような出力が表示されます
