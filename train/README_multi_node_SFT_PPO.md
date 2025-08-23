@@ -269,7 +269,7 @@ args = [
 
 rayクラスターのホストノードにSSH接続します。
 ```sh
-ssh osk-gpu94
+ssh osk-gpu66
 ```
 
 rayのステータスを確認し、
@@ -283,7 +283,7 @@ conda init
 conda config --set auto_activate_base false
 source ~/.bashrc
 conda activate $CONDA_PATH
-ray status
+ray status --address 192.168.1.66:37173
 ```
 以下のような出力が表示されます
 ```sh
