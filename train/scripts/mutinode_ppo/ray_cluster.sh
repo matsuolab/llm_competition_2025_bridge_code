@@ -51,6 +51,8 @@ export CUDA_DEVICE_MAX_CONNECTIONS=1
 export NUMEXPR_MAX_THREADS=$SLURM_CPUS_PER_TASK
 unset ROCR_VISIBLE_DEVICES
 
+export RAY_TMPDIR=$HOME/tmp/ray
+
 ulimit -v unlimited
 
 conda activate $CONDA_PATH
