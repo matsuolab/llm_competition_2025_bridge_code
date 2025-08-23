@@ -41,8 +41,7 @@ export HSA_NO_SCRATCH_RECLAIM=1
 
 ######## 2. Custom variables such as PATH / CUDA / NCCL ########
 # export CONDA_PATH="~/conda_env"
-export NCCL_SOCKET_IFNAME=bond0
-# export NCCL_SOCKET_IFNAME=enp25s0np0
+export NCCL_SOCKET_IFNAME=enp25s0np0
 export NVTE_FUSED_ATTN=0
 export NVTE_DEBUG=1
 export NVTE_DEBUG_LEVEL=0
@@ -60,6 +59,9 @@ conda activate $CONDA_PATH
 nodes_array=($(scontrol show hostnames "$SLURM_JOB_NODELIST" | tr '\n' ' '))
 
 head_node=${nodes_array[0]}
+
+export MASTER_IP=192.168.1.66
+echo "Master node: $head_node ($MASTER_IP)"
 
 #port=$((30000 + ($SLURM_JOBID % 50000)))
 port=37173
@@ -84,13 +86,14 @@ ip_head=$head_node_ip:$port
 export ip_head
 echo "[INFO] Head IP → $ip_head"
 
-#printenv
+printenv
 
 ######## 4. Start the Ray head ########
+#  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
 srun --nodes=1 --ntasks=1 -w "$head_node" \
   bash -c "unset ROCR_VISIBLE_DEVICES; \
            source activate $CONDA_PATH && \
-           ray start --head --node-ip-address=$head_node_ip --port=$port \
+           ray start --head --node-ip-address=$MASTER_IP --port=$port \
            --dashboard-port=$dashboard_port --dashboard-host=0.0.0.0\
            --num-cpus=$SLURM_CPUS_PER_TASK --num-gpus=$SLURM_GPUS_PER_NODE --block" &
 sleep 10
@@ -100,10 +103,11 @@ worker_num=$((SLURM_JOB_NUM_NODES - 1))
 for ((i = 1; i <= worker_num; i++)); do
   node_i=${nodes_array[$i]}
   echo "[INFO] Launching worker on $node_i ..."
+  #   ray start --address=$MASTER_IP:6379 --node-ip-address=$VLLM_HOST_IP  
   srun --nodes=1 --ntasks=1 -w "$node_i" \
     bash -c "unset ROCR_VISIBLE_DEVICES; \
              source activate $CONDA_PATH && \
-             ray start --address $ip_head \
+             ray start --address $MASTER_IP:$port \
              --num-cpus=$SLURM_CPUS_PER_TASK --num-gpus=$SLURM_GPUS_PER_NODE --block" &
   sleep 5
 done
