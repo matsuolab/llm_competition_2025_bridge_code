@@ -54,7 +54,7 @@ echo "VLLM_HOST_IP: $VLLM_HOST_IP"
 
 #--- vLLM 起動（自動Ray設定）---------------------------------------
 if [ $SLURM_PROCID -eq 0 ]; then
-  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP
+  ray start --head --port=6379 --dashboard-host=0.0.0.0 --node-ip-address=$VLLM_HOST_IP --temp-dir=/tmp/ray2
 
   echo "Master node waiting for worker to join..."  
   sleep 180

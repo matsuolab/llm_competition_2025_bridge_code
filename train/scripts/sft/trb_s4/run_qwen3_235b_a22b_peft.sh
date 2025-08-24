@@ -61,7 +61,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
          data.train_batch_size=8 \
          data.micro_batch_size_per_gpu=1 \
          data.truncation=right \
-         data.max_length=1024 \
+         data.max_length=128 \
          model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
          model.lora_rank=1 \
@@ -69,7 +69,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
          model.strategy=fsdp \
          optim.lr=1e-6 \
          optim.warmup_steps_ratio=0 \
-         ulysses_sequence_parallel_size=8 \
+         ulysses_sequence_parallel_size=0 \
          use_remove_padding=True \
          trainer.project_name=$SLURM_JOB_NAME \
          trainer.experiment_name=$SLURM_JOB_NAME-$WANDB_RUN_NAME \
@@ -78,4 +78,4 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
          trainer.max_ckpt_to_keep=10 \
          trainer.default_local_dir=$HOME/training/multinode_sft/trb_s4/$SLURM_JOB_NAME/checkpoints \
          trainer.seed=42 \
-         trainer.logger=['console','wandb'] > train/logs/train-{$SLURM_JOB_ID}.log 2>&1
+         trainer.logger=['console','wandb'] > train/logs/train-${SLURM_JOB_ID}.log 2>&1
