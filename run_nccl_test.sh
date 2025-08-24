@@ -15,6 +15,7 @@ source /etc/profile.d/modules.sh
 module reset
 module load hpcx/2.18.1-gcc-cuda12/hpcx-mt
 module load miniconda/24.7.1-py311
+module load cuda/12.2 
 source /home/appli/miniconda3/24.7.1-py311/etc/profile.d/conda.sh
 conda init
 conda config --set auto_activate_base false
