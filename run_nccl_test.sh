@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=nccl-test
 #SBATCH --partition=P06
-#SBATCH --nodelist=osk-gpu66
+#SBATCH --nodelist=osk-gpu[67-68]
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=1
 #SBATCH --gpus-per-node=1
