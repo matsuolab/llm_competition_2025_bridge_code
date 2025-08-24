@@ -1,5 +1,23 @@
 #!/bin/bash
+#SBATCH --job-name=qwen3_235b_a22b_tbr_s4_peft
+#SBATCH --partition=P06
+#SBATCH --nodelist=osk-gpu68
+#SBATCH --nodes=1
+#SBATCH --gpus-per-node=8
+#SBATCH --cpus-per-task=240
+#SBATCH --time=06:00:00
+#SBATCH --output=train/logs/%x-%j.out
+#SBATCH --error=train/logs/%x-%j.err
 
+#--- 作業ディレクトリ & logs --------------------------------------------
+export TRAIN_DIR="train"
+mkdir -p "$TRAIN_DIR/logs"
+echo "log dir : $TRAIN_DIR/logs"
+# Hugging Face 認証
+# secrets.env.exampleファイルを自分のトークンに置き換えてください
+source $TRAIN_DIR/secrets.env
+
+#--- モジュール & Conda --------------------------------------------
 source /etc/profile.d/modules.sh
 module reset
 module load hpcx/2.18.1-gcc-cuda12/hpcx-mt
@@ -7,9 +25,7 @@ module load miniconda/24.7.1-py311
 source /home/appli/miniconda3/24.7.1-py311/etc/profile.d/conda.sh
 conda init
 conda config --set auto_activate_base false
-source ~/.bashrc
 
-export SLURM_JOB_NAME=qwen3_235b_a22b_peft_8gpu
 # export CONDA_PATH="~/conda_env"
 export NCCL_SOCKET_IFNAME=enp25s0np0
 export NCCL_DEBUG=INFO
@@ -19,18 +35,6 @@ export NVTE_DEBUG=1
 export NVTE_DEBUG_LEVEL=0
 
 conda activate $CONDA_PATH
-
-# distributed settings
-MASTER_ADDR=osk-gpu66
-echo "MASTER_ADDR=${MASTER_ADDR}"
-MASTER_PORT=37171
-echo "MASTER_PORT=${MASTER_PORT}"
-NODE_RANK=1
-echo "Node rank: "$NODE_RANK
-NNODES=2
-echo "Node num: "$NNODES
-GPUS_PER_NODE=8
-echo "Gpu num: "$GPUS_PER_NODE
 
 #CUDA_VISIBLE_DEVICESでトレーニングに使用するGPUの数を制御します。
 #例えば、単一GPUの場合は以下のように設定します：
@@ -47,24 +51,21 @@ export WANDB_RUN_NAME=$(TZ=Asia/Tokyo date +%Y-%m-%dT-%H-%M-%S)
 mkdir -p "$HOME/training/multinode_sft/tbr_s4/$SLURM_JOB_NAME/checkpoints"
 echo "trainer.default_local_dir : $HOME/training/multinode_sft/tbr_s4/$SLURM_JOB_NAME/checkpoints"
 
-strace -f -e network,futex torchrun --rdzv_backend c10d \
-         --rdzv_endpoint ${MASTER_ADDR}:${MASTER_PORT} \
-         --nnodes ${NNODES} --nproc_per_node ${GPUS_PER_NODE} \
-         --node_rank ${NODE_RANK} \
+torchrun --standalone --nnodes=1 --nproc_per_node=8 \
          -m verl.trainer.fsdp_sft_trainer \
          data.train_files=$HOME/data/tbr_s4/train.parquet \
          data.val_files=$HOME/data/tbr_s4/train.parquet \
          data.multiturn.enable=true \
          data.multiturn.messages_key=messages \
          data.multiturn.enable_thinking_key=enable_thinking \
-         data.train_batch_size=16 \
+         data.train_batch_size=8 \
          data.micro_batch_size_per_gpu=1 \
          data.truncation=right \
          data.max_length=1024 \
          model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
-         model.lora_rank=8 \
-         model.lora_alpha=16 \
+         model.lora_rank=2 \
+         model.lora_alpha=4 \
          model.strategy=fsdp \
          optim.lr=1e-6 \
          optim.warmup_steps_ratio=0 \
@@ -77,4 +78,4 @@ strace -f -e network,futex torchrun --rdzv_backend c10d \
          trainer.max_ckpt_to_keep=10 \
          trainer.default_local_dir=$HOME/training/multinode_sft/trb_s4/$SLURM_JOB_NAME/checkpoints \
          trainer.seed=42 \
-         trainer.logger=['console','wandb'] > train/logs/train-${NODE_RANK}.log 2>&1
+         trainer.logger=['console','wandb'] > train/logs/train.log 2>&1
