@@ -33,6 +33,7 @@ export NCCL_DEBUG_SUBSYS=ALL
 export NVTE_FUSED_ATTN=0
 export NVTE_DEBUG=1
 export NVTE_DEBUG_LEVEL=0
+export OMP_NUM_THREADS=8
 
 conda activate $CONDA_PATH
 
