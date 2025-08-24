@@ -13,6 +13,7 @@
 # 環境設定
 source /etc/profile.d/modules.sh
 module reset
+module load nccl/2.22.3
 module load hpcx/2.18.1-gcc-cuda12/hpcx-mt
 module load miniconda/24.7.1-py311
 module load cuda/12.2 
