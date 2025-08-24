@@ -69,7 +69,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
          model.strategy=fsdp \
          optim.lr=1e-6 \
          optim.warmup_steps_ratio=0 \
-         ulysses_sequence_parallel_size=0 \
+         ulysses_sequence_parallel_size=1 \
          use_remove_padding=True \
          trainer.project_name=$SLURM_JOB_NAME \
          trainer.experiment_name=$SLURM_JOB_NAME-$WANDB_RUN_NAME \
