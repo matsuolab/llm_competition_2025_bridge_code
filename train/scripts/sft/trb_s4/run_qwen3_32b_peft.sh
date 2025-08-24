@@ -51,7 +51,7 @@ export WANDB_RUN_NAME=$(TZ=Asia/Tokyo date +%Y-%m-%dT-%H-%M-%S)
 mkdir -p "$HOME/training/multinode_sft/tbr_s4/$SLURM_JOB_NAME/checkpoints"
 echo "trainer.default_local_dir : $HOME/training/multinode_sft/tbr_s4/$SLURM_JOB_NAME/checkpoints"
 
-torchrun --standalone --nnodes=1 --nproc_per_node=8 \
+strace -f -e network,futex torchrun --standalone --nnodes=1 --nproc_per_node=8 \
          -m verl.trainer.fsdp_sft_trainer \
          data.train_files=$HOME/data/tbr_s4/train.parquet \
          data.val_files=$HOME/data/tbr_s4/train.parquet \
