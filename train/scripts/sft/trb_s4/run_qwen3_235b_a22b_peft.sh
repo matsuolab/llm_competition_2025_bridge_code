@@ -33,7 +33,6 @@ export NCCL_DEBUG_SUBSYS=ALL
 export NVTE_FUSED_ATTN=0
 export NVTE_DEBUG=1
 export NVTE_DEBUG_LEVEL=0
-export OMP_NUM_THREADS=8
 
 conda activate $CONDA_PATH
 
@@ -47,7 +46,7 @@ ulimit -v unlimited
 #YOU_TEAM_ENTITY_NAME を wandb の組織名に置き換えてください。
 export WANDB_ENTITY="llm-2025-sahara"
 export WANDB_PROJECT_NAME=$SLURM_JOB_NAME
-export WANDB_RUN_NAME=$(TZ=Asia/Tokyo date +%Y-%m-%dT-%H-%M-%S)
+export WANDB_RUN_NAME=$(TZ=Asia/Tokyo date +%Y-%m-%dT-%H-%M-%S)-$SLURM_JOB_ID
 
 mkdir -p "$HOME/training/multinode_sft/tbr_s4/$SLURM_JOB_NAME/checkpoints"
 echo "trainer.default_local_dir : $HOME/training/multinode_sft/tbr_s4/$SLURM_JOB_NAME/checkpoints"
@@ -65,8 +64,8 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
          data.max_length=1024 \
          model.partial_pretrain=Qwen/Qwen3-235B-A22B \
          model.fsdp_config.model_dtype=bf16 \
-         model.lora_rank=2 \
-         model.lora_alpha=4 \
+         model.lora_rank=1 \
+         model.lora_alpha=2 \
          model.strategy=fsdp \
          optim.lr=1e-6 \
          optim.warmup_steps_ratio=0 \
@@ -79,4 +78,4 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 \
          trainer.max_ckpt_to_keep=10 \
          trainer.default_local_dir=$HOME/training/multinode_sft/trb_s4/$SLURM_JOB_NAME/checkpoints \
          trainer.seed=42 \
-         trainer.logger=['console','wandb'] > train/logs/train.log 2>&1
+         trainer.logger=['console','wandb'] > train/logs/train-{$SLURM_JOB_ID}.log 2>&1
