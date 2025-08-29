@@ -7,8 +7,8 @@
 ## 目次
 
 1. [開発全容](#開発全容)
-2. [学習（SFT & QLoRA）](#学習sft--qlora)
-   - [DeepSeek-R1-0528 SFT / fp8 → bf16 変換](#deepseek-r1-0528-sft--fp8--bf16-変換)
+2. [学習（SFT & QLoRA）](#学習qlora)
+   - [fp8 → bf16 変換](#fp8--bf16-変換)
    - [QLoRA（シングルノード）](#qloraシングルノード)
    - [QLoRA（マルチノード）](#qloraマルチノード)
    - [アダプタマージ](#アダプタマージ)
@@ -22,9 +22,9 @@
 
 ---
 
-## 学習（SFT & QLoRA）
+## 学習（QLoRA）
 
-### DeepSeek-R1-0528 SFT / fp8 → bf16 変換
+### fp8 → bf16 変換
 - ※ **bf16 変換以降は不要**
 - Notion: <https://www.notion.so/4-246e14b94af58091aa3feec015f4bed2?source=copy_link>
 
