@@ -78,7 +78,7 @@ torchrun --rdzv_backend c10d \
          model.lora_alpha=2 \
          model.strategy=fsdp \
          model.target_modules=['q_proj','v_proj'] \
-         data.max_length=1024 \
+         data.max_length=128 \
          use_remove_padding=True \
          ulysses_sequence_parallel_size=1 \
          data.truncation=right \

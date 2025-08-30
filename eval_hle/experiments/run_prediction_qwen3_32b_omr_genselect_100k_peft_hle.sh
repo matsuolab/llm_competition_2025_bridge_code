@@ -39,7 +39,7 @@ echo "HF cache dir : $HF_HOME"                   # デバッグ用
 # pid_nvsmi=$!
 
 #--- vLLM 起動（8GPU）----------------------------------------------
-vllm serve kumapo/Qwen3-32B-omr-genselect-100k-peft \
+vllm serve llm-bridge-sahara/Qwen3-32B-omr-genselect-100k-peft \
   --tensor-parallel-size 8 \
   --reasoning-parser qwen3 \
   --rope-scaling '{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}' \
