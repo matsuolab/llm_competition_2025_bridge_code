@@ -6,6 +6,10 @@ Team Pont Neuf Phase1提出モデル
 
 アーキテクチャの変更は特にありません。
 
+# トレーニングデータ
+
+[nvidia/OpenMathReasoning] (https://huggingface.co/datasets/nvidia/OpenMathReasoning)
+
 # 動作方法
 
 動作確認済みのコマンドは、以下の通りです:
