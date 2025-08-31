@@ -1,0 +1,22 @@
+# データセットのパス
+dataset: "../../SuperGPQA/data/SuperGPQA-all.jsonl"
+
+# vLLMサーバーに関する設定
+provider: "vllm"
+base_url: "http://localhost:9000/v1"
+
+# 推論に使用するモデル
+model: "microsoft/Phi-4-reasoning-plus"
+
+# ★★★ 修正点 ★★★
+# 要求する最大出力トークン数を、モデルの最大長(16384)よりも十分に小さい値に設定します。
+# これにより、入力プロンプトのトークン数が加算されても上限を超えなくなります。
+max_completion_tokens: 15000
+
+reasoning: false
+
+# パフォーマンス設定
+num_workers: 64
+
+# 全件評価のための設定
+max_samples: 10

@@ -1,0 +1,15 @@
+dataset: cais/hle
+
+provider: vllm # [vllm]
+
+base_url: http://localhost:8000/v1
+
+model: deepseek/deepseek-r1-0528:free
+max_completion_tokens: 38000
+reasoning: true
+
+# sample with multimodal is 2500, so text-only sample is about 2400
+num_workers: 2500
+max_samples: 2500
+
+judge: o3-mini-2025-01-31
