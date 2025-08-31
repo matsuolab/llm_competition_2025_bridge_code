@@ -1,16 +1,16 @@
-Team Pont Neuf Phase1提出モデル
+# Team Pont Neuf Phase1提出モデル
 
-# ベースモデル
+## ベースモデル
 
 [Qwen3-235B-A22B](https://huggingface.co/Qwen/Qwen3-235B-A22B)
 
 アーキテクチャの変更は特にありません。
 
-# トレーニングデータ
+## トレーニングデータ
 
-[nvidia/OpenMathReasoning] (https://huggingface.co/datasets/nvidia/OpenMathReasoning)
+[nvidia/OpenMathReasoning](https://huggingface.co/datasets/nvidia/OpenMathReasoning)
 
-# 動作方法
+## 動作方法
 
 動作確認済みのコマンドは、以下の通りです:
 
