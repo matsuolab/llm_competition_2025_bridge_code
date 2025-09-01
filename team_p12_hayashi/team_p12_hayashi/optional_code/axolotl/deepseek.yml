@@ -1,0 +1,99 @@
+base_model: /home/Competition2025/P12/shareP12/models/Qwen3-235B-A22B #model_DeepSeek_R1/DeepSeek-R1-0528 
+#/nvme12/DeepSeek-R1-0528
+# base_model: /nvme34/DeepSeek-R1-0528_bf16_new
+
+# base_model: /home/Competition2025/P12/P12U001/_shareP12/hf_models/DeepSeek-R1-0528-FP4
+
+
+
+
+# Automatically upload checkpoint and final model to HF
+# hub_model_id: username/custom_model_name
+
+gpu_memory_limit: 75
+low_cpu_mem_usage: true
+
+datasets:
+  - path: suzakuteam/OpenR1-Math-50-io
+    split: train
+    type: alpaca
+
+val_dataset:
+  - path: suzakuteam/OpenR1-Math-50-io
+    split: validation
+    type: alpaca
+
+# dataset_prepared_path: /home/Competition2025/P12/P12U017/axolotl/last_run_prepared
+output_dir: /home/Competition2025/P12/shareP12/axo_files
+
+
+
+sequence_len: 512
+sample_packing: false # true
+eval_sample_packing: false # true
+
+# adapter: lora
+
+adapter: qlora
+# lora_model_dir:
+load_in_4bit: true
+# bnb_config_kwargs:
+#   bnb_4bit_use_double_quant: true
+#   bnb_4bit_quant_type: nf4
+#   bnb_4bit_compute_dtype: bfloat16 # H100 なら bfloat16 推奨
+
+lora_r: 2
+lora_alpha: 4
+lora_dropout: 0.05
+lora_target_modules:
+  - q_proj
+  - v_proj
+  - k_proj
+  - o_proj
+
+#RAM不足で追加する
+device_map: auto
+
+
+
+wandb_project: llm_2025_axolotl
+wandb_entity: llm_2025_teamsuzaku
+# wandb_watch:
+wandb_name: test_001
+# wandb_log_model:
+
+gradient_accumulation_steps: 1
+micro_batch_size: 1
+num_epochs: 1
+
+optimizer: paged_adamw_8bit # adamw_8bit
+lr_scheduler: cosine
+learning_rate: 0.0002
+
+bf16: true
+tf32: false
+
+# # Enable FP8 mixed precision
+# fp8: true
+# # Optional: Enable FP8 for FSDP all-gather operations
+# fp8_enable_fsdp_float8_all_gather: true
+# # Enable torch.compile (almost always necessary for FP8 speedups)
+# # torch_compile: true # deepseed_configに入れろとerrorがでる
+
+gradient_checkpointing: true
+resume_from_checkpoint:
+logging_steps: 1
+
+# flash_attention: true
+attn_implementation: sdpa # flash_attentionの方がメモリ効率よい
+
+loss_watchdog_threshold: 5.0
+loss_watchdog_patience: 3
+
+warmup_ratio: 0.1
+evals_per_epoch: 1
+saves_per_epoch: 1
+weight_decay: 0.0
+special_tokens:
+  pad_token: "<|end_of_text|>"
+# save_first_step: true  # uncomment this to validate checkpoint saving works with your config

@@ -1,0 +1,11 @@
+WANDB_PROJECT_NAME,WANDB_RUN_NAME,Model,Dataset,n,epochs,train_batch_size,save_freq,test_freq,lora_rank,lora_alpha,target_module,"勾配蓄積数
+(train_batch_size / 24) ","トータルステップ数
+((data数 / train_batch_size) * epoch)","保存回数
+(ステップ数/save_frep)","評価回数
+(ステップ数 /test_frep)",train_loss,valid_loss,"1stepあたりの時間
+(s/step)","全ての時間
+(s)",備考
+llm_2025_multi_sft_qwen3_235b,llm_2025_multi_sft_qwen3_235b,Qwen/Qwen3-235B-A22B,https://huggingface.co/datasets/suzakuteam/MixtureOfThoughts_44000,40000,2,96,206,103,32,64,"[o_proj,v_proj,k_proj,q_proj]",4,833,4,8,,,,,
+llm_2025_multi_sft_qwen3_235b,Qwen3-235B-SFT_002_math_phy_cem,Qwen/Qwen3-235B-A22B,https://huggingface.co/datasets/suzakuteam/token5000_cs_engineering_other_num10000,10000,1,48,26,26,32,64,"[o_proj,v_proj,k_proj,q_proj]",2,208,8,8,0.483,0.445,46.85,9時間14分26秒,/nvmeを使えていない
+llm_2025_multi_sft_qwen3_235b,Qwen3-235B-SFT_001,Qwen/Qwen3-235B-A22B,https://huggingface.co/datasets/suzakuteam/OpenR1-Math-Filter-English,10000,1,48,26,26,32,64,"[o_proj,v_proj,k_proj,q_proj]",2,208,8,8,0.407,0.352,47.60,3時間25分,
+,,Qwen/Qwen3-235B-A22B,,10000,1,,,,,,,,,,,,,,,
