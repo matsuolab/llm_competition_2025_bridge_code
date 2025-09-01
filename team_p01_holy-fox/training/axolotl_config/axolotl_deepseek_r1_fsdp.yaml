@@ -1,0 +1,144 @@
+base_model: /home/Competition2025/P01/shareP01/models/DeepSeek-R1-0528-BF16
+model_type: DeepseekV3ForCausalLM
+tokenizer_type: AutoTokenizer
+trust_remote_code: false
+
+hub_model_id:
+hub_strategy:
+push_dataset_to_hub:
+hf_use_auth_token: true
+
+# Liger Kernelの設定
+# plugins:
+#   - axolotl.integrations.liger.LigerPlugin
+#   - axolotl.integrations.cut_cross_entropy.CutCrossEntropyPlugin
+# # liger_cross_entropy: true
+# liger_rope: true
+# liger_rms_norm: true
+# liger_glu_activation: true
+# # liger_fused_linear_cross_entropy: true
+# cut_cross_entropy: true
+# liger_layer_norm: true
+
+load_in_8bit: false
+load_in_4bit: true
+strict: false
+
+chat_template: deepseek_v3
+
+datasets:
+  - path: Team-Kitsune/train_data_run5_20250824
+    split: "train[0:50%]"
+    type: chat_template
+    field_messages: messages
+    roles_to_train: ["assistant"]
+
+dataset_processes: 128
+
+shuffle_merged_datasets: true
+dataset_prepared_path: /home/Competition2025/P01/P01U009/data/r1-run5_20250824
+# val_set_size: 0.005
+output_dir: /home/Competition2025/P01/P01U009/models/r1-run5_20250824
+
+sequence_len: 8192
+sample_packing: true
+eval_sample_packing: false
+pad_to_sequence_len: true
+
+adapter: qlora
+lora_model_dir:
+lora_r: 128
+lora_alpha: 256
+lora_dropout: 0.05
+# lora_target_linear:
+lora_target_modules:
+  - self_attn.q_a_proj
+  - self_attn.q_b_proj
+  - self_attn.kv_a_proj_with_mqa
+  - self_attn.kv_b_proj
+  - self_attn.o_proj
+  - mlp.down_proj
+  - mlp.gate_proj
+  - mlp.up_proj
+  - shared_experts.down_proj
+  - shared_experts.gate_proj
+  - shared_experts.up_proj
+lora_modules_to_save:
+  - embed_tokens
+  # - lm_head
+lora_fan_in_fan_out:
+# lora_mlp_kernel: true
+# lora_qkv_kernel: true
+# lora_o_kernel: true
+
+wandb_project: DeepSeek-R1-0528
+wandb_entity: aratako-lm
+wandb_watch:
+wandb_name: run5_20250824
+wandb_log_model:
+
+gradient_accumulation_steps: 1
+micro_batch_size: 1
+num_epochs: 1
+optimizer: adamw_torch_4bit
+lr_scheduler: cosine
+cosine_min_lr_ratio: 0.01
+learning_rate: 1e-5
+max_grad_norm: 1.0
+
+train_on_inputs: false
+group_by_length: false
+bf16: true
+fp16: false
+tf32: false
+bfloat16: true
+
+# gradient_checkpointing: true
+# gradient_checkpointing_kwargs:
+#   use_reentrant: true
+early_stopping_patience:
+auto_resume_from_checkpoints: true
+local_rank:
+logging_steps: 1
+xformers_attention:
+flash_attention: true
+
+save_strategy: steps
+save_steps: 100000
+save_total_limit: 2
+save_only_model: true
+# eval_strategy: steps
+# eval_steps: 100
+# eval_batch_size: 8
+# low_cpu_mem_usage: true
+
+warmup_ratio: 0.03
+debug:
+# deepspeed: /home/Competition2025/P01/P01U009/work/axolotl/deepspeed_configs/zero3_bf16.json
+weight_decay: 0.01
+fsdp:
+fsdp_config:
+# metric_for_best_model: eval_loss
+# load_best_model_at_end: true
+
+fsdp_version: 1
+fsdp:
+  - full_shard
+  - auto_wrap
+fsdp_config:
+  fsdp_limit_all_gathers: true
+  fsdp_sync_module_states: true
+  fsdp_offload_params: false
+  fsdp_use_orig_params: false
+  fsdp_cpu_ram_efficient_loading: true
+  fsdp_auto_wrap_policy: TRANSFORMER_BASED_WRAP
+  fsdp_transformer_layer_cls_to_wrap: DeepseekV3DecoderLayer
+  fsdp_state_dict_type: FULL_STATE_DICT
+  fsdp_sharding_strategy: FULL_SHARD
+  fsdp_activation_checkpointing: true
+qlora_sharded_model_loading: true
+
+ddp_timeout: 180000000
+
+# gpu_memory_limit: 75GiB
+lora_on_cpu: true
