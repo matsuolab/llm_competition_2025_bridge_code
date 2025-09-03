@@ -1,0 +1,101 @@
+# GRPO Training Configuration for Qwen3-32B with FSDP2
+
+# Environment settings
+gpus_per_node: 8
+nnodes: 2
+wandb_entity: "LLMcompe-Team-Watanabe"
+wandb_project_name: "verl_grpo"
+wandb_run_name: "Qwen3-32B"
+
+# Algorithm configuration
+algorithm:
+  adv_estimator: grpo
+  use_kl_in_reward: false
+  norm_adv_by_std_in_grpo: false
+
+# Data configuration
+data:
+  train_files: "/home/Competition2025/P04/shareP04/data/math-grpo/train.parquet"
+  val_files: "/home/Competition2025/P04/shareP04/data/math-grpo/test.parquet"
+  train_batch_size: 8
+  max_prompt_length: 2048
+  max_response_length: 14336
+  filter_overlong_prompts: true
+  truncation: "right"
+
+# Model configuration - Actor/Rollout/Reference
+actor_rollout_ref:
+  model:
+    path: "LLMcompe-Team-Watanabe/Qwen3-32B-merge-base2-math3-science3-submath05-med05-other1"
+    enable_gradient_checkpointing: true
+    lora_rank: 32
+    lora_alpha: 64
+    use_liger: false
+    external_lib: flash_attn
+    use_fused_kernels: false
+    use_remove_padding: true
+    enable_activation_offload: true
+  actor:
+    optim:
+      lr: 5.0e-5
+    ppo_mini_batch_size: 8
+    ppo_micro_batch_size_per_gpu: 1
+    use_kl_loss: false
+    kl_loss_coef: 0.001
+    kl_loss_type: low_var_kl
+    entropy_coeff: 0.003
+    loss_agg_mode: seq-mean-token-sum-norm
+    use_torch_compile: false
+    fsdp_config:
+      param_offload: true
+      optimizer_offload: true
+  ref:
+   fsdp_config:
+     param_offload: true
+  rollout:
+    temperature: 0.7
+    tensor_model_parallel_size: 8
+    log_prob_micro_batch_size_per_gpu: 1
+    name: vllm
+    gpu_memory_utilization: 0.35
+    n: 2
+    load_format: "safetensors"
+    layered_summon: true
+    # enforce_eager: false
+    max_model_len: 16384           # 追加
+    prompt_length: 2048            # 追加（任意だが推奨）
+    response_length: 14336         # 追加（任意だが推奨）
+    # agent:
+    #   num_workers: 1               # 追加（並列抑制）
+    engine_kwargs:
+      vllm:
+        swap_space: 128
+    max_num_batched_tokens: 16384
+    max_num_seqs: 1
+
+critic:
+  forward_max_token_len_per_gpu: 16384  # 32768 → 16384
+  ppo_max_token_len_per_gpu: 16384      # 32768 → 16384
+
+custom_reward_function:
+  # あなたが作る Python ファイル
+  path: "/home/Competition2025/P04/P04U001/server_development/train/scripts/reward_function/custom_reward_math_re.py"
+  # そのファイル内で呼び出す関数名
+  name: compute_score
+
+# Trainer configuration
+trainer:
+  critic_warmup: 0
+  logger:
+    - console
+    - wandb
+  project_name: "verl_grpo_omni_math"
+  experiment_name: "qwen3_32b"
+  n_gpus_per_node: 8
+  nnodes: 2
+  save_freq: 10
+  test_freq: 10        
+  val_before_train: false
+  log_val_generations: 0
+  total_epochs: 1
+  default_local_dir_suffix: "/training/multinode/grpo/checkpoints/Qwen3-32B/merge-base2-math3-science3-submath05-med05-other1-mathgrpo"

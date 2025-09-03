@@ -1,0 +1,4 @@
+2025-07-10 23:46:02 | User: yutokohata | Model: team1/llama2-7b-chat-finetune | UUID: 858770f7 | Directory: config/858770f7_team1_llama2-7b-chat-finetune
+2025-07-10 23:46:02 | User: yutokohata | Model: team2/mistral-7b-instruct-v0.2 | UUID: 414c56a1 | Directory: config/414c56a1_team2_mistral-7b-instruct-v0.2
+2025-07-10 23:46:13 | User: yutokohata | Model: team3/qwen-7b-chat | UUID: 081415cd | Directory: config/081415cd_team3_qwen-7b-chat
+2025-07-10 23:46:48 | User: yutokohata | Model: team3/qwen-7b-chat | UUID: c74c1e8d | Directory: config/c74c1e8d_team3_qwen-7b-chat

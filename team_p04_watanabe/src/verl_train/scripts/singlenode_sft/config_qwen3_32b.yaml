@@ -1,0 +1,54 @@
+# SFT Training Configuration
+
+# Data configuration
+data:
+  train_files: /home/Competition2025/P04/shareP04/data/textbookreasoning/train.parquet
+  val_files: /home/Competition2025/P04/shareP04/data/textbookreasoning/test.parquet
+  prompt_key: extra_info
+  response_key: extra_info
+  prompt_dict_keys:
+    - question
+  response_dict_keys:
+    - answer
+  max_length: 4096 #8192 #16384
+  truncation: right
+  micro_batch_size_per_gpu: 2
+  train_batch_size: 16
+
+# Model configuration
+model:
+  partial_pretrain: /home/Competition2025/P04/shareP04/models/Qwen3-32B
+  fsdp_config:
+    model_dtype: bf16
+  use_liger: True
+  external_lib: flash_attn
+use_remove_padding: True
+# Trainer configuration
+trainer:
+  project_name: openmathreasoning-sft
+  experiment_name: Qwen3-32B-bf16_sft_experiment
+  total_epochs: 1
+  save_freq: 1000
+  test_freq: 1000
+  default_local_dir: ~/training/singlenode/sft/checkpoints/Qwen3-32B/textbookreasoning
+  logger:
+    - console
+    - wandb
+  
+# Hardware configuration
+hardware:
+  nodes: 1
+  gpus_per_node: 8
+  cpus_per_task: 240
+  
+# Environment settings
+env:
+  nccl_socket_ifname: enp25s0np0
+  nvte_fused_attn: 1
+  cuda_visible_devices: "0,1,2,3,4,5,6,7"
+  
+# Weights & Biases configuration
+wandb:
+  entity: LLMcompe-Team-Watanabe
+  project_name: verl_test
+  run_name_prefix: Qwen3-32B

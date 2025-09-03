@@ -1,0 +1,18 @@
+dataset: cais/hle
+
+provider: vllm # [vllm]
+
+base_url: http://localhost:8000/v1
+
+model: Qwen/Qwen3-32B #推論用のモデル
+max_completion_tokens: 14336
+reasoning: true
+
+# sample with multimodal is 2500, so text-only sample is about 2400
+# num_workers: 2500
+num_workers: 180
+judge_num_workers: 100
+max_samples: 2500
+
+#judge: o3-mini-2025-01-31
+judge: Qwen/Qwen2.5-72B-Instruct #評価用のモデル

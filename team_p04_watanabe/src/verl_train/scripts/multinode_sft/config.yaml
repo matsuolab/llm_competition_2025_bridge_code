@@ -1,0 +1,36 @@
+# SFT Training Configuration
+
+# Environment settings
+gpus_per_node: 8
+nnodes: 2
+wandb_entity: "LLMcompe-Team-Watanabe"
+wandb_project_name: "verl_test"
+wandb_run_name: "llama3.2_SFT_test"
+
+# Network settings
+master_addr: "localhost"
+master_port: 29500
+node_rank: 0
+
+# Data configuration
+data:
+  train_files: "/home/Competition2025/P04/shareP04/data/gsm8k/train.parquet"
+  val_files: "/home/Competition2025/P04/shareP04/data/gsm8k/test.parquet"
+  prompt_key: "extra_info"
+  response_key: "extra_info"
+  prompt_dict_keys: ["question"]
+  response_dict_keys: ["answer"]
+  micro_batch_size_per_gpu: 8
+  max_length: 512
+
+# Model configuration
+model:
+  partial_pretrain: "/home/Competition2025/P04/shareP04/models/Llama-3.2-1B-Instruct"
+
+# Trainer configuration
+trainer:
+  total_epochs: 2
+  logger:
+    - console
+    - wandb
+  default_local_dir: "$HOME/training/multinode/sft/checkpoints/llama3.2"

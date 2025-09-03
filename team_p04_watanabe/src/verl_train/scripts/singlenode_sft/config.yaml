@@ -1,0 +1,45 @@
+# SFT Training Configuration
+
+# Data configuration
+data:
+  train_files: /home/Competition2025/P04/shareP04/data/gsm8k/train.parquet
+  val_files: /home/Competition2025/P04/shareP04/data/gsm8k/test.parquet
+  prompt_key: extra_info
+  response_key: extra_info
+  prompt_dict_keys: 
+    - question
+  response_dict_keys:
+    - answer
+  micro_batch_size_per_gpu: 8
+
+# Model configuration
+model:
+  partial_pretrain: /home/Competition2025/P04/shareP04/models/Llama-3.2-1B-Instruct
+
+# Trainer configuration
+trainer:
+  project_name: gsm8k-sft
+  experiment_name: llama3.2_sft_experiment
+  total_epochs: 2
+  default_local_dir: ~/training/singlenode/sft/checkpoints/llama3.2
+  logger:
+    - console
+    - wandb
+  
+# Hardware configuration
+hardware:
+  nodes: 1
+  gpus_per_node: 8
+  cpus_per_task: 240
+  
+# Environment settings
+env:
+  nccl_socket_ifname: enp25s0np0
+  nvte_fused_attn: 0
+  cuda_visible_devices: "0,1,2,3,4,5,6,7"
+  
+# Weights & Biases configuration
+wandb:
+  entity: LLMcompe-Team-Watanabe
+  project_name: competition_verl_test
+  run_name_prefix: llama3.2_SFT

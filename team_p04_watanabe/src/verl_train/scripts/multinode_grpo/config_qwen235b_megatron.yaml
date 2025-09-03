@@ -1,0 +1,84 @@
+# GRPO Training Configuration for Qwen3-235B with Megatron
+
+# Environment settings
+gpus_per_node: 8
+nnodes: 2
+wandb_entity: "LLMcompe-Team-Watanabe"
+wandb_project_name: "megatron_grpo"
+wandb_run_name: "Qwen3-235B-A22B"
+
+# Algorithm configuration
+algorithm:
+  adv_estimator: grpo
+  use_kl_in_reward: false
+
+# Data configuration
+data:
+  train_files: "/home/Competition2025/P04/shareP04/data/gsm8k/train.parquet"
+  val_files: "/home/Competition2025/P04/shareP04/data/gsm8k/test.parquet"
+  train_batch_size: 16
+  max_prompt_length: 1024
+  max_response_length: 7168
+  filter_overlong_prompts: true
+  truncation: "right"
+
+# Model configuration - Actor/Rollout/Reference
+actor_rollout_ref:
+  model:
+    path: "Qwen/Qwen3-235B-A22B"
+    enable_gradient_checkpointing: true
+  
+  actor:
+    optim:
+      lr: 1.0e-6
+    ppo_mini_batch_size: 16
+    ppo_micro_batch_size_per_gpu: 1
+    use_kl_loss: true
+    kl_loss_coef: 0.001
+    kl_loss_type: low_var_kl
+    entropy_coeff: 0
+    megatron:
+      pipeline_model_parallel_size: 2
+      tensor_model_parallel_size: 4
+      expert_model_parallel_size: 1
+      use_dist_checkpointing: true
+      dist_checkpointing_path: "/home/Competition2025/P04/shareP04/models_mcore/Qwen3-235B-A22B"
+      param_offload: true
+      grad_offload: true
+      optimizer_offload: true
+  
+  rollout:
+    log_prob_micro_batch_size_per_gpu: 1
+    tensor_model_parallel_size: 4
+    name: vllm
+    gpu_memory_utilization: 0.8
+    n: 1
+    engine_kwargs:
+      vllm:
+        swap_space: 64
+  
+  ref:
+    log_prob_micro_batch_size_per_gpu: 1
+    megatron:
+      pipeline_model_parallel_size: 2
+      tensor_model_parallel_size: 4
+      expert_model_parallel_size: 1
+      use_dist_checkpointing: true
+      dist_checkpointing_path: "/home/Competition2025/P04/shareP04/models_mcore/Qwen3-235B-A22B"
+      param_offload: true
+
+
+# Trainer configuration
+trainer:
+  critic_warmup: 0
+  logger:
+    - console
+    - wandb
+  project_name: "verl_grpo_example_gsm8k_math"
+  experiment_name: "qwen3_235b_moe_megatron"
+  n_gpus_per_node: 8
+  nnodes: 2
+  save_freq: 20
+  test_freq: 5
+  total_epochs: 1
+  default_local_dir_suffix: "/training/multinode/grpo/checkpoints/Qwen3-235B-A22B/"

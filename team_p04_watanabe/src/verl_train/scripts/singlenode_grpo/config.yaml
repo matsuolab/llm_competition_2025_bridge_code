@@ -1,0 +1,83 @@
+# GRPO Training Configuration for Qwen3-235B with FSDP2
+
+# Environment settings
+gpus_per_node: 4
+nnodes: 1
+wandb_entity: "LLMcompe-Team-Watanabe"
+wandb_project_name: "verl_grpo"
+wandb_run_name: "Llama-3.2-1B-Instruct"
+
+# Algorithm configuration
+algorithm:
+  adv_estimator: grpo
+  use_kl_in_reward: false
+  norm_adv_by_std_in_grpo: true
+
+# Data configuration
+data:
+  train_files: "/home/Competition2025/P04/shareP04/data/gsm8k/train.parquet"
+  val_files: "/home/Competition2025/P04/shareP04/data/gsm8k/test.parquet"
+  train_batch_size: 16
+  max_prompt_length: 512
+  max_response_length: 3572
+  filter_overlong_prompts: true
+  truncation: "right"
+
+# Model configuration - Actor/Rollout/Reference
+actor_rollout_ref:
+  model:
+    path: "/home/Competition2025/P04/shareP04/models/Llama-3.2-1B-Instruct"
+    enable_gradient_checkpointing: true
+    lora_rank: 64
+    lora_alpha: 16
+    use_liger: True
+    external_lib: flash_attn
+    use_fused_kernels: false
+
+  actor:
+    optim:
+      lr: 5.0e-5
+    ppo_mini_batch_size: 16
+    ppo_micro_batch_size_per_gpu: 1
+    use_kl_loss: true
+    kl_loss_coef: 0.001
+    kl_loss_type: low_var_kl
+    entropy_coeff: 0.003
+    loss_agg_mode: seq-mean-token-sum-norm
+  rollout:
+    temperature: 0.4
+    tensor_model_parallel_size: 2
+    log_prob_micro_batch_size_per_gpu: 1
+    name: vllm
+    gpu_memory_utilization: 0.8
+    n: 4
+    load_format: "safetensors"
+    layered_summon: true
+    engine_kwargs:
+      vllm:
+        swap_space: 64
+    max_num_batched_tokens: 16384
+  
+  ref:
+    log_prob_micro_batch_size_per_gpu: 1
+
+custom_reward_function:
+  # あなたが作る Python ファイル
+  path: "/home/Competition2025/P04/P04U001/server_development/train/scripts/reward_function/custom_reward_math_groq.py"
+  # そのファイル内で呼び出す関数名
+  name: compute_score
+
+# Trainer configuration
+trainer:
+  critic_warmup: 0
+  logger:
+    - console
+    - wandb
+  project_name: "verl_grpo_omni_math"
+  experiment_name: "Llama-3.2-1B-Instruct"
+  n_gpus_per_node: 4
+  nnodes: 1
+  save_freq: 10
+  test_freq: 10
+  total_epochs: 1
+  default_local_dir_suffix: "/training/singlenode/grpo/checkpoints/Llama-3.2-1B-Instruct/gsm8k"

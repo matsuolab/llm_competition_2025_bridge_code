@@ -1,0 +1,46 @@
+# SFT Training Configuration for Qwen3-32B
+
+# Environment settings
+gpus_per_node: 8
+nnodes: 2
+wandb_entity: "LLMcompe-Team-Watanabe"
+wandb_project_name: "verl_test"
+wandb_run_name: "qwen3_32B_SFT_test"
+
+# Network settings
+master_addr: "localhost"
+master_port: 29500
+node_rank: 0
+
+# Data configuration
+data:
+  train_files: "/home/Competition2025/P04/shareP04/data/textbookreasoning/train.parquet"
+  val_files: "/home/Competition2025/P04/shareP04/data/textbookreasoning/test.parquet"
+  prompt_key: "extra_info"
+  response_key: "extra_info"
+  prompt_dict_keys: ["question"]
+  response_dict_keys: ["answer"]
+  micro_batch_size_per_gpu: 1
+  train_batch_size: 16
+  max_length: 4096
+  truncation: right
+
+# Model configuration
+model:
+  partial_pretrain: "/home/Competition2025/P04/shareP04/models/Qwen3-32B"
+  fsdp_config:
+    model_dtype: bf16
+    cpu_offload: true
+    offload_params: true
+  # lora_rank: 4
+  strategy: fsdp
+
+# Trainer configuration
+trainer:
+  total_epochs: 2
+  save_freq: 500
+  test_freq: 500
+  logger:
+    - console
+    - wandb
+  default_local_dir: "$HOME/training/multinode/sft/checkpoints/Qwen3-32B"
