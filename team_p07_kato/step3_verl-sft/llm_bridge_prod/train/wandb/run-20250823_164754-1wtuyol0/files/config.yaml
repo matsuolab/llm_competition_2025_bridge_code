@@ -1,0 +1,132 @@
+_wandb:
+    value:
+        cli_version: 0.21.0
+        e:
+            3ifqbpri4126hdfhvw5fjk1jhih2wdvm:
+                args:
+                    - data.prompt_key=extra_info
+                    - data.response_key=extra_info
+                    - data.prompt_dict_keys=[question]
+                    - +data.response_dict_keys=[answer]
+                    - data.max_length=20000
+                    - data.truncation=right
+                    - data.micro_batch_size_per_gpu=1
+                    - data.train_batch_size=24
+                    - model.partial_pretrain=Qwen/Qwen3-32B
+                    - model.fsdp_config.model_dtype=bfloat16
+                    - optim.lr=1e-4
+                    - trainer.total_epochs=1
+                    - trainer.save_freq=860
+                    - trainer.test_freq=3440
+                    - trainer.max_ckpt_to_keep=1
+                    - trainer.default_local_dir=/home/Competition2025/P07/shareP07/share_model/step3_sft
+                    - trainer.checkpoint.save_contents=[model,optimizer,extra,hf_model]
+                    - trainer.project_name=honban3-step3-sft
+                    - trainer.experiment_name=run
+                    - use_remove_padding=true
+                    - trainer.logger=[console,wandb]
+                cpu_count: 120
+                cpu_count_logical: 240
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "389047648256"
+                        used: "55182712832"
+                email: jun.kato97@gmail.com
+                executable: /home/Competition2025/P07/shareP07/share_env/multi_sft_and_vllm/bin/python3.11
+                git:
+                    commit: 2a84eb4a84385b6978f5dedc15fbcfa0a8d37bab
+                    remote: https://github.com/matsuolab/llm_bridge_prod.git
+                gpu: NVIDIA H100 80GB HBM3
+                gpu_count: 8
+                gpu_nvidia:
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "85520809984"
+                      name: NVIDIA H100 80GB HBM3
+                      uuid: GPU-5ece7156-5118-a7f4-632f-67f3de4ef765
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "85520809984"
+                      name: NVIDIA H100 80GB HBM3
+                      uuid: GPU-dc55ed67-6450-82ff-5399-4d7843881925
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "85520809984"
+                      name: NVIDIA H100 80GB HBM3
+                      uuid: GPU-3a8e919e-ca14-ec79-edc4-99b4c06c548f
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "85520809984"
+                      name: NVIDIA H100 80GB HBM3
+                      uuid: GPU-95f40a6f-1a0c-37b6-9239-c8cf39b37171
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "85520809984"
+                      name: NVIDIA H100 80GB HBM3
+                      uuid: GPU-66e3e4b5-c5f0-c6a1-82d9-281982f9b62a
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "85520809984"
+                      name: NVIDIA H100 80GB HBM3
+                      uuid: GPU-e87b0ff2-4e6e-ee9d-62a2-6aebc544979e
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "85520809984"
+                      name: NVIDIA H100 80GB HBM3
+                      uuid: GPU-36968aa7-62dc-909c-2c47-612164384890
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "85520809984"
+                      name: NVIDIA H100 80GB HBM3
+                      uuid: GPU-b4a57d25-8105-b46e-0f03-c7fb0406b084
+                host: osk-gpu69
+                memory:
+                    total: "1622307495936"
+                os: Linux-5.14.0-503.38.1.el9_5.x86_64-x86_64-with-glibc2.34
+                program: -m verl.trainer.fsdp_sft_trainer
+                python: CPython 3.11.8
+                root: /home/Competition2025/P07/shareP07/share_env/llm_bridge_prod/train
+                slurm:
+                    job_id: "395218"
+                startedAt: "2025-08-23T07:47:54.390045Z"
+                writerId: 3ifqbpri4126hdfhvw5fjk1jhih2wdvm
+        m: []
+        python_version: 3.11.8
+        t:
+            "1":
+                - 1
+                - 5
+                - 11
+                - 30
+                - 41
+                - 49
+                - 50
+                - 51
+                - 53
+                - 71
+                - 84
+                - 98
+                - 105
+            "2":
+                - 1
+                - 5
+                - 11
+                - 30
+                - 41
+                - 49
+                - 50
+                - 51
+                - 53
+                - 71
+                - 84
+                - 98
+                - 105
+            "3":
+                - 13
+                - 61
+            "4": 3.11.8
+            "5": 0.21.0
+            "6": 4.51.1
+            "12": 0.21.0
+            "13": linux-x86_64

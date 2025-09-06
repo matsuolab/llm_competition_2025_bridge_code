@@ -1,0 +1,2400 @@
+[2025-08-18 21:11:46,985][__main__][INFO] - Configuration:
+save_final_model: true
+save_strategy: steps
+save_steps: 2
+push_to_hub: false
+tags: null
+call_post_training: null
+logging_strategy: steps
+logging_steps: 1
+report_to: wandb
+wandb_project: honban_step2_rlt
+wandb_group_name: ${data_log_name}/${model_log_name}
+wandb_run_name: ${trainer_log_name}
+results_dir: /home/Competition2025/P07/shareP07/share_model/step2_rlt
+exp_name: ${now:%Y.%m.%d}${now:%H%M%S}
+output_dir: ${results_dir}/Qwen3-14B-step2-deepmath103k-bs${train_batch_size}
+resume_from: ${output_dir}
+seed: 42
+model_log_name: qwen3-14b
+model_name_or_path: llm-compe-2025-kato/Qwen3-14B-Step1-Bespoke17k-ep1
+tokenizer_name_or_path: ${model_name_or_path}
+model_args:
+  _target_: hydra_utils.trl.ModelConfig
+  model_name_or_path: ${model_name_or_path}
+  trust_remote_code: true
+  use_peft: ${use_peft}
+  load_in_4bit: ${load_in_4bit}
+  model_revision: main
+  torch_dtype: bfloat16
+  attn_implementation: flash_attention_2
+use_peft: false
+load_in_4bit: false
+tokenizer:
+  _target_: hydra_utils.transformers.AutoTokenizer.from_pretrained
+  pretrained_model_name_or_path: ${tokenizer_name_or_path}
+  trust_remote_code: true
+  padding_side: left
+  model_revision: ${model_args.model_revision}
+unsafe_tokenizer_loading: false
+make_tokenizer_fn:
+  _target_: hydra_utils.fix_pad_token
+  tokenizer: ${tokenizer}
+  model_name: ${model_name_or_path}
+  unsafe: ${unsafe_tokenizer_loading}
+peft_config:
+  _target_: hydra_utils.trl.get_peft_config
+  model_args: ${model_args}
+data_log_name: stage2_data
+dataset_id_or_path: Nishi0923/DeepMath-103K-Bespoke-Filtered-Pilot-5K
+dataset_local_directory: ${dataset_id_or_path}
+make_dataset_fn:
+  dataset_id_or_path: ${dataset_id_or_path}
+  dataset_local_directory: ${dataset_local_directory}
+  model_name_or_path: ${model_name_or_path}
+  _target_: custom_data.sft_data.load_formatted_sft_dataset
+  process_line_fn:
+    _target_: custom_data.teacher_data.get_process_line_fn
+    dataset_id_or_path: ${dataset_id_or_path}
+    system_prompt_style: ${system_prompt_style}
+    return_student_prompt_info: ${return_student_prompt_info}
+    add_text_completions: ${add_text_completions}
+  completion_only_training: ${completion_only_training}
+  custom_start_of_response: ${custom_start_of_response}
+  keep_columns: ${keep_columns}
+  add_dataset_indices: ${add_dataset_indices}
+dataset_configs:
+- all
+completion_only_training: false
+custom_start_of_response:
+  _target_: custom_data.teacher_data.get_teacher_data_mask_delimiter
+  system_prompt_style: ${system_prompt_style}
+  mask_teacher_answer: ${mask_teacher_answer}
+  dataset_id_or_path: ${dataset_id_or_path}
+keep_columns: null
+add_dataset_indices: false
+system_prompt_style: stratos
+mask_teacher_answer: true
+return_student_prompt_info: true
+add_text_completions: false
+max_steps: -1
+num_train_epochs: 1.0
+train_batch_size: 512
+per_device_train_batch_size: 1
+gradient_accumulation_steps: ???
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  _target_: builtins.dict
+  use_reentrant: false
+learning_rate: 1.0e-06
+weight_decay: 0
+adam_beta1: 0.9
+adam_beta2: 0.999
+adam_epsilon: 1.0e-08
+max_grad_norm: 1.0
+lr_scheduler_type: constant
+lr_scheduler_kwargs: null
+warmup_ratio: 0.03
+bf16: true
+tf32: true
+ddp_timeout: 18000
+trainer_log_name: teacher_grpo_rw_${reward_log_name}
+trainer_args:
+  _target_: trainers.GRPOConfig
+  output_dir: ${output_dir}
+  max_steps: ${max_steps}
+  num_train_epochs: ${num_train_epochs}
+  per_device_train_batch_size: ${per_device_train_batch_size}
+  gradient_accumulation_steps: ${gradient_accumulation_steps}
+  gradient_checkpointing: ${gradient_checkpointing}
+  gradient_checkpointing_kwargs: ${gradient_checkpointing_kwargs}
+  learning_rate: ${learning_rate}
+  weight_decay: ${weight_decay}
+  adam_beta1: ${adam_beta1}
+  adam_beta2: ${adam_beta2}
+  adam_epsilon: ${adam_epsilon}
+  max_grad_norm: ${max_grad_norm}
+  lr_scheduler_type: ${lr_scheduler_type}
+  lr_scheduler_kwargs: ${lr_scheduler_kwargs}
+  warmup_ratio: ${warmup_ratio}
+  logging_strategy: ${logging_strategy}
+  logging_steps: ${logging_steps}
+  save_strategy: ${save_strategy}
+  save_steps: ${save_steps}
+  report_to: ${report_to}
+  run_name: ${wandb_run_name}
+  bf16: ${bf16}
+  tf32: ${tf32}
+  seed: ${seed}
+  ddp_timeout: ${ddp_timeout}
+  model_init_kwargs: ${model_init_kwargs}
+  remove_unused_columns: ${remove_unused_columns}
+  max_prompt_length: ${max_prompt_length}
+  num_generations: ${num_generations}
+  max_completion_length: ${max_completion_length}
+  shuffle_generation_inputs: ${shuffle_generation_inputs}
+  ds3_gather_for_generation: ${ds3_gather_for_generation}
+  temperature: ${temperature}
+  top_p: ${top_p}
+  top_k: ${top_k}
+  min_p: ${min_p}
+  repetition_penalty: ${repetition_penalty}
+  generation_aggregation_steps: ${generation_aggregation_steps}
+  use_vllm: ${use_vllm}
+  vllm_device: ${vllm_device}
+  vllm_gpu_memory_utilization: ${vllm_gpu_memory_utilization}
+  vllm_dtype: ${vllm_dtype}
+  vllm_max_model_len: ${vllm_max_model_len}
+  use_ray: ${use_ray}
+  ray_share_training_devices: ${ray_share_training_devices}
+  ray_tensor_parallelism: ${ray_tensor_parallelism}
+  ray_data_parallelism: ${ray_data_parallelism}
+  ray_no_memory_duplication: ${ray_no_memory_duplication}
+  enable_prefix_caching: ${enable_prefix_caching}
+  enforce_eager: ${enforce_eager}
+  vllm_sleep_level: ${vllm_sleep_level}
+  use_vllm_server: ${use_vllm_server}
+  vllm_host: ${vllm_host}
+  vllm_port: ${vllm_port}
+  vllm_group_port: ${vllm_group_port}
+  num_vllm_clients: ${num_vllm_clients}
+  beta: ${beta}
+  reward_weights: ${reward_weights}
+  sync_ref_model: ${sync_ref_model}
+  ref_model_mixup_alpha: ${ref_model_mixup_alpha}
+  ref_model_sync_steps: ${ref_model_sync_steps}
+  log_completions: ${log_completions}
+  save_completions_probability: ${save_completions_probability}
+  artificial_epochs: ${artificial_epochs}
+  backprop_accumulation_steps: ${backprop_accumulation_steps}
+  backprop_accumulation_micro_batch_size: ${backprop_accumulation_micro_batch_size}
+  offload_untrained_models: ${offload_untrained_models}
+  unbias_log_probabilities: ${unbias_log_probabilities}
+  activate_debugging_logs: ${activate_debugging_logs}
+  push_to_hub: ${push_to_hub}
+trainer:
+  _target_: trainers.TeacherGRPOTrainer
+  model: ${model_name_or_path}
+  args: ${trainer_args}
+  peft_config: ${peft_config}
+  reward_funcs: ${reward_fns}
+  student_model: ${student_model}
+  use_reference_teacher_model: ${use_reference_teacher_model}
+  student_model_init_kwargs: ${student_model_init_kwargs}
+  logging_prob: ${logging_prob}
+  disable_student_offloading: ${disable_student_offloading}
+artificial_epochs: 1
+num_generations: 128
+beta: 0.04
+model_init_kwargs: null
+remove_unused_columns: false
+max_prompt_length: 16384
+max_completion_length: 16384
+shuffle_generation_inputs: true
+ds3_gather_for_generation: true
+temperature: 0.7
+top_p: 1.0
+top_k: null
+min_p: null
+repetition_penalty: 1.0
+generation_aggregation_steps: 64
+use_vllm: false
+vllm_device: auto
+vllm_gpu_memory_utilization: 0.9
+vllm_dtype: auto
+vllm_max_model_len: null
+use_ray: false
+ray_share_training_devices: false
+ray_tensor_parallelism: 1
+ray_data_parallelism: null
+ray_no_memory_duplication: false
+vllm_sleep_level: 0
+enable_prefix_caching: false
+enforce_eager: true
+use_vllm_server: true
+vllm_host: osk-gpu70
+vllm_port: 8765
+vllm_group_port: 51216
+num_vllm_clients: 8
+reward_weights: null
+sync_ref_model: true
+ref_model_mixup_alpha: 0.9
+ref_model_sync_steps: 64
+backprop_accumulation_steps: null
+backprop_accumulation_micro_batch_size: null
+offload_untrained_models: false
+unbias_log_probabilities: true
+log_completions: false
+save_completions_probability: 0.1
+activate_debugging_logs: false
+reward_log_name: student_solution_kl_reg
+answer_log_prob_coeff:
+- 1
+- 0.01
+kl_penalty_reward_coeff:
+- 3
+- 0.03
+normalize_log_prob_fn: null
+clip_log_prob: 100000
+normalize_kl_fn: null
+clip_kl: 100000
+reduction_log_prob_fn:
+- mean
+- min
+reduction_kl_fn:
+- mean
+- max
+use_schulman_kl_estimation: false
+not_matched_penalty: -1.0
+unbias_teacher_log_probs: true
+unbias_student_log_probs_temp: 0.7
+include_teacher_think_entropy: true
+correct_generation_coeff: 0.0
+correct_generation_rollouts: 8
+student_generation_kwargs: {}
+student_generation_check_stategy: ground_truth
+formatting_sub_rewards: []
+evaluate_refined_solution: false
+teacher_reward:
+  _target_: trainers.TeacherKLBasedReward
+  student_model: null
+  teacher_model: null
+  tokenizer: null
+  answer_log_prob_coeff: ${answer_log_prob_coeff}
+  kl_penalty_reward_coeff: ${kl_penalty_reward_coeff}
+  normalize_log_prob_fn: ${normalize_log_prob_fn}
+  clip_log_prob: ${clip_log_prob}
+  normalize_kl_fn: ${normalize_kl_fn}
+  clip_kl: ${clip_kl}
+  reduction_log_prob_fn: ${reduction_log_prob_fn}
+  reduction_kl_fn: ${reduction_kl_fn}
+  use_schulman_kl_estimation: ${use_schulman_kl_estimation}
+  not_matched_penalty: ${not_matched_penalty}
+  unbias_teacher_log_probs: ${unbias_teacher_log_probs}
+  unbias_student_log_probs_temp: ${unbias_student_log_probs_temp}
+  include_teacher_think_entropy: ${include_teacher_think_entropy}
+  correct_generation_coeff: ${correct_generation_coeff}
+  correct_generation_rollouts: ${correct_generation_rollouts}
+  generation_kwargs: ${student_generation_kwargs}
+  generation_check_stategy: ${student_generation_check_stategy}
+  formatting_sub_rewards: ${formatting_sub_rewards}
+  evaluate_refined_solution: ${evaluate_refined_solution}
+reward_fns:
+  _target_: hydra_utils.wrap_as_list
+  teacher_reward: ${teacher_reward}
+logging_prob: 0.1
+student_model: Qwen/Qwen3-14B
+use_reference_teacher_model: false
+student_model_init_kwargs: null
+disable_student_offloading: false
+do_eval: true
+eval_strategy: steps
+eval_steps: 2
+wandb_entity: llm-compe-2025-kato
+log_ctx_name: gr${num_generations}_${max_prompt_length}ctx_${max_completion_length}gen
+
+[2025-08-18 21:11:46,986][__main__][INFO] - Accumulation steps 64 ----
+[2025-08-18 21:11:48,760][__main__][INFO] - Configuration:
+save_final_model: true
+save_strategy: steps
+save_steps: 2
+push_to_hub: false
+tags: null
+call_post_training: null
+logging_strategy: steps
+logging_steps: 1
+report_to: wandb
+wandb_project: honban_step2_rlt
+wandb_group_name: ${data_log_name}/${model_log_name}
+wandb_run_name: ${trainer_log_name}
+results_dir: /home/Competition2025/P07/shareP07/share_model/step2_rlt
+exp_name: ${now:%Y.%m.%d}${now:%H%M%S}
+output_dir: ${results_dir}/Qwen3-14B-step2-deepmath103k-bs${train_batch_size}
+resume_from: ${output_dir}
+seed: 42
+model_log_name: qwen3-14b
+model_name_or_path: llm-compe-2025-kato/Qwen3-14B-Step1-Bespoke17k-ep1
+tokenizer_name_or_path: ${model_name_or_path}
+model_args:
+  _target_: hydra_utils.trl.ModelConfig
+  model_name_or_path: ${model_name_or_path}
+  trust_remote_code: true
+  use_peft: ${use_peft}
+  load_in_4bit: ${load_in_4bit}
+  model_revision: main
+  torch_dtype: bfloat16
+  attn_implementation: flash_attention_2
+use_peft: false
+load_in_4bit: false
+tokenizer:
+  _target_: hydra_utils.transformers.AutoTokenizer.from_pretrained
+  pretrained_model_name_or_path: ${tokenizer_name_or_path}
+  trust_remote_code: true
+  padding_side: left
+  model_revision: ${model_args.model_revision}
+unsafe_tokenizer_loading: false
+make_tokenizer_fn:
+  _target_: hydra_utils.fix_pad_token
+  tokenizer: ${tokenizer}
+  model_name: ${model_name_or_path}
+  unsafe: ${unsafe_tokenizer_loading}
+peft_config:
+  _target_: hydra_utils.trl.get_peft_config
+  model_args: ${model_args}
+data_log_name: stage2_data
+dataset_id_or_path: Nishi0923/DeepMath-103K-Bespoke-Filtered-Pilot-5K
+dataset_local_directory: ${dataset_id_or_path}
+make_dataset_fn:
+  dataset_id_or_path: ${dataset_id_or_path}
+  dataset_local_directory: ${dataset_local_directory}
+  model_name_or_path: ${model_name_or_path}
+  _target_: custom_data.sft_data.load_formatted_sft_dataset
+  process_line_fn:
+    _target_: custom_data.teacher_data.get_process_line_fn
+    dataset_id_or_path: ${dataset_id_or_path}
+    system_prompt_style: ${system_prompt_style}
+    return_student_prompt_info: ${return_student_prompt_info}
+    add_text_completions: ${add_text_completions}
+  completion_only_training: ${completion_only_training}
+  custom_start_of_response: ${custom_start_of_response}
+  keep_columns: ${keep_columns}
+  add_dataset_indices: ${add_dataset_indices}
+dataset_configs:
+- all
+completion_only_training: false
+custom_start_of_response:
+  _target_: custom_data.teacher_data.get_teacher_data_mask_delimiter
+  system_prompt_style: ${system_prompt_style}
+  mask_teacher_answer: ${mask_teacher_answer}
+  dataset_id_or_path: ${dataset_id_or_path}
+keep_columns: null
+add_dataset_indices: false
+system_prompt_style: stratos
+mask_teacher_answer: true
+return_student_prompt_info: true
+add_text_completions: false
+max_steps: -1
+num_train_epochs: 1.0
+train_batch_size: 512
+per_device_train_batch_size: 1
+gradient_accumulation_steps: ???
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  _target_: builtins.dict
+  use_reentrant: false
+learning_rate: 1.0e-06
+weight_decay: 0
+adam_beta1: 0.9
+adam_beta2: 0.999
+adam_epsilon: 1.0e-08
+max_grad_norm: 1.0
+lr_scheduler_type: constant
+lr_scheduler_kwargs: null
+warmup_ratio: 0.03
+bf16: true
+tf32: true
+ddp_timeout: 18000
+trainer_log_name: teacher_grpo_rw_${reward_log_name}
+trainer_args:
+  _target_: trainers.GRPOConfig
+  output_dir: ${output_dir}
+  max_steps: ${max_steps}
+  num_train_epochs: ${num_train_epochs}
+  per_device_train_batch_size: ${per_device_train_batch_size}
+  gradient_accumulation_steps: ${gradient_accumulation_steps}
+  gradient_checkpointing: ${gradient_checkpointing}
+  gradient_checkpointing_kwargs: ${gradient_checkpointing_kwargs}
+  learning_rate: ${learning_rate}
+  weight_decay: ${weight_decay}
+  adam_beta1: ${adam_beta1}
+  adam_beta2: ${adam_beta2}
+  adam_epsilon: ${adam_epsilon}
+  max_grad_norm: ${max_grad_norm}
+  lr_scheduler_type: ${lr_scheduler_type}
+  lr_scheduler_kwargs: ${lr_scheduler_kwargs}
+  warmup_ratio: ${warmup_ratio}
+  logging_strategy: ${logging_strategy}
+  logging_steps: ${logging_steps}
+  save_strategy: ${save_strategy}
+  save_steps: ${save_steps}
+  report_to: ${report_to}
+  run_name: ${wandb_run_name}
+  bf16: ${bf16}
+  tf32: ${tf32}
+  seed: ${seed}
+  ddp_timeout: ${ddp_timeout}
+  model_init_kwargs: ${model_init_kwargs}
+  remove_unused_columns: ${remove_unused_columns}
+  max_prompt_length: ${max_prompt_length}
+  num_generations: ${num_generations}
+  max_completion_length: ${max_completion_length}
+  shuffle_generation_inputs: ${shuffle_generation_inputs}
+  ds3_gather_for_generation: ${ds3_gather_for_generation}
+  temperature: ${temperature}
+  top_p: ${top_p}
+  top_k: ${top_k}
+  min_p: ${min_p}
+  repetition_penalty: ${repetition_penalty}
+  generation_aggregation_steps: ${generation_aggregation_steps}
+  use_vllm: ${use_vllm}
+  vllm_device: ${vllm_device}
+  vllm_gpu_memory_utilization: ${vllm_gpu_memory_utilization}
+  vllm_dtype: ${vllm_dtype}
+  vllm_max_model_len: ${vllm_max_model_len}
+  use_ray: ${use_ray}
+  ray_share_training_devices: ${ray_share_training_devices}
+  ray_tensor_parallelism: ${ray_tensor_parallelism}
+  ray_data_parallelism: ${ray_data_parallelism}
+  ray_no_memory_duplication: ${ray_no_memory_duplication}
+  enable_prefix_caching: ${enable_prefix_caching}
+  enforce_eager: ${enforce_eager}
+  vllm_sleep_level: ${vllm_sleep_level}
+  use_vllm_server: ${use_vllm_server}
+  vllm_host: ${vllm_host}
+  vllm_port: ${vllm_port}
+  vllm_group_port: ${vllm_group_port}
+  num_vllm_clients: ${num_vllm_clients}
+  beta: ${beta}
+  reward_weights: ${reward_weights}
+  sync_ref_model: ${sync_ref_model}
+  ref_model_mixup_alpha: ${ref_model_mixup_alpha}
+  ref_model_sync_steps: ${ref_model_sync_steps}
+  log_completions: ${log_completions}
+  save_completions_probability: ${save_completions_probability}
+  artificial_epochs: ${artificial_epochs}
+  backprop_accumulation_steps: ${backprop_accumulation_steps}
+  backprop_accumulation_micro_batch_size: ${backprop_accumulation_micro_batch_size}
+  offload_untrained_models: ${offload_untrained_models}
+  unbias_log_probabilities: ${unbias_log_probabilities}
+  activate_debugging_logs: ${activate_debugging_logs}
+  push_to_hub: ${push_to_hub}
+trainer:
+  _target_: trainers.TeacherGRPOTrainer
+  model: ${model_name_or_path}
+  args: ${trainer_args}
+  peft_config: ${peft_config}
+  reward_funcs: ${reward_fns}
+  student_model: ${student_model}
+  use_reference_teacher_model: ${use_reference_teacher_model}
+  student_model_init_kwargs: ${student_model_init_kwargs}
+  logging_prob: ${logging_prob}
+  disable_student_offloading: ${disable_student_offloading}
+artificial_epochs: 1
+num_generations: 128
+beta: 0.04
+model_init_kwargs: null
+remove_unused_columns: false
+max_prompt_length: 16384
+max_completion_length: 16384
+shuffle_generation_inputs: true
+ds3_gather_for_generation: true
+temperature: 0.7
+top_p: 1.0
+top_k: null
+min_p: null
+repetition_penalty: 1.0
+generation_aggregation_steps: 64
+use_vllm: false
+vllm_device: auto
+vllm_gpu_memory_utilization: 0.9
+vllm_dtype: auto
+vllm_max_model_len: null
+use_ray: false
+ray_share_training_devices: false
+ray_tensor_parallelism: 1
+ray_data_parallelism: null
+ray_no_memory_duplication: false
+vllm_sleep_level: 0
+enable_prefix_caching: false
+enforce_eager: true
+use_vllm_server: true
+vllm_host: osk-gpu70
+vllm_port: 8765
+vllm_group_port: 51216
+num_vllm_clients: 8
+reward_weights: null
+sync_ref_model: true
+ref_model_mixup_alpha: 0.9
+ref_model_sync_steps: 64
+backprop_accumulation_steps: null
+backprop_accumulation_micro_batch_size: null
+offload_untrained_models: false
+unbias_log_probabilities: true
+log_completions: false
+save_completions_probability: 0.1
+activate_debugging_logs: false
+reward_log_name: student_solution_kl_reg
+answer_log_prob_coeff:
+- 1
+- 0.01
+kl_penalty_reward_coeff:
+- 3
+- 0.03
+normalize_log_prob_fn: null
+clip_log_prob: 100000
+normalize_kl_fn: null
+clip_kl: 100000
+reduction_log_prob_fn:
+- mean
+- min
+reduction_kl_fn:
+- mean
+- max
+use_schulman_kl_estimation: false
+not_matched_penalty: -1.0
+unbias_teacher_log_probs: true
+unbias_student_log_probs_temp: 0.7
+include_teacher_think_entropy: true
+correct_generation_coeff: 0.0
+correct_generation_rollouts: 8
+student_generation_kwargs: {}
+student_generation_check_stategy: ground_truth
+formatting_sub_rewards: []
+evaluate_refined_solution: false
+teacher_reward:
+  _target_: trainers.TeacherKLBasedReward
+  student_model: null
+  teacher_model: null
+  tokenizer: null
+  answer_log_prob_coeff: ${answer_log_prob_coeff}
+  kl_penalty_reward_coeff: ${kl_penalty_reward_coeff}
+  normalize_log_prob_fn: ${normalize_log_prob_fn}
+  clip_log_prob: ${clip_log_prob}
+  normalize_kl_fn: ${normalize_kl_fn}
+  clip_kl: ${clip_kl}
+  reduction_log_prob_fn: ${reduction_log_prob_fn}
+  reduction_kl_fn: ${reduction_kl_fn}
+  use_schulman_kl_estimation: ${use_schulman_kl_estimation}
+  not_matched_penalty: ${not_matched_penalty}
+  unbias_teacher_log_probs: ${unbias_teacher_log_probs}
+  unbias_student_log_probs_temp: ${unbias_student_log_probs_temp}
+  include_teacher_think_entropy: ${include_teacher_think_entropy}
+  correct_generation_coeff: ${correct_generation_coeff}
+  correct_generation_rollouts: ${correct_generation_rollouts}
+  generation_kwargs: ${student_generation_kwargs}
+  generation_check_stategy: ${student_generation_check_stategy}
+  formatting_sub_rewards: ${formatting_sub_rewards}
+  evaluate_refined_solution: ${evaluate_refined_solution}
+reward_fns:
+  _target_: hydra_utils.wrap_as_list
+  teacher_reward: ${teacher_reward}
+logging_prob: 0.1
+student_model: Qwen/Qwen3-14B
+use_reference_teacher_model: false
+student_model_init_kwargs: null
+disable_student_offloading: false
+do_eval: true
+eval_strategy: steps
+eval_steps: 2
+wandb_entity: llm-compe-2025-kato
+log_ctx_name: gr${num_generations}_${max_prompt_length}ctx_${max_completion_length}gen
+
+[2025-08-18 21:11:48,760][__main__][INFO] - Accumulation steps 64 ----
+[2025-08-18 21:11:49,258][__main__][INFO] - Configuration:
+save_final_model: true
+save_strategy: steps
+save_steps: 2
+push_to_hub: false
+tags: null
+call_post_training: null
+logging_strategy: steps
+logging_steps: 1
+report_to: wandb
+wandb_project: honban_step2_rlt
+wandb_group_name: ${data_log_name}/${model_log_name}
+wandb_run_name: ${trainer_log_name}
+results_dir: /home/Competition2025/P07/shareP07/share_model/step2_rlt
+exp_name: ${now:%Y.%m.%d}${now:%H%M%S}
+output_dir: ${results_dir}/Qwen3-14B-step2-deepmath103k-bs${train_batch_size}
+resume_from: ${output_dir}
+seed: 42
+model_log_name: qwen3-14b
+model_name_or_path: llm-compe-2025-kato/Qwen3-14B-Step1-Bespoke17k-ep1
+tokenizer_name_or_path: ${model_name_or_path}
+model_args:
+  _target_: hydra_utils.trl.ModelConfig
+  model_name_or_path: ${model_name_or_path}
+  trust_remote_code: true
+  use_peft: ${use_peft}
+  load_in_4bit: ${load_in_4bit}
+  model_revision: main
+  torch_dtype: bfloat16
+  attn_implementation: flash_attention_2
+use_peft: false
+load_in_4bit: false
+tokenizer:
+  _target_: hydra_utils.transformers.AutoTokenizer.from_pretrained
+  pretrained_model_name_or_path: ${tokenizer_name_or_path}
+  trust_remote_code: true
+  padding_side: left
+  model_revision: ${model_args.model_revision}
+unsafe_tokenizer_loading: false
+make_tokenizer_fn:
+  _target_: hydra_utils.fix_pad_token
+  tokenizer: ${tokenizer}
+  model_name: ${model_name_or_path}
+  unsafe: ${unsafe_tokenizer_loading}
+peft_config:
+  _target_: hydra_utils.trl.get_peft_config
+  model_args: ${model_args}
+data_log_name: stage2_data
+dataset_id_or_path: Nishi0923/DeepMath-103K-Bespoke-Filtered-Pilot-5K
+dataset_local_directory: ${dataset_id_or_path}
+make_dataset_fn:
+  dataset_id_or_path: ${dataset_id_or_path}
+  dataset_local_directory: ${dataset_local_directory}
+  model_name_or_path: ${model_name_or_path}
+  _target_: custom_data.sft_data.load_formatted_sft_dataset
+  process_line_fn:
+    _target_: custom_data.teacher_data.get_process_line_fn
+    dataset_id_or_path: ${dataset_id_or_path}
+    system_prompt_style: ${system_prompt_style}
+    return_student_prompt_info: ${return_student_prompt_info}
+    add_text_completions: ${add_text_completions}
+  completion_only_training: ${completion_only_training}
+  custom_start_of_response: ${custom_start_of_response}
+  keep_columns: ${keep_columns}
+  add_dataset_indices: ${add_dataset_indices}
+dataset_configs:
+- all
+completion_only_training: false
+custom_start_of_response:
+  _target_: custom_data.teacher_data.get_teacher_data_mask_delimiter
+  system_prompt_style: ${system_prompt_style}
+  mask_teacher_answer: ${mask_teacher_answer}
+  dataset_id_or_path: ${dataset_id_or_path}
+keep_columns: null
+add_dataset_indices: false
+system_prompt_style: stratos
+mask_teacher_answer: true
+return_student_prompt_info: true
+add_text_completions: false
+max_steps: -1
+num_train_epochs: 1.0
+train_batch_size: 512
+per_device_train_batch_size: 1
+gradient_accumulation_steps: ???
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  _target_: builtins.dict
+  use_reentrant: false
+learning_rate: 1.0e-06
+weight_decay: 0
+adam_beta1: 0.9
+adam_beta2: 0.999
+adam_epsilon: 1.0e-08
+max_grad_norm: 1.0
+lr_scheduler_type: constant
+lr_scheduler_kwargs: null
+warmup_ratio: 0.03
+bf16: true
+tf32: true
+ddp_timeout: 18000
+trainer_log_name: teacher_grpo_rw_${reward_log_name}
+trainer_args:
+  _target_: trainers.GRPOConfig
+  output_dir: ${output_dir}
+  max_steps: ${max_steps}
+  num_train_epochs: ${num_train_epochs}
+  per_device_train_batch_size: ${per_device_train_batch_size}
+  gradient_accumulation_steps: ${gradient_accumulation_steps}
+  gradient_checkpointing: ${gradient_checkpointing}
+  gradient_checkpointing_kwargs: ${gradient_checkpointing_kwargs}
+  learning_rate: ${learning_rate}
+  weight_decay: ${weight_decay}
+  adam_beta1: ${adam_beta1}
+  adam_beta2: ${adam_beta2}
+  adam_epsilon: ${adam_epsilon}
+  max_grad_norm: ${max_grad_norm}
+  lr_scheduler_type: ${lr_scheduler_type}
+  lr_scheduler_kwargs: ${lr_scheduler_kwargs}
+  warmup_ratio: ${warmup_ratio}
+  logging_strategy: ${logging_strategy}
+  logging_steps: ${logging_steps}
+  save_strategy: ${save_strategy}
+  save_steps: ${save_steps}
+  report_to: ${report_to}
+  run_name: ${wandb_run_name}
+  bf16: ${bf16}
+  tf32: ${tf32}
+  seed: ${seed}
+  ddp_timeout: ${ddp_timeout}
+  model_init_kwargs: ${model_init_kwargs}
+  remove_unused_columns: ${remove_unused_columns}
+  max_prompt_length: ${max_prompt_length}
+  num_generations: ${num_generations}
+  max_completion_length: ${max_completion_length}
+  shuffle_generation_inputs: ${shuffle_generation_inputs}
+  ds3_gather_for_generation: ${ds3_gather_for_generation}
+  temperature: ${temperature}
+  top_p: ${top_p}
+  top_k: ${top_k}
+  min_p: ${min_p}
+  repetition_penalty: ${repetition_penalty}
+  generation_aggregation_steps: ${generation_aggregation_steps}
+  use_vllm: ${use_vllm}
+  vllm_device: ${vllm_device}
+  vllm_gpu_memory_utilization: ${vllm_gpu_memory_utilization}
+  vllm_dtype: ${vllm_dtype}
+  vllm_max_model_len: ${vllm_max_model_len}
+  use_ray: ${use_ray}
+  ray_share_training_devices: ${ray_share_training_devices}
+  ray_tensor_parallelism: ${ray_tensor_parallelism}
+  ray_data_parallelism: ${ray_data_parallelism}
+  ray_no_memory_duplication: ${ray_no_memory_duplication}
+  enable_prefix_caching: ${enable_prefix_caching}
+  enforce_eager: ${enforce_eager}
+  vllm_sleep_level: ${vllm_sleep_level}
+  use_vllm_server: ${use_vllm_server}
+  vllm_host: ${vllm_host}
+  vllm_port: ${vllm_port}
+  vllm_group_port: ${vllm_group_port}
+  num_vllm_clients: ${num_vllm_clients}
+  beta: ${beta}
+  reward_weights: ${reward_weights}
+  sync_ref_model: ${sync_ref_model}
+  ref_model_mixup_alpha: ${ref_model_mixup_alpha}
+  ref_model_sync_steps: ${ref_model_sync_steps}
+  log_completions: ${log_completions}
+  save_completions_probability: ${save_completions_probability}
+  artificial_epochs: ${artificial_epochs}
+  backprop_accumulation_steps: ${backprop_accumulation_steps}
+  backprop_accumulation_micro_batch_size: ${backprop_accumulation_micro_batch_size}
+  offload_untrained_models: ${offload_untrained_models}
+  unbias_log_probabilities: ${unbias_log_probabilities}
+  activate_debugging_logs: ${activate_debugging_logs}
+  push_to_hub: ${push_to_hub}
+trainer:
+  _target_: trainers.TeacherGRPOTrainer
+  model: ${model_name_or_path}
+  args: ${trainer_args}
+  peft_config: ${peft_config}
+  reward_funcs: ${reward_fns}
+  student_model: ${student_model}
+  use_reference_teacher_model: ${use_reference_teacher_model}
+  student_model_init_kwargs: ${student_model_init_kwargs}
+  logging_prob: ${logging_prob}
+  disable_student_offloading: ${disable_student_offloading}
+artificial_epochs: 1
+num_generations: 128
+beta: 0.04
+model_init_kwargs: null
+remove_unused_columns: false
+max_prompt_length: 16384
+max_completion_length: 16384
+shuffle_generation_inputs: true
+ds3_gather_for_generation: true
+temperature: 0.7
+top_p: 1.0
+top_k: null
+min_p: null
+repetition_penalty: 1.0
+generation_aggregation_steps: 64
+use_vllm: false
+vllm_device: auto
+vllm_gpu_memory_utilization: 0.9
+vllm_dtype: auto
+vllm_max_model_len: null
+use_ray: false
+ray_share_training_devices: false
+ray_tensor_parallelism: 1
+ray_data_parallelism: null
+ray_no_memory_duplication: false
+vllm_sleep_level: 0
+enable_prefix_caching: false
+enforce_eager: true
+use_vllm_server: true
+vllm_host: osk-gpu70
+vllm_port: 8765
+vllm_group_port: 51216
+num_vllm_clients: 8
+reward_weights: null
+sync_ref_model: true
+ref_model_mixup_alpha: 0.9
+ref_model_sync_steps: 64
+backprop_accumulation_steps: null
+backprop_accumulation_micro_batch_size: null
+offload_untrained_models: false
+unbias_log_probabilities: true
+log_completions: false
+save_completions_probability: 0.1
+activate_debugging_logs: false
+reward_log_name: student_solution_kl_reg
+answer_log_prob_coeff:
+- 1
+- 0.01
+kl_penalty_reward_coeff:
+- 3
+- 0.03
+normalize_log_prob_fn: null
+clip_log_prob: 100000
+normalize_kl_fn: null
+clip_kl: 100000
+reduction_log_prob_fn:
+- mean
+- min
+reduction_kl_fn:
+- mean
+- max
+use_schulman_kl_estimation: false
+not_matched_penalty: -1.0
+unbias_teacher_log_probs: true
+unbias_student_log_probs_temp: 0.7
+include_teacher_think_entropy: true
+correct_generation_coeff: 0.0
+correct_generation_rollouts: 8
+student_generation_kwargs: {}
+student_generation_check_stategy: ground_truth
+formatting_sub_rewards: []
+evaluate_refined_solution: false
+teacher_reward:
+  _target_: trainers.TeacherKLBasedReward
+  student_model: null
+  teacher_model: null
+  tokenizer: null
+  answer_log_prob_coeff: ${answer_log_prob_coeff}
+  kl_penalty_reward_coeff: ${kl_penalty_reward_coeff}
+  normalize_log_prob_fn: ${normalize_log_prob_fn}
+  clip_log_prob: ${clip_log_prob}
+  normalize_kl_fn: ${normalize_kl_fn}
+  clip_kl: ${clip_kl}
+  reduction_log_prob_fn: ${reduction_log_prob_fn}
+  reduction_kl_fn: ${reduction_kl_fn}
+  use_schulman_kl_estimation: ${use_schulman_kl_estimation}
+  not_matched_penalty: ${not_matched_penalty}
+  unbias_teacher_log_probs: ${unbias_teacher_log_probs}
+  unbias_student_log_probs_temp: ${unbias_student_log_probs_temp}
+  include_teacher_think_entropy: ${include_teacher_think_entropy}
+  correct_generation_coeff: ${correct_generation_coeff}
+  correct_generation_rollouts: ${correct_generation_rollouts}
+  generation_kwargs: ${student_generation_kwargs}
+  generation_check_stategy: ${student_generation_check_stategy}
+  formatting_sub_rewards: ${formatting_sub_rewards}
+  evaluate_refined_solution: ${evaluate_refined_solution}
+reward_fns:
+  _target_: hydra_utils.wrap_as_list
+  teacher_reward: ${teacher_reward}
+logging_prob: 0.1
+student_model: Qwen/Qwen3-14B
+use_reference_teacher_model: false
+student_model_init_kwargs: null
+disable_student_offloading: false
+do_eval: true
+eval_strategy: steps
+eval_steps: 2
+wandb_entity: llm-compe-2025-kato
+log_ctx_name: gr${num_generations}_${max_prompt_length}ctx_${max_completion_length}gen
+
+[2025-08-18 21:11:49,258][__main__][INFO] - Accumulation steps 64 ----
+[2025-08-18 21:11:49,310][__main__][INFO] - Configuration:
+save_final_model: true
+save_strategy: steps
+save_steps: 2
+push_to_hub: false
+tags: null
+call_post_training: null
+logging_strategy: steps
+logging_steps: 1
+report_to: wandb
+wandb_project: honban_step2_rlt
+wandb_group_name: ${data_log_name}/${model_log_name}
+wandb_run_name: ${trainer_log_name}
+results_dir: /home/Competition2025/P07/shareP07/share_model/step2_rlt
+exp_name: ${now:%Y.%m.%d}${now:%H%M%S}
+output_dir: ${results_dir}/Qwen3-14B-step2-deepmath103k-bs${train_batch_size}
+resume_from: ${output_dir}
+seed: 42
+model_log_name: qwen3-14b
+model_name_or_path: llm-compe-2025-kato/Qwen3-14B-Step1-Bespoke17k-ep1
+tokenizer_name_or_path: ${model_name_or_path}
+model_args:
+  _target_: hydra_utils.trl.ModelConfig
+  model_name_or_path: ${model_name_or_path}
+  trust_remote_code: true
+  use_peft: ${use_peft}
+  load_in_4bit: ${load_in_4bit}
+  model_revision: main
+  torch_dtype: bfloat16
+  attn_implementation: flash_attention_2
+use_peft: false
+load_in_4bit: false
+tokenizer:
+  _target_: hydra_utils.transformers.AutoTokenizer.from_pretrained
+  pretrained_model_name_or_path: ${tokenizer_name_or_path}
+  trust_remote_code: true
+  padding_side: left
+  model_revision: ${model_args.model_revision}
+unsafe_tokenizer_loading: false
+make_tokenizer_fn:
+  _target_: hydra_utils.fix_pad_token
+  tokenizer: ${tokenizer}
+  model_name: ${model_name_or_path}
+  unsafe: ${unsafe_tokenizer_loading}
+peft_config:
+  _target_: hydra_utils.trl.get_peft_config
+  model_args: ${model_args}
+data_log_name: stage2_data
+dataset_id_or_path: Nishi0923/DeepMath-103K-Bespoke-Filtered-Pilot-5K
+dataset_local_directory: ${dataset_id_or_path}
+make_dataset_fn:
+  dataset_id_or_path: ${dataset_id_or_path}
+  dataset_local_directory: ${dataset_local_directory}
+  model_name_or_path: ${model_name_or_path}
+  _target_: custom_data.sft_data.load_formatted_sft_dataset
+  process_line_fn:
+    _target_: custom_data.teacher_data.get_process_line_fn
+    dataset_id_or_path: ${dataset_id_or_path}
+    system_prompt_style: ${system_prompt_style}
+    return_student_prompt_info: ${return_student_prompt_info}
+    add_text_completions: ${add_text_completions}
+  completion_only_training: ${completion_only_training}
+  custom_start_of_response: ${custom_start_of_response}
+  keep_columns: ${keep_columns}
+  add_dataset_indices: ${add_dataset_indices}
+dataset_configs:
+- all
+completion_only_training: false
+custom_start_of_response:
+  _target_: custom_data.teacher_data.get_teacher_data_mask_delimiter
+  system_prompt_style: ${system_prompt_style}
+  mask_teacher_answer: ${mask_teacher_answer}
+  dataset_id_or_path: ${dataset_id_or_path}
+keep_columns: null
+add_dataset_indices: false
+system_prompt_style: stratos
+mask_teacher_answer: true
+return_student_prompt_info: true
+add_text_completions: false
+max_steps: -1
+num_train_epochs: 1.0
+train_batch_size: 512
+per_device_train_batch_size: 1
+gradient_accumulation_steps: ???
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  _target_: builtins.dict
+  use_reentrant: false
+learning_rate: 1.0e-06
+weight_decay: 0
+adam_beta1: 0.9
+adam_beta2: 0.999
+adam_epsilon: 1.0e-08
+max_grad_norm: 1.0
+lr_scheduler_type: constant
+lr_scheduler_kwargs: null
+warmup_ratio: 0.03
+bf16: true
+tf32: true
+ddp_timeout: 18000
+trainer_log_name: teacher_grpo_rw_${reward_log_name}
+trainer_args:
+  _target_: trainers.GRPOConfig
+  output_dir: ${output_dir}
+  max_steps: ${max_steps}
+  num_train_epochs: ${num_train_epochs}
+  per_device_train_batch_size: ${per_device_train_batch_size}
+  gradient_accumulation_steps: ${gradient_accumulation_steps}
+  gradient_checkpointing: ${gradient_checkpointing}
+  gradient_checkpointing_kwargs: ${gradient_checkpointing_kwargs}
+  learning_rate: ${learning_rate}
+  weight_decay: ${weight_decay}
+  adam_beta1: ${adam_beta1}
+  adam_beta2: ${adam_beta2}
+  adam_epsilon: ${adam_epsilon}
+  max_grad_norm: ${max_grad_norm}
+  lr_scheduler_type: ${lr_scheduler_type}
+  lr_scheduler_kwargs: ${lr_scheduler_kwargs}
+  warmup_ratio: ${warmup_ratio}
+  logging_strategy: ${logging_strategy}
+  logging_steps: ${logging_steps}
+  save_strategy: ${save_strategy}
+  save_steps: ${save_steps}
+  report_to: ${report_to}
+  run_name: ${wandb_run_name}
+  bf16: ${bf16}
+  tf32: ${tf32}
+  seed: ${seed}
+  ddp_timeout: ${ddp_timeout}
+  model_init_kwargs: ${model_init_kwargs}
+  remove_unused_columns: ${remove_unused_columns}
+  max_prompt_length: ${max_prompt_length}
+  num_generations: ${num_generations}
+  max_completion_length: ${max_completion_length}
+  shuffle_generation_inputs: ${shuffle_generation_inputs}
+  ds3_gather_for_generation: ${ds3_gather_for_generation}
+  temperature: ${temperature}
+  top_p: ${top_p}
+  top_k: ${top_k}
+  min_p: ${min_p}
+  repetition_penalty: ${repetition_penalty}
+  generation_aggregation_steps: ${generation_aggregation_steps}
+  use_vllm: ${use_vllm}
+  vllm_device: ${vllm_device}
+  vllm_gpu_memory_utilization: ${vllm_gpu_memory_utilization}
+  vllm_dtype: ${vllm_dtype}
+  vllm_max_model_len: ${vllm_max_model_len}
+  use_ray: ${use_ray}
+  ray_share_training_devices: ${ray_share_training_devices}
+  ray_tensor_parallelism: ${ray_tensor_parallelism}
+  ray_data_parallelism: ${ray_data_parallelism}
+  ray_no_memory_duplication: ${ray_no_memory_duplication}
+  enable_prefix_caching: ${enable_prefix_caching}
+  enforce_eager: ${enforce_eager}
+  vllm_sleep_level: ${vllm_sleep_level}
+  use_vllm_server: ${use_vllm_server}
+  vllm_host: ${vllm_host}
+  vllm_port: ${vllm_port}
+  vllm_group_port: ${vllm_group_port}
+  num_vllm_clients: ${num_vllm_clients}
+  beta: ${beta}
+  reward_weights: ${reward_weights}
+  sync_ref_model: ${sync_ref_model}
+  ref_model_mixup_alpha: ${ref_model_mixup_alpha}
+  ref_model_sync_steps: ${ref_model_sync_steps}
+  log_completions: ${log_completions}
+  save_completions_probability: ${save_completions_probability}
+  artificial_epochs: ${artificial_epochs}
+  backprop_accumulation_steps: ${backprop_accumulation_steps}
+  backprop_accumulation_micro_batch_size: ${backprop_accumulation_micro_batch_size}
+  offload_untrained_models: ${offload_untrained_models}
+  unbias_log_probabilities: ${unbias_log_probabilities}
+  activate_debugging_logs: ${activate_debugging_logs}
+  push_to_hub: ${push_to_hub}
+trainer:
+  _target_: trainers.TeacherGRPOTrainer
+  model: ${model_name_or_path}
+  args: ${trainer_args}
+  peft_config: ${peft_config}
+  reward_funcs: ${reward_fns}
+  student_model: ${student_model}
+  use_reference_teacher_model: ${use_reference_teacher_model}
+  student_model_init_kwargs: ${student_model_init_kwargs}
+  logging_prob: ${logging_prob}
+  disable_student_offloading: ${disable_student_offloading}
+artificial_epochs: 1
+num_generations: 128
+beta: 0.04
+model_init_kwargs: null
+remove_unused_columns: false
+max_prompt_length: 16384
+max_completion_length: 16384
+shuffle_generation_inputs: true
+ds3_gather_for_generation: true
+temperature: 0.7
+top_p: 1.0
+top_k: null
+min_p: null
+repetition_penalty: 1.0
+generation_aggregation_steps: 64
+use_vllm: false
+vllm_device: auto
+vllm_gpu_memory_utilization: 0.9
+vllm_dtype: auto
+vllm_max_model_len: null
+use_ray: false
+ray_share_training_devices: false
+ray_tensor_parallelism: 1
+ray_data_parallelism: null
+ray_no_memory_duplication: false
+vllm_sleep_level: 0
+enable_prefix_caching: false
+enforce_eager: true
+use_vllm_server: true
+vllm_host: osk-gpu70
+vllm_port: 8765
+vllm_group_port: 51216
+num_vllm_clients: 8
+reward_weights: null
+sync_ref_model: true
+ref_model_mixup_alpha: 0.9
+ref_model_sync_steps: 64
+backprop_accumulation_steps: null
+backprop_accumulation_micro_batch_size: null
+offload_untrained_models: false
+unbias_log_probabilities: true
+log_completions: false
+save_completions_probability: 0.1
+activate_debugging_logs: false
+reward_log_name: student_solution_kl_reg
+answer_log_prob_coeff:
+- 1
+- 0.01
+kl_penalty_reward_coeff:
+- 3
+- 0.03
+normalize_log_prob_fn: null
+clip_log_prob: 100000
+normalize_kl_fn: null
+clip_kl: 100000
+reduction_log_prob_fn:
+- mean
+- min
+reduction_kl_fn:
+- mean
+- max
+use_schulman_kl_estimation: false
+not_matched_penalty: -1.0
+unbias_teacher_log_probs: true
+unbias_student_log_probs_temp: 0.7
+include_teacher_think_entropy: true
+correct_generation_coeff: 0.0
+correct_generation_rollouts: 8
+student_generation_kwargs: {}
+student_generation_check_stategy: ground_truth
+formatting_sub_rewards: []
+evaluate_refined_solution: false
+teacher_reward:
+  _target_: trainers.TeacherKLBasedReward
+  student_model: null
+  teacher_model: null
+  tokenizer: null
+  answer_log_prob_coeff: ${answer_log_prob_coeff}
+  kl_penalty_reward_coeff: ${kl_penalty_reward_coeff}
+  normalize_log_prob_fn: ${normalize_log_prob_fn}
+  clip_log_prob: ${clip_log_prob}
+  normalize_kl_fn: ${normalize_kl_fn}
+  clip_kl: ${clip_kl}
+  reduction_log_prob_fn: ${reduction_log_prob_fn}
+  reduction_kl_fn: ${reduction_kl_fn}
+  use_schulman_kl_estimation: ${use_schulman_kl_estimation}
+  not_matched_penalty: ${not_matched_penalty}
+  unbias_teacher_log_probs: ${unbias_teacher_log_probs}
+  unbias_student_log_probs_temp: ${unbias_student_log_probs_temp}
+  include_teacher_think_entropy: ${include_teacher_think_entropy}
+  correct_generation_coeff: ${correct_generation_coeff}
+  correct_generation_rollouts: ${correct_generation_rollouts}
+  generation_kwargs: ${student_generation_kwargs}
+  generation_check_stategy: ${student_generation_check_stategy}
+  formatting_sub_rewards: ${formatting_sub_rewards}
+  evaluate_refined_solution: ${evaluate_refined_solution}
+reward_fns:
+  _target_: hydra_utils.wrap_as_list
+  teacher_reward: ${teacher_reward}
+logging_prob: 0.1
+student_model: Qwen/Qwen3-14B
+use_reference_teacher_model: false
+student_model_init_kwargs: null
+disable_student_offloading: false
+do_eval: true
+eval_strategy: steps
+eval_steps: 2
+wandb_entity: llm-compe-2025-kato
+log_ctx_name: gr${num_generations}_${max_prompt_length}ctx_${max_completion_length}gen
+
+[2025-08-18 21:11:49,310][__main__][INFO] - Accumulation steps 64 ----
+[2025-08-18 21:11:49,378][__main__][INFO] - Configuration:
+save_final_model: true
+save_strategy: steps
+save_steps: 2
+push_to_hub: false
+tags: null
+call_post_training: null
+logging_strategy: steps
+logging_steps: 1
+report_to: wandb
+wandb_project: honban_step2_rlt
+wandb_group_name: ${data_log_name}/${model_log_name}
+wandb_run_name: ${trainer_log_name}
+results_dir: /home/Competition2025/P07/shareP07/share_model/step2_rlt
+exp_name: ${now:%Y.%m.%d}${now:%H%M%S}
+output_dir: ${results_dir}/Qwen3-14B-step2-deepmath103k-bs${train_batch_size}
+resume_from: ${output_dir}
+seed: 42
+model_log_name: qwen3-14b
+model_name_or_path: llm-compe-2025-kato/Qwen3-14B-Step1-Bespoke17k-ep1
+tokenizer_name_or_path: ${model_name_or_path}
+model_args:
+  _target_: hydra_utils.trl.ModelConfig
+  model_name_or_path: ${model_name_or_path}
+  trust_remote_code: true
+  use_peft: ${use_peft}
+  load_in_4bit: ${load_in_4bit}
+  model_revision: main
+  torch_dtype: bfloat16
+  attn_implementation: flash_attention_2
+use_peft: false
+load_in_4bit: false
+tokenizer:
+  _target_: hydra_utils.transformers.AutoTokenizer.from_pretrained
+  pretrained_model_name_or_path: ${tokenizer_name_or_path}
+  trust_remote_code: true
+  padding_side: left
+  model_revision: ${model_args.model_revision}
+unsafe_tokenizer_loading: false
+make_tokenizer_fn:
+  _target_: hydra_utils.fix_pad_token
+  tokenizer: ${tokenizer}
+  model_name: ${model_name_or_path}
+  unsafe: ${unsafe_tokenizer_loading}
+peft_config:
+  _target_: hydra_utils.trl.get_peft_config
+  model_args: ${model_args}
+data_log_name: stage2_data
+dataset_id_or_path: Nishi0923/DeepMath-103K-Bespoke-Filtered-Pilot-5K
+dataset_local_directory: ${dataset_id_or_path}
+make_dataset_fn:
+  dataset_id_or_path: ${dataset_id_or_path}
+  dataset_local_directory: ${dataset_local_directory}
+  model_name_or_path: ${model_name_or_path}
+  _target_: custom_data.sft_data.load_formatted_sft_dataset
+  process_line_fn:
+    _target_: custom_data.teacher_data.get_process_line_fn
+    dataset_id_or_path: ${dataset_id_or_path}
+    system_prompt_style: ${system_prompt_style}
+    return_student_prompt_info: ${return_student_prompt_info}
+    add_text_completions: ${add_text_completions}
+  completion_only_training: ${completion_only_training}
+  custom_start_of_response: ${custom_start_of_response}
+  keep_columns: ${keep_columns}
+  add_dataset_indices: ${add_dataset_indices}
+dataset_configs:
+- all
+completion_only_training: false
+custom_start_of_response:
+  _target_: custom_data.teacher_data.get_teacher_data_mask_delimiter
+  system_prompt_style: ${system_prompt_style}
+  mask_teacher_answer: ${mask_teacher_answer}
+  dataset_id_or_path: ${dataset_id_or_path}
+keep_columns: null
+add_dataset_indices: false
+system_prompt_style: stratos
+mask_teacher_answer: true
+return_student_prompt_info: true
+add_text_completions: false
+max_steps: -1
+num_train_epochs: 1.0
+train_batch_size: 512
+per_device_train_batch_size: 1
+gradient_accumulation_steps: ???
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  _target_: builtins.dict
+  use_reentrant: false
+learning_rate: 1.0e-06
+weight_decay: 0
+adam_beta1: 0.9
+adam_beta2: 0.999
+adam_epsilon: 1.0e-08
+max_grad_norm: 1.0
+lr_scheduler_type: constant
+lr_scheduler_kwargs: null
+warmup_ratio: 0.03
+bf16: true
+tf32: true
+ddp_timeout: 18000
+trainer_log_name: teacher_grpo_rw_${reward_log_name}
+trainer_args:
+  _target_: trainers.GRPOConfig
+  output_dir: ${output_dir}
+  max_steps: ${max_steps}
+  num_train_epochs: ${num_train_epochs}
+  per_device_train_batch_size: ${per_device_train_batch_size}
+  gradient_accumulation_steps: ${gradient_accumulation_steps}
+  gradient_checkpointing: ${gradient_checkpointing}
+  gradient_checkpointing_kwargs: ${gradient_checkpointing_kwargs}
+  learning_rate: ${learning_rate}
+  weight_decay: ${weight_decay}
+  adam_beta1: ${adam_beta1}
+  adam_beta2: ${adam_beta2}
+  adam_epsilon: ${adam_epsilon}
+  max_grad_norm: ${max_grad_norm}
+  lr_scheduler_type: ${lr_scheduler_type}
+  lr_scheduler_kwargs: ${lr_scheduler_kwargs}
+  warmup_ratio: ${warmup_ratio}
+  logging_strategy: ${logging_strategy}
+  logging_steps: ${logging_steps}
+  save_strategy: ${save_strategy}
+  save_steps: ${save_steps}
+  report_to: ${report_to}
+  run_name: ${wandb_run_name}
+  bf16: ${bf16}
+  tf32: ${tf32}
+  seed: ${seed}
+  ddp_timeout: ${ddp_timeout}
+  model_init_kwargs: ${model_init_kwargs}
+  remove_unused_columns: ${remove_unused_columns}
+  max_prompt_length: ${max_prompt_length}
+  num_generations: ${num_generations}
+  max_completion_length: ${max_completion_length}
+  shuffle_generation_inputs: ${shuffle_generation_inputs}
+  ds3_gather_for_generation: ${ds3_gather_for_generation}
+  temperature: ${temperature}
+  top_p: ${top_p}
+  top_k: ${top_k}
+  min_p: ${min_p}
+  repetition_penalty: ${repetition_penalty}
+  generation_aggregation_steps: ${generation_aggregation_steps}
+  use_vllm: ${use_vllm}
+  vllm_device: ${vllm_device}
+  vllm_gpu_memory_utilization: ${vllm_gpu_memory_utilization}
+  vllm_dtype: ${vllm_dtype}
+  vllm_max_model_len: ${vllm_max_model_len}
+  use_ray: ${use_ray}
+  ray_share_training_devices: ${ray_share_training_devices}
+  ray_tensor_parallelism: ${ray_tensor_parallelism}
+  ray_data_parallelism: ${ray_data_parallelism}
+  ray_no_memory_duplication: ${ray_no_memory_duplication}
+  enable_prefix_caching: ${enable_prefix_caching}
+  enforce_eager: ${enforce_eager}
+  vllm_sleep_level: ${vllm_sleep_level}
+  use_vllm_server: ${use_vllm_server}
+  vllm_host: ${vllm_host}
+  vllm_port: ${vllm_port}
+  vllm_group_port: ${vllm_group_port}
+  num_vllm_clients: ${num_vllm_clients}
+  beta: ${beta}
+  reward_weights: ${reward_weights}
+  sync_ref_model: ${sync_ref_model}
+  ref_model_mixup_alpha: ${ref_model_mixup_alpha}
+  ref_model_sync_steps: ${ref_model_sync_steps}
+  log_completions: ${log_completions}
+  save_completions_probability: ${save_completions_probability}
+  artificial_epochs: ${artificial_epochs}
+  backprop_accumulation_steps: ${backprop_accumulation_steps}
+  backprop_accumulation_micro_batch_size: ${backprop_accumulation_micro_batch_size}
+  offload_untrained_models: ${offload_untrained_models}
+  unbias_log_probabilities: ${unbias_log_probabilities}
+  activate_debugging_logs: ${activate_debugging_logs}
+  push_to_hub: ${push_to_hub}
+trainer:
+  _target_: trainers.TeacherGRPOTrainer
+  model: ${model_name_or_path}
+  args: ${trainer_args}
+  peft_config: ${peft_config}
+  reward_funcs: ${reward_fns}
+  student_model: ${student_model}
+  use_reference_teacher_model: ${use_reference_teacher_model}
+  student_model_init_kwargs: ${student_model_init_kwargs}
+  logging_prob: ${logging_prob}
+  disable_student_offloading: ${disable_student_offloading}
+artificial_epochs: 1
+num_generations: 128
+beta: 0.04
+model_init_kwargs: null
+remove_unused_columns: false
+max_prompt_length: 16384
+max_completion_length: 16384
+shuffle_generation_inputs: true
+ds3_gather_for_generation: true
+temperature: 0.7
+top_p: 1.0
+top_k: null
+min_p: null
+repetition_penalty: 1.0
+generation_aggregation_steps: 64
+use_vllm: false
+vllm_device: auto
+vllm_gpu_memory_utilization: 0.9
+vllm_dtype: auto
+vllm_max_model_len: null
+use_ray: false
+ray_share_training_devices: false
+ray_tensor_parallelism: 1
+ray_data_parallelism: null
+ray_no_memory_duplication: false
+vllm_sleep_level: 0
+enable_prefix_caching: false
+enforce_eager: true
+use_vllm_server: true
+vllm_host: osk-gpu70
+vllm_port: 8765
+vllm_group_port: 51216
+num_vllm_clients: 8
+reward_weights: null
+sync_ref_model: true
+ref_model_mixup_alpha: 0.9
+ref_model_sync_steps: 64
+backprop_accumulation_steps: null
+backprop_accumulation_micro_batch_size: null
+offload_untrained_models: false
+unbias_log_probabilities: true
+log_completions: false
+save_completions_probability: 0.1
+activate_debugging_logs: false
+reward_log_name: student_solution_kl_reg
+answer_log_prob_coeff:
+- 1
+- 0.01
+kl_penalty_reward_coeff:
+- 3
+- 0.03
+normalize_log_prob_fn: null
+clip_log_prob: 100000
+normalize_kl_fn: null
+clip_kl: 100000
+reduction_log_prob_fn:
+- mean
+- min
+reduction_kl_fn:
+- mean
+- max
+use_schulman_kl_estimation: false
+not_matched_penalty: -1.0
+unbias_teacher_log_probs: true
+unbias_student_log_probs_temp: 0.7
+include_teacher_think_entropy: true
+correct_generation_coeff: 0.0
+correct_generation_rollouts: 8
+student_generation_kwargs: {}
+student_generation_check_stategy: ground_truth
+formatting_sub_rewards: []
+evaluate_refined_solution: false
+teacher_reward:
+  _target_: trainers.TeacherKLBasedReward
+  student_model: null
+  teacher_model: null
+  tokenizer: null
+  answer_log_prob_coeff: ${answer_log_prob_coeff}
+  kl_penalty_reward_coeff: ${kl_penalty_reward_coeff}
+  normalize_log_prob_fn: ${normalize_log_prob_fn}
+  clip_log_prob: ${clip_log_prob}
+  normalize_kl_fn: ${normalize_kl_fn}
+  clip_kl: ${clip_kl}
+  reduction_log_prob_fn: ${reduction_log_prob_fn}
+  reduction_kl_fn: ${reduction_kl_fn}
+  use_schulman_kl_estimation: ${use_schulman_kl_estimation}
+  not_matched_penalty: ${not_matched_penalty}
+  unbias_teacher_log_probs: ${unbias_teacher_log_probs}
+  unbias_student_log_probs_temp: ${unbias_student_log_probs_temp}
+  include_teacher_think_entropy: ${include_teacher_think_entropy}
+  correct_generation_coeff: ${correct_generation_coeff}
+  correct_generation_rollouts: ${correct_generation_rollouts}
+  generation_kwargs: ${student_generation_kwargs}
+  generation_check_stategy: ${student_generation_check_stategy}
+  formatting_sub_rewards: ${formatting_sub_rewards}
+  evaluate_refined_solution: ${evaluate_refined_solution}
+reward_fns:
+  _target_: hydra_utils.wrap_as_list
+  teacher_reward: ${teacher_reward}
+logging_prob: 0.1
+student_model: Qwen/Qwen3-14B
+use_reference_teacher_model: false
+student_model_init_kwargs: null
+disable_student_offloading: false
+do_eval: true
+eval_strategy: steps
+eval_steps: 2
+wandb_entity: llm-compe-2025-kato
+log_ctx_name: gr${num_generations}_${max_prompt_length}ctx_${max_completion_length}gen
+
+[2025-08-18 21:11:49,379][__main__][INFO] - Accumulation steps 64 ----
+[2025-08-18 21:11:49,499][__main__][INFO] - Configuration:
+save_final_model: true
+save_strategy: steps
+save_steps: 2
+push_to_hub: false
+tags: null
+call_post_training: null
+logging_strategy: steps
+logging_steps: 1
+report_to: wandb
+wandb_project: honban_step2_rlt
+wandb_group_name: ${data_log_name}/${model_log_name}
+wandb_run_name: ${trainer_log_name}
+results_dir: /home/Competition2025/P07/shareP07/share_model/step2_rlt
+exp_name: ${now:%Y.%m.%d}${now:%H%M%S}
+output_dir: ${results_dir}/Qwen3-14B-step2-deepmath103k-bs${train_batch_size}
+resume_from: ${output_dir}
+seed: 42
+model_log_name: qwen3-14b
+model_name_or_path: llm-compe-2025-kato/Qwen3-14B-Step1-Bespoke17k-ep1
+tokenizer_name_or_path: ${model_name_or_path}
+model_args:
+  _target_: hydra_utils.trl.ModelConfig
+  model_name_or_path: ${model_name_or_path}
+  trust_remote_code: true
+  use_peft: ${use_peft}
+  load_in_4bit: ${load_in_4bit}
+  model_revision: main
+  torch_dtype: bfloat16
+  attn_implementation: flash_attention_2
+use_peft: false
+load_in_4bit: false
+tokenizer:
+  _target_: hydra_utils.transformers.AutoTokenizer.from_pretrained
+  pretrained_model_name_or_path: ${tokenizer_name_or_path}
+  trust_remote_code: true
+  padding_side: left
+  model_revision: ${model_args.model_revision}
+unsafe_tokenizer_loading: false
+make_tokenizer_fn:
+  _target_: hydra_utils.fix_pad_token
+  tokenizer: ${tokenizer}
+  model_name: ${model_name_or_path}
+  unsafe: ${unsafe_tokenizer_loading}
+peft_config:
+  _target_: hydra_utils.trl.get_peft_config
+  model_args: ${model_args}
+data_log_name: stage2_data
+dataset_id_or_path: Nishi0923/DeepMath-103K-Bespoke-Filtered-Pilot-5K
+dataset_local_directory: ${dataset_id_or_path}
+make_dataset_fn:
+  dataset_id_or_path: ${dataset_id_or_path}
+  dataset_local_directory: ${dataset_local_directory}
+  model_name_or_path: ${model_name_or_path}
+  _target_: custom_data.sft_data.load_formatted_sft_dataset
+  process_line_fn:
+    _target_: custom_data.teacher_data.get_process_line_fn
+    dataset_id_or_path: ${dataset_id_or_path}
+    system_prompt_style: ${system_prompt_style}
+    return_student_prompt_info: ${return_student_prompt_info}
+    add_text_completions: ${add_text_completions}
+  completion_only_training: ${completion_only_training}
+  custom_start_of_response: ${custom_start_of_response}
+  keep_columns: ${keep_columns}
+  add_dataset_indices: ${add_dataset_indices}
+dataset_configs:
+- all
+completion_only_training: false
+custom_start_of_response:
+  _target_: custom_data.teacher_data.get_teacher_data_mask_delimiter
+  system_prompt_style: ${system_prompt_style}
+  mask_teacher_answer: ${mask_teacher_answer}
+  dataset_id_or_path: ${dataset_id_or_path}
+keep_columns: null
+add_dataset_indices: false
+system_prompt_style: stratos
+mask_teacher_answer: true
+return_student_prompt_info: true
+add_text_completions: false
+max_steps: -1
+num_train_epochs: 1.0
+train_batch_size: 512
+per_device_train_batch_size: 1
+gradient_accumulation_steps: ???
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  _target_: builtins.dict
+  use_reentrant: false
+learning_rate: 1.0e-06
+weight_decay: 0
+adam_beta1: 0.9
+adam_beta2: 0.999
+adam_epsilon: 1.0e-08
+max_grad_norm: 1.0
+lr_scheduler_type: constant
+lr_scheduler_kwargs: null
+warmup_ratio: 0.03
+bf16: true
+tf32: true
+ddp_timeout: 18000
+trainer_log_name: teacher_grpo_rw_${reward_log_name}
+trainer_args:
+  _target_: trainers.GRPOConfig
+  output_dir: ${output_dir}
+  max_steps: ${max_steps}
+  num_train_epochs: ${num_train_epochs}
+  per_device_train_batch_size: ${per_device_train_batch_size}
+  gradient_accumulation_steps: ${gradient_accumulation_steps}
+  gradient_checkpointing: ${gradient_checkpointing}
+  gradient_checkpointing_kwargs: ${gradient_checkpointing_kwargs}
+  learning_rate: ${learning_rate}
+  weight_decay: ${weight_decay}
+  adam_beta1: ${adam_beta1}
+  adam_beta2: ${adam_beta2}
+  adam_epsilon: ${adam_epsilon}
+  max_grad_norm: ${max_grad_norm}
+  lr_scheduler_type: ${lr_scheduler_type}
+  lr_scheduler_kwargs: ${lr_scheduler_kwargs}
+  warmup_ratio: ${warmup_ratio}
+  logging_strategy: ${logging_strategy}
+  logging_steps: ${logging_steps}
+  save_strategy: ${save_strategy}
+  save_steps: ${save_steps}
+  report_to: ${report_to}
+  run_name: ${wandb_run_name}
+  bf16: ${bf16}
+  tf32: ${tf32}
+  seed: ${seed}
+  ddp_timeout: ${ddp_timeout}
+  model_init_kwargs: ${model_init_kwargs}
+  remove_unused_columns: ${remove_unused_columns}
+  max_prompt_length: ${max_prompt_length}
+  num_generations: ${num_generations}
+  max_completion_length: ${max_completion_length}
+  shuffle_generation_inputs: ${shuffle_generation_inputs}
+  ds3_gather_for_generation: ${ds3_gather_for_generation}
+  temperature: ${temperature}
+  top_p: ${top_p}
+  top_k: ${top_k}
+  min_p: ${min_p}
+  repetition_penalty: ${repetition_penalty}
+  generation_aggregation_steps: ${generation_aggregation_steps}
+  use_vllm: ${use_vllm}
+  vllm_device: ${vllm_device}
+  vllm_gpu_memory_utilization: ${vllm_gpu_memory_utilization}
+  vllm_dtype: ${vllm_dtype}
+  vllm_max_model_len: ${vllm_max_model_len}
+  use_ray: ${use_ray}
+  ray_share_training_devices: ${ray_share_training_devices}
+  ray_tensor_parallelism: ${ray_tensor_parallelism}
+  ray_data_parallelism: ${ray_data_parallelism}
+  ray_no_memory_duplication: ${ray_no_memory_duplication}
+  enable_prefix_caching: ${enable_prefix_caching}
+  enforce_eager: ${enforce_eager}
+  vllm_sleep_level: ${vllm_sleep_level}
+  use_vllm_server: ${use_vllm_server}
+  vllm_host: ${vllm_host}
+  vllm_port: ${vllm_port}
+  vllm_group_port: ${vllm_group_port}
+  num_vllm_clients: ${num_vllm_clients}
+  beta: ${beta}
+  reward_weights: ${reward_weights}
+  sync_ref_model: ${sync_ref_model}
+  ref_model_mixup_alpha: ${ref_model_mixup_alpha}
+  ref_model_sync_steps: ${ref_model_sync_steps}
+  log_completions: ${log_completions}
+  save_completions_probability: ${save_completions_probability}
+  artificial_epochs: ${artificial_epochs}
+  backprop_accumulation_steps: ${backprop_accumulation_steps}
+  backprop_accumulation_micro_batch_size: ${backprop_accumulation_micro_batch_size}
+  offload_untrained_models: ${offload_untrained_models}
+  unbias_log_probabilities: ${unbias_log_probabilities}
+  activate_debugging_logs: ${activate_debugging_logs}
+  push_to_hub: ${push_to_hub}
+trainer:
+  _target_: trainers.TeacherGRPOTrainer
+  model: ${model_name_or_path}
+  args: ${trainer_args}
+  peft_config: ${peft_config}
+  reward_funcs: ${reward_fns}
+  student_model: ${student_model}
+  use_reference_teacher_model: ${use_reference_teacher_model}
+  student_model_init_kwargs: ${student_model_init_kwargs}
+  logging_prob: ${logging_prob}
+  disable_student_offloading: ${disable_student_offloading}
+artificial_epochs: 1
+num_generations: 128
+beta: 0.04
+model_init_kwargs: null
+remove_unused_columns: false
+max_prompt_length: 16384
+max_completion_length: 16384
+shuffle_generation_inputs: true
+ds3_gather_for_generation: true
+temperature: 0.7
+top_p: 1.0
+top_k: null
+min_p: null
+repetition_penalty: 1.0
+generation_aggregation_steps: 64
+use_vllm: false
+vllm_device: auto
+vllm_gpu_memory_utilization: 0.9
+vllm_dtype: auto
+vllm_max_model_len: null
+use_ray: false
+ray_share_training_devices: false
+ray_tensor_parallelism: 1
+ray_data_parallelism: null
+ray_no_memory_duplication: false
+vllm_sleep_level: 0
+enable_prefix_caching: false
+enforce_eager: true
+use_vllm_server: true
+vllm_host: osk-gpu70
+vllm_port: 8765
+vllm_group_port: 51216
+num_vllm_clients: 8
+reward_weights: null
+sync_ref_model: true
+ref_model_mixup_alpha: 0.9
+ref_model_sync_steps: 64
+backprop_accumulation_steps: null
+backprop_accumulation_micro_batch_size: null
+offload_untrained_models: false
+unbias_log_probabilities: true
+log_completions: false
+save_completions_probability: 0.1
+activate_debugging_logs: false
+reward_log_name: student_solution_kl_reg
+answer_log_prob_coeff:
+- 1
+- 0.01
+kl_penalty_reward_coeff:
+- 3
+- 0.03
+normalize_log_prob_fn: null
+clip_log_prob: 100000
+normalize_kl_fn: null
+clip_kl: 100000
+reduction_log_prob_fn:
+- mean
+- min
+reduction_kl_fn:
+- mean
+- max
+use_schulman_kl_estimation: false
+not_matched_penalty: -1.0
+unbias_teacher_log_probs: true
+unbias_student_log_probs_temp: 0.7
+include_teacher_think_entropy: true
+correct_generation_coeff: 0.0
+correct_generation_rollouts: 8
+student_generation_kwargs: {}
+student_generation_check_stategy: ground_truth
+formatting_sub_rewards: []
+evaluate_refined_solution: false
+teacher_reward:
+  _target_: trainers.TeacherKLBasedReward
+  student_model: null
+  teacher_model: null
+  tokenizer: null
+  answer_log_prob_coeff: ${answer_log_prob_coeff}
+  kl_penalty_reward_coeff: ${kl_penalty_reward_coeff}
+  normalize_log_prob_fn: ${normalize_log_prob_fn}
+  clip_log_prob: ${clip_log_prob}
+  normalize_kl_fn: ${normalize_kl_fn}
+  clip_kl: ${clip_kl}
+  reduction_log_prob_fn: ${reduction_log_prob_fn}
+  reduction_kl_fn: ${reduction_kl_fn}
+  use_schulman_kl_estimation: ${use_schulman_kl_estimation}
+  not_matched_penalty: ${not_matched_penalty}
+  unbias_teacher_log_probs: ${unbias_teacher_log_probs}
+  unbias_student_log_probs_temp: ${unbias_student_log_probs_temp}
+  include_teacher_think_entropy: ${include_teacher_think_entropy}
+  correct_generation_coeff: ${correct_generation_coeff}
+  correct_generation_rollouts: ${correct_generation_rollouts}
+  generation_kwargs: ${student_generation_kwargs}
+  generation_check_stategy: ${student_generation_check_stategy}
+  formatting_sub_rewards: ${formatting_sub_rewards}
+  evaluate_refined_solution: ${evaluate_refined_solution}
+reward_fns:
+  _target_: hydra_utils.wrap_as_list
+  teacher_reward: ${teacher_reward}
+logging_prob: 0.1
+student_model: Qwen/Qwen3-14B
+use_reference_teacher_model: false
+student_model_init_kwargs: null
+disable_student_offloading: false
+do_eval: true
+eval_strategy: steps
+eval_steps: 2
+wandb_entity: llm-compe-2025-kato
+log_ctx_name: gr${num_generations}_${max_prompt_length}ctx_${max_completion_length}gen
+
+[2025-08-18 21:11:49,500][__main__][INFO] - Accumulation steps 64 ----
+[2025-08-18 21:11:49,545][__main__][INFO] - Configuration:
+save_final_model: true
+save_strategy: steps
+save_steps: 2
+push_to_hub: false
+tags: null
+call_post_training: null
+logging_strategy: steps
+logging_steps: 1
+report_to: wandb
+wandb_project: honban_step2_rlt
+wandb_group_name: ${data_log_name}/${model_log_name}
+wandb_run_name: ${trainer_log_name}
+results_dir: /home/Competition2025/P07/shareP07/share_model/step2_rlt
+exp_name: ${now:%Y.%m.%d}${now:%H%M%S}
+output_dir: ${results_dir}/Qwen3-14B-step2-deepmath103k-bs${train_batch_size}
+resume_from: ${output_dir}
+seed: 42
+model_log_name: qwen3-14b
+model_name_or_path: llm-compe-2025-kato/Qwen3-14B-Step1-Bespoke17k-ep1
+tokenizer_name_or_path: ${model_name_or_path}
+model_args:
+  _target_: hydra_utils.trl.ModelConfig
+  model_name_or_path: ${model_name_or_path}
+  trust_remote_code: true
+  use_peft: ${use_peft}
+  load_in_4bit: ${load_in_4bit}
+  model_revision: main
+  torch_dtype: bfloat16
+  attn_implementation: flash_attention_2
+use_peft: false
+load_in_4bit: false
+tokenizer:
+  _target_: hydra_utils.transformers.AutoTokenizer.from_pretrained
+  pretrained_model_name_or_path: ${tokenizer_name_or_path}
+  trust_remote_code: true
+  padding_side: left
+  model_revision: ${model_args.model_revision}
+unsafe_tokenizer_loading: false
+make_tokenizer_fn:
+  _target_: hydra_utils.fix_pad_token
+  tokenizer: ${tokenizer}
+  model_name: ${model_name_or_path}
+  unsafe: ${unsafe_tokenizer_loading}
+peft_config:
+  _target_: hydra_utils.trl.get_peft_config
+  model_args: ${model_args}
+data_log_name: stage2_data
+dataset_id_or_path: Nishi0923/DeepMath-103K-Bespoke-Filtered-Pilot-5K
+dataset_local_directory: ${dataset_id_or_path}
+make_dataset_fn:
+  dataset_id_or_path: ${dataset_id_or_path}
+  dataset_local_directory: ${dataset_local_directory}
+  model_name_or_path: ${model_name_or_path}
+  _target_: custom_data.sft_data.load_formatted_sft_dataset
+  process_line_fn:
+    _target_: custom_data.teacher_data.get_process_line_fn
+    dataset_id_or_path: ${dataset_id_or_path}
+    system_prompt_style: ${system_prompt_style}
+    return_student_prompt_info: ${return_student_prompt_info}
+    add_text_completions: ${add_text_completions}
+  completion_only_training: ${completion_only_training}
+  custom_start_of_response: ${custom_start_of_response}
+  keep_columns: ${keep_columns}
+  add_dataset_indices: ${add_dataset_indices}
+dataset_configs:
+- all
+completion_only_training: false
+custom_start_of_response:
+  _target_: custom_data.teacher_data.get_teacher_data_mask_delimiter
+  system_prompt_style: ${system_prompt_style}
+  mask_teacher_answer: ${mask_teacher_answer}
+  dataset_id_or_path: ${dataset_id_or_path}
+keep_columns: null
+add_dataset_indices: false
+system_prompt_style: stratos
+mask_teacher_answer: true
+return_student_prompt_info: true
+add_text_completions: false
+max_steps: -1
+num_train_epochs: 1.0
+train_batch_size: 512
+per_device_train_batch_size: 1
+gradient_accumulation_steps: ???
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  _target_: builtins.dict
+  use_reentrant: false
+learning_rate: 1.0e-06
+weight_decay: 0
+adam_beta1: 0.9
+adam_beta2: 0.999
+adam_epsilon: 1.0e-08
+max_grad_norm: 1.0
+lr_scheduler_type: constant
+lr_scheduler_kwargs: null
+warmup_ratio: 0.03
+bf16: true
+tf32: true
+ddp_timeout: 18000
+trainer_log_name: teacher_grpo_rw_${reward_log_name}
+trainer_args:
+  _target_: trainers.GRPOConfig
+  output_dir: ${output_dir}
+  max_steps: ${max_steps}
+  num_train_epochs: ${num_train_epochs}
+  per_device_train_batch_size: ${per_device_train_batch_size}
+  gradient_accumulation_steps: ${gradient_accumulation_steps}
+  gradient_checkpointing: ${gradient_checkpointing}
+  gradient_checkpointing_kwargs: ${gradient_checkpointing_kwargs}
+  learning_rate: ${learning_rate}
+  weight_decay: ${weight_decay}
+  adam_beta1: ${adam_beta1}
+  adam_beta2: ${adam_beta2}
+  adam_epsilon: ${adam_epsilon}
+  max_grad_norm: ${max_grad_norm}
+  lr_scheduler_type: ${lr_scheduler_type}
+  lr_scheduler_kwargs: ${lr_scheduler_kwargs}
+  warmup_ratio: ${warmup_ratio}
+  logging_strategy: ${logging_strategy}
+  logging_steps: ${logging_steps}
+  save_strategy: ${save_strategy}
+  save_steps: ${save_steps}
+  report_to: ${report_to}
+  run_name: ${wandb_run_name}
+  bf16: ${bf16}
+  tf32: ${tf32}
+  seed: ${seed}
+  ddp_timeout: ${ddp_timeout}
+  model_init_kwargs: ${model_init_kwargs}
+  remove_unused_columns: ${remove_unused_columns}
+  max_prompt_length: ${max_prompt_length}
+  num_generations: ${num_generations}
+  max_completion_length: ${max_completion_length}
+  shuffle_generation_inputs: ${shuffle_generation_inputs}
+  ds3_gather_for_generation: ${ds3_gather_for_generation}
+  temperature: ${temperature}
+  top_p: ${top_p}
+  top_k: ${top_k}
+  min_p: ${min_p}
+  repetition_penalty: ${repetition_penalty}
+  generation_aggregation_steps: ${generation_aggregation_steps}
+  use_vllm: ${use_vllm}
+  vllm_device: ${vllm_device}
+  vllm_gpu_memory_utilization: ${vllm_gpu_memory_utilization}
+  vllm_dtype: ${vllm_dtype}
+  vllm_max_model_len: ${vllm_max_model_len}
+  use_ray: ${use_ray}
+  ray_share_training_devices: ${ray_share_training_devices}
+  ray_tensor_parallelism: ${ray_tensor_parallelism}
+  ray_data_parallelism: ${ray_data_parallelism}
+  ray_no_memory_duplication: ${ray_no_memory_duplication}
+  enable_prefix_caching: ${enable_prefix_caching}
+  enforce_eager: ${enforce_eager}
+  vllm_sleep_level: ${vllm_sleep_level}
+  use_vllm_server: ${use_vllm_server}
+  vllm_host: ${vllm_host}
+  vllm_port: ${vllm_port}
+  vllm_group_port: ${vllm_group_port}
+  num_vllm_clients: ${num_vllm_clients}
+  beta: ${beta}
+  reward_weights: ${reward_weights}
+  sync_ref_model: ${sync_ref_model}
+  ref_model_mixup_alpha: ${ref_model_mixup_alpha}
+  ref_model_sync_steps: ${ref_model_sync_steps}
+  log_completions: ${log_completions}
+  save_completions_probability: ${save_completions_probability}
+  artificial_epochs: ${artificial_epochs}
+  backprop_accumulation_steps: ${backprop_accumulation_steps}
+  backprop_accumulation_micro_batch_size: ${backprop_accumulation_micro_batch_size}
+  offload_untrained_models: ${offload_untrained_models}
+  unbias_log_probabilities: ${unbias_log_probabilities}
+  activate_debugging_logs: ${activate_debugging_logs}
+  push_to_hub: ${push_to_hub}
+trainer:
+  _target_: trainers.TeacherGRPOTrainer
+  model: ${model_name_or_path}
+  args: ${trainer_args}
+  peft_config: ${peft_config}
+  reward_funcs: ${reward_fns}
+  student_model: ${student_model}
+  use_reference_teacher_model: ${use_reference_teacher_model}
+  student_model_init_kwargs: ${student_model_init_kwargs}
+  logging_prob: ${logging_prob}
+  disable_student_offloading: ${disable_student_offloading}
+artificial_epochs: 1
+num_generations: 128
+beta: 0.04
+model_init_kwargs: null
+remove_unused_columns: false
+max_prompt_length: 16384
+max_completion_length: 16384
+shuffle_generation_inputs: true
+ds3_gather_for_generation: true
+temperature: 0.7
+top_p: 1.0
+top_k: null
+min_p: null
+repetition_penalty: 1.0
+generation_aggregation_steps: 64
+use_vllm: false
+vllm_device: auto
+vllm_gpu_memory_utilization: 0.9
+vllm_dtype: auto
+vllm_max_model_len: null
+use_ray: false
+ray_share_training_devices: false
+ray_tensor_parallelism: 1
+ray_data_parallelism: null
+ray_no_memory_duplication: false
+vllm_sleep_level: 0
+enable_prefix_caching: false
+enforce_eager: true
+use_vllm_server: true
+vllm_host: osk-gpu70
+vllm_port: 8765
+vllm_group_port: 51216
+num_vllm_clients: 8
+reward_weights: null
+sync_ref_model: true
+ref_model_mixup_alpha: 0.9
+ref_model_sync_steps: 64
+backprop_accumulation_steps: null
+backprop_accumulation_micro_batch_size: null
+offload_untrained_models: false
+unbias_log_probabilities: true
+log_completions: false
+save_completions_probability: 0.1
+activate_debugging_logs: false
+reward_log_name: student_solution_kl_reg
+answer_log_prob_coeff:
+- 1
+- 0.01
+kl_penalty_reward_coeff:
+- 3
+- 0.03
+normalize_log_prob_fn: null
+clip_log_prob: 100000
+normalize_kl_fn: null
+clip_kl: 100000
+reduction_log_prob_fn:
+- mean
+- min
+reduction_kl_fn:
+- mean
+- max
+use_schulman_kl_estimation: false
+not_matched_penalty: -1.0
+unbias_teacher_log_probs: true
+unbias_student_log_probs_temp: 0.7
+include_teacher_think_entropy: true
+correct_generation_coeff: 0.0
+correct_generation_rollouts: 8
+student_generation_kwargs: {}
+student_generation_check_stategy: ground_truth
+formatting_sub_rewards: []
+evaluate_refined_solution: false
+teacher_reward:
+  _target_: trainers.TeacherKLBasedReward
+  student_model: null
+  teacher_model: null
+  tokenizer: null
+  answer_log_prob_coeff: ${answer_log_prob_coeff}
+  kl_penalty_reward_coeff: ${kl_penalty_reward_coeff}
+  normalize_log_prob_fn: ${normalize_log_prob_fn}
+  clip_log_prob: ${clip_log_prob}
+  normalize_kl_fn: ${normalize_kl_fn}
+  clip_kl: ${clip_kl}
+  reduction_log_prob_fn: ${reduction_log_prob_fn}
+  reduction_kl_fn: ${reduction_kl_fn}
+  use_schulman_kl_estimation: ${use_schulman_kl_estimation}
+  not_matched_penalty: ${not_matched_penalty}
+  unbias_teacher_log_probs: ${unbias_teacher_log_probs}
+  unbias_student_log_probs_temp: ${unbias_student_log_probs_temp}
+  include_teacher_think_entropy: ${include_teacher_think_entropy}
+  correct_generation_coeff: ${correct_generation_coeff}
+  correct_generation_rollouts: ${correct_generation_rollouts}
+  generation_kwargs: ${student_generation_kwargs}
+  generation_check_stategy: ${student_generation_check_stategy}
+  formatting_sub_rewards: ${formatting_sub_rewards}
+  evaluate_refined_solution: ${evaluate_refined_solution}
+reward_fns:
+  _target_: hydra_utils.wrap_as_list
+  teacher_reward: ${teacher_reward}
+logging_prob: 0.1
+student_model: Qwen/Qwen3-14B
+use_reference_teacher_model: false
+student_model_init_kwargs: null
+disable_student_offloading: false
+do_eval: true
+eval_strategy: steps
+eval_steps: 2
+wandb_entity: llm-compe-2025-kato
+log_ctx_name: gr${num_generations}_${max_prompt_length}ctx_${max_completion_length}gen
+
+[2025-08-18 21:11:49,551][__main__][INFO] - Accumulation steps 64 ----
+[2025-08-18 21:11:49,956][__main__][INFO] - Configuration:
+save_final_model: true
+save_strategy: steps
+save_steps: 2
+push_to_hub: false
+tags: null
+call_post_training: null
+logging_strategy: steps
+logging_steps: 1
+report_to: wandb
+wandb_project: honban_step2_rlt
+wandb_group_name: ${data_log_name}/${model_log_name}
+wandb_run_name: ${trainer_log_name}
+results_dir: /home/Competition2025/P07/shareP07/share_model/step2_rlt
+exp_name: ${now:%Y.%m.%d}${now:%H%M%S}
+output_dir: ${results_dir}/Qwen3-14B-step2-deepmath103k-bs${train_batch_size}
+resume_from: ${output_dir}
+seed: 42
+model_log_name: qwen3-14b
+model_name_or_path: llm-compe-2025-kato/Qwen3-14B-Step1-Bespoke17k-ep1
+tokenizer_name_or_path: ${model_name_or_path}
+model_args:
+  _target_: hydra_utils.trl.ModelConfig
+  model_name_or_path: ${model_name_or_path}
+  trust_remote_code: true
+  use_peft: ${use_peft}
+  load_in_4bit: ${load_in_4bit}
+  model_revision: main
+  torch_dtype: bfloat16
+  attn_implementation: flash_attention_2
+use_peft: false
+load_in_4bit: false
+tokenizer:
+  _target_: hydra_utils.transformers.AutoTokenizer.from_pretrained
+  pretrained_model_name_or_path: ${tokenizer_name_or_path}
+  trust_remote_code: true
+  padding_side: left
+  model_revision: ${model_args.model_revision}
+unsafe_tokenizer_loading: false
+make_tokenizer_fn:
+  _target_: hydra_utils.fix_pad_token
+  tokenizer: ${tokenizer}
+  model_name: ${model_name_or_path}
+  unsafe: ${unsafe_tokenizer_loading}
+peft_config:
+  _target_: hydra_utils.trl.get_peft_config
+  model_args: ${model_args}
+data_log_name: stage2_data
+dataset_id_or_path: Nishi0923/DeepMath-103K-Bespoke-Filtered-Pilot-5K
+dataset_local_directory: ${dataset_id_or_path}
+make_dataset_fn:
+  dataset_id_or_path: ${dataset_id_or_path}
+  dataset_local_directory: ${dataset_local_directory}
+  model_name_or_path: ${model_name_or_path}
+  _target_: custom_data.sft_data.load_formatted_sft_dataset
+  process_line_fn:
+    _target_: custom_data.teacher_data.get_process_line_fn
+    dataset_id_or_path: ${dataset_id_or_path}
+    system_prompt_style: ${system_prompt_style}
+    return_student_prompt_info: ${return_student_prompt_info}
+    add_text_completions: ${add_text_completions}
+  completion_only_training: ${completion_only_training}
+  custom_start_of_response: ${custom_start_of_response}
+  keep_columns: ${keep_columns}
+  add_dataset_indices: ${add_dataset_indices}
+dataset_configs:
+- all
+completion_only_training: false
+custom_start_of_response:
+  _target_: custom_data.teacher_data.get_teacher_data_mask_delimiter
+  system_prompt_style: ${system_prompt_style}
+  mask_teacher_answer: ${mask_teacher_answer}
+  dataset_id_or_path: ${dataset_id_or_path}
+keep_columns: null
+add_dataset_indices: false
+system_prompt_style: stratos
+mask_teacher_answer: true
+return_student_prompt_info: true
+add_text_completions: false
+max_steps: -1
+num_train_epochs: 1.0
+train_batch_size: 512
+per_device_train_batch_size: 1
+gradient_accumulation_steps: ???
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  _target_: builtins.dict
+  use_reentrant: false
+learning_rate: 1.0e-06
+weight_decay: 0
+adam_beta1: 0.9
+adam_beta2: 0.999
+adam_epsilon: 1.0e-08
+max_grad_norm: 1.0
+lr_scheduler_type: constant
+lr_scheduler_kwargs: null
+warmup_ratio: 0.03
+bf16: true
+tf32: true
+ddp_timeout: 18000
+trainer_log_name: teacher_grpo_rw_${reward_log_name}
+trainer_args:
+  _target_: trainers.GRPOConfig
+  output_dir: ${output_dir}
+  max_steps: ${max_steps}
+  num_train_epochs: ${num_train_epochs}
+  per_device_train_batch_size: ${per_device_train_batch_size}
+  gradient_accumulation_steps: ${gradient_accumulation_steps}
+  gradient_checkpointing: ${gradient_checkpointing}
+  gradient_checkpointing_kwargs: ${gradient_checkpointing_kwargs}
+  learning_rate: ${learning_rate}
+  weight_decay: ${weight_decay}
+  adam_beta1: ${adam_beta1}
+  adam_beta2: ${adam_beta2}
+  adam_epsilon: ${adam_epsilon}
+  max_grad_norm: ${max_grad_norm}
+  lr_scheduler_type: ${lr_scheduler_type}
+  lr_scheduler_kwargs: ${lr_scheduler_kwargs}
+  warmup_ratio: ${warmup_ratio}
+  logging_strategy: ${logging_strategy}
+  logging_steps: ${logging_steps}
+  save_strategy: ${save_strategy}
+  save_steps: ${save_steps}
+  report_to: ${report_to}
+  run_name: ${wandb_run_name}
+  bf16: ${bf16}
+  tf32: ${tf32}
+  seed: ${seed}
+  ddp_timeout: ${ddp_timeout}
+  model_init_kwargs: ${model_init_kwargs}
+  remove_unused_columns: ${remove_unused_columns}
+  max_prompt_length: ${max_prompt_length}
+  num_generations: ${num_generations}
+  max_completion_length: ${max_completion_length}
+  shuffle_generation_inputs: ${shuffle_generation_inputs}
+  ds3_gather_for_generation: ${ds3_gather_for_generation}
+  temperature: ${temperature}
+  top_p: ${top_p}
+  top_k: ${top_k}
+  min_p: ${min_p}
+  repetition_penalty: ${repetition_penalty}
+  generation_aggregation_steps: ${generation_aggregation_steps}
+  use_vllm: ${use_vllm}
+  vllm_device: ${vllm_device}
+  vllm_gpu_memory_utilization: ${vllm_gpu_memory_utilization}
+  vllm_dtype: ${vllm_dtype}
+  vllm_max_model_len: ${vllm_max_model_len}
+  use_ray: ${use_ray}
+  ray_share_training_devices: ${ray_share_training_devices}
+  ray_tensor_parallelism: ${ray_tensor_parallelism}
+  ray_data_parallelism: ${ray_data_parallelism}
+  ray_no_memory_duplication: ${ray_no_memory_duplication}
+  enable_prefix_caching: ${enable_prefix_caching}
+  enforce_eager: ${enforce_eager}
+  vllm_sleep_level: ${vllm_sleep_level}
+  use_vllm_server: ${use_vllm_server}
+  vllm_host: ${vllm_host}
+  vllm_port: ${vllm_port}
+  vllm_group_port: ${vllm_group_port}
+  num_vllm_clients: ${num_vllm_clients}
+  beta: ${beta}
+  reward_weights: ${reward_weights}
+  sync_ref_model: ${sync_ref_model}
+  ref_model_mixup_alpha: ${ref_model_mixup_alpha}
+  ref_model_sync_steps: ${ref_model_sync_steps}
+  log_completions: ${log_completions}
+  save_completions_probability: ${save_completions_probability}
+  artificial_epochs: ${artificial_epochs}
+  backprop_accumulation_steps: ${backprop_accumulation_steps}
+  backprop_accumulation_micro_batch_size: ${backprop_accumulation_micro_batch_size}
+  offload_untrained_models: ${offload_untrained_models}
+  unbias_log_probabilities: ${unbias_log_probabilities}
+  activate_debugging_logs: ${activate_debugging_logs}
+  push_to_hub: ${push_to_hub}
+trainer:
+  _target_: trainers.TeacherGRPOTrainer
+  model: ${model_name_or_path}
+  args: ${trainer_args}
+  peft_config: ${peft_config}
+  reward_funcs: ${reward_fns}
+  student_model: ${student_model}
+  use_reference_teacher_model: ${use_reference_teacher_model}
+  student_model_init_kwargs: ${student_model_init_kwargs}
+  logging_prob: ${logging_prob}
+  disable_student_offloading: ${disable_student_offloading}
+artificial_epochs: 1
+num_generations: 128
+beta: 0.04
+model_init_kwargs: null
+remove_unused_columns: false
+max_prompt_length: 16384
+max_completion_length: 16384
+shuffle_generation_inputs: true
+ds3_gather_for_generation: true
+temperature: 0.7
+top_p: 1.0
+top_k: null
+min_p: null
+repetition_penalty: 1.0
+generation_aggregation_steps: 64
+use_vllm: false
+vllm_device: auto
+vllm_gpu_memory_utilization: 0.9
+vllm_dtype: auto
+vllm_max_model_len: null
+use_ray: false
+ray_share_training_devices: false
+ray_tensor_parallelism: 1
+ray_data_parallelism: null
+ray_no_memory_duplication: false
+vllm_sleep_level: 0
+enable_prefix_caching: false
+enforce_eager: true
+use_vllm_server: true
+vllm_host: osk-gpu70
+vllm_port: 8765
+vllm_group_port: 51216
+num_vllm_clients: 8
+reward_weights: null
+sync_ref_model: true
+ref_model_mixup_alpha: 0.9
+ref_model_sync_steps: 64
+backprop_accumulation_steps: null
+backprop_accumulation_micro_batch_size: null
+offload_untrained_models: false
+unbias_log_probabilities: true
+log_completions: false
+save_completions_probability: 0.1
+activate_debugging_logs: false
+reward_log_name: student_solution_kl_reg
+answer_log_prob_coeff:
+- 1
+- 0.01
+kl_penalty_reward_coeff:
+- 3
+- 0.03
+normalize_log_prob_fn: null
+clip_log_prob: 100000
+normalize_kl_fn: null
+clip_kl: 100000
+reduction_log_prob_fn:
+- mean
+- min
+reduction_kl_fn:
+- mean
+- max
+use_schulman_kl_estimation: false
+not_matched_penalty: -1.0
+unbias_teacher_log_probs: true
+unbias_student_log_probs_temp: 0.7
+include_teacher_think_entropy: true
+correct_generation_coeff: 0.0
+correct_generation_rollouts: 8
+student_generation_kwargs: {}
+student_generation_check_stategy: ground_truth
+formatting_sub_rewards: []
+evaluate_refined_solution: false
+teacher_reward:
+  _target_: trainers.TeacherKLBasedReward
+  student_model: null
+  teacher_model: null
+  tokenizer: null
+  answer_log_prob_coeff: ${answer_log_prob_coeff}
+  kl_penalty_reward_coeff: ${kl_penalty_reward_coeff}
+  normalize_log_prob_fn: ${normalize_log_prob_fn}
+  clip_log_prob: ${clip_log_prob}
+  normalize_kl_fn: ${normalize_kl_fn}
+  clip_kl: ${clip_kl}
+  reduction_log_prob_fn: ${reduction_log_prob_fn}
+  reduction_kl_fn: ${reduction_kl_fn}
+  use_schulman_kl_estimation: ${use_schulman_kl_estimation}
+  not_matched_penalty: ${not_matched_penalty}
+  unbias_teacher_log_probs: ${unbias_teacher_log_probs}
+  unbias_student_log_probs_temp: ${unbias_student_log_probs_temp}
+  include_teacher_think_entropy: ${include_teacher_think_entropy}
+  correct_generation_coeff: ${correct_generation_coeff}
+  correct_generation_rollouts: ${correct_generation_rollouts}
+  generation_kwargs: ${student_generation_kwargs}
+  generation_check_stategy: ${student_generation_check_stategy}
+  formatting_sub_rewards: ${formatting_sub_rewards}
+  evaluate_refined_solution: ${evaluate_refined_solution}
+reward_fns:
+  _target_: hydra_utils.wrap_as_list
+  teacher_reward: ${teacher_reward}
+logging_prob: 0.1
+student_model: Qwen/Qwen3-14B
+use_reference_teacher_model: false
+student_model_init_kwargs: null
+disable_student_offloading: false
+do_eval: true
+eval_strategy: steps
+eval_steps: 2
+wandb_entity: llm-compe-2025-kato
+log_ctx_name: gr${num_generations}_${max_prompt_length}ctx_${max_completion_length}gen
+
+[2025-08-18 21:11:49,971][__main__][INFO] - Accumulation steps 64 ----
+[2025-08-18 21:11:50,446][datasets][INFO] - PyTorch version 2.6.0+cu124 available.
+[2025-08-18 21:11:51,248][datasets][INFO] - PyTorch version 2.6.0+cu124 available.
+[2025-08-18 21:11:51,812][datasets][INFO] - PyTorch version 2.6.0+cu124 available.
+[2025-08-18 21:11:51,819][datasets][INFO] - PyTorch version 2.6.0+cu124 available.
+[2025-08-18 21:11:51,935][datasets][INFO] - PyTorch version 2.6.0+cu124 available.
+[2025-08-18 21:11:52,002][datasets][INFO] - PyTorch version 2.6.0+cu124 available.
+[2025-08-18 21:11:52,028][datasets][INFO] - PyTorch version 2.6.0+cu124 available.
+[2025-08-18 21:11:57,495][datasets][INFO] - PyTorch version 2.6.0+cu124 available.
+[2025-08-18 21:15:47,741][trainers.vllm_client.utils][INFO] - Server is up!
+[2025-08-18 21:15:49,272][trainers.vllm_client.utils][INFO] - Server is up!
+[2025-08-18 21:15:50,615][trainers.vllm_client.utils][INFO] - Server is up!
+[2025-08-18 21:15:51,968][trainers.vllm_client.utils][INFO] - Server is up!
+[2025-08-18 21:15:53,343][trainers.vllm_client.utils][INFO] - Server is up!
+[2025-08-18 21:15:54,551][trainers.vllm_client.utils][INFO] - Server is up!
+[2025-08-18 21:15:55,919][trainers.vllm_client.utils][INFO] - Server is up!
+[2025-08-18 21:15:57,547][trainers.vllm_client.utils][INFO] - Server is up!
+[2025-08-18 21:17:41,531][__main__][INFO] - No existing checkpoint, initializing new model
+[2025-08-18 21:17:41,532][__main__][INFO] - Training  2025-08-18 21:17:41.532025
+[2025-08-18 21:17:41,534][__main__][INFO] - No existing checkpoint, initializing new model
+[2025-08-18 21:17:41,534][__main__][INFO] - Training  2025-08-18 21:17:41.534538
+[2025-08-18 21:17:41,538][__main__][INFO] - No existing checkpoint, initializing new model
+[2025-08-18 21:17:41,539][__main__][INFO] - Training  2025-08-18 21:17:41.539097
+[2025-08-18 21:17:41,524][__main__][INFO] - No existing checkpoint, initializing new model
+[2025-08-18 21:17:41,548][__main__][INFO] - Training  2025-08-18 21:17:41.548691
+[2025-08-18 21:17:41,526][__main__][INFO] - No existing checkpoint, initializing new model
+[2025-08-18 21:17:41,551][__main__][INFO] - Training  2025-08-18 21:17:41.551926
+[2025-08-18 21:17:41,555][__main__][INFO] - No existing checkpoint, initializing new model
+[2025-08-18 21:17:41,556][__main__][INFO] - Training  2025-08-18 21:17:41.556170
+[2025-08-18 21:17:41,558][__main__][INFO] - No existing checkpoint, initializing new model
+[2025-08-18 21:17:41,559][__main__][INFO] - Training  2025-08-18 21:17:41.559273
+[2025-08-18 21:17:43,356][__main__][INFO] - No existing checkpoint, initializing new model
+[2025-08-18 21:17:43,357][__main__][INFO] - Training  2025-08-18 21:17:43.357265

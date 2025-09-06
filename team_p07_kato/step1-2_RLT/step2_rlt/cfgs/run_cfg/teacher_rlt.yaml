@@ -1,0 +1,93 @@
+defaults:
+  - override /model_cfg@_global_: qwen3-14b
+  - override /data_cfg@_global_: teacher_bespoke_stratos
+  - override /trainer_cfg@_global_: teacher_grpo
+  - _self_
+
+#model_name_or_path: Qwen/Qwen3-0.6B
+model_name_or_path: llm-compe-2025-kato/Qwen3-14B-Step1-Bespoke17k-ep1
+
+data_log_name: stage2_data
+
+##### ここのdatasetを変更してください #####
+#####
+dataset_id_or_path: Nishi0923/DeepMath-103K-Bespoke-Filtered-Pilot-5K
+#####
+##### ここのdatasetを変更してください #####
+
+bf16: true
+
+max_steps: -1
+num_train_epochs: 1.0
+
+save_strategy: "steps"
+
+save_steps: 2
+do_eval: true
+save_final_model: true
+
+eval_strategy: steps
+eval_steps: 2
+
+logging_steps: 1
+logging_strategy: steps
+
+train_batch_size: 512
+per_device_train_batch_size: 1
+generation_aggregation_steps: 64
+num_generations: 128
+
+temperature: 0.7
+unbias_log_probabilities: true
+
+learning_rate: 0.000001
+beta: 0.04
+
+sync_ref_model: true
+ref_model_mixup_alpha: 0.9
+ref_model_sync_steps: 64
+
+#student_model: "Qwen/Qwen3-0.6B"
+student_model: "Qwen/Qwen3-14B"
+student_model_init_kwargs: null
+
+offload_untrained_models: false
+
+max_prompt_length: 16384
+max_completion_length: 16384
+
+answer_log_prob_coeff: [1, 0.01]
+kl_penalty_reward_coeff: [3, 0.03]
+normalize_log_prob_fn: null
+clip_log_prob: 100000
+normalize_kl_fn: null
+clip_kl: 100000
+reduction_log_prob_fn: ["mean", "min"]
+reduction_kl_fn: ["mean", "max"]
+use_schulman_kl_estimation: false
+not_matched_penalty: -1.0
+unbias_teacher_log_probs: true
+unbias_student_log_probs_temp: 0.7
+
+save_completions_probability: 0.1
+
+lr_scheduler_type: "constant"
+lr_scheduler_kwargs: ~
+
+#wandb_project: test_step2_rlt
+wandb_project: honban_step2_rlt
+wandb_entity: llm-compe-2025-kato
+
+log_ctx_name: gr${num_generations}_${max_prompt_length}ctx_${max_completion_length}gen
+
+wandb_run_name: ${trainer_log_name}
+results_dir: "/home/Competition2025/P07/shareP07/share_model/step2_rlt"
+output_dir: ${results_dir}/Qwen3-14B-step2-deepmath103k-bs${train_batch_size}
+
+resume_from: ${output_dir}
+
+vllm_port: 8765
+use_vllm: false
+use_vllm_server: true
+vllm_host: osk-gpu70
+num_vllm_clients: 8

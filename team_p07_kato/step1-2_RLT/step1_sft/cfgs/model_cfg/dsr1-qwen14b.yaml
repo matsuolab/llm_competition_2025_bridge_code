@@ -1,0 +1,21 @@
+defaults:
+  - base
+  - _self_
+
+model_log_name: dsr1-qwen14b
+model_name_or_path: deepseek-ai/DeepSeek-R1-Distill-Qwen-14B
+
+model_args:
+  model_revision: main
+  torch_dtype: bfloat16
+  attn_implementation: flash_attention_2
+
+tokenizer:
+  model_revision: ${model_args.model_revision}
+  add_bos_token: true
+  add_eos_token: false 
+  bos_token: "<｜begin▁of▁sentence｜>"
+  eos_token: "<｜end▁of▁sentence｜>"
+  pad_token: "<pad>"
+  unk_token: "<unk>"
+
