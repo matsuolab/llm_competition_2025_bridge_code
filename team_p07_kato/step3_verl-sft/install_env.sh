@@ -7,7 +7,7 @@
 #SBATCH --nodelist=osk-gpu69
 #SBATCH --job-name=environ
 #SBATCH --output=%x_%j.log
-#SBATCH --gpus-per-node=1
+#SBATCH --gpus-per-node=0
 #SBATCH --cpus-per-task=24
 
 
