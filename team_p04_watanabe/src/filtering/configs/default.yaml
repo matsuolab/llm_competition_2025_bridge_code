@@ -1,0 +1,60 @@
+# Default configuration for filter-solvable-question
+
+# vLLM settings
+vllm:
+  tensor_parallel_size: 1
+  max_model_len: 2048
+  gpu_memory_utilization: 0.9
+  dtype: "auto"
+  quantization: null
+  trust_remote_code: false
+  enable_chunked_prefill: true
+# Models to evaluate
+models:
+  - "Qwen/Qwen3-0.6B"
+
+# Dataset configuration with field mappings
+datasets:
+  # Default field mappings for all datasets
+  default_mappings:
+    question_field: "question"
+    answer_field: "answer"
+  
+  # Dataset-specific field mappings (optional)
+  dataset_specific:
+    # Example for datasets with different field names
+    # "custom_math_dataset":
+    #   question_field: "problem"
+    #   answer_field: "solution"
+    # "science_qa":
+    #   question_field: "text"
+    #   answer_field: "correct_answer"
+    "medical-reasoning-orpo_preprocess":
+      question_field: "question"
+      answer_field: "accepted"
+  
+  # Dataset repositories to process
+  repositories:
+    - "LLMcompe-Team-Watanabe/medical-reasoning-orpo_preprocess"
+    - "LLMcompe-Team-Watanabe/math_MATH-500"
+
+# Legacy support (deprecated, use datasets.repositories instead)
+dataset_repositories: []
+
+# Output configuration
+output:
+  base_dir: "./results/math"
+  format: "json"
+  include_metadata: true
+  save_raw_responses: true
+  save_per_dataset: true  # Save results immediately after each dataset is processed
+
+# Evaluation settings
+evaluation:
+  batch_size: 8
+  max_questions: null  # null means no limit
+  
+# Logging settings
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

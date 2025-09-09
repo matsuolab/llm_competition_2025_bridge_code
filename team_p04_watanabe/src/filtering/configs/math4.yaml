@@ -1,0 +1,31 @@
+vllm:
+  tensor_parallel_size: 1
+  max_model_len: 8196
+  gpu_memory_utilization: 0.9
+  dtype: auto
+  quantization: null
+  trust_remote_code: false
+  enable_chunked_prefill: false
+  batch_size: 16384
+  max_num_batched_tokens: 262144
+models:
+- Qwen/Qwen3-30B-A3B-FP8
+datasets:
+  default_mappings:
+    question_field: question
+    answer_field: answer
+  dataset_specific: {}
+  repositories:
+  - LLMcompe-Team-Watanabe/math_AoPS-Instruct_preprocess
+output:
+  base_dir: ./results/math
+  format: json
+  include_metadata: true
+  save_raw_responses: true
+  save_per_dataset: true
+evaluation:
+  max_questions: null
+logging:
+  level: INFO
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+dataset_repositories: []
