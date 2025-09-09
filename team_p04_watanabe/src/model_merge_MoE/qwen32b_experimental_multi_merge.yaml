@@ -1,0 +1,32 @@
+models:
+  - model: Qwen/Qwen3-32B
+  - model: LLMcompe-Team-Watanabe/Qwen3-32B-merge-base2-math3-science3-submath05-med05-other1
+    parameters:
+      density: 0.53
+      weight: 0.20
+  - model: LLMcompe-Team-Watanabe/Qwen3-32B-merge-base3-math3-physics3-others1
+    parameters:
+      density: 0.53
+      weight: 0.20
+  - model: LLMcompe-Team-Watanabe/Qwen3-32B-merge-base4-math3-physics3
+    parameters:
+      density: 0.53
+      weight: 0.15
+  - model: LLMcompe-Team-Watanabe/Qwen3-32B-merge-math4-science4-submath05-med05-other1
+    parameters:
+      density: 0.53
+      weight: 0.15
+  - model: LLMcompe-Team-Watanabe/Qwen3-32B-openmathreasoning-sft
+    parameters:
+      density: 0.50
+      weight: 0.15
+  - model: Qwen/Qwen3-32B
+    parameters:
+      density: 0.53
+      weight: 0.15
+merge_method: dare_ties
+base_model: Qwen/Qwen3-32B
+parameters:
+  int8_mask: true
+  normalize: false
+dtype: bfloat16
