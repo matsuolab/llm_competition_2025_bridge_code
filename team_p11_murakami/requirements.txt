@@ -1,0 +1,13 @@
+# Core ML/DL Libraries
+torch==2.1.0
+transformers==4.36.0
+datasets==2.15.0
+
+# PEFT for LoRA/QLoRA
+peft==0.7.1
+bitsandbytes==0.41.3
+accelerate==0.25.0
+
+# Utilities
+tqdm
+huggingface_hub
