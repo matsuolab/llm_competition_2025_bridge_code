@@ -1,0 +1,2495 @@
+id,category,field,answer_type
+669402b41dcb3d5a1ef9e951,Math,位相幾何、代数トポロジー,exactMatch
+6696c3734c196f1af6a16fcb,Math,代数、数論,exactMatch
+66b2c7c9795022550abb176b,Math,代数、位相幾何,exactMatch
+66ba5510db07a3a9151be0d2,Math,解析、微分幾何,exactMatch
+66c5c3eae30bdd4f1da62cfc,Math,幾何、代数トポロジー,exactMatch
+66e89811ca68059533a83566,Math,解析、関数解析、最適輸送理論,exactMatch
+66e8a23d15c60c2c32f2ba55,Math,解析、最適輸送理論,exactMatch
+66e8a3ed3aa94517d4573b14,Math,代数、数論,exactMatch
+66e8ae603aa94517d4573b32,Math,"線型代数, 行列解析",exactMatch
+66e8b0a9e5eaa390aa9fdde5,Math,群論、組合せ論,exactMatch
+66e8c151efbbc8b5a54da02b,Math,"代数的位相幾何, 代数幾何, ホモトピー論",exactMatch
+66e8cfa03add731d7fce4352,Math,"解析, 関数解析, 数学解析",exactMatch
+66e8d4d65699cf35c9a1527c,Math,解析,exactMatch
+66e8e473f59e5564daf565b6,Math,表現論、群論、複素解析,exactMatch
+66e8ea4cacb34dd5dbffa298,Math,集合論,multipleChoice
+66e9173256ec303aa22ccd37,Math,確率・統計、解析,exactMatch
+66e9249c953867e04c273db7,Math,幾何,exactMatch
+66e939c176b5b4f3e8a369b8,Math,確率・統計、線形代数,exactMatch
+66e9469b76b5b4f3e8a369d5,Math,数論、組合せ論,exactMatch
+66e94bf0d61a79cca258c675,Math,確率論、グラフ理論,exactMatch
+66e98ce28056cd9dd9b1d9f6,Math,位相幾何学,exactMatch
+66e9a436876fbf9ff158c137,Math,代数、幾何,exactMatch
+66e9d06a420b60a0ede79e8e,Math,トポロジー,exactMatch
+66ea031360fbbf249dec70e1,Math,数論、代数幾何,exactMatch
+66ea355dd1767539f1308fc3,Math,解析、代数,exactMatch
+66ea3ba5444b8f31ef575799,Math,情報理論,exactMatch
+66ea534258a0968d95583cd8,Math,確率論、解析学,exactMatch
+66ea542e4509a12ed7db1d7b,Math,数論、組合せ論,exactMatch
+66ea7d2cc321286a5288ef06,Math,代数,exactMatch
+66ea857b6b8edd4f56302c06,Math,幾何,exactMatch
+66ea99e17094e6aa0bc758e7,Math,離散数学,exactMatch
+66eaa401c7a3252f0f3fe535,Math,解析学、線形代数、離散数学,multipleChoice
+66eadaf22b7de7dec0a046bd,Math,順序集合、離散数学,multipleChoice
+66eaf9bbb082c5e6a76a49b5,Math,代数幾何,exactMatch
+66eb0883f3acd11c70662aff,Math,"線形代数, 行列解析, 組合せ数学",exactMatch
+66eb105d5f6e64fbae56b0fe,Math,解析、線形代数,exactMatch
+66eb1d84ca5fb5434978190f,Math,組合せ論、論理,exactMatch
+66ebe6b6a708e0910828c0d6,Math,"解析, 離散数学",exactMatch
+66ec11b230ba0debf40b1fec,Math,離散数学,multipleChoice
+66ec5671713826aca26a9dba,Math,確率論、離散数学,exactMatch
+66ec5e266f83e1764787e118,Math,"代数幾何, 組合せ論",exactMatch
+66ec6ad7b64b08f801db4fde,Math,数論、代数,exactMatch
+66ecb2eb54baa602e636a457,Math,離散数学、幾何,exactMatch
+66ecd3c6e8b95a8f971fb485,Math,組合せ論、解析,exactMatch
+66ecf59741de2844089fc54b,Math,解析、線形代数、最適化,multipleChoice
+66ed2fb252c07b4611580699,Math,解析,exactMatch
+66ed3e7cd841eb51a985ca7f,Math,"解析, 代数",exactMatch
+66ed58561d24f687ee9b06bb,Math,"幾何, 解析",multipleChoice
+66ed5e6a1d24f687ee9b06d1,Math,"幾何, 数列",exactMatch
+66ed80da7c4ab15ec9270e94,Math,グラフ理論,exactMatch
+66ed96aec2becb9452e4d7b1,Math,離散数学、組合せ論,exactMatch
+66edb74f98f720a96783bd0e,Math,離散数学,exactMatch
+66edc256d0ce7f9082f8d744,Math,数値解析、情報理論,exactMatch
+66ede973564cb32b38cc8a4a,Math,組合せ論、数論,exactMatch
+66ee01a4126fac9cef29cb8b,Math,グラフ理論,exactMatch
+66ee3918d7b2b78925bd20b6,Math,グラフ理論,exactMatch
+66ee7549084dcacdcaac6437,Math,代数幾何,exactMatch
+66eea9e29a4d46950f16c7f2,Math,解析,exactMatch
+67c7ea98b89aea98883703ed,Math,解析、集合,exactMatch
+66eed40a01d60ceefc5e586c,Math,代数,exactMatch
+66eee253ae4c04f9d17d9420,Math,数論、代数,exactMatch
+66eee811093c534ea2673f87,Math,解析,exactMatch
+66eef273278112bed8e1d96b,Math,情報理論、組合せ論,exactMatch
+66ef20a50312bf74c8ff43a0,Math,確率論,exactMatch
+66ef2b318829dedb61d5627e,Math,ゲーム理論,exactMatch
+66ef37d1e2195ad810081d37,Math,ゲーム理論,exactMatch
+66ef5e39a57b7ef1047d2f58,Math,幾何、解析,exactMatch
+66ef663370b6c01c3d20a5d5,Math,統計,exactMatch
+66ef7b798ec4c5bfcdb205fc,Math,幾何,exactMatch
+66ef98088171e6ed71be1454,Math,確率、解析,exactMatch
+66efbf654a006318b6b4e256,Math,幾何、解析,exactMatch
+66efc68bd7d1b7b37f6e1681,Math,"幾何, 解析",exactMatch
+66efd054c04acd134cc4bb36,Math,解析、幾何,exactMatch
+66f02cc56ea864e80ba2d3d7,Math,幾何,exactMatch
+66f02e237e0e9c9b46db0db3,Math,離散数学、解析,exactMatch
+66f05a0644e8181fd0e3f69b,Math,トポロジー,exactMatch
+66f095153f4896d6fb81ca59,Math,位相数学、順序集合論,exactMatch
+66f0ed63707a9da209d68e4f,Math,表現論、組合せ論、群論,exactMatch
+66f162bd5542aa4ebe64481e,Math,組合せ論、離散数学,exactMatch
+66f19a7b768aced3a5e2ba8a,Math,数論、基数変換,exactMatch
+66f1a1fdccdf3d48cee44b17,Math,幾何,exactMatch
+66f1b940f8bb4425f74e4299,Math,トポロジー,exactMatch
+66f1bc99f8bb4425f74e42a5,Math,離散数学、解析,exactMatch
+66f1d0828fa08a4717238167,Math,位相数学、グラフ理論,exactMatch
+66f1d9a589b78acd31812b99,Math,代数,exactMatch
+66f1db990130ee934e5b9810,Math,数論,exactMatch
+66f1e0138e382acde4df9a95,Math,幾何,exactMatch
+66f1eeb2f673b42e5c4616e7,Math,幾何、位相,exactMatch
+66f20ebbe54b6b68fc3062d3,Math,解析、位相,exactMatch
+66f25c95da5074d064015c54,Math,位相、代数,exactMatch
+66f2e2405f45c4f4f424e9a9,Math,位相,exactMatch
+66f2e58b5f45c4f4f424e9ae,Math,位相,exactMatch
+66f2e9b4d18ac34db32642b7,Math,トポロジー,exactMatch
+66f319f205629941be821347,Math,離散数学、グラフ理論,exactMatch
+66f330fc96e593d9e020e95a,Math,代数幾何,exactMatch
+66f358d4cdd3ce36208e23ca,Math,"シンプレクティック幾何, 代数幾何",exactMatch
+66f3ee4cd1c77d20ca3338c1,Math,代数、ホモロジー代数,exactMatch
+66f3ef9802a20e79fb9bfb2e,Math,群論、幾何,exactMatch
+66f3f37374771c74247b6892,Math,ゲーム理論,multipleChoice
+66f3fa084a937a16c867c042,Math,幾何、組合せ論,exactMatch
+66f407a066abc59ffb9a82ae,Math,位相数学、代数,exactMatch
+66f454d18ab578bcbb18387c,Math,幾何,exactMatch
+66f472d2e4b80835fd2a01bb,Math,組合せ論、幾何,exactMatch
+66f4a7ba439f15c2c0752479,Math,表現論、代数,exactMatch
+66f52a03c518a8eba1cf963e,Math,トポロジー,exactMatch
+66f531b3383872bf2182c10a,Math,代数,exactMatch
+66f566bb9f9308128679f63e,Math,代数,exactMatch
+66f579027a2ac7b4fffe1740,Math,組合せ論、数列と級数,exactMatch
+66f57e187a2ac7b4fffe174e,Math,幾何、確率,exactMatch
+66f589b926268030174717bd,Math,"解析, 幾何",exactMatch
+66f5c96b4ae309d465eeca47,Math,組合せ論、グラフ理論,exactMatch
+66f5e796acadd55c11fb11f5,Math,解析学、群論,exactMatch
+66f5fa6547b598f037ec67fd,Math,解析学,exactMatch
+66f5fd3235147083021a66c6,Math,解析学,exactMatch
+66f63324376699e7c6894239,Math,解析学、離散数学,exactMatch
+66f647ec6b41277283a0813c,Math,組合せ論、幾何,exactMatch
+66f684db71131a41ff244fb9,Math,線形代数、複素解析,exactMatch
+66f6a78cf5f84fe0d6bbcb84,Math,幾何,exactMatch
+66f6b73a1b586571e550784f,Math,"幾何, 解析",exactMatch
+66f6bffd76e8f5503a11d413,Math,組合せ論、集合論,exactMatch
+66f6c390489d30372dbc1816,Math,解析,exactMatch
+66f6f048b40ada5ac3b91cf8,Math,組合せ論、代数,exactMatch
+66f6f494e56a5e5bc0b5a7af,Math,群論,exactMatch
+66f708eec8903a7f2c03edbe,Math,論理数学、代数,exactMatch
+66f7218240bd9498c95bfdf3,Math,代数トポロジー,exactMatch
+66f7292f3f4622b6ce24b961,Math,解析、集合,exactMatch
+66f7c1bff433ef9260df6e77,Math,情報理論,exactMatch
+66f7fa54fa61639b844aa420,Math,代数,exactMatch
+66f883265b247a255a42fba1,Math,"解析, フラクタル幾何",exactMatch
+66f8bd4e140fefe7ceb34b75,Math,"モデル理論, 集合論",exactMatch
+66f8e3db469c315e2c9ed2ff,Math,解析,exactMatch
+66f9912f9912b9571e291d0a,Math,幾何,exactMatch
+66f9a1ed4f798b651f6d3c8e,Math,確率論、統計物理学,exactMatch
+66f9aac10b5d5283ffc39014,Math,位相幾何学,multipleChoice
+66f9e9d3e0e271cd8ae533c6,Math,ゲーム理論、離散数学,exactMatch
+66fa6641c4f1bf6c2036b745,Math,解析,exactMatch
+66fa67dc29908114d8954b55,Math,解析、集合,exactMatch
+66fac0eca07ff774fa2219c5,Math,ゲーム理論、数論,exactMatch
+66faeb7db8fca5695f011626,Math,線形代数、凸解析,exactMatch
+66faf88b01b2c4f27ab6c742,Math,"幾何, 解析",exactMatch
+66faf94d44885308354a46fa,Math,グラフ理論、組合せ論,exactMatch
+66fb066681a166feb2adc2f5,Math,代数幾何,exactMatch
+66fb24e7dea0e38a195b0030,Math,確率・統計、信頼性工学,exactMatch
+66fb519482c7c707d50d6012,Math,トポロジー,exactMatch
+66fb75c8d83ed7a299fdd135,Math,トポロジー,exactMatch
+66fb8135483861eb2d0252a3,Math,離散数学、グラフ理論、符号理論,exactMatch
+66fb931a089552943999ce86,Math,論理学、集合論,multipleChoice
+66fbbe8cb6f8564117792b00,Math,"代数, 群論",multipleChoice
+66fbd5aca177ae967e47041b,Math,代数、幾何,exactMatch
+66fc006ad058f160ec5a48a1,Math,論理学、集合論,multipleChoice
+66fc2559876b283872e52acc,Math,"解析, 線形代数",multipleChoice
+66fc3273b7405dff90941955,Math,解析、数値解析,exactMatch
+66fc539cfb0c1cf50794a0e2,Math,表現論、線型代数,exactMatch
+66fc62d80fdbeffcd143e87c,Math,数論、幾何,exactMatch
+66fc633698a7264ef58309c0,Math,解析、確率・統計,exactMatch
+66fc82b2bb24336da864daef,Math,グラフ理論、確率・統計,exactMatch
+66fc8353c9752085eff2c8c0,Math,群論、表現論,exactMatch
+66fc8c821d39fbf6d8bcdd11,Math,群論、表現論,exactMatch
+66fc9bdb1dbb3f522c0ee579,Math,"幾何, 解析",exactMatch
+66fcbc3e2c2f679cc7959864,Math,解析、線形代数、グラフ理論,exactMatch
+66fcbe5b68476a89da553c97,Math,線形代数,exactMatch
+66fce56c8585e7734661a9c7,Math,代数,exactMatch
+66fcf48f6da31bbbe3d17e72,Math,"幾何, 解析",multipleChoice
+66fcff257870c26149f4615d,Math,"位相幾何, 組合せ論",exactMatch
+66fd08fb8a146dd80cfb22c0,Math,"数論, 代数幾何",exactMatch
+66fd166eda2dbed1f5cc240b,Math,組合せ論、集合論,exactMatch
+66fd4055654e577c714fb716,Math,線形代数、暗号理論,exactMatch
+66fd442c654e577c714fb724,Math,解析、線形代数、確率論,exactMatch
+66fd469e7a33ca69ccc69729,Math,グラフ理論,multipleChoice
+66fd4b01b5c28915c8897f6f,Math,解析,exactMatch
+66fd5050c58a30160cbc0978,Math,位相幾何,exactMatch
+66fd596216bd2158748fda21,Math,位相幾何,exactMatch
+66fd961ff9a32c6d2bd295df,Math,解析,exactMatch
+66fdb31a57cea4445778e8ab,Math,代数、集合,multipleChoice
+66fdb51b903727942c52222f,Math,"解析, 代数",exactMatch
+66fde2de0b21f205c121aca7,Math,"解析, 位相数学, 数理論理学",multipleChoice
+66fde5a291664bba6e391cb5,Math,解析、代数,exactMatch
+66fe3e4d6a914e1ed9d8c32e,Math,位相空間論,exactMatch
+66fe75a349254a4aef6f5f25,Math,"幾何, 解析",exactMatch
+66fe75c0c12cbe6aeaa26e60,Math,トポロジー,exactMatch
+66fe96c857c85bf9caa1766a,Math,幾何,exactMatch
+66fea0c4cb66b0e85c55ee52,Math,集合,exactMatch
+66fea77b5f1bc2f5916a4171,Math,"幾何, 群論",multipleChoice
+66feaec49c469dbc1c0c4ed2,Math,統計学,exactMatch
+66fec5fbe0072219a732f0e2,Math,確率論、解析,exactMatch
+66fee1187183fdf40d11cb69,Math,集合論,exactMatch
+66feef700e977ac289068c27,Math,解析、微分方程式,exactMatch
+66ff44de2cfec1499ea021dd,Math,解析、フーリエ解析,exactMatch
+66ff68bec7e8ec38a6188f9c,Math,解析、幾何,exactMatch
+66ffaae1068d942d32104650,Math,集合、論理,multipleChoice
+66ffcfa0864258b2f971a80c,Math,確率・統計,multipleChoice
+670043f1cc1f72ec327be033,Math,確率論、解析,exactMatch
+670066b12b1a0263d6a3a79b,Math,離散数学、確率論,exactMatch
+6700aa576c5c0e0d48330ad1,Math,幾何,exactMatch
+6700ad650f36eb474047ca29,Math,解析、フーリエ解析,exactMatch
+6700b20cfa64315ed5204e5d,Math,グラフ理論、代数,exactMatch
+6700b2f1fa64315ed5204e61,Math,"代数, 圏論",exactMatch
+6700b9b6d9849868aa3fb1f9,Math,微分幾何,exactMatch
+6700bb8d01cdb8b38460e401,Math,幾何,exactMatch
+670130313d571f9c39e1bea1,Math,表現論、群論,exactMatch
+670147f7dc193e3fa8260419,Math,トポロジー、解析,exactMatch
+67016d95a2a4300e274de8be,Math,解析、幾何,exactMatch
+67019de83ec0066dfb992223,Math,解析,multipleChoice
+6701a951f96e98d9d4df3e02,Math,微分幾何,multipleChoice
+670205330fb89862bc1d87d2,Math,"解析, 偏微分方程式",exactMatch
+6702780d39fbddbbfdaffdf0,Math,"代数幾何, 位相幾何, 複素解析",exactMatch
+670288dacacd044c115f0156,Math,"幾何, 代数",exactMatch
+6702c6251454b2a5a3a4b0a9,Math,確率論、グラフ理論,exactMatch
+6702d00cabe0b372f85108c7,Math,確率論、幾何,exactMatch
+67035991b36b22d6c2f535bc,Math,代数、位相幾何、解析,exactMatch
+6703a3c04a760324b0e15a30,Math,確率・統計,exactMatch
+67041442aa877e548ccdc28d,Math,組合せ論、数列・級数,exactMatch
+670417b84f1cdb9711ec68d6,Math,代数,exactMatch
+67041871905f1ae093e7ac69,Math,圏論、組合せ論,exactMatch
+67042519cf3319115ca0c555,Math,"幾何, 解析",exactMatch
+670426b4d831bdf30d3c03cb,Math,"線形代数, 幾何",exactMatch
+67047b0e4580e464f8bff2aa,Math,"解析, 幾何",exactMatch
+67048697ca361120eef4ae56,Math,代数、位相幾何,multipleChoice
+6704c05a8e878e59e57c7167,Math,幾何,exactMatch
+6704d297f486e216becd613f,Math,最適化、幾何,exactMatch
+6705022feb89a47d12541a36,Math,位相幾何、集合,exactMatch
+67050ddbf6e4beb1922a29b2,Math,確率論、解析,exactMatch
+670524fec62c9a55b8503379,Math,確率論、解析,exactMatch
+67053981f8ad2742675478b4,Math,確率論、解析,exactMatch
+6705610417b54abf9a949f33,Math,代数幾何,exactMatch
+6705b383652e52e4bf7ee416,Math,離散数学,exactMatch
+6705b7c94ae9f2994dfaca33,Math,離散数学,exactMatch
+6706033749b90b396d2cb207,Math,解析、線形代数,exactMatch
+67061eb7f88d4fc2d2f8402a,Math,位相幾何学,exactMatch
+670663d687c53b9e6fa1dc8f,Math,代数,exactMatch
+6706671e0ae45a43cc2b8e8f,Math,集合,exactMatch
+6706c88503718618700edfbc,Math,代数,multipleChoice
+67073a60c033e34a5d675f2e,Math,解析、代数,exactMatch
+67073b43de74df1472536be3,Math,群論、組合せ論,exactMatch
+670777536ce55102ae56fa2c,Math,位相幾何学,exactMatch
+67079b3aeb66f588bd3789ec,Math,解析、線形代数,exactMatch
+6707b8b6700263d6945e7b18,Math,解析、確率論、線形代数,exactMatch
+6708336666bc940886b27312,Math,解析、関数解析,multipleChoice
+67085c82e22de5e37e883351,Math,幾何,multipleChoice
+67086f244c1d38378da9f60a,Math,"解析, 確率・統計, 線形代数",exactMatch
+6708736b4c1d38378da9f614,Math,幾何,exactMatch
+6708862963c4d58d76c98746,Math,数論、代数,exactMatch
+67092d14202802a1391f0d46,Math,"代数, 幾何, 位相数学",exactMatch
+6709986e9a83b4ea926a3036,Math,確率・統計、数論,exactMatch
+6709e5af41a8c7cc16f75d2a,Math,解析、微分方程式,exactMatch
+670a45a0e9cd3ee2e2e3932e,Math,解析、幾何,exactMatch
+670a7e542e97a7e436a3d951,Math,"代数, 幾何",exactMatch
+670ad3408b8d4b3af783d31a,Math,グラフ理論,exactMatch
+670adb93478162075e9ffcd3,Math,シンプレクティック幾何,exactMatch
+670b02d5560fcdf78354fad0,Math,解析,exactMatch
+670bab0c65db6a314e14cec5,Math,"幾何, 数論",exactMatch
+670bcb222407af9de8866eda,Math,代数、位相幾何,multipleChoice
+670c1a137d9abe2d345031d4,Math,圏論、組合せ論,exactMatch
+670c2d61886695e43e7c18b3,Math,"代数, 圏論, 数論",exactMatch
+670c47e5a1a7d61748daa200,Math,"代数, トポロジー",exactMatch
+670c48975b505e10c0277cee,Math,"トポロジー, 表現論, 組合せ論",exactMatch
+670c8b10148f2a113537c8f6,Math,組合せ論,multipleChoice
+670cbeb582bde986ee078420,Math,数論、解析,exactMatch
+670d85d1a2a7f62c1a339bc7,Math,"微分幾何, 位相幾何",exactMatch
+670d91a9ac55362ddccabea1,Math,解析、幾何,exactMatch
+670dab3f29ad02fff2ae1d9a,Math,グラフ理論,exactMatch
+670dbfc042e55f85b247ba49,Math,"幾何, 解析",exactMatch
+670dc30acfd3fc87a109a91e,Math,"代数的トポロジー, 組合せ論",exactMatch
+670dc75dcfd3fc87a109a929,Math,離散数学、グラフ理論,exactMatch
+670df2a72f80209631f57fc2,Math,数列、集合,exactMatch
+670df2e172288739ca35e0e1,Math,数論、解析,exactMatch
+670e050d857d9fb8d0e70fde,Math,微分幾何、線形代数、解析,exactMatch
+670e87009fd2a94b93cec307,Math,"代数, 幾何, トポロジー",exactMatch
+670e92583011a5b80bfb6c60,Math,解析、最適化,multipleChoice
+670e9d6f5c8f745d79e8d8d1,Math,"幾何, 解析",exactMatch
+670eb085078b44f4766922a9,Math,線形代数、解析,exactMatch
+670eb1e2d2f45b1198c87764,Math,確率論、解析,exactMatch
+670ee20c997568ed42988705,Math,線形代数、組合せ論,multipleChoice
+670eeb9c997568ed4298871e,Math,解析、線形代数,exactMatch
+670f069bf0a2db734f219dc7,Math,解析、代数、微分方程式,exactMatch
+670f241acb7ead88385e0ca0,Math,集合、組合せ論,multipleChoice
+670f72aea9f4a4bebca02b4a,Math,トポロジー,multipleChoice
+670f8518ffa4ea9fb0cc5fea,Math,トポロジー,multipleChoice
+670f87f6f1e1079f950014e4,Math,解析、確率・統計、最適化,multipleChoice
+670fc6e308c7aaef3bd745e2,Math,"線形代数, 代数",exactMatch
+670fce9a2395d9134a270314,Math,"線形代数, 制御理論",exactMatch
+670fd2a6232fc20b4433c4d7,Math,"制御理論, 線形代数",exactMatch
+670fe01af99389b3c7942185,Math,"トポロジー, 幾何",exactMatch
+670ffefcdf4931d858723e36,Math,群論,exactMatch
+671021ffd741deec4ddbfc48,Math,確率論、マルコフ過程,exactMatch
+6710251d73c9583c25138ff0,Math,解析、確率論、数論,multipleChoice
+67115e10528102717339d851,Math,"最適化, 幾何",exactMatch
+67117042d18c284f71d2d4c2,Math,計算理論、アルゴリズム,exactMatch
+6711751e42ab43fd77c2507b,Math,"幾何, 解析",exactMatch
+67120c351f4769bcbeaadd5a,Math,"数論, 代数",exactMatch
+671210f6abf64d3c3404ce3b,Math,"幾何, 最適化",exactMatch
+67121600c227d25db1c1e480,Math,"最適化, 幾何",exactMatch
+6712208acecd80f50716f99e,Math,制御理論、解析,exactMatch
+6712290fcecd80f50716f9aa,Math,解析、代数,exactMatch
+67129bdccb99523d3a2b98d4,Math,組合せ論、離散数学,exactMatch
+6712c2616313b64cf8499927,Math,複素解析,exactMatch
+6712f157cf58f1d947689708,Math,確率・統計,exactMatch
+67130fff5fcf1fbb43d4a687,Math,解析,multipleChoice
+671316038cef0a8b30902ea7,Math,幾何,exactMatch
+671323607fc02cf5cce975a5,Math,組合せ論、数論,exactMatch
+67136bf495e840a8db703aee,Math,"解析, 代数",exactMatch
+6713a43b0223609143188d31,Math,"解析, アルゴリズム, 数値計算",exactMatch
+6713c9a779d53f49034d45a0,Math,数列、離散数学,exactMatch
+6713f6ebde9d795856a5d0d2,Math,"最適化, 幾何",exactMatch
+6713fc1e6c34845ffef41aeb,Math,グラフ理論、組合せ論、幾何,exactMatch
+6714033333410944271a1487,Math,離散数学、最適化、幾何,exactMatch
+67145aa4f41c5b1591376d26,Math,"幾何, 解析",exactMatch
+6714762c3a4d759a624154ff,Math,"幾何, 解析",exactMatch
+67149cf883cc7720158c1110,Math,"最適化, 幾何",exactMatch
+67149db7352d3701e7171a01,Math,解析、幾何,exactMatch
+6714b65c2b2e7f70a38b9f63,Math,"最適化, 幾何",exactMatch
+6714e9dacbabe50aa0256711,Math,組合せ論、ゲーム理論,multipleChoice
+67151d27484c9a78dc508e56,Math,幾何,exactMatch
+67152671c0f5fafc6365076b,Math,代数、数論,exactMatch
+67154c094650e5ddd384d861,Math,トポロジー,multipleChoice
+671579d27c48af0286fef21b,Math,トポロジー、代数,multipleChoice
+67159ba681c3e7e7c65b2e09,Math,ゲーム理論、解析,exactMatch
+6715fde1a0465674e6f0bd5a,Math,代数,exactMatch
+67161976e6487fdf13596bdc,Math,位相幾何,exactMatch
+671641166bc44542da778ccf,Math,確率論、グラフ理論,exactMatch
+671681dae1099d44c53d91ef,Math,数論、組合せ論,exactMatch
+67169465a4566d624a446240,Math,"幾何, 解析",exactMatch
+6716a68fbb8539339d5d7239,Math,解析、集合,exactMatch
+6716aa92d9d8d8ddd54ad7dc,Math,代数、圏論,exactMatch
+6716ab9dcc9e36a89d712828,Math,代数、圏論,exactMatch
+6716afcdb8bcd4d88c34cd1d,Math,"微分幾何, 解析",multipleChoice
+6716dc349a0dd17680df31df,Math,"解析, 複素解析, 幾何",multipleChoice
+6716eaa4bdd18f08a0e9bcbf,Math,解析,exactMatch
+67171b0d0111e9837cad75b8,Math,群論,exactMatch
+67171c0c49297038d6740a23,Math,解析,exactMatch
+67171dca583e0959a2a84f91,Math,群論,exactMatch
+67d49da91dfc5429adf8e0fc,Math,グラフ理論,exactMatch
+6717207a3d6d949464d26a15,Math,群論,exactMatch
+671729e6746b1c4faab7096f,Math,群論,exactMatch
+67172e73e42c7644e4f00e1f,Math,"解析, 線形代数",exactMatch
+67173f7947da3cb07721513b,Math,確率・統計、幾何,exactMatch
+671746ad21eec7fde8de4026,Math,情報理論、対数、組合せ論,exactMatch
+671761abfdbddef7c5a1197e,Math,解析、線形代数,exactMatch
+671766f3eec0ae58685ae23f,Math,解析,exactMatch
+6717766dea5b46ff20362222,Math,組合せ論、集合論,exactMatch
+67178b22b7f6dd9be2a4dd68,Math,幾何、解析,multipleChoice
+67179df13b2ae86833ab4b0f,Math,位相数学,exactMatch
+6717a1346e416b6c6946ed2e,Math,位相数学,exactMatch
+6717a17cd1f6e4b18387d6c9,Math,線形代数,exactMatch
+6717a3b32bfc3643c75ac338,Math,線形代数、解析,exactMatch
+6717a999128b7480180c79f8,Math,確率論、解析,exactMatch
+6717aef5a5c8a6a9392b1b39,Math,解析、複素解析,exactMatch
+6717bd1d443232c907a31720,Math,線形代数、制御理論,exactMatch
+6717cc3a4d6b1e71cab9bc8c,Math,圏論,exactMatch
+6717cfeee8995e9e60504f33,Math,圏論、代数,exactMatch
+6717dd20e8666ff79cdd82af,Math,離散数学、最適化、幾何,exactMatch
+6717eb4518d92aa466b94d70,Math,解析、代数,exactMatch
+6717eeddd6c14a5dd1563e7c,Math,グラフ理論,exactMatch
+671800b68b88f01935b5824f,Math,グラフ理論,exactMatch
+6718106f713d2e285effa910,Math,"幾何, 解析",exactMatch
+6718161735872f2136bcfc88,Math,解析、複素解析、幾何,exactMatch
+67182dc779d13ce05adb35d9,Math,解析、数論、代数,exactMatch
+67183790e7fb9838a5a6c10d,Math,解析,exactMatch
+67184f90f86f5a009aa2ad5f,Math,代数幾何,exactMatch
+6718977144d804f3d0418866,Math,代数、解析,exactMatch
+6718b6f8f879f9699ffd3fbf,Math,数論、代数,exactMatch
+6718bf9c58bc11dea7f3be13,Math,計算理論、グラフ理論,exactMatch
+6718c479034f8ddb2f67a346,Math,微分幾何、解析学,exactMatch
+6718d2c20bcda71f53b0fe55,Math,位相幾何,exactMatch
+671901f58b9cbfc7b2fd9723,Math,数論、代数,multipleChoice
+67190e8172e53012645b0124,Math,数論、圏論,exactMatch
+67191b3025b51504c14dd870,Math,組合せ論、グラフ理論、順序理論、マトロイド理論,multipleChoice
+671922c9897dbe5d706dc802,Math,"組合せ論, 数論, 代数",exactMatch
+67192811212f1ac1f7ec4815,Math,位相幾何学,exactMatch
+67c7405475ac82e0c70a0cfe,Math,代数、群論,exactMatch
+671975e857fcd2edef6930fb,Math,数論、代数,exactMatch
+67199159b976203dd1bab7c3,Math,組合せ論、幾何,exactMatch
+6719a83547f600be2c21b6f7,Math,解析、数値解析,exactMatch
+6719c58cd5ad96a75c350fa6,Math,解析、数値解析、代数,exactMatch
+6719ca2ed5ad96a75c350fa9,Math,解析、数値解析、代数,exactMatch
+671a431b2ca56817dc566f89,Math,組合せ論、数論,exactMatch
+671a4ff987892bd153171067,Math,解析、数論,exactMatch
+671a5d9a6e1db673f77905d6,Math,離散数学、組合せ論,exactMatch
+671a88b29665432a8b897823,Math,群論,exactMatch
+671a93bc9665432a8b89783e,Math,解析、数値解析,exactMatch
+671aaca917615f09eab6fe37,Math,グラフ理論、幾何,exactMatch
+671aad23ce6e97a55a4d0d47,Math,確率・統計,multipleChoice
+671aad4a17615f09eab6fe3d,Math,"微分幾何, 解析",multipleChoice
+671ab139554dabfda724ef23,Math,確率論、線形代数,exactMatch
+671ab3b9bc29484bff69fc98,Math,確率論,exactMatch
+671abf7f136758472327f840,Math,群論,multipleChoice
+671ad24cba986fde0d401865,Math,グラフ理論,exactMatch
+671ada4eed3d54e87368bc78,Math,"解析, 数論",exactMatch
+671adfc8fa568baec778580e,Math,グラフ理論,multipleChoice
+671ae4d6fa568baec7785817,Math,代数、表現論,exactMatch
+671aee77ed3d54e87368bc9a,Math,離散数学,multipleChoice
+671b16741c8a4560f96a3a66,Math,解析,exactMatch
+671b6a72c0597e0854d18d56,Math,数論,exactMatch
+671ba19847e34cf4ed747b2d,Math,"解析, 微分方程式",exactMatch
+671ba37748e8f0ee7ea87318,Math,確率・統計,exactMatch
+671bdb372bb31d345b269f7d,Math,数論、代数,exactMatch
+671bdc0d90d834b821acb8b1,Math,"幾何, 代数",multipleChoice
+671bf8222181bed4e29b4e71,Math,"数論, 解析",exactMatch
+671c1099414cc58c0f2db443,Math,群論、組合せ論,exactMatch
+671c6fb38668b9d1652a1645,Math,解析、数値解析、物理数学,exactMatch
+671c967c28f032dc5fafd07f,Math,"幾何, 位相",exactMatch
+671ca19384c08d69293fb118,Math,位相,exactMatch
+671ca6ce84c08d69293fb129,Math,位相空間論,exactMatch
+671cb22b71eb9febef83bcde,Math,グラフ理論,exactMatch
+671cc8c2d99f8e01283e9a90,Math,"解析, 数列",exactMatch
+671d16bf60ad0fe6d2494177,Math,解析,exactMatch
+671d36032f9273fe1d43c047,Math,幾何,exactMatch
+671d3a7ed01a0c86488d84dd,Math,幾何,exactMatch
+671d4bf79eff7434a89d98e0,Math,確率・統計、組合せ論,exactMatch
+671d4dc4a37bbf6a4bccbd9e,Math,代数,multipleChoice
+671d4f8ea37bbf6a4bccbda2,Math,"ゲーム理論, 数論",exactMatch
+671d51ba8411174e64735f4d,Math,確率論、ゲーム理論,exactMatch
+67955d8d28dc0cc835a5c3c1,Math,グラフ理論、組合せ論,exactMatch
+671d56738411174e64735f59,Math,離散数学、数論,exactMatch
+671d64ecb996cf9936d1afcf,Math,離散数学、解析,exactMatch
+671d6a90bdac50eb5e8d8e86,Math,解析、微分方程式,exactMatch
+671d70b42f937e77ea5cb0cc,Math,解析、代数、幾何,exactMatch
+671d9c62355c956ce7de5a89,Math,ゲーム理論、確率、組合せ論,exactMatch
+671dc1300e30fa8a7d64db58,Math,解析、微分方程式、線形代数,exactMatch
+671dc2145167d65f41c86c58,Math,代数,multipleChoice
+671de7c204928e6c45fe1dc9,Math,集合,multipleChoice
+671df0f391a438f6811f5133,Math,確率・統計,exactMatch
+671df94021be7c0de0c698e8,Math,順序集合論、グラフ理論、集合論、数論、解析,exactMatch
+671dfc4d348d6bb4709de947,Math,幾何、解析,exactMatch
+671e1b4b32a23f6634d70269,Math,位相幾何、代数,exactMatch
+671e257023b28b50d1469683,Math,位相幾何、代数,exactMatch
+671e4c2e88c7438591f287ae,Math,代数,exactMatch
+671edddb6edc2afd69958943,Math,群論,exactMatch
+671f05c0d0f22fd6e50482df,Math,代数,exactMatch
+671f0f565a31c38041aa96a3,Math,数論、集合,exactMatch
+671f1b5bf1d35a8b2b3b9756,Math,離散数学、組合せ論,exactMatch
+671f1f4ae38f776acdad8a77,Math,数理論理学、集合論,multipleChoice
+671f3a628a33df76faeb71eb,Math,位相数学,exactMatch
+671f3c368a33df76faeb71f3,Math,解析、代数,exactMatch
+671f4997a2bc63fb20c63134,Math,解析、線形代数,exactMatch
+671f54e6a9349689d3eb65ff,Math,解析、線形代数、情報理論,exactMatch
+671f612d12bc18b3bf57dd89,Math,位相数学,exactMatch
+671f84c91d893bdd9af05be5,Math,解析、組合せ論、計算理論,exactMatch
+671f887676b11ce91b2887ce,Math,"代数, 位相幾何",exactMatch
+671f8a4e7e8f160452726c81,Math,離散数学、組合せ論,exactMatch
+671f99152e60076c5693554f,Math,離散数学、解析、組合せ論,exactMatch
+671f9eaa45414d0ed7ee4f88,Math,群論,exactMatch
+671fafee2e60076c5693558a,Math,代数,exactMatch
+671fb32753f9dd7511fe4d70,Math,群論,exactMatch
+671fb84fc6abf8266c1892c8,Math,群論,exactMatch
+671fbea5326bcfd746f4d96f,Math,"代数, 幾何",exactMatch
+671fc0c2f0bea11129a5ecdd,Math,代数、位相幾何,exactMatch
+671fe4f45a0f70920ad3bd63,Math,群論,exactMatch
+6720204c18dac989ee5554d4,Math,代数幾何、群論,exactMatch
+67202419dbc5086c0bdd4e0b,Math,順序集合論、グラフ理論,exactMatch
+672059fc2ea5966e3eddd835,Math,確率論、幾何,exactMatch
+67205ffef58a25138266a364,Math,ゲーム理論、解析,exactMatch
+672065bcff30e78ae646b59c,Math,数論、代数,exactMatch
+672067805681ce2b6f5a08a7,Math,線形代数、有限体論,exactMatch
+672068b61177432c7e500289,Math,解析、数論,exactMatch
+67206ac2f58a25138266a375,Math,組合せ論、グラフ理論,exactMatch
+67208d2f5241ba1dad593bf5,Math,解析,exactMatch
+67208fc7a002d6ecbf05e8ed,Math,位相幾何,exactMatch
+67209ea05425611553f598c7,Math,位相数学、群論,exactMatch
+6720a8db5425611553f598d6,Math,位相,exactMatch
+6720b19753f93bde5977a8e9,Math,集合論,exactMatch
+6720bde4806ce34140909a67,Math,数論,exactMatch
+6720c149c6e0d9a4953b6370,Math,群論,exactMatch
+6720c324083a628a849fcb53,Math,幾何,exactMatch
+6720c7d9831d6450ba886ff0,Math,離散数学、確率論,exactMatch
+6720ca4b696f86db458bcfe9,Math,"代数, 行列理論, 計算理論",exactMatch
+6720cf0221eb3705cfeb267b,Math,代数,exactMatch
+6720cf9caa0f927c36a3eb71,Math,解析,exactMatch
+6720f01e936e8e4575f4f3f4,Math,"代数, 位相数学",exactMatch
+6720feb00d9c62225dd12bd5,Math,離散数学、組合せ論,exactMatch
+6720ff60488fb478b942537b,Math,"幾何, 解析",exactMatch
+672102b6febecf1a8b9b0845,Math,幾何、解析,exactMatch
+6721044c137d5f8ca61261a5,Math,離散数学、グラフ理論,exactMatch
+6721058a1e9aa94fc1e215dd,Math,数論、組合せ論、代数,exactMatch
+67210bd65968ddcc0df3a248,Math,代数、集合、位相,exactMatch
+67210e0b44a741b2fde3c609,Math,組合せ論、確率論,exactMatch
+67211367482789b0dc078880,Math,代数、情報理論,exactMatch
+6721154d5968ddcc0df3a25c,Math,確率論、解析,exactMatch
+6721176ed9397a0c64dba826,Math,確率論、統計学,exactMatch
+6721545d3f8c49e613c94fac,Math,組合せ論、解析学,exactMatch
+6721596dbc4ad500af47418b,Math,離散数学、組合せ論,exactMatch
+672162b02795580f2ee8644f,Math,論理学、ブール代数,exactMatch
+67216f0abddbccdce9955e93,Math,群論,exactMatch
+672170613659e79885449d5a,Math,代数,exactMatch
+67217d44c98941f2d2d343f6,Math,"位相, 集合",exactMatch
+67219c66a8cd9fb6c1e25d71,Math,微分幾何、解析学,exactMatch
+6721a42269600ecb23a3e623,Math,解析学,exactMatch
+6721ac0547bc48850f17f779,Math,解析、集合,exactMatch
+6721b01e63e02c05008905d9,Math,集合、数論、位相数学、数学基礎論,exactMatch
+6721b2171648dda151c2a7f9,Math,群論,exactMatch
+6721fd0afec540182190e310,Math,代数,exactMatch
+672200467408db93b36cfd02,Math,代数,exactMatch
+6722039010af9c566d42b825,Math,幾何、最適化,exactMatch
+6722048cdcce66512a82d9e2,Math,"代数, 表現論",exactMatch
+6722084fdcce66512a82d9f4,Math,離散数学、確率論,exactMatch
+67220ac44337b6721108bf83,Math,グラフ理論、組合せ論,exactMatch
+6722198c0628f6647e3d591e,Math,組合せ論、数論、幾何,exactMatch
+67222f4b0f0526aefdf441ff,Math,幾何、組合せ論,exactMatch
+67223f9b0f0526aefdf4421b,Math,確率論、線形代数、解析,exactMatch
+672255e153af61d9b29732b8,Math,確率論、解析,exactMatch
+67225e2f53af61d9b29732c8,Math,解析、最適化,exactMatch
+67225e48f657c5888f075dad,Math,解析、集合,exactMatch
+672262d988e407d7eb07744d,Math,解析、特殊関数論、組合せ論,exactMatch
+672275f643469364173b0c14,Math,数論,exactMatch
+6722815c3c4f6785b07a6f49,Math,"幾何, 組合せ論",exactMatch
+6722870ef7bda9406bc723ac,Math,"解析, 微分方程式",exactMatch
+6722889086cf6075e69b96a7,Math,"幾何, 解析, 最適化",exactMatch
+67228eb808748295331b3dfb,Math,確率論、解析,exactMatch
+67229ab808748295331b3e1b,Math,線形代数、ベクトル解析,exactMatch
+6722a909f1d6384da90a4a38,Math,組合せ論、数列解析,exactMatch
+6722b2777f84054950978f74,Math,解析,exactMatch
+6722b6a92f1a6e315f1dff3b,Math,離散数学、組合せ論,exactMatch
+6722c2c066e4416e650d9032,Math,"離散数学, 代数",exactMatch
+6722c4f1d60ad77b5374fdd2,Math,組合せ論,exactMatch
+6722e21ca33cee8da62128a4,Math,組合せ論、幾何,multipleChoice
+6722e2aa59f0f83e64e054ed,Math,確率・統計,multipleChoice
+67231c593913fc1112f91418,Math,最適化、幾何,exactMatch
+67234ef248728bb7e8175bf2,Math,代数、グラフ理論,exactMatch
+67235bc3c0ae8158005244a9,Math,統計学、解析,exactMatch
+6723755c2e0b21bf390c5a30,Math,代数,exactMatch
+67239d8e02ee3ca40bc2034a,Math,解析、凸解析,exactMatch
+6723a06c2ed591ecf750d591,Math,解析、測度論,exactMatch
+6723b207610c8f282a827f3a,Math,解析、確率論,exactMatch
+6723bf0d71d8a82752075279,Math,数論,exactMatch
+67a69b0bc85a56ef94b67f1e,Math,解析、確率・統計,exactMatch
+6723c2226e47cec0509b5cbb,Math,解析,exactMatch
+6723c5cf75ffe38ab99c4e51,Math,解析、確率論、最適化,exactMatch
+6723cc9539491a3045f62fef,Math,解析,exactMatch
+6723cfdeddb9a8e96a06901a,Math,解析、力学,exactMatch
+6723d5524a5a9552dc3d8836,Math,代数、ホモロジー代数、圏論,exactMatch
+6723d9a6271ddeec8bacb9b6,Math,代数、位相,exactMatch
+6723e2eed45a194cda34796b,Math,解析、確率、統計,exactMatch
+6723e67a527c0443bbbe3964,Math,解析,exactMatch
+6723ecf396f515ab208ab187,Math,組合せ論、幾何,exactMatch
+6723ede433d757d4f7d6cad3,Math,確率・統計、解析,exactMatch
+6723f126acf84f9f1810b4ee,Math,グラフ理論,exactMatch
+6723f1bf0b72766be93d01ae,Math,代数,exactMatch
+6723f44aabdb1dfc2b496a11,Math,代数,exactMatch
+6723f7fd28eea415ba8d7af3,Math,代数幾何,exactMatch
+6723f98e95122aa6e1c63506,Math,"数論, 代数",exactMatch
+6723fd5a1e085509e462323d,Math,代数,exactMatch
+6723fd7d1e085509e462323e,Math,組合せ論、代数,exactMatch
+672413536c2345e86ea59fe7,Math,"数論,解析",exactMatch
+67242a2d2a37861b051e6178,Math,組合せ論、ゲーム理論,multipleChoice
+67242bb82a37861b051e617e,Math,複素解析,exactMatch
+67243ab4c287b71df6f486c0,Math,離散数学、幾何,exactMatch
+672452ce8300e6a4b0112cff,Math,離散数学、代数,exactMatch
+672458d52253026c7368902c,Math,組合せ論、集合論,exactMatch
+672458e95f170d6ed834f340,Math,解析,exactMatch
+672473c50c7275f41d6d1e63,Math,離散数学,exactMatch
+672481e607ba5eb2c1c53534,Math,代数、集合,exactMatch
+67248cadd04b3798125682f3,Math,位相数学,exactMatch
+6724900ad8246a7af6d54ff3,Math,解析、数値解析,exactMatch
+6724970787a3fb903b6a4663,Math,組合せ論、ゲーム理論,exactMatch
+67249b8ef14c6dca507d5e0d,Math,組合せ論、離散数学,exactMatch
+67249dc1d8246a7af6d5500d,Math,確率論、統計学、機械学習,multipleChoice
+6724a01ff14c6dca507d5e18,Math,幾何、組合せ論,exactMatch
+6724a047d917564737255345,Math,"集合, 確率, 統計",multipleChoice
+6724a2dd9138921d6f17231a,Math,離散数学,exactMatch
+6724a338d917564737255349,Math,"解析, 微分方程式",exactMatch
+6724aecb2bfc260d444bc385,Math,解析、関数解析、微分方程式,exactMatch
+6724bcf944c2c3be8ba3cf72,Math,"解析, 微分方程式",exactMatch
+6724c10df477ce1b85735d01,Math,解析,exactMatch
+6724cdd55ae9c8186f31f920,Math,解析、代数,exactMatch
+6724d4f2618e28a18b101158,Math,代数、幾何,exactMatch
+6724d70af70a476bbcaa32e1,Math,解析,exactMatch
+6724d9e612a8d5ea6a61936f,Math,数論、線形代数、格子理論,exactMatch
+6724dae7f70a476bbcaa32ef,Math,代数、格子理論,exactMatch
+6724de4af5d4eb3bb83e0597,Math,離散数学、計算理論,exactMatch
+6724df023d152e09b5c5d6c1,Math,組合せ論、離散数学,exactMatch
+6724e08542ec04c22a24aaa5,Math,代数,exactMatch
+6724e240618e28a18b10117b,Math,抽象代数、環論、表現論,exactMatch
+6724e72e2e4151a53d606225,Math,"代数, 表現論",exactMatch
+6724ea8ca36a8ef783edc2e3,Math,"幾何, トポロジー",exactMatch
+6724ecebaff45cdb58582060,Math,"解析, 関数解析, 偏微分方程式",exactMatch
+6724ed87a36a8ef783edc2ec,Math,"代数, 幾何",multipleChoice
+6724f3552002c95e0b70ebc4,Math,組合せ論、数論,exactMatch
+6724f79792419e4380b5686a,Math,数論,multipleChoice
+6724fae6d3b58eb90d837b32,Math,組合せ論、代数、幾何,exactMatch
+6724fe91ea5926938a631b9c,Math,解析、代数,exactMatch
+672501742cc2a1349f1ffad7,Math,解析,exactMatch
+6725107c97743d26179494c6,Math,解析、位相,exactMatch
+67251f8511085cbd9b25eea7,Math,"幾何, 最適化",multipleChoice
+672521a56cd1b99dae47a110,Math,"群論, 計算理論",exactMatch
+672522279bdd18fefce14c6f,Math,代数,exactMatch
+67252660e6807ea2c8372c41,Math,グラフ理論,exactMatch
+672528e739b66386e0489e89,Math,解析,exactMatch
+67252916041c0a0ef1addf6f,Math,解析,exactMatch
+6725292085b48a76ea1b5709,Math,解析,exactMatch
+67252aad70e5e32e5897fa56,Math,解析、代数,exactMatch
+67253382825d7a624838318c,Math,代数、解析,exactMatch
+6725349f3e9860a3b615ce40,Math,解析、代数,exactMatch
+672536736bc3970bc3e12ca5,Math,"数論, 幾何",multipleChoice
+67253bcc94bd63ec55a66a0c,Math,"代数, 群論, 幾何",exactMatch
+67253d0294bd63ec55a66a0d,Math,"数論, 代数, 組合せ論",exactMatch
+672547d531e4efbf27ecd1cf,Math,解析、線形計画法,exactMatch
+67254b9b3f37dfb9cf080a95,Math,代数、表現論、圏論,exactMatch
+67254dd75a5d8bd3890203c6,Math,解析、微分、関数解析,multipleChoice
+672556af66f8db005694c4d8,Math,組合せ論、数列,exactMatch
+6725716480b9caf2f8f62d01,Math,組合せ論、数論、離散数学,exactMatch
+67257466e173b172c061372a,Math,解析、偏微分方程式,exactMatch
+672578eb24e0012c5eb7c4ea,Math,幾何,exactMatch
+672579985c16db8f9647559c,Math,解析、離散数学,multipleChoice
+6725809d0ce8918bd2e788b8,Math,解析,exactMatch
+67258391e0340e3face2bc7b,Math,数列,exactMatch
+672597fcf6ab4d803965b2e0,Math,幾何、群論,exactMatch
+6725999445be7410f926c964,Math,群論、代数、幾何,exactMatch
+67259a76e7601df8b19a9e2a,Math,群論,exactMatch
+6725a2fa43705c76e4390cd9,Math,確率・統計,exactMatch
+6725a3721da5d29be1a9a573,Math,組合せ論、数論、幾何,exactMatch
+6725a4bd95dd1474c74f2904,Math,群論,exactMatch
+6725bb338255543498bdcbec,Math,"代数, 解析",exactMatch
+6725bb348255543498bdcbed,Math,"組合せ論, 数論",exactMatch
+6725c97d4f347932f9a63e68,Math,解析、微分方程式,exactMatch
+6725cb794f347932f9a63e6b,Math,代数,exactMatch
+6725cc85569cf0c62da64d29,Math,代数、確率・統計,exactMatch
+6725d1218a8e4959b13450be,Math,解析、代数,exactMatch
+6725dc14097c6790b292765e,Math,確率・統計、線形代数,exactMatch
+6725e3a826992c47ce3a7e99,Math,代数幾何,exactMatch
+6725e3f7603864c505f3a699,Math,確率論、統計学,multipleChoice
+6725e3f8603864c505f3a69a,Math,離散数学、数論、線形代数,exactMatch
+6725e8e30a7e4f593d9c716f,Math,数論、代数幾何,multipleChoice
+6725ee9126992c47ce3a7eb5,Math,幾何,exactMatch
+6725f6cebbcb646b2076e64b,Math,表現論、代数、解析,exactMatch
+6725f8e6aaf7cd419fd01ade,Math,代数、表現論,exactMatch
+6725fbd80aae355a51195cca,Math,幾何,exactMatch
+6725fe6b26992c47ce3a7ef5,Math,"線形代数, グラフ理論",multipleChoice
+6725ffa31cd77337de97422c,Math,確率論、組合せ論,exactMatch
+6725ffac1cd77337de97422d,Math,組合せ論、確率論、離散数学,exactMatch
+672603f3fd50e2db8a0571ba,Math,解析、幾何,exactMatch
+672604100aae355a51195cdf,Math,"幾何, 数論",exactMatch
+672604e44ee1765ace1c8a40,Math,"情報理論, 確率論, 解析学",exactMatch
+6726140e196c3daaab906acc,Math,解析学、微分方程式、数理生物学,exactMatch
+672614260019e08d7f82b2d0,Math,グラフ理論、線形代数,multipleChoice
+6726146a09e79f4662d109bc,Math,確率・情報理論、解析,exactMatch
+67261f558ef4acce1da598d0,Math,解析,exactMatch
+67262ab673b4f2f18a5c631f,Math,代数,exactMatch
+672643a2699c78200b0177e9,Math,"解析, 偏微分方程",exactMatch
+672656a3fd560b1526278952,Math,幾何学,exactMatch
+67269e31f922f333ed9d695f,Math,"解析, 微分方程式",exactMatch
+6726b213fce0098db0df41e8,Math,グラフ理論,exactMatch
+6726b934d4553efaee99c556,Math,離散数学、アルゴリズム,exactMatch
+6726bc54d4553efaee99c558,Math,グラフ理論、組合せ論,exactMatch
+6726ecf08825660211cd8a68,Math,確率論、解析,exactMatch
+6726ee5f8825660211cd8a70,Math,離散数学、確率論,exactMatch
+6726efce60a613901f1fdf0b,Math,組合せ論、確率論,exactMatch
+6726f1f73958e8253ed79aed,Math,解析、偏微分方程式,exactMatch
+67273bfc2df343cad1ceb83e,Math,位相数学,exactMatch
+672743f6b2c49bf5b7cbb56d,Math,代数、数論,exactMatch
+67278a07f6750868800d5801,Math,"代数, 数論",exactMatch
+672825849044c8a4cbd271a5,Math,グラフ理論,exactMatch
+67283cfe8a55429d9a6f5a56,Math,離散数学,exactMatch
+6728696b7c5ceb52207dc9d8,Math,数論、線形代数、解析学,exactMatch
+672895e42863e798a320481b,Math,"解析, 微分学",exactMatch
+67289af83c117573234842fc,Math,解析、幾何,exactMatch
+6728ba13fbd2af689fc469e5,Math,代数,exactMatch
+6728dbcfaad817387c40dbde,Math,組合せ論、数論,exactMatch
+67293085960463c6c455b9e9,Math,代数幾何,exactMatch
+67d66d03067f18d4c9ef4da9,Math,組合せ論、幾何,exactMatch
+67299bb057f14fa7ce3fe4fd,Math,確率・統計、離散数学,exactMatch
+6729d4704648ce900654fb6d,Math,離散数学、解析,exactMatch
+672a2a263653e5d5e7710885,Math,位相数学,exactMatch
+672a32576547c905a6e6ad2c,Math,離散数学、グラフ理論,exactMatch
+672a3b69485ba3b093402460,Math,"幾何, 解析",exactMatch
+672a5b4eefd96b7e660d8ea4,Math,幾何、天文学,exactMatch
+672a5bd5efd96b7e660d8ea9,Math,離散数学,exactMatch
+672a857f44b1b51ebe496467,Math,離散数学、組合せ論,exactMatch
+672b2ff4a7b27beaf0e7779a,Math,位相幾何学、集合論、解析学,exactMatch
+672b60ff231c04562f3fe6c0,Math,位相幾何学,exactMatch
+672b74fe3f409f61a8efbe5e,Math,代数、解析,exactMatch
+672b75530af18d6c52ca104c,Math,幾何,exactMatch
+672b82cf41fc5c68b0325382,Math,代数、幾何,multipleChoice
+672bb2bbe5bc491689003908,Math,線形代数、離散数学,multipleChoice
+672bc2a8267cc248707f3b18,Math,代数,exactMatch
+672c3c98d6f6f7a9e29fc6e2,Math,解析,exactMatch
+672c82f6cf35e2d3ab488e6f,Math,位相空間論,exactMatch
+672c84e4975ce618c77a5c49,Math,"位相数学, グラフ理論",multipleChoice
+672c8e7a86c5d04249bd338e,Math,解析,multipleChoice
+672c91122372b4061411e111,Math,解析、代数,exactMatch
+672c973499e1076f34973bfc,Math,"集合, 数理論理学",multipleChoice
+672c983d4183d91499fad7c5,Math,"集合, 数理論理学",exactMatch
+672ca51e99e1076f34973c18,Math,"解析, 幾何",exactMatch
+672ca5b60fcde739f6450e29,Math,"集合, 解析, 確率・統計",exactMatch
+672caa8a948e810916427a4c,Math,位相空間,exactMatch
+672cba8ce9bdca604f9e0c12,Math,"幾何, 解析",multipleChoice
+672ccc56010db734d4f3f109,Math,幾何,exactMatch
+672cdf88f01cb175ca130759,Math,解析、線形代数,exactMatch
+672ce9226c70a3cd8f9e441b,Math,幾何、解析、集合,exactMatch
+672cfee1db7c79384524d9b2,Math,解析、流体力学、幾何,exactMatch
+672d01f582086e7db5570f4e,Math,複素解析,exactMatch
+672d159c841ae6e83ce51dfb,Math,解析、偏微分方程式,exactMatch
+672d2195841ae6e83ce51e18,Math,"幾何, 解析",exactMatch
+672d6478802a6a4e9525e893,Math,"微分幾何, 代数幾何, トポロジー, 表現論",exactMatch
+672d7be7f97c3b404d90f3c7,Math,組合せ論,exactMatch
+672d7ebc9a32864a120253cd,Math,"解析, 関数解析, 変分法",exactMatch
+672d7f16f97c3b404d90f3cc,Math,"解析, 関数解析, 変分法",exactMatch
+672d8366f97c3b404d90f3d3,Math,グラフ理論,exactMatch
+672d8b9b504a98f0e4799ae0,Math,解析,exactMatch
+672da2566d1f60da4a748aca,Math,幾何,exactMatch
+672db13596000a062a322379,Math,組合せ論、代数,exactMatch
+672db3a88bc9e04cb09bf8f7,Math,組合せ論,exactMatch
+672db430e9b58e3b2e97b67a,Math,幾何,exactMatch
+672db86596000a062a32238c,Math,組合せ論,exactMatch
+672dbb7dca434e751d8c2a83,Math,グラフ理論,exactMatch
+672dd6cbc78b3d5830853a39,Math,位相数学,exactMatch
+672dde1a9a1f996a161fbd05,Math,解析、幾何,exactMatch
+672ddfdf10ab34a448a5e299,Math,位相数学、群論,exactMatch
+672e0541604ada7a6f6735c0,Math,確率論、解析,exactMatch
+672e05610a85795d0ed2d363,Math,解析,exactMatch
+672e08c20a85795d0ed2d36b,Math,解析、線形代数,exactMatch
+672e2ab240c7d7b0d90e0907,Math,幾何,exactMatch
+672e4d316ee63a5d94bf863a,Math,数論,exactMatch
+672e4fe878953b9f63939501,Math,数論,exactMatch
+672e72082d0c14a2e7969dd5,Math,幾何,exactMatch
+672f2311db65f629cc9236ce,Math,位相数学、群論,exactMatch
+672f54bf8e66d0d6f864f6ec,Math,幾何、解析,exactMatch
+672f74159150f3ac08f0c9f5,Math,"代数, 数論",exactMatch
+672f819789e556fe53c8af75,Math,グラフ理論,exactMatch
+672f887789e556fe53c8af89,Math,群論,exactMatch
+672f8cf367988656535c9b1a,Math,確率論、解析,exactMatch
+672f903de8305894b6cfdc7e,Math,確率論、解析,exactMatch
+672f935ae8305894b6cfdc94,Math,位相数学,exactMatch
+672f9b772357e1d1acd486b4,Math,"代数, 幾何",exactMatch
+672faa45c5a8bce51676ee01,Math,確率・統計、離散数学,exactMatch
+673029b26ad714f5469388f5,Math,解析、微分方程式,multipleChoice
+67302aea4c42a72918926160,Math,解析、線形代数,exactMatch
+67308f79c5ea548175bbf9fc,Math,解析、統計,exactMatch
+67309ff3cae6d721326ee9f5,Math,位相幾何学,exactMatch
+6730ab9b1c5695f59ab6a5e8,Math,"確率, 幾何, 解析",exactMatch
+6730abc958ef965949f1faa9,Math,解析学,exactMatch
+67310b7b6e2b21ba84f49060,Math,解析学,exactMatch
+67310e19bf74eff110261caa,Math,幾何、位相、集合,multipleChoice
+67313aab62d0ed16256c0093,Math,離散数学、組合せ論,exactMatch
+6731bf34cb53dd90407d12b5,Math,微分幾何,exactMatch
+6731c361932ff1e062488324,Math,論理学、集合論,exactMatch
+6731c87c6c74786218717a81,Math,位相数学,exactMatch
+6731cc48b2c262fe258260db,Math,確率論、解析,exactMatch
+67320e338f6d9d8c50dca222,Math,グラフ理論、離散数学,exactMatch
+67321d3b492db99ed0f964d2,Math,確率論、解析,exactMatch
+67323ba02db3b4507c5bf93f,Math,幾何,exactMatch
+673245364fe7531d658b2750,Math,解析、代数,exactMatch
+67325538be6ffcb93ac06399,Math,組合せ論、離散数学,exactMatch
+67327427dd4c31644d608f5c,Math,線形代数、差分方程式、周期境界値問題,exactMatch
+6732a917934ffe0cf439cf30,Math,数論、解析,exactMatch
+6732ca5730bf2e525136b688,Math,離散数学、グラフ理論,exactMatch
+6732d91a87eb8fc773aaf2c0,Math,"解析, 微分方程式",multipleChoice
+673312855d26efacb4819f3a,Math,"位相, 集合",exactMatch
+673364562c46590b377046dd,Math,離散数学,exactMatch
+673376d38769963eb1f7c580,Math,"幾何, 解析, 位相",exactMatch
+6733919b7f92efbfefc1d561,Math,離散数学、グラフ理論、論理学,exactMatch
+6733e070361b540695504b86,Math,幾何,exactMatch
+6733f23b731fba4902214821,Math,離散数学,exactMatch
+6733f31c4b8994c57e7160aa,Math,グラフ理論,exactMatch
+673412c46358d5eb2b766533,Math,線形代数,exactMatch
+67343cda5b69aac4188acc6e,Math,"代数, 幾何",exactMatch
+67344c306c8af1669360d38e,Math,解析、数列、数論,exactMatch
+6734830d5fc27d3e41519741,Math,トポロジー,exactMatch
+673484483ad1f0cf44dd1ca6,Math,位相幾何学,exactMatch
+6734af9217a9687889930afd,Math,解析、微分方程式,multipleChoice
+6734c9d08b7d570e8e23f646,Math,解析、代数,exactMatch
+6734d8dc5339f30ba329709d,Math,組合せ論,exactMatch
+6734e070d2fa7918dc2795bb,Math,離散数学、グラフ理論,exactMatch
+6734f24a08351f5bdfd38627,Math,位相数学,exactMatch
+67350ad443f1d86ec88ce396,Math,"解析, 位相数学",exactMatch
+6735268e5a2fa2eb62ee48c0,Math,解析、幾何,exactMatch
+67352e9911e5510fc618f619,Math,離散数学、幾何,multipleChoice
+673531cae26d0576765bd963,Math,離散数学、形式言語理論,exactMatch
+67353bacf5927b66a51a2e7c,Math,組合せ論,exactMatch
+673586ad6ea2c89a57e3bfb7,Math,集合論,exactMatch
+673598e8e8a7a17c7004ed67,Math,代数,exactMatch
+67359bd848f0d868aea133c4,Math,解析,exactMatch
+6735a032f947388686c608f1,Math,代数,exactMatch
+6735a2d69caf928ddf5957ed,Math,"集合, 圏論",exactMatch
+6735bc5bd86155d1e57160e8,Math,"位相数学, 集合",exactMatch
+6735c467e35b9d6fab20c23a,Math,確率論、解析、離散数学,exactMatch
+6735d98ca3b3423f0757c08c,Math,トポロジー,exactMatch
+67365419b7341a55d7dc1229,Math,確率論、幾何,exactMatch
+6736667eb5eda7e01fa935b2,Math,線形代数、グラフ理論,exactMatch
+673668e658bad7ba89d4ad54,Math,離散数学,multipleChoice
+67367cbd06a61a42cae30293,Math,離散数学、幾何,exactMatch
+6736b24a58f461953a97e874,Math,微分幾何、解析,exactMatch
+6736b51358f461953a97e879,Math,解析、微分方程式,exactMatch
+6736ccc7b9b2577c622e944c,Math,解析,exactMatch
+6736cea8134f03c3c61391e9,Math,離散数学,exactMatch
+6736d46462d883a670c09b5d,Math,線形代数,exactMatch
+6736d5dc278519f8b1845091,Math,"幾何, 解析",exactMatch
+6736d80ac3870d903d810cb3,Math,解析、数論,exactMatch
+6736d98353926b38af8c204b,Math,代数幾何,exactMatch
+6736df63b0bb13ba4f29c594,Math,確率論、離散数学,exactMatch
+6736e17253926b38af8c205e,Math,"幾何, 解析",exactMatch
+6736e1afac05181e46df9caf,Math,"数論, 組合せ論",exactMatch
+6736e54a4c96e49df1036fc6,Math,解析、集合,exactMatch
+6736eb1c3cb46a6e548a3a4f,Math,解析、代数,exactMatch
+6736ec544c96e49df1036fea,Math,順序論、集合論,exactMatch
+6736ecc681dc32f504545aae,Math,解析、線形代数、微分幾何,exactMatch
+6736eead51fddf72315e793c,Math,代数,exactMatch
+6736efd7c62053058bf5eef6,Math,"解析, 数列と級数",exactMatch
+6736f46694e6cfc37bdae690,Math,ゲーム理論,multipleChoice
+6736fbf13f0517b6e8a6071e,Math,微分幾何,exactMatch
+6736fe88824201a362e27aa1,Math,トポロジー、ホモトピー論、代数トポロジー,exactMatch
+6737016cd6feab08ed98c77d,Math,数論、組合せ論,exactMatch
+67370359930c1fd7247f3413,Math,解析、力学,exactMatch
+673709de3f0517b6e8a60764,Math,グラフ理論、組合せ論,exactMatch
+67370a1b980211368f0f9531,Math,解析、組合せ論, and d >1. $b_{n} = \frac{n^{2}+n}{a_{n}}$
+6737155919fe786391fedd08,Math,組合せ論、解析,exactMatch
+673716bd2773953bca4195d7,Math,論理学、数論,exactMatch
+679c353fc954984d079ecfb7,Math,代数,exactMatch
+67371dc7fb093fc159cc78e8,Math,解析、微分方程式,exactMatch
+673721bf2ccb228b9d55c8ff,Math,表現論、代数,exactMatch
+67372559fb093fc159cc790f,Math,解析、微分方程式,exactMatch
+6737259f2c11cb057c97911b,Math,代数、幾何,exactMatch
+67372622d73437e891c14877,Math,解析、代数,exactMatch
+67c677ac4b9355ec051c5426,Math,解析,exactMatch
+6737309d1988146a57ffab18,Math,解析、微分積分,exactMatch
+6737321d90a20eb348edbe03,Math,解析、線形代数、制御理論,exactMatch
+6737382a90a20eb348edbe23,Math,代数幾何,exactMatch
+673738b81bcb9388d8e3b31a,Math,位相幾何,exactMatch
+673744590cf254c99a9595e4,Math,位相幾何,exactMatch
+67374bd8cceb51c87c8f1925,Math,解析、位相、線形代数,exactMatch
+67378355cf21a88cec0f42e5,Math,"位相, 集合",exactMatch
+6737b25181d9423817b88328,Math,"組合せ論, グラフ理論",exactMatch
+6737b54897dbabee150254d9,Math,集合論,exactMatch
+6737c6ff3b2291333fbb48a4,Math,解析,exactMatch
+6737ccee8ebd5a3e08cacd39,Math,トポロジー,exactMatch
+6737cd443b2291333fbb48b6,Math,論理学、集合論,exactMatch
+6737f5f63fee081b67a59e1c,Math,順序集合論、組合せ論,exactMatch
+6737feb4c11efda6b940d219,Math,解析、数論,exactMatch
+673814e333f92b33fc5d4ef6,Math,集合論,exactMatch
+67381ce26a5242a22fe4681f,Math,"幾何, 解析, 確率・統計",exactMatch
+67382a0d9093b0b290d932b9,Math,代数,exactMatch
+67382e289b3842b34824245b,Math,代数、解析,exactMatch
+67384618f50a1fb083fa3eea,Math,グラフ理論,exactMatch
+67384d2f360c3e6934c83626,Math,数論、解析,exactMatch
+6738507b4dc31bee20ab4b01,Math,微分幾何,exactMatch
+673852c82e5179091a7648e8,Math,線形代数,exactMatch
+67385365f50a1fb083fa3f02,Math,数論,exactMatch
+673857db3a5ac4684b750d22,Math,位相数学,exactMatch
+67387af4aa63aa9bc8096f48,Math,位相、群論,exactMatch
+6738925a88684584d13d4d44,Math,"幾何, 解析",exactMatch
+6738d62e37f41423112a76ba,Math,"解析, ベクトル解析",exactMatch
+6738d8948d9f3fdfc50c93f5,Math,集合論,exactMatch
+6738ed5aafa76366534beaa8,Math,集合論,exactMatch
+6738f23e851b80b033aa8636,Math,集合論,exactMatch
+6738f778851b80b033aa8654,Math,論理学,multipleChoice
+6738f823604ae090a02938fd,Math,集合,exactMatch
+6738fd4b851b80b033aa866f,Math,集合、代数,exactMatch
+67391a30af74773130b63bb2,Math,集合、順序論、位相,exactMatch
+67391b1caf74773130b63bb6,Math,解析、物理数学,exactMatch
+67392014a87cc4cf423a73e2,Math,集合論,exactMatch
+6739374caf97ceab210adc21,Math,離散数学,exactMatch
+673940404b79755e8fd591dc,Math,数論,exactMatch
+6739479743b2a5ca5cf1a9dd,Math,数論,exactMatch
+67394a709625ee6d891838e2,Math,幾何,exactMatch
+673963bfc066d38d05efee80,Math,集合、順序数論,exactMatch
+67396779f2c1f4ba83e0a0a2,Math,集合論,exactMatch
+67396d5f529edfe3fe77e973,Math,集合,exactMatch
+67397f0d8ad50d0410e30db4,Math,"解析, 幾何",exactMatch
+6739a952fa7e2dea8ccd9bfe,Math,"幾何, 位相",exactMatch
+6739bc57d0af09aab0acf895,Math,幾何、解析、離散数学,exactMatch
+6739c2b970e297a5bb200fdb,Math,解析、代数,exactMatch
+6739e06f5a81384176dd28cd,Math,微分幾何,multipleChoice
+6739ec066a53385958bca5e8,Math,幾何,exactMatch
+673a2f99b526858a94683ad1,Math,代数,multipleChoice
+673a30e39b3ad7c9386b5da4,Math,集合論,exactMatch
+673a31d0efec47c08d597095,Math,解析、幾何,exactMatch
+673a36936a38861184e67871,Math,集合論,exactMatch
+673a36b569a009bd25ec1a74,Math,解析、統計,exactMatch
+673a3a5fefec47c08d59709c,Math,数論、組合せ論,exactMatch
+673a3faaed02a359f6002a78,Math,解析、力学系,exactMatch
+673a55796ecc0daf8f9b9f7d,Math,組合せ論、離散数学,exactMatch
+673a5d4f6bd877b81c665adc,Math,代数,exactMatch
+673a73d1addb9293360a5d07,Math,集合論,exactMatch
+673a7987334115f5123f9c64,Math,集合,exactMatch
+673a7c5661b5d6a8453b191b,Math,集合,exactMatch
+673a85e1551b8b9cc471012d,Math,数論,exactMatch
+673a8ff77acc7cdc8c824b62,Math,数論,exactMatch
+673aa3536b5c65098f208d6f,Math,解析、数論,exactMatch
+673ab3fac0726c7f6713bf35,Math,解析、数論,exactMatch
+673ab9f26b5c65098f208d90,Math,組合せ論,exactMatch
+673abc341e7de1db582067ae,Math,代数,exactMatch
+673ac0ef3792ac12ad54f599,Math,グラフ理論,exactMatch
+673af80a3022b9e17f89d1c5,Math,位相数学,exactMatch
+673b026a4fa2c1cad72e2e28,Math,解析、代数,multipleChoice
+673b0fb5fa1e03dfc8513c37,Math,圏論,multipleChoice
+673b192f331c2eeff8631ccf,Math,数論,exactMatch
+673b198c2e9d1d0e28ee75ca,Math,位相数学,exactMatch
+673b2e9f614800adcd937382,Math,解析、確率・統計,exactMatch
+673b50769ff1dae6f5b8b65d,Math,解析、幾何,multipleChoice
+673b5fdff0294e2cbdb5bebb,Math,代数、解析,exactMatch
+673b631505be2302d4445ece,Math,数論、代数幾何,exactMatch
+673b6aa505be2302d4445ed4,Math,圏論,exactMatch
+673b6ef1430f8b6e47a67760,Math,圏論,exactMatch
+673b7ee0b22ebd24e26d4ece,Math,数論、代数,exactMatch
+673b9beb869b2bf69018d130,Math,数論,exactMatch
+673c0453bd7e341f9a3f1ac1,Math,幾何,exactMatch
+673c138655928a6b1b360ada,Math,集合論、順序論,multipleChoice
+673c35290057acd3008e630b,Math,代数、数論,multipleChoice
+673cbc315c871b3f9e026cf8,Math,数理論理学,exactMatch
+673ce6500bf8b23a52510a18,Math,"解析, 線形代数",exactMatch
+673ce9cde1efe52b26e2bbc8,Math,数論、解析,exactMatch
+673d04026d3e62d37824922e,Math,論理学、組合せ論,exactMatch
+673d70ca1b7b41a118b4b786,Math,幾何,exactMatch
+673db2b5cafd05346e5ea4b8,Math,集合、代数,exactMatch
+673e64979c1787f33fd0b983,Math,確率、離散数学,exactMatch
+673e66f59f77eeca0292a3b8,Math,"離散数学, 幾何",multipleChoice
+673e9bb58e7609d034b4ec54,Math,"集合, 数論, 離散数学",exactMatch
+673f1225fa344b6af55a5c60,Math,解析、数論、離散数学,exactMatch
+673f8934ccb23d2ccc360e4e,Math,数論、グラフ理論、解析学,exactMatch
+673fb49e9c9d0a5bc88bf8be,Math,グラフ理論,exactMatch
+67400254c0ce9147b46fadfb,Math,集合論、位相数学,exactMatch
+67407476202fdf7a5b5c6cc1,Math,解析、確率統計,exactMatch
+6740dcfff2fec88c6301d048,Math,集合論,exactMatch
+6740f12881d5bb0710804155,Math,組合せ論、ゲーム理論,exactMatch
+6741218b9b244ee15c8f6db4,Math,"幾何, 解析",exactMatch
+67415d78b7835cb0473d6cad,Math,離散数学、数列,exactMatch
+67418f4d1cf0c9eba73432cc,Math,論理学、離散数学,exactMatch
+674242f5949299fb3aa1f179,Math,確率論、解析学、数論,exactMatch
+674268ee74c0719a829dfbb1,Math,集合論,exactMatch
+6742b72d714118dd43c25d12,Math,集合論,exactMatch
+6742f485e9256150e88912f1,Math,離散数学,exactMatch
+67435ecfa59a37c4a0f5d579,Math,集合論,multipleChoice
+674362ab6b7aa212dfb90595,Math,ゲーム理論、解析,exactMatch
+674365a2b5d4e34a242899c5,Math,集合論、位相数学,multipleChoice
+674490c88354817cce712062,Math,組合せ最適化、整数計画法、離散数学,exactMatch
+6744b7401a3cd63bff1b0a06,Math,"集合, 数理論理学, 数論",exactMatch
+6744e0c28bc949975d41b7d6,Math,"集合, 数理論理学",multipleChoice
+67458d2109d194da0dfd7cef,Math,"解析, 線形代数",exactMatch
+67466b3e9f0add5aaf50aa8a,Math,グラフ理論,multipleChoice
+6746ee2219da4bb05e9d6b99,Math,"集合, 数論",exactMatch
+6747c521a7e2f8061effd365,Math,"解析, 微分方程式, 数値解析",exactMatch
+6747cbf864654c38936cf259,Math,解析、線形代数、制御理論,exactMatch
+6747da64aa7f6182ef02efae,Math,解析、線形代数、関数解析,exactMatch
+6747df97a3299f69eec20468,Math,解析、微分方程式,exactMatch
+6747e0eaaa7f6182ef02efb4,Math,解析、関数解析、微分方程式,exactMatch
+674818a0d2dbfbb2e99bd257,Math,組合せ論、数論、解析,exactMatch
+67483a7928f6e886b0c6be8b,Math,組合せ論、群論、グラフ理論,exactMatch
+67486cd4501c568127ed52d4,Math,解析、微分方程式,exactMatch
+674a650c76449d2a51ff59c2,Math,組合せ論、ゲーム理論,exactMatch
+674d5d4980a9a6adc4f86bc6,Math,組合せ論、数論,exactMatch
+674e42d989359519111517cc,Math,"代数, 数論",exactMatch
+674f23d73cc400e10645fbe3,Math,離散数学、グラフ理論,exactMatch
+6751f20ce29b1066aee7cb15,Math,離散数学、数論,exactMatch
+67526499b42d785cf1cb1025,Math,代数、数論,exactMatch
+67527ef6de72021d846a7a75,Math,解析、統計,exactMatch
+6754baec618d187bb3362936,Math,離散数学、幾何学,exactMatch
+6755d8a01c505b5224374708,Math,統計学,exactMatch
+6755fda923557a5b73ff1fd5,Math,"解析, 微分方程式",exactMatch
+67ae17cf1509e1d55b4a0eec,Math,幾何,exactMatch
+67c9a321f82a928bdecec2a5,Math,離散数学、グラフ理論,exactMatch
+67578debd068d05e5346d4ee,Math,数論、離散数学,exactMatch
+675853c6101f66905f003073,Math,"幾何,離散数学。",exactMatch
+675b894146d55c2ffdebd8f5,Math,"数論, 解析学",exactMatch
+675bbe800b4a17d6e810b318,Math,組合せ論、数論,exactMatch
+675c59781c9f7fa841e9aca6,Math,確率・統計、解析,exactMatch
+675d67cd46f526ea086d3510,Math,解析、微分方程式,exactMatch
+675d7b901ded33d59eb2c94f,Math,幾何,exactMatch
+675e0f20488645c4ed8af30b,Math,離散数学、計算理論,exactMatch
+675ef5df23d39f499ea5e87a,Math,離散数学、組合せ論,exactMatch
+6761a307c12ca815b1c97374,Math,確率・統計,exactMatch
+6761b89b9d9d4287c0969029,Math,解析、確率・統計、線形代数,exactMatch
+6762254cb0a8d2db5d77e5d1,Math,解析、微分方程式、線形代数,exactMatch
+67643038c1cda8ef39debd4b,Math,"幾何, 拘束トポロジー",exactMatch
+6769bcbdc2358745fedc9086,Math,解析、確率・統計,exactMatch
+6769bce8a4435c3c69035510,Math,解析、確率・統計、線形代数,exactMatch
+676b5d9ef4feb105f601d808,Math,代数、数論,exactMatch
+676d4db9cd83de685f85ed01,Math,幾何、解析,exactMatch
+676d5438cd83de685f85ed0e,Math,組合せ論、表現論、行列理論,exactMatch
+676d5eab75870eef1bf0f9bf,Math,組合せ論、数論、代数,exactMatch
+676d66a775870eef1bf0f9ce,Math,"計算理論, 代数",exactMatch
+676df4158b07cdbcd761e9f2,Math,代数、組合せ数学,exactMatch
+676e9656e3e0846ee73dbf9d,Math,"幾何, 解析",exactMatch
+67709ba48b0ca9dcee5572b8,Math,群論、表現論、数論,exactMatch
+6771857cb5c33d92de2a4bb4,Math,"代数, 数論",exactMatch
+677592d4f11304575d7b6fe9,Math,"解析, 微分方程式, 数値解析",exactMatch
+6775acff518cb15c3772295e,Math,線形代数,exactMatch
+677609438253c248a60436cb,Math,解析、線形代数、確率・統計,exactMatch
+6778491dcbd83450e1018208,Math,"解析, 集合, 幾何",exactMatch
+6778bdd88f6679541aac6b6a,Math,"幾何, 群論",exactMatch
+677940d11be12d785a89f486,Math,解析、微分方程式,exactMatch
+677b87f0a0514619221df8c6,Math,解析、線形代数、微分幾何,exactMatch
+677b991a7304702305835cd6,Math,解析、確率、線形代数,exactMatch
+677bd8f5247a21d7a948db6c,Math,"線形代数, 解析, 行列理論",exactMatch
+677e6a6841ef4b6937c21b7c,Math,確率論、離散数学、線形代数,exactMatch
+678276f1cedb95b84a19cb31,Math,解析、微分方程式,exactMatch
+678591c5156d7fb9f7cd171a,Math,"代数, グラフ理論, カテゴリ理論",exactMatch
+67884c06637d9e8c9d4e5ea4,Math,確率論、解析,exactMatch
+67887461021f084e2418aeaa,Math,解析,exactMatch
+674300b3d5209073dd13ec2a,Math,群論,exactMatch
+6725738b6db8d9379bdf1b69,Math,解析、代数,exactMatch
+6723bea21dd204907be142ee,Math,解析、微分方程式、数値解析,exactMatch
+6709d59a03c4fbe8446679d9,Math,幾何、確率、解析,exactMatch
+6722c3ce8e469fbdb3ba6a6e,Math,解析、線形代数、特殊関数,exactMatch
+672546cf046774791d0f1a3a,Math,解析、微分方程式、積分方程式、最適化,exactMatch
+6741cd528fdc6e38bd2d343d,Math,代数、グラフ理論、線形代数,exactMatch
+6730a9be58ef965949f1faa4,Math,解析、代数、幾何,exactMatch
+672f7ddd281b45ba7e99346d,Math,解析、代数,exactMatch
+670aa04552fd04a61d8f4fa8,Math,離散数学、計算理論,exactMatch
+6776ffa855710e45669a4481,Math,解析、量子力学,exactMatch
+673dda11d3981c54a42874ef,Math,代数、幾何、解析、集合,exactMatch
+66eb5e0edac136580220ff38,Math,解析、力学,exactMatch
+67350237b7aab4044ebf52ca,Math,解析、微分方程式,exactMatch
+670c447dd0306cd3ba94b47a,Math,確率・統計,exactMatch
+672286b45e3a74191871c1dc,Math,線形代数、幾何、解析,exactMatch
+677bcc2af80fce832e66a075,Math,解析、数列と級数、離散数学,exactMatch
+670ae3ecdbf9e3cf437887bc,Math,離散数学、計算理論,exactMatch
+672fcc697ec08f05b004335c,Math,解析、代数、複素解析,exactMatch
+67325d2d189b1ffa84c76d55,Math,解析、力学、特殊関数,exactMatch
+6734b2fec14270a5b42323f5,Math,"解析, 数学物理, 非線形偏微分方程式, 分数微積分",exactMatch
+66eae8d9afe364e4f477b76f,Math,解析,exactMatch
+66eae5c971adc8ff57780329,Math,解析、線形代数、幾何,exactMatch
+6723f0166f89b8c177612dd7,Math,解析、微分方程式、特殊関数、数値解析、分数微積分,exactMatch
+66eb4602d4b21d010e93bbb9,Math,解析,exactMatch
+6720bc27c749322fd52d6cc1,Math,線形代数,exactMatch
+67339e9c25c864e84bf1a351,Math,"解析, 微分方程式",exactMatch
+66eb352ee3d7202c6880626e,Math,解析、複素解析,exactMatch
+67099385b2f0355476ec30de,Math,離散数学、計算理論,exactMatch
+67345cb7fe6cc0ffd493d6fe,Math,解析、偏微分方程式、非線形解析,exactMatch
+6717a000d1f6e4b18387d6c8,Math,集合、離散数学,exactMatch
+672218b79933312b4b187805,Math,"線形代数, フラクタル幾何, 数値解析",exactMatch
+66e88728ba7d8bc0d5806f3a,Biology/Medicine,遺伝、バイオインフォマティクス,multipleChoice
+66e8add1650a03361a14c6f8,Biology/Medicine,遺伝,exactMatch
+66e8ccc4089d1e34c84c76c0,Biology/Medicine,免疫学、遺伝学,exactMatch
+66e8db4fe1e483c59165a247,Biology/Medicine,生化学、構造生物学,multipleChoice
+66e8f69b1440516dd6ab54da,Biology/Medicine,遺伝学,exactMatch
+66e991ec2dad0e536fb92ece,Biology/Medicine,整形外科、神経学、臨床医学,multipleChoice
+66ea1dd348eb93c2aef1c735,Biology/Medicine,遺伝学、進化生物学,multipleChoice
+66ea29ab7131229007ccbd9d,Biology/Medicine,遺伝学,multipleChoice
+66ea4881b7291c80d7f10f9d,Biology/Medicine,腎臓病学、病理学,multipleChoice
+66eac1d4124e580e615a27dc,Biology/Medicine,細胞生物学、寄生虫学,multipleChoice
+66eb36fbb38dbcd7910ceafc,Biology/Medicine,微生物学、代謝生化学,exactMatch
+66ecfd03e7478ca5fcbb7495,Biology/Medicine,遺伝学,exactMatch
+66edc60801af2a724035ad4b,Biology/Medicine,遺伝学、生理学,multipleChoice
+66edd3dc1ee489494038d9eb,Biology/Medicine,血管医学、循環器学,multipleChoice
+66ee0b4d95cd6c1ce2259e50,Biology/Medicine,動物生理学、聴覚生理学,multipleChoice
+66ee158c5db68805b7d3d27b,Biology/Medicine,生態学、進化生物学,multipleChoice
+66ee93ba02314f06feb186cf,Biology/Medicine,免疫学、細胞工学,multipleChoice
+66ef2a1b8829dedb61d5627a,Biology/Medicine,免疫学、病理学,exactMatch
+66ef3de8b8a1ba6e0ba23498,Biology/Medicine,進化生物学、系統学,multipleChoice
+66ef5d6513bb3ffb31829b6f,Biology/Medicine,進化生物学、分類学,multipleChoice
+66efa01e327e4a95dc760d01,Biology/Medicine,疫学、環境生物学,multipleChoice
+66f052e814be84cc1edd3fbd,Biology/Medicine,生態学、進化生物学,exactMatch
+66f0dab31f3d7fb98443ad69,Biology/Medicine,生態学、進化生物学,exactMatch
+66f0f4efd23ed0ac5f43b25f,Biology/Medicine,生態学、植物生理学、遺伝学,multipleChoice
+66f1b5cec75c3ece07124859,Biology/Medicine,分類学、生態学,exactMatch
+66f31140cdc5dafd297e9b5a,Biology/Medicine,ゲノミクス、分子生物学,multipleChoice
+66f3117acff7b10052fe1e3d,Biology/Medicine,分子生物学、遺伝学,exactMatch
+66f3380c96e593d9e020e96d,Biology/Medicine,分子生物学、診断学,exactMatch
+66f57a7e9f9308128679f668,Biology/Medicine,行動生物学、神経科学,multipleChoice
+66f6743f2db0dfd3e0b594e7,Biology/Medicine,神経科学,exactMatch
+66f77487fb10531253ee7842,Biology/Medicine,生化学,multipleChoice
+66f83aed0d92e99048a4ae9d,Biology/Medicine,生化学、発生生物学,multipleChoice
+66f88d96e4deeaf4670af95d,Biology/Medicine,分類学、昆虫学,multipleChoice
+66f986e852b9d5843203d342,Biology/Medicine,分類学,exactMatch
+66f9a8a4e613d5c62b6c0d22,Biology/Medicine,生態学、昆虫学、光学生物学,multipleChoice
+66f9b34f57eb54e8772c53a7,Biology/Medicine,生態学,exactMatch
+66faccfb44cb2f3b0e1be0ff,Biology/Medicine,生態学,multipleChoice
+66fc1cc8c935ad838247482b,Biology/Medicine,分類学、生態学,exactMatch
+66fc2b7dbdebe91c66389e50,Biology/Medicine,生理学、救急医学,exactMatch
+66fc2bf8b7405dff90941948,Biology/Medicine,心臓病学、診断学,multipleChoice
+66fc2df0b72463921f6c40f2,Biology/Medicine,分子生物学、タンパク質工学,exactMatch
+66fc43322198db684765b90a,Biology/Medicine,神経科学、分子生物学、病理学,exactMatch
+66fc5e611f5f3f3b48ae9566,Biology/Medicine,神経科学、炎症生物学、放射線医学,multipleChoice
+66fc7aff818e0b579ee95856,Biology/Medicine,動物行動学、農業生態学,multipleChoice
+66fc7efd5b5cf30b0e009669,Biology/Medicine,エピジェネティクス、遺伝子発現解析,exactMatch
+66fc89ce455038a48ed359e4,Biology/Medicine,理論生物学,multipleChoice
+66fc8b271d39fbf6d8bcdd0c,Biology/Medicine,遺伝学、腫瘍学,exactMatch
+66fcde117e54294eb4a8fbba,Biology/Medicine,細胞生物学、組織工学,multipleChoice
+66fce79d5dc8a9560304265b,Biology/Medicine,薬剤学、神経学,exactMatch
+66fcf81e8a146dd80cfb2296,Biology/Medicine,感染症学、抗生物質耐性,multipleChoice
+66fd60ea6be05c0b608861d5,Biology/Medicine,免疫学、バイオインフォマティクス,exactMatch
+66fda7a057cea4445778e88a,Biology/Medicine,進化生物学、遺伝学,multipleChoice
+66fdaf20d1e0bb15b8fc1eb6,Biology/Medicine,微生物学、統計学,multipleChoice
+66fdecea0cc5d4963e81bb93,Biology/Medicine,遺伝学、エピジェネティクス、生物統計学,exactMatch
+66fded1fbc6d46a25c41ee8d,Biology/Medicine,リウマチ学、感染症学,multipleChoice
+66fe596c0eeb4521791d31ef,Biology/Medicine,免疫学、分子生物学,multipleChoice
+66fecc707183fdf40d11cb48,Biology/Medicine,分子生物学、神経科学,exactMatch
+66fee6c39e4f456a6d2941b5,Biology/Medicine,薬剤学、医薬品化学,exactMatch
+66fefa971ca108e6e888e9a1,Biology/Medicine,免疫学、細胞療法,exactMatch
+66ff063787bfb80443d02df6,Biology/Medicine,免疫学,multipleChoice
+66ff1bba3046dadaa8fd8a15,Biology/Medicine,免疫学,exactMatch
+670010ff77983eff561814b2,Biology/Medicine,分子生物学、薬学,multipleChoice
+670013827794cc36bc974f27,Biology/Medicine,免疫学,multipleChoice
+67008f17fc2c0a4040f1d352,Biology/Medicine,生態学、画像解析、機械学習,multipleChoice
+670097e2d8f693f97c36c13f,Biology/Medicine,生態学,exactMatch
+6700ab4bfa64315ed5204e4d,Biology/Medicine,生態学、光生物学,exactMatch
+6701638aed23f06e44f0e6b8,Biology/Medicine,生態学、動物行動学,exactMatch
+67018145e8c125b41caa9ee3,Biology/Medicine,遺伝学,multipleChoice
+6701c3cb38b706939b30cb0b,Biology/Medicine,薬剤学,exactMatch
+6701ca6bb773dec162bde23c,Biology/Medicine,神経科学、システム生物学,exactMatch
+6701d869aee3881b852d40a0,Biology/Medicine,神経科学、生物物理学,exactMatch
+6701de16d9e4cd1aa812414b,Biology/Medicine,微生物学、細菌学,multipleChoice
+6702b8bebb1c7fc12ef340a6,Biology/Medicine,進化生物学、動物行動学,multipleChoice
+6704486baf0a436d92c65161,Biology/Medicine,薬物療法学、臨床薬学、循環器学,exactMatch
+6706f8e219290a54d9b5b56e,Biology/Medicine,プロテオミクス、分子生物学,multipleChoice
+67083574e919041d86ac83d0,Biology/Medicine,植物生物学、発生生物学,exactMatch
+67083d00236665f36be9e56c,Biology/Medicine,植物分類学、植物形態学,exactMatch
+670c23124d86f843dc5efa7e,Biology/Medicine,遺伝学、統計遺伝学,multipleChoice
+670c775842b25f65425c86c2,Biology/Medicine,皮膚科学、腫瘍学、形成外科学,multipleChoice
+670c83ba4aece479236947cb,Biology/Medicine,神経学、整形外科学、リハビリテーション医学,multipleChoice
+670d5ce6d57c80b4d4090cb4,Biology/Medicine,遺伝学、ゲノム編集,multipleChoice
+670d933ad54037c51abbe3ca,Biology/Medicine,神経科学、数理生物学,exactMatch
+670e5c2720bb63b6da63b879,Biology/Medicine,生物物理学、核酸化学,multipleChoice
+670ebf7239f1dc9b447a9143,Biology/Medicine,神経科学、脳イメージング,multipleChoice
+670f00dc79750a6c73259f4d,Biology/Medicine,微生物学,multipleChoice
+670f289fb671096a201efee4,Biology/Medicine,酵素学,multipleChoice
+670f3cc6df04c6b73aa7b5df,Biology/Medicine,代謝生化学,exactMatch
+670f4501dfe615f3d2f7436e,Biology/Medicine,代謝生化学,exactMatch
+670f511063b765ce8edde772,Biology/Medicine,生化学,exactMatch
+6710017a946969cdfd9a302c,Biology/Medicine,遺伝学,exactMatch
+6710b2cbd1af6b4823c090d4,Biology/Medicine,環境毒性学、疫学,exactMatch
+6711eb4e1c08a07a8d243847,Biology/Medicine,遺伝学,exactMatch
+6712787d0d05bc73fc008dfe,Biology/Medicine,疫学,exactMatch
+67155ca2675b57d8bbc9144d,Biology/Medicine,タンパク質工学、分子生物学,multipleChoice
+6715a9a5b3287d3dd4db03cd,Biology/Medicine,環境毒性学、生物蓄積学,exactMatch
+671689ae68b8747c96268936,Biology/Medicine,微生物学,exactMatch
+6716e28929a01505aba1ddb5,Biology/Medicine,分子生物学、タンパク質化学,multipleChoice
+6716e894e9b87625209506ca,Biology/Medicine,微生物学、感染症学、分子生物学,multipleChoice
+67180400ff1b830a3dd7e9bd,Biology/Medicine,分子生物学、糖化学,exactMatch
+6719e946a81614142be02bec,Biology/Medicine,環境毒性学、地下水汚染モデル、化学物質の拡散解析,exactMatch
+671a947c9deaf77048dcc8b7,Biology/Medicine,遺伝学、発生生物学,multipleChoice
+671aa91f6a8e7c23ccbf902b,Biology/Medicine,薬理学、臨床薬学、病態生理学,exactMatch
+671ab94ffad7ae30b89eff8f,Biology/Medicine,毒性学、薬理学、内分泌学,multipleChoice
+671abddb40e08981d8fd796a,Biology/Medicine,薬理学、内科医学,multipleChoice
+671ac641136758472327f851,Biology/Medicine,植物生物学、分子生物学,multipleChoice
+671ad72c9fdc33c08a784b3a,Biology/Medicine,遺伝学、ゲノム生物学,multipleChoice
+671adbf8439b8a0eaec180d3,Biology/Medicine,免疫学、呼吸器学、職業医学,exactMatch
+671ae258d2ea402783696a9f,Biology/Medicine,免疫学、腎臓学、感染症学,exactMatch
+671bea6afd01315eb4f1c376,Biology/Medicine,昆虫生理学、植物-昆虫相互作用、生化学,multipleChoice
+671bef23b55b44cbffbf0972,Biology/Medicine,生理学、疼痛研究,exactMatch
+671c6d6392388142386728ee,Biology/Medicine,微生物学、品質管理,exactMatch
+671cbba2784e3ba406eefb34,Biology/Medicine,救急医学、腎臓学,multipleChoice
+671d42b4a2d3581545c21fec,Biology/Medicine,分子生物学,multipleChoice
+671da0bbbb27b8f41a423e7c,Biology/Medicine,構造生物学,exactMatch
+671dacdd355c956ce7de5aa5,Biology/Medicine,医薬品化学,exactMatch
+671dd6cd91a438f6811f5108,Biology/Medicine,遺伝,multipleChoice
+671dea179a50e5f7394157de,Biology/Medicine,遺伝、呼吸器学、消化器学,multipleChoice
+671f083dc8da11076ce9960e,Biology/Medicine,生態学、機械学習,multipleChoice
+671f09d6d0f22fd6e50482eb,Biology/Medicine,生態学、動物行動学,multipleChoice
+671f0c2578ab3005e439aeba,Biology/Medicine,生態学、動物行動学,multipleChoice
+671f0dfd5a31c38041aa96a1,Biology/Medicine,分類学、動物行動学,exactMatch
+671f20c0e38f776acdad8a7d,Biology/Medicine,分類学、動物生態学,exactMatch
+671f23ab12f081da543ed684,Biology/Medicine,生態学、植物生物学,multipleChoice
+671f2a3b6b0783bbe0457f38,Biology/Medicine,生態学,exactMatch
+671f2b0ee38f776acdad8aa1,Biology/Medicine,生態学,multipleChoice
+671f2c7debcbc34ccb44613b,Biology/Medicine,生態学,multipleChoice
+671f2d69e38f776acdad8aa2,Biology/Medicine,生態学,exactMatch
+671f2ef26e387421216121c3,Biology/Medicine,生態学,exactMatch
+671f3099aba024667b883603,Biology/Medicine,生態学,multipleChoice
+671f3210e38f776acdad8aab,Biology/Medicine,生態学,exactMatch
+671f34ddd50b0306ddc17a41,Biology/Medicine,臨床医学、消化器学,multipleChoice
+671f39dcd579cf064f22d3c1,Biology/Medicine,生態学、化学生態学,multipleChoice
+671f40348b7ca154256661c6,Biology/Medicine,生態学、侵入生物学,multipleChoice
+671f584591addf76ff2eb254,Biology/Medicine,病理学、感染症学,exactMatch
+671f5ef82709f18025c61f15,Biology/Medicine,病理学、感染症学,exactMatch
+671ffad8e46fcc9dbd54ce6e,Biology/Medicine,免疫学、細胞生物学、分子生物学,multipleChoice
+67202822dbc5086c0bdd4e1c,Biology/Medicine,生理学、環境生物学,multipleChoice
+6720fcd2198910fd26b01218,Biology/Medicine,系統学、進化生物学,multipleChoice
+6721408e0d97cabdbfa0ace9,Biology/Medicine,微生物学、薬剤耐性、進化生物学,multipleChoice
+67216d4134cd9a7f210d4100,Biology/Medicine,解剖学、循環器学,exactMatch
+672179e4c8cc0ac89395e8d0,Biology/Medicine,神経科学、薬理学,multipleChoice
+67222f190f0526aefdf441fd,Biology/Medicine,遺伝学、神経科学、薬理学,multipleChoice
+67223ac0ca7acfa01f38c284,Biology/Medicine,疫学、心血管医学、薬物療法,exactMatch
+6722618ae686ef917a142d81,Biology/Medicine,精神医学、内分泌学、薬理学,exactMatch
+6722b01f7f84054950978f69,Biology/Medicine,分子生物学,exactMatch
+6722b1f9f3a489ee08117730,Biology/Medicine,化学生物学、分子生物学,multipleChoice
+6722c0ddd60ad77b5374fdc9,Biology/Medicine,海洋生物学、環境科学、行動生物学,multipleChoice
+672378554b5264ad52901028,Biology/Medicine,生態学、微生物学、免疫学,multipleChoice
+67238cd54b5264ad52901059,Biology/Medicine,分子生物学、構造生物学,multipleChoice
+6723a1419293b01661360a94,Biology/Medicine,歯科医学、内分泌学、外傷医学,exactMatch
+6723ba00339572beba8f91b2,Biology/Medicine,腫瘍学、内分泌学、画像診断,multipleChoice
+6723f54dcd09615a3afc3d10,Biology/Medicine,分子生物学、構造生物学,exactMatch
+6723fc382a5a297be25c2d79,Biology/Medicine,神経学、解剖学,multipleChoice
+672403a54850f72c4c930d47,Biology/Medicine,分子生物学、遺伝学,multipleChoice
+672403fa5461772b24b2e651,Biology/Medicine,遺伝学,multipleChoice
+672407521f51862e37d75208,Biology/Medicine,心臓病学、薬理学,multipleChoice
+67240e5586f4c71a70e0b498,Biology/Medicine,心臓病学、呼吸器学、外科学,multipleChoice
+67240e5786f4c71a70e0b499,Biology/Medicine,遺伝学、分子生物学,multipleChoice
+6724102248afc025aa35bce8,Biology/Medicine,遺伝学,multipleChoice
+6724109dab2b4ea54da1ad90,Biology/Medicine,遺伝学,multipleChoice
+6724134c03192a89cb2296c0,Biology/Medicine,遺伝学,multipleChoice
+672416e85247738dfbb432fa,Biology/Medicine,遺伝学,multipleChoice
+67241711454d2eee0ceef767,Biology/Medicine,遺伝学,multipleChoice
+67241750cf2f76f66b81fe10,Biology/Medicine,遺伝学,multipleChoice
+67241990a1bd6b06dafb7052,Biology/Medicine,遺伝学,multipleChoice
+67241cbe9909a95d1bf7aa00,Biology/Medicine,精神医学、薬物依存症学,multipleChoice
+6724217c9909a95d1bf7aa1c,Biology/Medicine,公衆衛生学、薬理学,multipleChoice
+672424af1bf467697c4c699f,Biology/Medicine,薬理学、疼痛管理、精神医学,multipleChoice
+67242f1f911674ab1b5d904b,Biology/Medicine,薬理学、臨床薬学,multipleChoice
+672455ce7a14971607e3d9f0,Biology/Medicine,薬理学、免疫学、炎症学,multipleChoice
+67249fe6d917564737255342,Biology/Medicine,栄養学、薬理学、臨床医学,exactMatch
+6724a088d917564737255346,Biology/Medicine,微生物学、臨床検査学,multipleChoice
+6724db7012a8d5ea6a619372,Biology/Medicine,分子生物学、発生生物学,multipleChoice
+6724ff2892419e4380b56880,Biology/Medicine,ゲノム解析、薬剤耐性研究,multipleChoice
+6724ffb21d07f0962c8993cf,Biology/Medicine,生化学、細胞生物学,multipleChoice
+672500151d07f0962c8993d7,Biology/Medicine,分子生物学、遺伝学,multipleChoice
+672507e82cc2a1349f1ffaf1,Biology/Medicine,遺伝学,multipleChoice
+67253c33ad98e94b47ea3477,Biology/Medicine,腫瘍学、循環器学,multipleChoice
+67254a56046774791d0f1a41,Biology/Medicine,循環器学,multipleChoice
+672555acc27a6276611a3005,Biology/Medicine,循環器学,multipleChoice
+67255df04c0e045943574e41,Biology/Medicine,遺伝学,multipleChoice
+672562d698350d726c7c9463,Biology/Medicine,神経科学、病理学,exactMatch
+67256b14ac4f9591b137e180,Biology/Medicine,遺伝学,multipleChoice
+67256db1afb4a043e613c929,Biology/Medicine,遺伝学,multipleChoice
+67256e36e5e6cc87293fc3f0,Biology/Medicine,遺伝学、微生物学,multipleChoice
+672572ba1b7caf96dfa80324,Biology/Medicine,遺伝,multipleChoice
+67257fe9be53ed439b973ff9,Biology/Medicine,遺伝学,multipleChoice
+67258c4124b290d28a9f8abe,Biology/Medicine,遺伝学,multipleChoice
+6725b1b58255543498bdcbd1,Biology/Medicine,神経科学、遺伝学,multipleChoice
+6725c1e0eac3991069717fda,Biology/Medicine,生態学、数理生物学,exactMatch
+6725c3719aac82ce9cf99f23,Biology/Medicine,医学、解剖学、リウマチ学,multipleChoice
+67264a55cae736a4a682949a,Biology/Medicine,疫学,multipleChoice
+67267e44d47e5c6744def124,Biology/Medicine,動物行動学、保全生物学,exactMatch
+67267eb650fff4488ec97075,Biology/Medicine,動物行動学、保全生物学,exactMatch
+6726829153c95dcb361fb495,Biology/Medicine,動物行動学、保全生物学,exactMatch
+672b2749f64de603265f9fc4,Biology/Medicine,構造生物学、タンパク質化学,multipleChoice
+672bb0068162815b97a47ed2,Biology/Medicine,神経科学,exactMatch
+672bb2605a3e88050ba2cef8,Biology/Medicine,解剖学、呼吸器学、小児科学,multipleChoice
+672bca9fab085c84b90e223d,Biology/Medicine,構造生物学、タンパク質化学,multipleChoice
+672ec55453f431bf8d3dc928,Biology/Medicine,神経科学,exactMatch
+672eff1c72cfb81d78f82cdb,Biology/Medicine,免疫学、消化器学、皮膚科学,multipleChoice
+672f0ac02ccf8890167533ec,Biology/Medicine,免疫学、神経学、解剖学,multipleChoice
+672f585f42ac7ca22c451066,Biology/Medicine,神経科学、病理学,multipleChoice
+672ff71e724ca22f42c0ff85,Biology/Medicine,免疫学、造血学、分子生物学,multipleChoice
+6730d8d2f51df13db2f61050,Biology/Medicine,疫学、感染症学,multipleChoice
+67315c7e7fcf9ea998467bd6,Biology/Medicine,薬理学、救急医学,multipleChoice
+6731ce1a5b596793cf7e6eac,Biology/Medicine,神経学、病理学,exactMatch
+6731fa3bb08cf72258a21348,Biology/Medicine,分子生物学、遺伝学,multipleChoice
+67335820c7d8c66591e6dfc7,Biology/Medicine,分子生物学、植物生理学,multipleChoice
+6734b4befaf4e6eb454c1c92,Biology/Medicine,分類学、昆虫学,exactMatch
+6734b7eb13b86f319a8eca97,Biology/Medicine,分類学,exactMatch
+6734b98afaf4e6eb454c1c9d,Biology/Medicine,分類学,exactMatch
+67350775c4454316b9ed7d67,Biology/Medicine,分類学,exactMatch
+67350ec69077b07d4e32c17a,Biology/Medicine,分類学,exactMatch
+673511ca392d03ca70384d19,Biology/Medicine,疫学、分類学,exactMatch
+67351552d450b51bdecfb997,Biology/Medicine,分類学、昆虫学,exactMatch
+67351d7729ebafdd5e74c3c0,Biology/Medicine,循環器学、獣医学,multipleChoice
+673523f85a2fa2eb62ee48b4,Biology/Medicine,生態学、分類学,exactMatch
+673526bb5a2fa2eb62ee48c1,Biology/Medicine,分類学、海洋生物学,exactMatch
+67352c39a52dd47230de9a2b,Biology/Medicine,プロテオミクス、質量分析,multipleChoice
+67a47bc3957a497a8448ac2f,Biology/Medicine,血栓症学、免疫学、臨床医学,exactMatch
+6735f8858d3f50a33ee9d52e,Biology/Medicine,心電図学、循環器学,exactMatch
+67361668dba36cc0d595f420,Biology/Medicine,分子生物学、遺伝学、共生生物学,exactMatch
+67366bc5b5eda7e01fa935c6,Biology/Medicine,腫瘍学、薬学,multipleChoice
+6736a9b0b949d548db8da965,Biology/Medicine,神経科学、病態生理学,multipleChoice
+6736bf617cb0499c96e427da,Biology/Medicine,消化器学、内視鏡学、外傷学,multipleChoice
+6736c2e82db9d8cc7cd8e607,Biology/Medicine,皮膚科学、感染症学,multipleChoice
+6737006d3f0517b6e8a60733,Biology/Medicine,臨床医学、病理学,multipleChoice
+6737022fa283793ef57494a3,Biology/Medicine,菌類学,exactMatch
+673710799f4e09ce7f83d562,Biology/Medicine,生理学、臨床医学,exactMatch
+67371fc1d4a812e865edf21c,Biology/Medicine,遺伝,exactMatch
+67372744600c9c0daa5d8f3f,Biology/Medicine,聴覚科学、神経科学,multipleChoice
+67372d4af4721666334a8535,Biology/Medicine,生物物理学、脂質化学,exactMatch
+67372e09a90747ed09962582,Biology/Medicine,薬物療法、臨床薬学、小児医学,exactMatch
+67375e6f8b1cc52c211f95ce,Biology/Medicine,分子生物学、遺伝学,exactMatch
+6737697dedff89681fe75582,Biology/Medicine,代謝工学、微生物学,exactMatch
+673784c950c4b58b2154e4ef,Biology/Medicine,神経学、薬理学、眼科学,multipleChoice
+6737883a270e3f4ddee77b7e,Biology/Medicine,免疫学、細胞生物学,multipleChoice
+673799cf4d349e2ed66792d2,Biology/Medicine,薬物動態学、放射性医薬品,exactMatch
+67379dd995d9299b8ac8439c,Biology/Medicine,遺伝学、バイオインフォマティクス,multipleChoice
+6737c784312c74381365c1c7,Biology/Medicine,神経科学、計算神経科学,exactMatch
+67383288f2df805520bc86b5,Biology/Medicine,遺伝学、進化生物学,multipleChoice
+6738373cf2df805520bc86ce,Biology/Medicine,遺伝学、進化生物学,multipleChoice
+6738df8c201a2bd66499797a,Biology/Medicine,遺伝学、皮膚科学,multipleChoice
+6739021d974c4bef850f1767,Biology/Medicine,ネットワーク生物学,exactMatch
+6739114c41c297471963ef95,Biology/Medicine,ネットワーク生物学,exactMatch
+67393de74954110962f03245,Biology/Medicine,生態学,multipleChoice
+67396490173834c134fbaceb,Biology/Medicine,腫瘍学、免疫学、薬理学,multipleChoice
+673966c85558387c37dd7b7d,Biology/Medicine,神経科学、遺伝学、薬理学,multipleChoice
+67396c5bbb01e9373d18968e,Biology/Medicine,分子生物学、プロテオミクス,exactMatch
+6739f5ede8b91dc9dac17cd9,Biology/Medicine,細胞生物学、免疫学,exactMatch
+673a5f9b329d98c7d4b69d5f,Biology/Medicine,分子生物学、遺伝学,multipleChoice
+673a6a6c4c465c371379b670,Biology/Medicine,生化学、分子生物学,multipleChoice
+673a8c2e4e2e35b51a27fafd,Biology/Medicine,微生物学、遺伝学,multipleChoice
+673abcf453a538174c41d5c6,Biology/Medicine,感染症学、消化器学、微生物学,multipleChoice
+673ad00b4ff8ec86c1487ecd,Biology/Medicine,分子生物学、遺伝学,exactMatch
+673ae99a3022b9e17f89d1b6,Biology/Medicine,放射線生物学、医用物理学,exactMatch
+673af092fa64168165769f1e,Biology/Medicine,遺伝学、代謝生理学,multipleChoice
+673b6ca1a646afb63047219f,Biology/Medicine,神経解剖学、神経学,multipleChoice
+673bc4f8c8e9e64a5128f2b4,Biology/Medicine,消化器学、感染症学、放射線医学,multipleChoice
+673cd271376ca269b5ae8e65,Biology/Medicine,微生物学,exactMatch
+673cd3d23bf58b7313fdcfef,Biology/Medicine,歯科医学,exactMatch
+67492f85d2aa56dfc01ee6d7,Biology/Medicine,遺伝学,exactMatch
+675b84caa03d8b4e391dcc88,Biology/Medicine,遺伝学、分子生物学,multipleChoice
+675f78278896e41ae7eb29da,Biology/Medicine,遺伝、分子生物学,exactMatch
+6766662d37a605e5d7cb9ee8,Biology/Medicine,外科学,multipleChoice
+67666a593e38774fc651f9f3,Biology/Medicine,救急医学、外傷学,multipleChoice
+67672352c393c4ff629cb820,Biology/Medicine,神経科学、嗅覚生理学,multipleChoice
+676727c0c393c4ff629cb82b,Biology/Medicine,神経科学,multipleChoice
+6767969869b88c321c96665a,Biology/Medicine,神経科学,multipleChoice
+676ec0aec55ebb76b35c2acb,Biology/Medicine,病理学、腎臓学,exactMatch
+6774abe2c935e3922327ff5e,Biology/Medicine,神経科学,multipleChoice
+6775b1ab76b69969709e80a7,Biology/Medicine,遺伝学、量子生物学,exactMatch
+6777764d6b3f27cf12b17555,Biology/Medicine,神経科学、精神薬理学,multipleChoice
+6779ae1580fdd61994c0c14e,Biology/Medicine,神経科学,multipleChoice
+677c1cf633409bfdbb11942d,Biology/Medicine,神経科学,multipleChoice
+6781903d382cfca83d01b77f,Biology/Medicine,生物物理学、抗体工学,exactMatch
+6782d9482eeb133480ec3268,Biology/Medicine,循環器学、栄養学,multipleChoice
+672a4e1a302a8fb5c07434bd,Biology/Medicine,疫学、数理生物学,exactMatch
+672a460edfaab7cdbc587e08,Biology/Medicine,,exactMatch
+66e8ae613aa94517d4573b33,Chemistry,物理化学、分析化学,exactMatch
+66ea63837c49faf4e570535e,Chemistry,物理化学,exactMatch
+66ea814c5544860edb5aa9fa,Chemistry,物理化学,exactMatch
+66ec5c9bf633b774fa320b36,Chemistry,物理化学,exactMatch
+66ecddac93c4bf17acb6c106,Chemistry,物理化学,exactMatch
+66f402add1c77d20ca3338ef,Chemistry,無機化学,exactMatch
+66f87ab781a069162c8e7cd2,Chemistry,有機化学,exactMatch
+66fc564eae059175d7cc3244,Chemistry,無機化学,exactMatch
+66fc57b2efe6ee63db94967a,Chemistry,有機化学,exactMatch
+66fc5b54ffa390c4af01820f,Chemistry,有機化学,exactMatch
+66fc5e8f98a7264ef58309b9,Chemistry,有機化学,exactMatch
+66fcbff58d68a0bf3cafb696,Chemistry,物理化学,multipleChoice
+66fd89bd8c7969267538ba86,Chemistry,無機化学,exactMatch
+66fdbcc4127bbd403ef13582,Chemistry,有機化学,multipleChoice
+66fde7f40b21f205c121acab,Chemistry,放射化学,exactMatch
+66fe16f4762ab58b937863b8,Chemistry,物理化学、分析化学,multipleChoice
+66fe817115bdbb176f2e3bbd,Chemistry,分析化学,multipleChoice
+66fe97540fe93ab7e9405c9b,Chemistry,有機化学、分析化学,exactMatch
+66fe998c6a6869f258841e99,Chemistry,有機化学,multipleChoice
+66feaaa369901fcf62a010dc,Chemistry,有機化学,exactMatch
+66fec7825e6051260840e060,Chemistry,無機化学,exactMatch
+66fecbff69d5712b5401553e,Chemistry,物理化学,exactMatch
+66ff0a666dc4b2ab76a19db9,Chemistry,物理化学,exactMatch
+66ff35926045e9e64bbc5720,Chemistry,物理化学,exactMatch
+67001b2537deff035b73927b,Chemistry,無機化学,exactMatch
+6700497e7c6e32185d473d3e,Chemistry,物理化学,exactMatch
+670064edbeb5458b701e58b9,Chemistry,物理化学,exactMatch
+670079cb5587080e1cf67dce,Chemistry,物理化学,exactMatch
+67008a05ad0fee7d7b4efb3c,Chemistry,物理化学,exactMatch
+67008bcea2dd0155efb53f1c,Chemistry,物理化学,exactMatch
+67008f2afc2c0a4040f1d353,Chemistry,物理化学、分析化学,exactMatch
+6700a5f67899925724a8fa81,Chemistry,有機化学,exactMatch
+6700c57848d1e47d3d2f74c6,Chemistry,分析化学,multipleChoice
+6702731e2e96c956d9863f14,Chemistry,有機化学,exactMatch
+67065070b3df24f51a3e2914,Chemistry,有機化学,exactMatch
+6707791ed9cad1c3863ce734,Chemistry,分析化学,multipleChoice
+670872c2f1b4c3641356feb0,Chemistry,有機化学,exactMatch
+67087a6a972755fe392d782e,Chemistry,有機化学,exactMatch
+670880520ed68fbdc467064e,Chemistry,有機化学,exactMatch
+67089c013b511a575fc306de,Chemistry,物理化学,multipleChoice
+67090fa5356700b5af622ae8,Chemistry,物理化学,exactMatch
+67093e6ace7cd85981783949,Chemistry,物理化学,exactMatch
+670980821053a19619c30869,Chemistry,有機化学,exactMatch
+670b2be8daac77037b0e67ba,Chemistry,有機化学,exactMatch
+670b9646e9662f03066275a7,Chemistry,有機化学,exactMatch
+670c23a63dac8d8a9563c206,Chemistry,有機化学,exactMatch
+670c2a003aa4e3c3bc4aae8e,Chemistry,有機化学,exactMatch
+670e76dbfb3b4f650fe86113,Chemistry,物理化学,multipleChoice
+670ed43a812a31dfae9bf344,Chemistry,有機化学,exactMatch
+670edc9dbddc0cfe673272c8,Chemistry,無機化学、有機化学,multipleChoice
+670f2b7eeab97e29672ae77f,Chemistry,無機化学、分析化学,multipleChoice
+6711410d39fb87be5f2f165d,Chemistry,有機化学,multipleChoice
+67114acc95aeb4d1c92426a5,Chemistry,有機化学,exactMatch
+6712cb17bd5e662205bd00c0,Chemistry,有機化学,exactMatch
+6712d9d097b88a1cdb76c51e,Chemistry,有機化学,exactMatch
+6713a3e61e0e03ffe2253dcd,Chemistry,有機化学,exactMatch
+6713a4c60223609143188d32,Chemistry,有機化学,exactMatch
+6713a7d01e0e03ffe2253dd0,Chemistry,有機化学,exactMatch
+6713b3ddffe8069e1f029185,Chemistry,有機化学,exactMatch
+67142e7e7da71e9cbf55a7f9,Chemistry,有機化学,exactMatch
+671433e3e58648db5273e310,Chemistry,生化学,multipleChoice
+67151b015fc8ee8feaa3538c,Chemistry,有機化学,exactMatch
+6715306c8f2d6bdedc0547ee,Chemistry,有機化学,exactMatch
+671559d991aabe49ee46ddb2,Chemistry,有機化学,exactMatch
+6715a3ff81c3e7e7c65b2e0c,Chemistry,有機化学,exactMatch
+6715bb667faaf2a75fbb0df6,Chemistry,有機化学,exactMatch
+6716aa268f636721baad8695,Chemistry,有機化学,exactMatch
+6716f035bab94116769c0082,Chemistry,無機化学,exactMatch
+671808958b88f01935b5825a,Chemistry,有機化学,multipleChoice
+67182659782f2aff686eab73,Chemistry,結晶学,multipleChoice
+671858f2dadfd75c1a4b430f,Chemistry,有機化学,exactMatch
+6718de3228445eada31e727f,Chemistry,有機化学,multipleChoice
+6719c431d5ad96a75c350fa5,Chemistry,有機化学,exactMatch
+671a779a0dd354b2ced21608,Chemistry,物理化学,multipleChoice
+671aaa82786568f1e1c39e88,Chemistry,有機化学,exactMatch
+671af1baed3d54e87368bca2,Chemistry,有機化学,exactMatch
+671b0951bbaaf02d2647783f,Chemistry,有機化学、生化学,exactMatch
+671ba17047e34cf4ed747b2c,Chemistry,有機化学,exactMatch
+671bbe5a85b315d9f07698a9,Chemistry,有機化学,exactMatch
+671bc0c855449c636f4bbd36,Chemistry,物理化学,multipleChoice
+671bf02518de98fe736cc1b5,Chemistry,物理化学,exactMatch
+671c0ccd29d77939ea7f3bd4,Chemistry,物理化学,exactMatch
+671c0d6f66154e5cf55994de,Chemistry,物理化学,multipleChoice
+671c4c1a795af69402ddc414,Chemistry,無機化学,multipleChoice
+671cc53cd99f8e01283e9a89,Chemistry,有機化学,exactMatch
+671d91bcad7fb0793a0e93bd,Chemistry,生化学,multipleChoice
+671d999f18a4da3122fd2118,Chemistry,有機化学,exactMatch
+671d9e9d29e7fde7166e474d,Chemistry,生化学,multipleChoice
+671db218fe1146e348ef1266,Chemistry,有機化学,exactMatch
+671dba3e5102c27a58a6c501,Chemistry,物理化学,multipleChoice
+671e4ade104e72d40d15ae51,Chemistry,物理化学、分析化学,exactMatch
+671e8c73745919354c759204,Chemistry,有機化学,exactMatch
+671e8d8879b410d671a7d702,Chemistry,有機化学,exactMatch
+671e942d203983a0a37a90b1,Chemistry,無機化学,multipleChoice
+671ee4d26edc2afd69958953,Chemistry,無機化学,multipleChoice
+671f2870e38f776acdad8a93,Chemistry,有機化学,multipleChoice
+671f33cb75523fe63c0a8b60,Chemistry,無機化学,multipleChoice
+671fa21cbaffee5d2f2acac0,Chemistry,有機化学,exactMatch
+671fb909298c0d11670fc56b,Chemistry,無機化学,exactMatch
+672003491d32fc99e5c48d25,Chemistry,有機化学,exactMatch
+6720175f3e7f561778c0c66b,Chemistry,有機化学,exactMatch
+672029348499a05383b5c883,Chemistry,有機化学,exactMatch
+672033c66a78b6e2bfcc5f30,Chemistry,有機化学,exactMatch
+6720cd0acf47ec0733864dd8,Chemistry,有機化学,multipleChoice
+672235a01e36ca7369b8b157,Chemistry,物理化学,exactMatch
+67228be893273f2ea4d39e36,Chemistry,有機化学,multipleChoice
+6722a20c7c3fce9eed014fe3,Chemistry,有機化学,exactMatch
+6722a52340918481038cda8e,Chemistry,有機化学、無機化学,multipleChoice
+67230f05092b2c17f66c84aa,Chemistry,生化学,exactMatch
+67232241f19eb2a69ee319fc,Chemistry,物理化学、生化学,exactMatch
+6723a613f747d32c6b0b65dc,Chemistry,物理化学、材料化学,multipleChoice
+6723b02aaf0a31f10468be11,Chemistry,有機化学,multipleChoice
+6723b44b339572beba8f91a4,Chemistry,有機化学,multipleChoice
+6723b94c339572beba8f91af,Chemistry,有機化学,exactMatch
+6723c98b325b18c34f227615,Chemistry,有機化学,exactMatch
+6723f4e0cd09615a3afc3d0d,Chemistry,物理化学,exactMatch
+67250fde58b17ce5905f2cfe,Chemistry,有機化学,exactMatch
+6725255ee6807ea2c8372c3c,Chemistry,分析化学、生化学,exactMatch
+67252e6e825d7a6248383174,Chemistry,分析化学、生化学,exactMatch
+67253a6aab5670ae51f28912,Chemistry,有機化学、分析化学,exactMatch
+67253beb5a5d8bd389020394,Chemistry,有機化学,exactMatch
+67253d7aac6dc24f8aafbfc1,Chemistry,有機化学,exactMatch
+67253e40cff9fdccf85f3f08,Chemistry,有機化学,exactMatch
+67253f2c13c1aec29d1f1849,Chemistry,有機化学,exactMatch
+67254420046774791d0f1a2e,Chemistry,有機化学,exactMatch
+672547a60eaf41df412479ef,Chemistry,有機化学,exactMatch
+6725592b4ee96e5b68bb383b,Chemistry,有機化学,exactMatch
+67255d0e51c2cc162e5b53e4,Chemistry,生化学,multipleChoice
+67257157c16289d7e113915b,Chemistry,生化学,multipleChoice
+6725b2ba569cf0c62da64cd1,Chemistry,有機化学、触媒化学,exactMatch
+672a863bf37651ebc1a89222,Chemistry,有機化学,exactMatch
+672ba16ae227dfbd739cfcc3,Chemistry,有機化学、生化学,multipleChoice
+672c033ff576aed47449d75f,Chemistry,物理化学,multipleChoice
+672c2ab86195c23913d66c90,Chemistry,無機化学,exactMatch
+672cbcc9e9bdca604f9e0c18,Chemistry,物理化学,exactMatch
+672d3b378c29cb8f2bac1f31,Chemistry,有機化学,exactMatch
+672ecc6946f619ca9b0495c5,Chemistry,有機化学,exactMatch
+6730f3c006cd33fe46ca2dfe,Chemistry,生化学,multipleChoice
+6731432f45edd6d926b19c65,Chemistry,有機化学,exactMatch
+6733fe294a614b25db9b204a,Chemistry,生化学、分析化学,multipleChoice
+6735017deb50c7dd03fdc0b5,Chemistry,有機化学,multipleChoice
+67351e0230dd1ec84db1005d,Chemistry,有機化学、生化学,exactMatch
+673623f4975e3df10169bceb,Chemistry,有機化学、生化学,exactMatch
+67367af29ba049ad64182820,Chemistry,有機化学,exactMatch
+673681def5487e4de6e78e1e,Chemistry,有機化学,exactMatch
+6736978208a8678136ad0b96,Chemistry,有機化学,exactMatch
+6736acee69d6d88d06d3124a,Chemistry,有機化学,exactMatch
+6736d8d1278519f8b18450a5,Chemistry,有機化学,exactMatch
+6737321adadf045724637654,Chemistry,無機化学,multipleChoice
+673736cea562fd298787764c,Chemistry,無機化学,multipleChoice
+673a6dd875a0f3c9ce243dba,Chemistry,有機化学,exactMatch
+673aa668db6e633fc982a576,Chemistry,有機化学,exactMatch
+673ad4214ff8ec86c1487ed3,Chemistry,有機化学,
+673cd3821cf7bd0b7cc91fe5,Chemistry,有機化学,exactMatch
+67833c10f5a1ca415084accd,Chemistry,有機化学,exactMatch
+671be6027aa97b5c9f77d90e,Chemistry,有機化学、化学情報学,exactMatch
+67aa35520fe6cda9046f7f54,Chemistry,有機化学、生化学,exactMatch
+66ffb3e3ab9ced47e903bbec,Chemistry,物理化学、化学情報学,exactMatch
+6748bcd672242905a576615e,Chemistry,有機化学,exactMatch
+66ffcf486c0e5bf5dcf91072,Chemistry,有機化学,exactMatch
+672ca66099e1076f34973c1f,Chemistry,有機化学,exactMatch
+6717ac23a5c8a6a9392b1b34,Chemistry,有機化学,exactMatch
+6713afa11e0e03ffe2253dd4,Chemistry,有機化学、生化学、物理化学,exactMatch
+671e7fd05cd705ffbd3faab7,Chemistry,物理化学、分析化学,exactMatch
+66b91693d86bff9a12fc1f99,Computer Science/AI,暗号学,exactMatch
+66e4cdec11c64a7e4051b2d9,Computer Science/AI,機械学習,multipleChoice
+66e8784d70625d8c7700315a,Computer Science/AI,機械学習、深層学習,multipleChoice
+66e8967ae99ca52dd4b94441,Computer Science/AI,機械学習、統計学,exactMatch
+66e8b578d0c1f7390bad120c,Computer Science/AI,機械学習,multipleChoice
+66e8ccd402beabf885334534,Computer Science/AI,機械学習,exactMatch
+66e8d3ed713a83e8aeddc2f5,Computer Science/AI,複雑性理論、暗号学,multipleChoice
+66e8e6c8f59e5564daf565bd,Computer Science/AI,計算理論,multipleChoice
+66e907c51440516dd6ab54fb,Computer Science/AI,暗号学,exactMatch
+66e91bc08dd8f00467e3d5d8,Computer Science/AI,形式言語とオートマトン,multipleChoice
+66e932f00bd16d40d4bc4d81,Computer Science/AI,アルゴリズムとデータ構造,multipleChoice
+66e93893a3326adf2da92ef0,Computer Science/AI,依存型理論、形式的検証、プログラミング言語,multipleChoice
+66e942c180435ab1cb1ef049,Computer Science/AI,計算理論、機械学習,exactMatch
+66e949664ea2c791558f8620,Computer Science/AI,ニューラルネットワーク、線形代数,multipleChoice
+66e9560659cb31393efa7046,Computer Science/AI,計算理論,exactMatch
+66e96946cde24c5e61925dc1,Computer Science/AI,強化学習,exactMatch
+66ea2cc3c602e2b991ae8aba,Computer Science/AI,アルゴリズム、最適化,exactMatch
+66ea387a7cb8e0fce662592b,Computer Science/AI,機械学習、幾何学的アルゴリズム,exactMatch
+66ea3fb6e2dc97dd61195fe6,Computer Science/AI,機械学習、情報理論,multipleChoice
+66eae565b2e7406d498f8cc9,Computer Science/AI,自然言語処理、機械学習,multipleChoice
+66eaed13c47c4325f612ff48,Computer Science/AI,ネットワークセキュリティ、コンピュータネットワーク,exactMatch
+66eaed874f8d520f598dbf11,Computer Science/AI,ロボティクス,multipleChoice
+66eaf1f49c43656de6cf31f6,Computer Science/AI,ロボティクス,multipleChoice
+66eb1ad641ef9e7d6011c3be,Computer Science/AI,プログラミング,exactMatch
+66eb35e9e3d7202c68806272,Computer Science/AI,機械学習,multipleChoice
+66eb3cfb2b3ac1255c97d92a,Computer Science/AI,確率的グラフィカルモデル、アルゴリズム,exactMatch
+66eb894e6feeaea27b557782,Computer Science/AI,量子コンピューティング,multipleChoice
+66eba0ac68e7d4b6c48bb022,Computer Science/AI,量子コンピューティング,multipleChoice
+66ebb1e8709fbb756c1f7b74,Computer Science/AI,理論計算機科学、論理学,exactMatch
+66ed458ed841eb51a985ca8d,Computer Science/AI,プログラミング,exactMatch
+66ed93471cbe5da13351cd67,Computer Science/AI,プログラミング、暗号学,exactMatch
+66ed97d1c2becb9452e4d7b4,Computer Science/AI,推薦システム、機械学習、線形代数,exactMatch
+66edf49c46d28f04618d6498,Computer Science/AI,進化的アルゴリズム、最適化、計算理論,exactMatch
+66ee8c598124ad52c77de7ee,Computer Science/AI,プログラミング,exactMatch
+66eea759f76fda99cec44de6,Computer Science/AI,プログラミング,exactMatch
+66eed8524a95bab59d824b95,Computer Science/AI,プログラミング,exactMatch
+66eeea0187ec4a6a04092e78,Computer Science/AI,プログラミング,exactMatch
+66eefc79e487aa1349195d5f,Computer Science/AI,プログラミング,exactMatch
+66ef0afb2bfc879851eeb93f,Computer Science/AI,暗号学、情報理論、コンピュータビジョン,exactMatch
+66ef12031fef83a322e4131f,Computer Science/AI,コンピュータアーキテクチャ、アルゴリズム、プログラミング,exactMatch
+66ef7b50d3cdb68693dc3f5c,Computer Science/AI,コンピュータアーキテクチャ、暗号理論、アルゴリズム,exactMatch
+66efe2bd21f9ff1dde1c4837,Computer Science/AI,コンピュータアーキテクチャ、プログラミング言語、アルゴリズム,exactMatch
+66f0247d8777dcd82dba8253,Computer Science/AI,プログラミング,exactMatch
+66f05d93454a69621ec1badc,Computer Science/AI,プログラミング、コンピュータグラフィックス,exactMatch
+66f0bc36c6a29a8fa8010813,Computer Science/AI,プログラミング、データ分析,multipleChoice
+66f0ce4bba6f1855fcaa5af3,Computer Science/AI,機械学習、強化学習,exactMatch
+66f1058e1ce23c0620f1efd8,Computer Science/AI,データサイエンス、統計学,multipleChoice
+66f1384dba7cd382e52dc0c6,Computer Science/AI,信号処理、数値計算,exactMatch
+66f1ce25cd6a2b9d36fe8ea2,Computer Science/AI,コンピュータビジョン、幾何学的計算,multipleChoice
+66f275c6e2a2b5d3594eae87,Computer Science/AI,コンピュータビジョン、プログラミング、計算機アーキテクチャ,exactMatch
+66f28a89f1256af80477e15d,Computer Science/AI,プログラミング、計算機アーキテクチャ,exactMatch
+66f3c52f6d142335350bb6e5,Computer Science/AI,セルオートマトン、アルゴリズム,exactMatch
+66f4491ee406283b486f0f51,Computer Science/AI,データベース,exactMatch
+66f4aa5df382ae9214c8dc9b,Computer Science/AI,プログラミング,exactMatch
+66f5f12b7d734fba2ce800d6,Computer Science/AI,分散・並列計算,exactMatch
+66f6d6bb851e7fd5e8e5e5eb,Computer Science/AI,計算複雑性理論、グラフ理論,exactMatch
+66f760ebf206a49e129c7ed9,Computer Science/AI,計算複雑性理論,multipleChoice
+66f788502fd8c4ffcf2ab3fa,Computer Science/AI,ベイズ統計モデリング,multipleChoice
+66f79e7259706e88d28a23b5,Computer Science/AI,エソテリックプログラミング言語、プログラミング,multipleChoice
+66f820bb7ea359a842b73398,Computer Science/AI,計算幾何学、コンピュータグラフィックス,exactMatch
+66f864c8f7c10f2d2ba396df,Computer Science/AI,コンピュータビジョン、ロボティクス,multipleChoice
+66fa0dffda3403394e6b9996,Computer Science/AI,機械学習、深層学習、ハードウェア最適化,multipleChoice
+66fb60f0fce3673bfc606f35,Computer Science/AI,サイバーセキュリティ 生体認証 暗号技術,multipleChoice
+66fbc8ca51f7e5e714c6c4b1,Computer Science/AI,アルゴリズム ゲーム理論 人工知能（チェスエンジン解析）,exactMatch
+66fbe64df560b62458a7b6a1,Computer Science/AI, 計算複雑性 グラフ理論 パラメータ化アルゴリズム,exactMatch
+66fc1d71418b50634438f3f1,Computer Science/AI, 計算理論 ラムダ計算 数学的基礎,exactMatch
+66fc550fd90ebe461bfd0c94,Computer Science/AI,ゲーム理論人工知能,exactMatch
+66fcfe789608881c6aecde88,Computer Science/AI,ゲーム理論人工知能,multipleChoice
+66ff31e8c604a3a87b0cdf62,Computer Science/AI,計算理論,exactMatch
+67009ad56c339d61ecccb85c,Computer Science/AI,データベース,exactMatch
+6701c34caf50fa52ed36ff06,Computer Science/AI,自然言語処理（NLP）、論理推論,exactMatch
+67038476397cc8defc4de8ff,Computer Science/AI,深層学習(DeepLearning)、ニューラルネットワーク理論,multipleChoice
+6704ba2101d8c58fba562885,Computer Science/AI,最適化、アルゴリズム設計、計算幾何学,exactMatch
+6705cd5f1a7f538792ca73ee,Computer Science/AI,統計的因果推論、機械学習、回帰分析,multipleChoice
+6705cf04905b3d0e4113372b,Computer Science/AI,統計的因果推論、回帰分析,multipleChoice
+6706bda4cdc5e37f6814fc00,Computer Science/AI,計算複雑性理論、アルゴリズム,multipleChoice
+6707b9264ea1e7c28b6169bc,Computer Science/AI,アルゴリズム、文字列処理,exactMatch
+67082afe09cbab4e7c6f62aa,Computer Science/AI,グラフ理論、アルゴリズム,multipleChoice
+670ac833100f122e792a23af,Computer Science/AI,セルオートマトン、アルゴリズム,exactMatch
+670c064227c257620553cc04,Computer Science/AI,計算複雑性理論,exactMatch
+670cfd37787b413636ae1e57,Computer Science/AI,アルゴリズム・データ構造、機械学習,exactMatch
+670d51eaa783dd0bc83b1da7,Computer Science/AI,ロボティクス、制御理論、カルマンフィルタ,exactMatch
+670d72c4940c45ae0e301c02,Computer Science/AI,計算複雑性理論、グラフ理論,multipleChoice
+670dc5bf47457fb431224bbc,Computer Science/AI,計算複雑性理論,exactMatch
+670e00c1289a73b5d2b75215,Computer Science/AI,データ構造,exactMatch
+670f378873968d8e1b612745,Computer Science/AI,アルゴリズム・データ構造,multipleChoice
+6710210bc47b9b50a333dba8,Computer Science/AI,理論計算機科学,exactMatch
+67116d1350b8e9f375ac3136,Computer Science/AI,統計学,exactMatch
+67126745df2820fcc29acc5f,Computer Science/AI,形式的手法、アルゴリズム,exactMatch
+6712a11465fc44ae631f703d,Computer Science/AI,機械学習、説明可能なAI(XAI),multipleChoice
+671360871b12bd5183fec91a,Computer Science/AI,プログラミング、形式言語・オートマトン,exactMatch
+67152ee0953411f24cd994f0,Computer Science/AI,組み合わせゲーム理論、確率論、計算複雑性,exactMatch
+671567cd87cd585dc9f613db,Computer Science/AI,アルゴリズム、計算複雑性、数値線形代数,multipleChoice
+6715b2dab3287d3dd4db03d6,Computer Science/AI,プログラミング、正規表現、アルゴリズム,exactMatch
+6715fa805ba6709b4d570336,Computer Science/AI,計算理論、形式言語とオートマトン,exactMatch
+67162aae22b39b92ec5d1eaf,Computer Science/AI,分散・並列計算、アルゴリズム、シミュレーション,multipleChoice
+6716d9d79a515af7907b768b,Computer Science/AI,機械学習、最適化、ニューラルネットワーク,exactMatch
+6717b2e1961c5de74922e610,Computer Science/AI,人工知能、回路設計、診断システム,exactMatch
+6717dd24e8666ff79cdd82b0,Computer Science/AI,プログラミング言語、形式言語とオートマトン,multipleChoice
+671802a3e2dff1f07a1b0508,Computer Science/AI,グラフ理論、アルゴリズム設計,exactMatch
+671805c78b88f01935b58255,Computer Science/AI,並列計算、コンパイラ設計,multipleChoice
+67180e9b814516d5f513eb3c,Computer Science/AI,機械学習、最適化,multipleChoice
+671906908b9cbfc7b2fd972c,Computer Science/AI,計算複雑性理論,multipleChoice
+671929c60fa7bca6462f63a3,Computer Science/AI,暗号理論,exactMatch
+67192b9472c6fd14e759e369,Computer Science/AI,暗号理論,exactMatch
+67192d7e0fa7bca6462f63a9,Computer Science/AI,自然言語処理(NLP)、機械学習,exactMatch
+671963d90f87e9920aff9d11,Computer Science/AI,アルゴリズム、計算複雑性,multipleChoice
+6719c737e08d3c6d7fa52736,Computer Science/AI,形式言語・オートマトン、構文解析,multipleChoice
+6719f92b62a994eccd9f964b,Computer Science/AI,アルゴリズム、計算幾何学、機械学習,exactMatch
+671ad37634dde826ba049e91,Computer Science/AI,グラフ理論、データベース理論,exactMatch
+671b5c079296c3d8d76aaac8,Computer Science/AI,確率論、マルコフ連鎖、アルゴリズム,exactMatch
+671b7f4458b64c53882ad080,Computer Science/AI,アルゴリズム グラフ理論 計算幾何学,exactMatch
+671bbb559a1f658e2a088aa8,Computer Science/AI,計算理論,exactMatch
+671bf785fc1ad15079783d89,Computer Science/AI,アルゴリズム・情報理論,exactMatch
+671e91503152969a09cb5ef8,Computer Science/AI,計算理論,exactMatch
+671f0c8fd0f22fd6e50482ef,Computer Science/AI,プログラミング、数値計算,exactMatch
+671f1702e4e6b61540b0bdb4,Computer Science/AI,プログラミング,exactMatch
+671f351f8b7ca154256661b6,Computer Science/AI,データ分析、統計モデリング、計量経済学,multipleChoice
+671f367975523fe63c0a8b64,Computer Science/AI,コンピュータグラフィックス,exactMatch
+671f8aa5e8fbfa3cf02ce3b6,Computer Science/AI,分散・並列計算,exactMatch
+671f941e919b83ce036e80d9,Computer Science/AI,アルゴリズム、グラフ理論,exactMatch
+671fb4ddf2a13c812068cdd7,Computer Science/AI,暗号学,exactMatch
+671fcbe9f0bea11129a5ed0a,Computer Science/AI,機械学習、ベイズ推論,exactMatch
+672037fcb27d565463a1dff2,Computer Science/AI,機械学習,multipleChoice
+67205943fdd1c7b924f99713,Computer Science/AI,アルゴリズム、プログラミング,exactMatch
+672059fde8e4162530496e8f,Computer Science/AI,アルゴリズム、計算理論,exactMatch
+672065f65681ce2b6f5a08a0,Computer Science/AI,ニューラルネットワーク,multipleChoice
+6720a7b54f57949fff72b9f3,Computer Science/AI,機械学習、自然言語処理,multipleChoice
+6720e064a9e1d1cc990cc8e0,Computer Science/AI,自然言語処理(NLP)、情報検索,multipleChoice
+6720ff8a198910fd26b01224,Computer Science/AI,アルゴリズム、数論、プログラミング,exactMatch
+67213709fc2538200af2e939,Computer Science/AI,アルゴリズム、最適化、計算幾何学,exactMatch
+67214969c04654cf47135a4e,Computer Science/AI,アルゴリズム、動的計画法,exactMatch
+672159ba5e72a826f1dcf4d6,Computer Science/AI,アルゴリズム,exactMatch
+67216b3c8238b402204d3432,Computer Science/AI,計算幾何学,exactMatch
+672189d1c98941f2d2d34400,Computer Science/AI,ブロックチェーン,exactMatch
+6721998686e95ac1054387b3,Computer Science/AI,自然言語処理(NLP)、暗号理論,exactMatch
+672285d7e604c7c1efbd6af3,Computer Science/AI,オペレーティングシステム、ソフトウェア工学,exactMatch
+67228ecf93273f2ea4d39e3e,Computer Science/AI,アルゴリズム、プログラミング,exactMatch
+6722ae097f84054950978f61,Computer Science/AI,量子コンピューティング,exactMatch
+6722f2b2f3aeb8d4f9cf83ab,Computer Science/AI,量子コンピューティング,multipleChoice
+672302db3fe7fa5018b75c16,Computer Science/AI,分散・並列計算機ブロックチェーン,multipleChoice
+672309a572e4abc960be3774,Computer Science/AI,暗号学,multipleChoice
+6723ac21af0a31f10468be05,Computer Science/AI,数値計算、暗号学,multipleChoice
+6723b96ad08035d13d467d54,Computer Science/AI,計算幾何学,exactMatch
+6723cdf07a517fb44dd35e47,Computer Science/AI,アルゴリズム、計算幾何学,exactMatch
+67241607454d2eee0ceef762,Computer Science/AI,プログラミング,multipleChoice
+67241d9a1e38e5f4e7b2b183,Computer Science/AI,プログラミング,multipleChoice
+67249d57d91756473725533a,Computer Science/AI,人工知能、ニューロモルフィックコンピューティング,multipleChoice
+6724ea8fef7ca78ae041e22d,Computer Science/AI,グラフアルゴリズム、計算理論,multipleChoice
+6724f5c20c7d03e5a66cce4b,Computer Science/AI,分散・並列計算、アルゴリズム,exactMatch
+6724fa4d8a668910353a6c75,Computer Science/AI,アルゴリズム、量子コンピューティング,multipleChoice
+672524c7e6807ea2c8372c3b,Computer Science/AI,分散・並列計算、データ処理、アルゴリズム設計,exactMatch
+672538bc6d762e2b5184b6cf,Computer Science/AI,サイバーセキュリティ,multipleChoice
+67253a0b13c1aec29d1f1841,Computer Science/AI,ゲームプログラミング、物理シミュレーション、アルゴリズム,exactMatch
+6725840f6681c277a5f9e487,Computer Science/AI,情報理論、通信理論,exactMatch
+67258bcd9fc853c16713ec17,Computer Science/AI,データベース,exactMatch
+67258d077991f4a7cd4c359c,Computer Science/AI,データベース,exactMatch
+6725a933e10373a976b7e2a2,Computer Science/AI,機械学習、ニューラルネットワーク,multipleChoice
+6725b22cf0e7323addabf758,Computer Science/AI,プログラミング、アルゴリズム、人工知能,exactMatch
+6725f12226992c47ce3a7ec3,Computer Science/AI,アルゴリズム、理論計算機科学,exactMatch
+6725f64785e54acc9a6323ed,Computer Science/AI,ロボティクス,exactMatch
+6726012526992c47ce3a7f00,Computer Science/AI,,exactMatch
+67260a2a8f9ce8a272ed4e9a,Computer Science/AI,プログラミング,exactMatch
+672642510078e0b26fc15845,Computer Science/AI,コンピュータアーキテクチャ、数値計算,exactMatch
+67264341699c78200b0177e5,Computer Science/AI,計算複雑性理論,multipleChoice
+6726669dcb8f46f45799b5a8,Computer Science/AI,理論計算機科学,exactMatch
+6726c7e9d2ad475e400669c7,Computer Science/AI,,exactMatch
+67c584061122dc051c09a25a,Computer Science/AI,理論計算機科学,exactMatch
+6726dc196cd52b493ac990e4,Computer Science/AI,アルゴリズム,multipleChoice
+6726e3bf4aeb5af8ca49e254,Computer Science/AI,機械学習,exactMatch
+67279eea8416b7e045c83b93,Computer Science/AI,ゲーム人工知能,exactMatch
+67291a9877c129a9659171a5,Computer Science/AI,理論計算機科学,exactMatch
+6729ed087c934b95927b958c,Computer Science/AI,暗号学,exactMatch
+672be113f0b152f5e0c9e635,Computer Science/AI,地理情報システム(GIS)、アルゴリズム,multipleChoice
+672beb9f82b4db7134bff5f5,Computer Science/AI,計算理論,exactMatch
+672bf01199b43edbc86d142e,Computer Science/AI,機械学習、計算理論,exactMatch
+672cf9ab1abdeca725a6c993,Computer Science/AI,認知科学、人工知能,exactMatch
+672d33eb99799bd05725ea25,Computer Science/AI,暗号理論、自然言語処理,multipleChoice
+672d9a18a3ca2744fbeb434f,Computer Science/AI,アルゴリズム、データ構造,exactMatch
+672dceba64a3350407a69646,Computer Science/AI,コンピュータアーキテクチャ、アルゴリズム、プログラミング,exactMatch
+672e1ba8e62456d8519fb95b,Computer Science/AI,データベース、プログラミング,multipleChoice
+672e24f117ed86a6ef9def55,Computer Science/AI,プログラミング,exactMatch
+672f6cfd609b665328565e5c,Computer Science/AI,プログラミング,exactMatch
+672f72e3609b665328565e6b,Computer Science/AI,プログラミング,exactMatch
+672f769a47d2f4c7ca9ff5f5,Computer Science/AI,ゲーム理論,exactMatch
+672f7b5d47d2f4c7ca9ff600,Computer Science/AI,ゲーム理論,exactMatch
+673025aa4524fef4d81b65d9,Computer Science/AI,暗号理論、自然言語処理,exactMatch
+67327daab33b7d6a440fecf0,Computer Science/AI,計算複雑性-アルゴリズム,exactMatch
+6732a2af28fef5271839ac29,Computer Science/AI,機械学習-数学（線形代数、四元数）-自然言語処理,exactMatch
+67330386bda81b2106f720dc,Computer Science/AI,暗号理論、アルゴリズム、映画データ解析,exactMatch
+67332b7198af9f49ad5d743a,Computer Science/AI,信号処理、アルゴリズム,exactMatch
+67342e67f4b4302fe71048c8,Computer Science/AI,量子コンピューティング、哲学、信号処理,multipleChoice
+67359d62d473013adeed83e0,Computer Science/AI,コンピュータアーキテクチャ、プログラミング,exactMatch
+6735bfec24a805ed5fc0d055,Computer Science/AI,コンピュータアーキテクチャ-プログラミング-数値計算,exactMatch
+673602ff4859597c5ce341a2,Computer Science/AI,画像処理,multipleChoice
+6736102de42febe40ab150af,Computer Science/AI,計算機アーキテクチャ、物理シミュレーション、プログラミング,exactMatch
+673627bc10ec0a5f859365ce,Computer Science/AI,プログラミング,exactMatch
+67367227d9ae2dd73efeded6,Computer Science/AI,強化学習,multipleChoice
+6736bd0c2f3638e3bc109888,Computer Science/AI,コンピュータグラフィックス,exactMatch
+6736c1646828e4a0cd54d756,Computer Science/AI,暗号学、量子コンピューティング,multipleChoice
+6736c43123d0fb145461cc78,Computer Science/AI,コンピュータアーキテクチャ-プログラミング-数値計算,exactMatch
+6736ddc7ab70ca0b4ee6a2e6,Computer Science/AI,分野:アルゴリズム、動的計画法(DP)、計算幾何学,exactMatch
+6736e111c3870d903d810ce2,Computer Science/AI,コンピュータアーキテクチャ、プログラミング、計算物理学,exactMatch
+6736f655e51e5ebba186a75d,Computer Science/AI,コンピュータアーキテクチャ、プログラミング、計算物理学,exactMatch
+6736f9f6badaad51129ec932,Computer Science/AI,ゲーム理論、最適化、人工知能,exactMatch
+673701a01baae2c519a9765a,Computer Science/AI,ゲーム理論、形式言語とオートマトン、強化学習,exactMatch
+67371496e04511118435d5a4,Computer Science/AI,分散・並列計算機、プログラミング,exactMatch
+67371c15d09c0e422ae36585,Computer Science/AI,プログラミング,exactMatch
+67372563fb093fc159cc7912,Computer Science/AI,プログラミング,exactMatch
+67373220a4d09488d430f640,Computer Science/AI,プログラミング,exactMatch
+6737328119fe786391fedd8a,Computer Science/AI,自然言語処理(NLP)、機械学習,exactMatch
+673735ce90a20eb348edbe16,Computer Science/AI,,exactMatch
+6737b03e324a519fe6eaca58,Computer Science/AI,計算理論,exactMatch
+6737d3148ebd5a3e08cacd4d,Computer Science/AI,プログラミング,exactMatch
+67381b2862660a32c77bfe3d,Computer Science/AI,セキュリティ、グラフ理論、計算複雑性,exactMatch
+6738936964b4aaf164087959,Computer Science/AI,ソフトウェア,exactMatch
+6738d6a4475748524584b23c,Computer Science/AI,知識表現、オントロジーアライメント,multipleChoice
+6738da53028ebe6f5c2ae07a,Computer Science/AI,知識グラフ、AI倫理、公平性評価,exactMatch
+6738e0e90afc5078575438a9,Computer Science/AI,知識グラフ、自然言語処理、認知科学,exactMatch
+67391de141c297471963efc6,Computer Science/AI,コンピュータグラフィックス,exactMatch
+6739691ecea30e65e1f96876,Computer Science/AI,強化学習,multipleChoice
+673a2e0e1832025ec235f9aa,Computer Science/AI,分散・並列計算機知識グラフ,exactMatch
+673a32a842a12c80ec5f8012,Computer Science/AI,知識グラフ自然言語処理機械学習,exactMatch
+673a33fb2d5ce2b6500f4b48,Computer Science/AI,知識グラフ統計学ネットワーク科学,exactMatch
+673a97d7414ad0600dc7819e,Computer Science/AI,コンピュータビジョン空間認識,exactMatch
+673b955f2ddd80745b6bd232,Computer Science/AI,計算複雑性理論,exactMatch
+673e53fe9c1787f33fd0b965,Computer Science/AI,プログラミング視覚的プログラミング,exactMatch
+673e6cb6dd8bb70cf2be5e47,Computer Science/AI,量子コンピューティング,exactMatch
+673f2753312f953d9f7fc051,Computer Science/AI,プログラミング,multipleChoice
+673ffbd26fcd58c71515bdee,Computer Science/AI,ネットワークセキュリティ、グラフ理論、論理プログラミング,exactMatch
+6749b01bf1f47be487dd2508,Computer Science/AI,数値計算、アルゴリズム、プログラミング,exactMatch
+67581f18abd39842c40bd2fd,Computer Science/AI,人工知能、計画問題,exactMatch
+67621c9152d4856784239c35,Computer Science/AI,機械学習、最適化、カーネルメソッド,exactMatch
+676433a3921b0ce4e14c557f,Computer Science/AI,コンピュータビジョン、ロボティクス,multipleChoice
+676625d01ac4d6b20625ea51,Computer Science/AI,ラムダ計算、型理論,exactMatch
+677aa5cd551cfd44a7e6eaaa,Computer Science/AI,最適化、線形計画、混合整数線形計画(MILP)、ニューラルネットワーク,exactMatch
+677ad03c307d6c1c47c4e41e,Computer Science/AI,プログラミング,exactMatch
+67830266ae4b98740df9a9ce,Computer Science/AI,ニューラルネットワーク、機械学習,exactMatch
+6786bc24d006270154ff7030,Computer Science/AI,難解プログラミング言語、視覚プログラミング、人工知能,exactMatch
+67c6d685a86f62873609508f,Computer Science/AI,画像認識、自然言語処理,exactMatch
+67d52597f7120a10b39abc74,Computer Science/AI,自然言語処理、画像認識,exactMatch
+66ea12d21684c1846037a28d,Engineering,ソフトウェア工学,multipleChoice
+66eaa5ddc7a3252f0f3fe53f,Engineering,金属工学,exactMatch
+66ec02c52ec65d6153428744,Engineering,化学工学,multipleChoice
+66ec8ab4b489956467209e0c,Engineering,電気工学,exactMatch
+66ee1745f77f20ac4db1fd7b,Engineering,材料工学,exactMatch
+66f02d3f022a2fa8918f215c,Engineering,機械工学,exactMatch
+66f2298b868e51658baf900a,Engineering,流体力学,exactMatch
+66f2cda3b508188b6e7328a8,Engineering,物流、システム工学,exactMatch
+66f85b33881bc7c87a8fc0e9,Engineering,航空宇宙工学,exactMatch
+66fc49ef5067ff35e6302b7f,Engineering,機械工学,exactMatch
+66fc4d3a9a78ab495d9f2aba,Engineering,電気工学,exactMatch
+66fc5d63d90ebe461bfd0cab,Engineering,材料工学,multipleChoice
+66fc7c4c1d39fbf6d8bcdcdc,Engineering,電気工学,exactMatch
+67aacfd513ec9e1a16359d51,Engineering,計算機工学,exactMatch
+66fc7ed699d3b5d0fbbad745,Engineering,電気工学,exactMatch
+66fd6e4007a5eeb48898d67b,Engineering,電気工学,exactMatch
+66fd758e29f96fd9d054df43,Engineering,通信工学,exactMatch
+66fddfcfb3108418b8a5566a,Engineering,電気,exactMatch
+66fea05ccb66b0e85c55ee51,Engineering,電気,exactMatch
+66febb7d2cb8fd8d04bcce70,Engineering,金属,multipleChoice
+670489fcedc6951c9585de8f,Engineering,システム工学、応用数学,exactMatch
+6709255fd7d58adb84aa5ffb,Engineering,電子工学、材料工学,exactMatch
+670db60f6f63b774df6f4daa,Engineering,材料工学,multipleChoice
+670eb27fd2f45b1198c87766,Engineering,材料工学,exactMatch
+6713e7a2ab68083faeb3fc70,Engineering,機械工学,exactMatch
+67172e1baa2a71966f8c8f38,Engineering,土木工学,exactMatch
+67173a11ffe2e8bed48b717f,Engineering,土木工学,exactMatch
+671747cb2b794168e3ad2c52,Engineering,土木工学、構造工学,exactMatch
+67175c6d4b3fa6d2c1eb66dd,Engineering,土木工学,exactMatch
+671a567961c380782c9eea17,Engineering,機械工学,exactMatch
+671ac42e34dde826ba049e63,Engineering,金属工学、電気工学,multipleChoice
+671b8934c34d9c2c760b4818,Engineering,電気工学,exactMatch
+671ba7b447e34cf4ed747b30,Engineering,,exactMatch
+671d279f3f722db6ba359bd3,Engineering,電気,exactMatch
+671d6502b996cf9936d1afd0,Engineering,電気,exactMatch
+671d97e729e7fde7166e4743,Engineering,環境、土木,multipleChoice
+671eb856c357c6b4f73592dd,Engineering,環境、流体力学,exactMatch
+671ebbf35cc535d3e94216ac,Engineering,システム工学,exactMatch
+671ee48a3b4aac040ec0bd85,Engineering,電気工学,multipleChoice
+671ee72aec85f81abd7a2f92,Engineering,電気工学,multipleChoice
+671ee933019b32e00d827382,Engineering,電気工学、流体工学,multipleChoice
+671eeb53c1a668a6c81e5993,Engineering,電気工学,multipleChoice
+671ef4bd6edc2afd6995897b,Engineering,電気工学,multipleChoice
+671ef8426edc2afd69958982,Engineering,電気工学,multipleChoice
+671f07b1d0f22fd6e50482e7,Engineering,電気工学,multipleChoice
+671f0b0c7301fac39660e7a3,Engineering,電気工学,multipleChoice
+671fadb2272218e5d336a33f,Engineering,光学,multipleChoice
+671faf8171f6aa7bd1e604cd,Engineering,光学,multipleChoice
+671fb0b7298c0d11670fc561,Engineering,確率論、統計学、品質管理,exactMatch
+671fe6ee8ff35abcfbaac4f8,Engineering,電気工学,multipleChoice
+671fec80cee768cca0b65e5a,Engineering,電気工学,multipleChoice
+671fee7b3fdf9b50dcb7ca58,Engineering,電気工学,multipleChoice
+6720066a447f1bb0370f36b1,Engineering,電気工学,multipleChoice
+6720077fe15dd61079c852d0,Engineering,電気工学,multipleChoice
+672008fbc069a3895d1114d6,Engineering,電気工学,exactMatch
+67200a2974329cbaaf1fba1c,Engineering,電気工学,exactMatch
+67200a8a3e7f561778c0c65c,Engineering,電気工学,exactMatch
+67200b2f79e871b075407673,Engineering,電気工学,exactMatch
+672011cd74329cbaaf1fba33,Engineering,電気工学,exactMatch
+672012bc74329cbaaf1fba35,Engineering,電気工学,exactMatch
+67204651d0ab339b4b7f9145,Engineering,電気工学,exactMatch
+67204727dab51faf6135e7e2,Engineering,電気工学,exactMatch
+672049a4452d0bd5546e11f1,Engineering,電気工学,exactMatch
+6720e3181eadad18da2de66c,Engineering,土木工学,exactMatch
+67d317cab57b67a3417a4969,Engineering,電気工学,multipleChoice
+6721135a6f862f1a6ba292b3,Engineering,電気工学,exactMatch
+672113f76f862f1a6ba292b9,Engineering,電気工学,exactMatch
+67211971d9397a0c64dba82a,Engineering,電気工学、エネルギー工学,multipleChoice
+672119ecd9397a0c64dba82c,Engineering,電気工学、エネルギー工学,exactMatch
+67217ea5262eafa82562cc28,Engineering,電気工学、機械工学,exactMatch
+67223944bb174709043a2641,Engineering,機械工学、材料工学,multipleChoice
+672241b67d612873ced61e20,Engineering,材料工学、環境工学,exactMatch
+6722728827542064f9b14815,Engineering,材料工学、溶接工学,multipleChoice
+67227aaf9679954247c9c0ad,Engineering,電子工学、半導体工学,exactMatch
+6722dbdfb130fe3b3b76ad18,Engineering,土木工学,exactMatch
+6722ed574ef505a6876b2a85,Engineering,土木工学,exactMatch
+6722f749a05636887d7b529f,Engineering,熱工学,exactMatch
+6723977a2460a4b2c86caee8,Engineering,電気工学,exactMatch
+672423111ebc6d08d02c7f2d,Engineering,医用工学,multipleChoice
+6724fa2d262cac26e3c38364,Engineering,材料工学,exactMatch
+6728b69ce3c03cd66bc102fe,Engineering,材料工学、機械工学,multipleChoice
+672ce1d6ce33946794b97a88,Engineering,材料工学,exactMatch
+6734d0fd45aa0757a21c4ddc,Engineering,金属工学、機械工学,multipleChoice
+6735cd220c703cedb6f1646a,Engineering,光学工学,exactMatch
+67367c1af50c5f8bfc321f34,Engineering,光学工学,exactMatch
+6736945a5a7f4f59e4731c4d,Engineering,交通工学,exactMatch
+67370a26144baed9dcabbe11,Engineering,機械工学、熱工学、構造工学,exactMatch
+67372089f362584fff2ae1f9,Engineering,電気工学,exactMatch
+673819ece4ea03183132a556,Engineering,機械工学、材料工学,exactMatch
+6738243f9b3842b348242430,Engineering,材料工学、化学工学,exactMatch
+6738b35e0cf19fed829b4838,Engineering,材料工学,multipleChoice
+6738cefd95e33e8ed213be70,Engineering,通信工学,exactMatch
+6738d83df02fdab01eba410c,Engineering,数学、コンピュータサイエンス,multipleChoice
+6739e82ba0d19bb8d127ad6c,Engineering,材料工学,exactMatch
+6739fdd1e27e1ce214359d62,Engineering,コンピュータ工学,exactMatch
+673a24cae2c1660fd4a8ab7f,Engineering,電気工学,exactMatch
+673bd7048229809fa3ec5653,Engineering,電気工学,exactMatch
+6750df09c905be9066a3980c,Engineering,電気工学、機械工学、生物工学,multipleChoice
+67572db350ff3671b773ebf2,Engineering,航空工学,exactMatch
+676226f6fbdba9bd68127327,Engineering,航空工学,exactMatch
+6764e7288b94f44efa6eb452,Engineering,材料工学、光学,exactMatch
+678ed6acd3b675111409b815,Engineering,ソフトウェア工学,multipleChoice
+676d64b87016c143f4d10eca,Engineering,機械工学,exactMatch
+66ec5131c583351821bff661,Engineering,材料工学,exactMatch
+66eb37bb2b3ac1255c97d905,Engineering,熱工学,exactMatch
+66eb707cb1d5bf033573afa3,Engineering,熱工学、流体力学,exactMatch
+676f30b2c0f9a20a47cd3211,Engineering,化学工学、物理化学,exactMatch
+676eab45ffe565c7842c6bad,Engineering,熱工学、流体力学、非線形動力学,exactMatch
+676e80174843a4cc3bc62ff5,Engineering,航空宇宙工学,exactMatch
+676edcd5fc03fd7d07467628,Engineering,化学工学,exactMatch
+6771217e251029ed2eca577a,Engineering,化学工学,multipleChoice
+66b727d367968fa27f2dddda,Physics,量子場理論、数学物理,exactMatch
+66b827b9b64deaedfbb997a2,Physics,高次元重力理論、Kaluza-Klein理論、場の量子論,exactMatch
+66e89ebe7361982cbfbc5952,Physics,量子ホール効果、トポロジカル物性,exactMatch
+66e8e8864c478c24f1a7e7b8,Physics,一般相対論、場の量子論,exactMatch
+66e9032060abc895aedcf460,Physics,気象学,exactMatch
+66e9100b48468f864f861b90,Physics,応用物理学,exactMatch
+66e94a88b78e263c565b17ee,Physics,現代物理、トポロジカル物性,exactMatch
+66e9e6b3c27ad6bc46adbc20,Physics,現代物理、トポロジカル量子場理論,exactMatch
+66eb968f69502893cf210115,Physics,量子物理、固体物理,exactMatch
+66eda111ea64e37f9218600c,Physics,応用物理、電磁気学,exactMatch
+66f28cc8b866ea3f1f4e95f5,Physics,応用物理、電磁気学,exactMatch
+66f2dee46721a56e35d20300,Physics,応用物理、天体物理,multipleChoice
+66f378a504165ae3e4f46de9,Physics,応用物理,multipleChoice
+66f56cf9ee58cb70d2bff0e9,Physics,応用物理、量子物理,exactMatch
+66f86bbb27a30cecdc2d6c7e,Physics,応用物理、プラズマ物理,multipleChoice
+66f8cff8469c315e2c9ed2f6,Physics,応用物理、光学,multipleChoice
+66fb417395a8e2fc57e479d7,Physics,古典物理,exactMatch
+66fc45034293a9638d7e0f47,Physics,天体物理学,exactMatch
+66fc56f5d90ebe461bfd0c9c,Physics,現代物理学、場の理論、ホログラフィック原理,exactMatch
+66fc5ed440e3b3e56869687f,Physics,原子力物理学,exactMatch
+66fc6a20d90ebe461bfd0cc7,Physics,量子場理論,exactMatch
+66fcbb1e2c2f679cc795985f,Physics,プラズマ物理学、宇宙物理学,exactMatch
+66fedc469c638aee1c0b6db1,Physics,電気回路理論、応用物理学,exactMatch
+6702db18a423c5b9f9c1c49c,Physics,量子力学、分子物理学,exactMatch
+6702df0bf9b93417fbae272c,Physics,原子核物理,exactMatch
+67036eec810cc41df802051d,Physics,応用物理,exactMatch
+670402f0bae67686d8aef3e8,Physics,統計物理、熱力学,exactMatch
+6704465caf0a436d92c65160,Physics,量子情報科学,exactMatch
+6707425209b8f334446ed3e2,Physics,量子物理学,exactMatch
+6707d229ce18c3c60d66c712,Physics,結晶物理学,exactMatch
+670ad4fbb4aea214feb705d3,Physics,応用物理,multipleChoice
+670e88d674a7c40e93dd1a5c,Physics,現代宇宙論、素粒子物理学,exactMatch
+670fe03ef99389b3c7942186,Physics,統計物理学、凝縮系物理学,exactMatch
+670fe86a7e294dc6ad20c1ba,Physics,量子力学,exactMatch
+671330c663349ba0f6c822b1,Physics,量子力学,exactMatch
+6713cedd6978edcd74f82863,Physics,統計物理学,exactMatch
+67153bd7f588f3f15b038f5b,Physics,統計物理学,exactMatch
+67154da65a8d78b045561f82,Physics,統計物理学,exactMatch
+6715f373a35b028a9e88c09f,Physics,材料力学,exactMatch
+67169906187dc7ac4a7ae1a8,Physics,原子物理学,multipleChoice
+6717ebf9d1edff0614647df5,Physics,天文学,exactMatch
+671a22850b52f35047c0b230,Physics,応用物理、電磁気学,exactMatch
+671a246d8479d8185c4d4435,Physics,幾何学的トポロジー、微分幾何学,exactMatch
+671b14a6a05f8889abb23bf0,Physics,古典物理、一般相対論,exactMatch
+671bb1348b80a27571baf0d3,Physics,原子核物理、統計物理学,exactMatch
+671bd4fb69d17f19519341dc,Physics,原子核物理、計算物理学,multipleChoice
+671d25bc8258d39a94ba00fb,Physics,応用物理、電磁気学,exactMatch
+671da6a76070b7a055069624,Physics,原子物理,exactMatch
+671e3d672637abea9c147ba1,Physics,量子物理,multipleChoice
+671ec6d8a695a5847b48c39a,Physics,量子物理、分子物理、光物理,exactMatch
+671eefbfb6d7145231fa28e4,Physics,電磁気学,multipleChoice
+671f1f0bb0b665acec70c3aa,Physics,応用物理学,multipleChoice
+671f6889490be3e9a159f485,Physics,応用物理学、車両動力学,exactMatch
+671f7a4a1bcf902a1bca1eca,Physics,応用物理学、超伝導物理学,exactMatch
+671f7f334db66145d9e41f1f,Physics,量子物理学、物性物理学,multipleChoice
+671f8a0781665b519321d818,Physics,物性物理学、結晶物理学,exactMatch
+671fbb0cc6abf8266c1892ca,Physics,量子力学、量子光学,multipleChoice
+671fd62fc40008a5a756fea4,Physics,電磁気学、量子光学,exactMatch
+671feb0424e49a0a566a7883,Physics,電磁気学,multipleChoice
+671ff43951f8a38cb737b3d4,Physics,核融合物理学,exactMatch
+6720241e20239af7af582ae1,Physics,,exactMatch
+6720449622c03e062e242dd2,Physics,古典物理、流体力学,exactMatch
+672072c945e7bc8f5c2dd1ba,Physics,相対論的物理学,exactMatch
+67208aa0563d776c82113daa,Physics,流体力学、古典力学,exactMatch
+6720a9feec461e4c6a4e2c3a,Physics,量子物理学、暗号理論,multipleChoice
+6720c10ac6e0d9a4953b636f,Physics,応用物理、波動力学,exactMatch
+6720e184a9e1d1cc990cc8e9,Physics,古典物理、応用物理,exactMatch
+6720fda3febecf1a8b9b083d,Physics,古典物理、電磁気学,exactMatch
+672104511e9aa94fc1e215da,Physics,古典物理,exactMatch
+67213cb9043b1e724244a1c6,Physics,量子化学,exactMatch
+6721767ddb8105efc71a7d1b,Physics,電磁気学,exactMatch
+67218f865b0747ce2231d48c,Physics,古典物理学,exactMatch
+672257b388e407d7eb077431,Physics,応用物理、超伝導物理,exactMatch
+67225b0a9e5897be2aec5257,Physics,応用物理、光学,multipleChoice
+67225f3cf135fd983a87bc1f,Physics,統計力学、熱力学,multipleChoice
+6722613b4152cab57c187de5,Physics,量子情報理論,exactMatch
+6722809eb0e7186e733d6838,Physics,古典力学、天体物理学,exactMatch
+672295eda223ce4156c54839,Physics,古典力学,exactMatch
+67229b1f5a95bf7d096a6319,Physics,量子物理,multipleChoice
+6722cb976bc44598e1fd09be,Physics,原子核物理,exactMatch
+672302bdbc9e7202ad89ccd3,Physics,量子化学、原子核物理,exactMatch
+67230d6e736f03c0e4c1adee,Physics,現代物理、場の量子論,exactMatch
+672333955d82e15ca8e37afb,Physics,量子力学,exactMatch
+672338c7348c6cb89bd6a7a4,Physics,量子力学,exactMatch
+6723a99824c5cdbe41028a46,Physics,古典力学、天体物理学,multipleChoice
+6723bf036e47cec0509b5caf,Physics,天体物理学,exactMatch
+6723daed271ddeec8bacb9be,Physics,応用物理学,exactMatch
+6723e60719c334bc13515f01,Physics,応用物理学、電磁気学,exactMatch
+67242914911674ab1b5d9036,Physics,相対論的力学,exactMatch
+67249cc8709ecff358139741,Physics,現代宇宙物理学、素粒子物理学,exactMatch
+6724e29c42ec04c22a24aab0,Physics,応用物理、光学,exactMatch
+6724f652efed730d1aaef326,Physics,応用物理、電磁気学,exactMatch
+6725267ae9d3782179d4a5ff,Physics,量子場理論,exactMatch
+6725280ff2e932808735b2e8,Physics,量子力学,exactMatch
+67253690bcd1c268662e77bb,Physics,一般相対論、場の理論,multipleChoice
+6725562814a5e4119e612733,Physics,量子化学、応用物理,exactMatch
+672588e1f71812e186947615,Physics,応用物理、原子核物理,multipleChoice
+6725e204e46049e7f2d2a192,Physics,現代物理、量子物理,exactMatch
+6725e382086428ce4e2fa8d6,Physics,古典物理,exactMatch
+6725e42052e181595c8bf328,Physics,原子核物理,multipleChoice
+6725f4199a1073f00ecc2312,Physics,物理化学,multipleChoice
+672600b226992c47ce3a7efe,Physics,天体物理学,exactMatch
+67260355aaf7cd419fd01af6,Physics,天体物理学、古典物理学,exactMatch
+672669616633802b43ad2332,Physics,地球物理学、宇宙物理学,multipleChoice
+6727716f45a3c3a9020e2732,Physics,古典物理学、応用物理学,exactMatch
+6728be777ed2554b747b3d65,Physics,量子場理論,exactMatch
+6728c038c556bb2fdda61dd7,Physics,統計物理学、量子場理論,exactMatch
+6728cbe9a6734ebc93d3adff,Physics,量子力学、統計物理学,exactMatch
+6728d1e3a8053eddd7a7f24a,Physics,量子場理論,exactMatch
+6728e8d695a162eb76520086,Physics,量子場理論,exactMatch
+6728ec2d5ab07491268f24fe,Physics,統計力学、量子場理論,exactMatch
+6729035989898f87cb532106,Physics,統計力学、確率過程,exactMatch
+67298280a5f43bd5a3870e14,Physics,古典物理学,exactMatch
+672a26f8b4642f4105e02119,Physics,量子場理論,exactMatch
+672a27f5d30d6f5584cde73d,Physics,凝縮系物理学,exactMatch
+672a28afb4642f4105e02122,Physics,量子場理論,exactMatch
+672a29a8d30d6f5584cde745,Physics,量子場理論、統計物理学,exactMatch
+672a30472091cee6de17ebd1,Physics,統計物理学、量子場理論,exactMatch
+672a5c2bea4e7fa0183543ae,Physics,統計物理学,exactMatch
+672a5ecf541155da3e036094,Physics,量子場理論、凝縮系物理学,multipleChoice
+672a79431629c5c3d6933ca7,Physics,古典力学,exactMatch
+672a80a432cd57d8762583e9,Physics,統計物理学,exactMatch
+672b687682d2a83f881d7c5a,Physics,応用物理,multipleChoice
+672d44d02a52b5a11753319c,Physics,応用物理、音響学,exactMatch
+672ddd9bff7bf1483f564046,Physics,現代物理、場の量子論、超対称性,multipleChoice
+672de1afed6de72b75b8c7e6,Physics,場の量子論、現代物理,multipleChoice
+672de9b9ed6de72b75b8c802,Physics,流体力学,exactMatch
+672dfdac63f8d9211905d385,Physics,素粒子物理学,multipleChoice
+672e09b50a85795d0ed2d36e,Physics,統計物理学,multipleChoice
+672f4434e9c13daba078d693,Physics,天体物理学、軌道力学,exactMatch
+672fadd93c2722c42adabef3,Physics,現代物理、場の量子論、微分幾何学,exactMatch
+672fc00e13e5fbd332372f3f,Physics,現代物理、場の量子論,exactMatch
+672fec044673df044daa1f34,Physics,量子情報科学,exactMatch
+672ff8317b5ea0144d26c82d,Physics,量子情報科学,exactMatch
+67300670a8a3b9c5fe76c0b8,Physics,量子情報科学,exactMatch
+673186a4d531bb7e168901a3,Physics,量子情報科学,multipleChoice
+67319c16b68f5ac822e236b0,Physics,量子物理学,multipleChoice
+67325a61292f97f5175026dd,Physics,古典物理学,exactMatch
+6732ce52ec2dbeda063b420b,Physics,古典物理学,exactMatch
+6732d3b01a3f938f2274a659,Physics,量子物理,exactMatch
+673347de7c5871632811feec,Physics,量子物理学,
+6734956467d2904eebed3a09,Physics,応用物理、プラズマ物理,multipleChoice
+6734968f832777944c775cc4,Physics,応用物理,multipleChoice
+673497b017a9687889930ac4,Physics,応用物理,multipleChoice
+6734989917a9687889930ac9,Physics,応用物理,multipleChoice
+6734c30b0e1b25db0db98ad5,Physics,量子力学,multipleChoice
+6735bafad86155d1e57160e7,Physics,量子力学,exactMatch
+67361730dba36cc0d595f422,Physics,量子力学,exactMatch
+673617895f0b0b9b83ff36f4,Physics,天体物理学、光学,exactMatch
+67364c441758ad568a4a2ac6,Physics,応用物理学、電磁気学,exactMatch
+673704af1c2083e9eaa6d732,Physics,応用物理学、結晶物理学,exactMatch
+6737092e3a78dbef3611f734,Physics,現代物理学、相対性理論,exactMatch
+67370aa83f0517b6e8a60769,Physics,現代物理学、統計力学,exactMatch
+67374c79ccee19cce9664dd5,Physics,現代物理学,exactMatch
+673757b8673b15e8ce0a3755,Physics,量子力学,exactMatch
+6737591afaa3cc153fb6ddc3,Physics,物性物理学,exactMatch
+673797594656f5343e5d35db,Physics,応用物理,exactMatch
+67379aea6c946be458900f3f,Physics,応用物理,exactMatch
+6737d23a6a364decc45cc7ee,Physics,天体物理学,exactMatch
+67380ecdb808e1bf292d214e,Physics,量子物性物理学、固体物理学,exactMatch
+67381641a8513cd02a2937c3,Physics,原子核物理学、放射線物理学,exactMatch
+67381812e4ea03183132a54e,Physics,量子場理論,exactMatch
+673818e39b3842b34824240d,Physics,量子力学、原子核物理,multipleChoice
+67381f0835f9616e390e737a,Physics,現代物理、相対性理論,exactMatch
+67382954b12bd45429d6c0d1,Physics,量子情報理論,exactMatch
+673829d59b3842b348242450,Physics,量子力学、量子場理論,exactMatch
+67382f8535f9616e390e73ae,Physics,量子情報科学,exactMatch
+6738f07b851b80b033aa8633,Physics,量子色力学(QCD)、素粒子物理学,exactMatch
+67390213fc9dc4f5102ad835,Physics,一般相対性理論,exactMatch
+673909949318c3bbb1056f54,Physics,古典物理学、力学,exactMatch
+67390df48dfa3346e87f711a,Physics,電磁気学,exactMatch
+6739674739118cf30f5f1075,Physics,流体力学,exactMatch
+673971a55c3de09264d6d373,Physics,半導体物理学、量子物理学,exactMatch
+67398780bcaf1e028b8576a2,Physics,原子核物理学、宇宙物理学,exactMatch
+67399a69c180d4d45680e434,Physics,原子核物理学、素粒子物理学,exactMatch
+673a42a50d455936415f2d23,Physics,古典物理,exactMatch
+673a811139a72249939a6b6d,Physics,素粒子物理,exactMatch
+673a92ad437529d472475406,Physics,素粒子物理,exactMatch
+673b4efb373d154ce855b23b,Physics,応用物理、物質科学,exactMatch
+673b865227d07a53a7b0ec48,Physics,量子情報理論,exactMatch
+673c03d7048156c9e9c8cac6,Physics,相対論的重力理論,multipleChoice
+673cc4885c871b3f9e026d02,Physics,現代宇宙、天文学,exactMatch
+673cf4fe0a06bbe311425068,Physics,古典物理,multipleChoice
+673f8ff088d617494f21e0d2,Physics,古典物理,exactMatch
+673ff6e9766a23f49ade65df,Physics,,exactMatch
+67401245b9a033e63640df4b,Physics,量子情報科学,exactMatch
+67428dcab53462ceeb83c6f6,Physics,量子力学,exactMatch
+6742c352b716c03a202313a3,Physics,量子物性物理学,exactMatch
+67434c26e839fa1a02de4251,Physics,量子情報科学,exactMatch
+67440064abafa90f5b9d4da9,Physics,理論物理学、超対称性、超重力,exactMatch
+67455cd07df215d3effe4f4e,Physics,量子物理学,exactMatch
+67455f379dbdcf3802abd8f6,Physics,量子情報理論、量子力学,exactMatch
+6747fa2a456927085f863956,Physics,理論物理学、場の量子論、超対称性,exactMatch
+67487e955830790e3687a567,Physics,量子物理、量子情報科学,exactMatch
+6748b7dfac494f3a05306206,Physics,量子物理学、量子情報科学,exactMatch
+6756844266c3ec0e7088bf9f,Physics,量子物理学,exactMatch
+67585c37f63ce118cee04572,Physics,量子物理学,exactMatch
+676cc5d177aae7d3ee8caaeb,Physics,量子物理学、光学,exactMatch
+67770f6d9a59b3d9ca3a5f82,Physics,現代物理学、数学物理学,exactMatch
+677da0a433769e54d305f23c,Physics,素粒子物理学,multipleChoice
+678dadfaa2acdbbe2a403cb7,Physics,天文学,exactMatch
+66eb189a513f5fef12575043,Physics,,exactMatch
+6771a5c801a4f50fae8acc0c,Physics,量子力学,exactMatch
+67474e78231099aba5aa677d,Physics,応用物理-複素解析-分数微積分-カタストロフィー理論,exactMatch
+6750df74ca6713770c0671be,Physics,応用物理-電磁気学,exactMatch
+66ebdd180b3bc8785f19e9c0,Physics,固体物理学、量子力学、ナノ物理学,exactMatch
+670127746c7d6577be41c989,Physics,固体物理学,exactMatch
+672635d88217be904f5899ed,Physics,量子力学、素粒子物理学,exactMatch
+66ec877286c7331c303480f5,Physics,,exactMatch
+66ef3be2b8a1ba6e0ba23496,Physics,応用物理、数学物理,exactMatch
+676c874f5c701c0c4e517354,Physics,流体力学、応用物理、ハミルトン力学,exactMatch
+6725ed80de551b21db6a0f29,Physics,量子場理論,exactMatch
+677296942ebbac6133a1d618,Physics,量子力学,exactMatch
+673f22056258608e572cc2a2,Physics,応用物理学-非線形物理学-音響物理学-材料科学,exactMatch
+6700fe18dcd877e17dbc6c26,Physics,応用物理学、材料科学、ナノテクノロジー,exactMatch
+670be48d7038d6936230870a,Physics,古典物理学、応用物理学,exactMatch
+66eddc58fcc3c877643b5f39,Physics,応用物理、材料科学,exactMatch
+67004f7644420b59a377790f,Physics,量子力学,exactMatch
+6776ba046889be9d113ccce1,Physics,量子力学,exactMatch
+66ed86e620ed3db95f9901d3,Physics,古典物理、非線形力学,exactMatch
+674982572b1759933c70c4eb,Physics,天文学-哲学-歴史,exactMatch
+66ed6347e50f3c9aca56e5f4,Physics,応用物理-数理物理,exactMatch
+6771d50cff6d0a6c35d7ca99,Physics,量子力学、古典力学,exactMatch
+66ed985a7b0ffebd9fae6993,Physics,応用物理、古典物理,exactMatch
+66ec07be2ec65d6153428751,Physics,現代物理学、量子力学、統計力学,exactMatch
+6726119595fd0ad0b8ae2978,Physics,現代物理学、素粒子物理学、電弱理論,exactMatch
+6750a730651c49cb2cce0df5,Physics,量子力学、古典電磁気学、粒子物理学,exactMatch
+66ec2799da20d530acf3bf1e,Physics,相対論的量子力学、凝縮物理学,exactMatch
+66eaee084f8d520f598dbf14,Physics,重力波天文学、一般相対性理論、信号処理,exactMatch
+66ec3bbf2071da7a7048fd37,Physics,統計力学,exactMatch
+668825f80a642802bdfeadfa,Humanities/Social Science,哲学,multipleChoice
+66e70c75bbb9b1754c0869ce,Humanities/Social Science,法学、政治学,exactMatch
+66e8a1833aa94517d4573b0d,Humanities/Social Science,哲学,exactMatch
+66e9172ef3f20cc62f5143a4,Humanities/Social Science,経済学、金融学,multipleChoice
+66e93b7099d9d12b2b824c44,Humanities/Social Science,言語学,exactMatch
+66e946fbb78e263c565b17e3,Humanities/Social Science,哲学、政治学,multipleChoice
+66e9580bc845662f61f3664b,Humanities/Social Science,法学,exactMatch
+66e95faf8451a9b41f307932,Humanities/Social Science,文学、心理学,exactMatch
+66e97fd756455f341c7849c3,Humanities/Social Science,言語学,multipleChoice
+66e9a39f2dad0e536fb92efa,Humanities/Social Science,哲学、論理学,multipleChoice
+66e9b2899cf8fcf41599246f,Humanities/Social Science,言語学,multipleChoice
+66e9c038d2d1c2dec1f6978e,Humanities/Social Science,言語学,exactMatch
+66e9ce9d29eb7c1a0721fdf1,Humanities/Social Science,言語学,exactMatch
+66ea260280667dae8de4a8ec,Humanities/Social Science,法学、経済学,multipleChoice
+66ea36e7aa2256fb4c995faf,Humanities/Social Science,言語学、人類学,
+66eaa5414a8ccea7bfdf2df5,Humanities/Social Science,心理学、教育学,multipleChoice
+66eae4e351a34eec5d943952,Humanities/Social Science,経済学,exactMatch
+66eaeaa8afe364e4f477b777,Humanities/Social Science,経済学,multipleChoice
+66eaf0ba5e31c19691fe73b1,Humanities/Social Science,経済学,multipleChoice
+66eaf456afe364e4f477b78f,Humanities/Social Science,文学史、歴史学,multipleChoice
+66eaf77aec7a1adc61bbb13e,Humanities/Social Science,文学史、歴史学,exactMatch
+66eafb96b082c5e6a76a49c0,Humanities/Social Science,文学史,multipleChoice
+66eb1706d3b17bc68156e3e3,Humanities/Social Science,歴史学,multipleChoice
+66ebefa090db075818df99a9,Humanities/Social Science,心理学,multipleChoice
+66ec3eb19c00ffe17adfde9f,Humanities/Social Science,教育学、心理学,multipleChoice
+66ed23aa629fe9acce7dd93d,Humanities/Social Science,教育学、心理学,exactMatch
+66ed2cfeaa8b7a0620149264,Humanities/Social Science,心理学、認知科学,exactMatch
+66edbcd4d0ce7f9082f8d736,Humanities/Social Science,経済学、法学,multipleChoice
+66ee386f26abf77702fa5a5d,Humanities/Social Science,経済学、法学,multipleChoice
+66ee60c50e499ab807af71f2,Humanities/Social Science,経済学、法学,multipleChoice
+66ee81afdec0afc28a74dc93,Humanities/Social Science,心理学、教育学、社会学,multipleChoice
+66f03563a291f119cd841967,Humanities/Social Science,歴史学、人類学,exactMatch
+66f0e2bb707a9da209d68e32,Humanities/Social Science,経済学、政治学,exactMatch
+66f248f6a9be6bc83b5b57f7,Humanities/Social Science,経済学、会計学,exactMatch
+66f27d65a40482f6012a4006,Humanities/Social Science,言語学,multipleChoice
+66f2e7d9384d43333482ba75,Humanities/Social Science,言語学,exactMatch
+66f3cf8fb5184675d867ef6a,Humanities/Social Science,統計学、医学,multipleChoice
+66f42e3287046c01dba2115b,Humanities/Social Science,歴史学、宗教学,multipleChoice
+66f47471bba0ce38e1ca559f,Humanities/Social Science,心理学、神経科学,multipleChoice
+66f4979d41a8777b61cf391a,Humanities/Social Science,哲学,multipleChoice
+66f8ab9c89c09a99da336b5b,Humanities/Social Science,言語学、人類学,exactMatch
+66f8f56e204cc74a525a23b8,Humanities/Social Science,哲学、言語学,multipleChoice
+66fb75ded83ed7a299fdd136,Humanities/Social Science,言語学、古典学,multipleChoice
+66fc2282b7609fc1d8099125,Humanities/Social Science,教育学、建築学、社会学,multipleChoice
+66fc23cfa7be4edbe85cf177,Humanities/Social Science,経済学,exactMatch
+66fc2689b72463921f6c40e8,Humanities/Social Science,哲学、神学,multipleChoice
+66fc35ef3d06493836155397,Humanities/Social Science,社会学、文化研究,multipleChoice
+66fc41489546a49018698bed,Humanities/Social Science,人類学,multipleChoice
+66fc462f9546a49018698bf6,Humanities/Social Science,経営学、人間資源管理,multipleChoice
+66fc4dc04293a9638d7e0f65,Humanities/Social Science,経済学,exactMatch
+66fc698fd90ebe461bfd0cc4,Humanities/Social Science,古典学、言語学,exactMatch
+66fc8f1b8a73f859d8fa1608,Humanities/Social Science,政治学、歴史学,exactMatch
+66fcc286eab6d512704d96af,Humanities/Social Science,歴史学、人類学、社会学,multipleChoice
+66fccb32baca958eff49a086,Humanities/Social Science,歴史学、古典学,exactMatch
+66fe796bc12cbe6aeaa26e69,Humanities/Social Science,哲学,exactMatch
+66ff63baefbb8fab439cda6d,Humanities/Social Science,古典学、文学,exactMatch
+66ff679163f0dbcc8b9941dd,Humanities/Social Science,古典学、言語学,exactMatch
+6700a5676c339d61ecccb86d,Humanities/Social Science,経済学、政治学,exactMatch
+67015a7f6a2b21f149f3aaba,Humanities/Social Science,古典学、言語学,exactMatch
+67015d62777a275ca50eb18b,Humanities/Social Science,古典学、言語学,multipleChoice
+67016793aafba5949df10067,Humanities/Social Science,古典学、神話学,exactMatch
+670170d616077208cedb9627,Humanities/Social Science,文学、哲学、歴史学,exactMatch
+670285bc39fbddbbfdaffdfe,Humanities/Social Science,認知言語学、哲学,multipleChoice
+6702bc770065c2f50235a34e,Humanities/Social Science,経済学、ゲーム理論,multipleChoice
+670477044580e464f8bff2a3,Humanities/Social Science,言語学、人類学,exactMatch
+67055b15222ba55ab0b88431,Humanities/Social Science,文学、言語学、古典学,exactMatch
+6705b23880154ff607a205b5,Humanities/Social Science,歴史学、社会学,exactMatch
+670620323fd82754d2f4cc7c,Humanities/Social Science,心理学、言語学,exactMatch
+6708c1dc2f33698babc6479d,Humanities/Social Science,政治学、国際関係学、歴史学,exactMatch
+670944a7da01179cfbd24ef8,Humanities/Social Science,物理学史、科学史,exactMatch
+67099b940109535a956a14ab,Humanities/Social Science,経済学,exactMatch
+6709a557139851f6bbbd7a5a,Humanities/Social Science,法学、労働経済学,multipleChoice
+6709c89f2d7ed3720d4b2b61,Humanities/Social Science,歴史学、人類学,exactMatch
+670a6b32b3f67b11c0799489,Humanities/Social Science,言語学、漢字学,exactMatch
+670aa3e255f3b29ec899f979,Humanities/Social Science,古典学、言語学,multipleChoice
+670ca1456731aa001b9ba021,Humanities/Social Science,経済学,exactMatch
+670ecbd2db2399d5b657405a,Humanities/Social Science,人類学、歴史学,multipleChoice
+670f39dc1dcaeb830ff6231f,Humanities/Social Science,言語学,multipleChoice
+670fb58f2ca6bea76e9354a7,Humanities/Social Science,政治学、経済学,multipleChoice
+6710229bd8d5eea22faea867,Humanities/Social Science,人類学、社会学,exactMatch
+6710be76f85b27716ff1c4ba,Humanities/Social Science,歴史学、人類学,exactMatch
+6710f26eaa2039046e5aea6e,Humanities/Social Science,政治学、経済学,exactMatch
+6711e5e05e64a53ed09449fd,Humanities/Social Science,経済学,exactMatch
+671257a8df2820fcc29acc37,Humanities/Social Science,経済学,exactMatch
+6713a2ac0223609143188d23,Humanities/Social Science,哲学、文学,exactMatch
+67152f87953411f24cd994f1,Humanities/Social Science,考古学、人類学,exactMatch
+671590d09f939ab157188104,Humanities/Social Science,考古学、人類学,exactMatch
+6715beb7b3287d3dd4db03e6,Humanities/Social Science,経済学、政治学,multipleChoice
+6715e455f818cdd1872c0ef0,Humanities/Social Science,言語学,multipleChoice
+67164d0b4c922006e9e93a8d,Humanities/Social Science,哲学、心理学、経済学,multipleChoice
+671659f129c718f03e48a198,Humanities/Social Science,心理学、言語学,exactMatch
+67166e91db97533c679d4609,Humanities/Social Science,言語学、人類学,multipleChoice
+671728a6382088970288d4c0,Humanities/Social Science,哲学、宗教学,exactMatch
+671776667bd7b6b75ba31922,Humanities/Social Science,哲学、数学,exactMatch
+6717fbb348394bb7e001a0c2,Humanities/Social Science,文学、心理学,exactMatch
+6718487afba38eebcbc8034b,Humanities/Social Science,労働法、政治学,multipleChoice
+6718577ca88093a75026b186,Humanities/Social Science,経済学、金融学,multipleChoice
+67190f1eee94d36fc7734311,Humanities/Social Science,歴史学、人類学、宗教学,exactMatch
+671a58056e1db673f77905cd,Humanities/Social Science,人類学,multipleChoice
+671bb0b0863984716ffe8850,Humanities/Social Science,言語学、聖書学,exactMatch
+671be3853529bee9e3097b92,Humanities/Social Science,経済学、法学,multipleChoice
+671c0a06ad75138f963f9b56,Humanities/Social Science,哲学、認知科学、機械学習倫理,exactMatch
+671c6a1aacee876e82d4bc0e,Humanities/Social Science,経済学、政治学,multipleChoice
+671dfacd16b873a455cbd5e0,Humanities/Social Science,政治学、法学,exactMatch
+671ebaf92a7c16b748fd2709,Humanities/Social Science,歴史学,exactMatch
+671f1f88e6600c2d52d9fbe6,Humanities/Social Science,言語学,exactMatch
+671fee575a0f70920ad3bd80,Humanities/Social Science,法学,multipleChoice
+6720450234e68233152e2cf8,Humanities/Social Science,哲学、人類学,exactMatch
+6720d5455cedc02ed70dbe42,Humanities/Social Science,文学、哲学,exactMatch
+67211894704d39bf19f80ad8,Humanities/Social Science,文学、社会学,exactMatch
+672144957c855b90edbc8b3e,Humanities/Social Science,法学,multipleChoice
+6721c8e11b5a8e4cb0e9079b,Humanities/Social Science,法学,multipleChoice
+6721fbd7b5bc9936c245bb78,Humanities/Social Science,哲学,exactMatch
+6722072ddcce66512a82d9ed,Humanities/Social Science,経済学、環境学,exactMatch
+67227b249679954247c9c0b3,Humanities/Social Science,政治学、経済学,exactMatch
+6722ac9945d2a9b39caeedd7,Humanities/Social Science,経済学,exactMatch
+672308e609910d09444df92a,Humanities/Social Science,法学、商法、経済学,multipleChoice
+6723658569bb6b9a5a4499b0,Humanities/Social Science,哲学、文学,exactMatch
+672365aa71fe0b446a1eb0a2,Humanities/Social Science,古生物学、人類学,exactMatch
+672368e4c08f59acd19d8353,Humanities/Social Science,言語学,multipleChoice
+6723c6ed75ffe38ab99c4e59,Humanities/Social Science,"歴史学,言語学,宗教学",exactMatch
+6723ec50479384d8942cca75,Humanities/Social Science,法学、経済学,multipleChoice
+67247cd2f18f2cb41cef4269,Humanities/Social Science,法学、財産法、遺言法,exactMatch
+6724d81d42ec04c22a24aa83,Humanities/Social Science,心理学、言語学,multipleChoice
+6724f79b262cac26e3c38360,Humanities/Social Science,宗教学、言語学、歴史学,exactMatch
+6724f8b80c7d03e5a66cce57,Humanities/Social Science,経済学、金融学、政治学,multipleChoice
+6725145d97743d26179494d6,Humanities/Social Science,歴史学、人類学、政治学,exactMatch
+672528b1fc012fdec7fc63c8,Humanities/Social Science,法学、経済学,multipleChoice
+67252b9639b66386e0489e94,Humanities/Social Science,"心理学, 言語学, 人工知能研究",multipleChoice
+67252eb05d09683709d8a5f8,Humanities/Social Science,文学、哲学、人類学,exactMatch
+6725703471b3b52354976be1,Humanities/Social Science,文学、歴史,exactMatch
+67259a64572ac41765175909,Humanities/Social Science,経済学,exactMatch
+6725adefc6537022833a1e04,Humanities/Social Science,法学、経済学、社会学,multipleChoice
+6725cab34f347932f9a63e6a,Humanities/Social Science,文学、歴史学、宗教学,exactMatch
+6726054b0aae355a51195ce8,Humanities/Social Science,歴史学、政治学、社会学,multipleChoice
+672626078a65c5d33e24d92c,Humanities/Social Science,言語学,exactMatch
+6726941826b7fc6a39fbe581,Humanities/Social Science,言語学、演劇学,multipleChoice
+6728fa2e9024bd67851adfd9,Humanities/Social Science,哲学,exactMatch
+672910239024bd67851ae002,Humanities/Social Science,文学、詩学,exactMatch
+6729b153b7eb78fd8315f689,Humanities/Social Science,言語学、人類学,multipleChoice
+672a5d27385accabb646acfe,Humanities/Social Science,言語学、翻訳学,exactMatch
+672bf0d1e9ebfc8b093c1309,Humanities/Social Science,言語学,exactMatch
+672c0f1d76fec97ec7555a3a,Humanities/Social Science,歴史学、言語学,exactMatch
+672d10c7016525107cc7bdd4,Humanities/Social Science,哲学、文学,multipleChoice
+672d4dbdf618de6356b2fa89,Humanities/Social Science,宗教学、文学、歴史学,exactMatch
+672d5a80f1800d2d85750a71,Humanities/Social Science,言語学,exactMatch
+672e50c6b9281732f28aa0f3,Humanities/Social Science,文学、人文地理学,multipleChoice
+672e6368958c5d0efe9d037d,Humanities/Social Science,文学,multipleChoice
+672e6e4a85ed85778c0fb28e,Humanities/Social Science,政治学、法学、ゲーム理論,exactMatch
+672fa2180fa0aa93e4fc789a,Humanities/Social Science,心理学、哲学、人類学,exactMatch
+672fb1872357e1d1acd486dc,Humanities/Social Science,文学,exactMatch
+672fbc4ec2c82cf448a1a725,Humanities/Social Science,哲学,exactMatch
+672ff3458e51cc48e8cbb7fd,Humanities/Social Science,歴史学,exactMatch
+67313652f659ba7b3fd1fe40,Humanities/Social Science,文学、歴史学,multipleChoice
+673216bc3125f3eae4e7a0bd,Humanities/Social Science,歴史学、人類学,exactMatch
+673277a6b33b7d6a440fecdf,Humanities/Social Science,歴史学、言語学、人類学,
+673296e70ee3440316a64763,Humanities/Social Science,哲学、宗教学,exactMatch
+6732f0dac65fb3c0e912b4a9,Humanities/Social Science,歴史学、軍事学,multipleChoice
+673393faf6478fdbbd3560aa,Humanities/Social Science,文学、詩学,multipleChoice
+6733fca10a354898fb579c2e,Humanities/Social Science,言語学,exactMatch
+6734346cf3950859f67019af,Humanities/Social Science,法学、倫理学,multipleChoice
+6734d8b25e3e83209aa9ebd3,Humanities/Social Science,歴史学、言語学、宗教学,exactMatch
+6734d9c868c0043c3c23a8dd,Humanities/Social Science,言語学、歴史学,exactMatch
+67350e81673a2dca558d3cf0,Humanities/Social Science,文学、詩学,multipleChoice
+6735c6e5f8dc0a94c3a3ae8e,Humanities/Social Science,文学、社会学,exactMatch
+67363709b1a97400f39cdc71,Humanities/Social Science,文学、哲学,multipleChoice
+67364d570965d02f400bb6d2,Humanities/Social Science,法学、労働法、契約法,multipleChoice
+67368bceaea0de6b58ec346a,Humanities/Social Science,社会学、教育学、経済学、政治学,exactMatch
+673692233b82a7ef5d60532f,Humanities/Social Science,人類学、宗教学,exactMatch
+6736ab1af0b1f35585e14f7d,Humanities/Social Science,経済学、量子ゲーム理論,exactMatch
+679719aeac316f89542b3581,Humanities/Social Science,人類学、歴史学,multipleChoice
+6736cec9cad1584306eee714,Humanities/Social Science,歴史学,exactMatch
+6736d6acc88ca641f5608321,Humanities/Social Science,哲学、言語学,exactMatch
+6736f62aafbcf9397103d22f,Humanities/Social Science,経済学,exactMatch
+6736f7bc980211368f0f94eb,Humanities/Social Science,法学,exactMatch
+6737224020f2fc6d8d08075c,Humanities/Social Science,哲学、人類学、社会学、芸術学,multipleChoice
+673722c82bfc8ab579ed111f,Humanities/Social Science,経済学、ゲーム理論,multipleChoice
+67373446bb9a786bfe928d2c,Humanities/Social Science,言語学,exactMatch
+673761e610c7e233967eef47,Humanities/Social Science,歴史学、言語学,exactMatch
+67376e4bedff89681fe75590,Humanities/Social Science,言語学,exactMatch
+6737b422d3949406f1ed580b,Humanities/Social Science,歴史学、政治学、法学,multipleChoice
+67381a8ee4ea03183132a559,Humanities/Social Science,言語学,multipleChoice
+6739149727881148ddf2aca0,Humanities/Social Science,哲学,exactMatch
+67396b6ad7c193febc65bb8e,Humanities/Social Science,文学、宗教研究,exactMatch
+673a76559e89466aa6433f66,Humanities/Social Science,言語学,multipleChoice
+673a8f8f4e2e35b51a27fb03,Humanities/Social Science,哲学、神学,exactMatch
+673a9c6a414ad0600dc781a2,Humanities/Social Science,言語学,multipleChoice
+673be25fc988fbc8ef18d148,Humanities/Social Science,"哲学, 神学",multipleChoice
+673d6d05b7ef4f8f44830921,Humanities/Social Science,政治学、歴史学,multipleChoice
+673e37db8d2811de2a83c135,Humanities/Social Science,歴史学、政治学、文化人類学、言語学,exactMatch
+673eb1cfadce15d9254eb2ac,Humanities/Social Science,哲学、人類学,exactMatch
+673fce92f7f86aa77259187a,Humanities/Social Science,文学、歴史学、化学,exactMatch
+673fd5bcf7f86aa772591883,Humanities/Social Science,文学,exactMatch
+67414401f5fbbfac5c273a0d,Humanities/Social Science,文学、宗教研究,exactMatch
+6742fe5ea2e78a79e46bb220,Humanities/Social Science,文学、宗教研究,multipleChoice
+67447514819b2c9d18ad5210,Humanities/Social Science,文学、哲学,exactMatch
+674de217b314a9bd4e0aa7c1,Humanities/Social Science,歴史学、社会学,exactMatch
+6759a235c0c22e78a0758d86,Humanities/Social Science,言語学、歴史学,exactMatch
+675b351deb7996cd4dfe804c,Humanities/Social Science,文学、言語学,exactMatch
+67607764fd6487bd2bb7e271,Humanities/Social Science,文学、文化研究,multipleChoice
+67631f198b502023c4567380,Humanities/Social Science,文学、人類学、哲学,multipleChoice
+677fcb0487e03828c5c19bcd,Humanities/Social Science,歴史学,exactMatch
+67838fb04c753fa6da434e1c,Humanities/Social Science,言語学、人類学,exactMatch
+678fbf931413486f7dc2a7f1,Humanities/Social Science,文学、言語学,exactMatch
+67cb7986f45c0cc9422617ec,Humanities/Social Science,文学、歴史,
+674c4930f8787d3114abcdd0,Humanities/Social Science,歴史、社会学、経済学,exactMatch
+674b61061dca4e97573fa31e,Humanities/Social Science,哲学、歴史学、文学,exactMatch
+672bb9be168a1a30f1f92fcc,Humanities/Social Science,数学、物理学,exactMatch
+6737081be1832dff83dd1a09,Humanities/Social Science,歴史学、地理学、政治学,exactMatch
+671f5bf4258a6646ea2f86b3,Humanities/Social Science,歴史学、政治学、文学,exactMatch
+671f7eca4db66145d9e41f1e,Humanities/Social Science,文学、言語学、歴史学,exactMatch
+672e3eeb0a6bacddc98c2217,Humanities/Social Science,数学、物理学,exactMatch
+6704409592a84f23e5b73e95,Humanities/Social Science,映画学、社会学、政治学,exactMatch
+671f53490ac3c2f49e4fa4d5,Humanities/Social Science,文学、歴史学、社会学,exactMatch
+6748caf048c0b3fae07216a3,Humanities/Social Science,文学、歴史学、地理学,exactMatch
+672a9c1acaf5258da118f254,Humanities/Social Science,数学、物理学,
+67371f93d09c0e422ae3658b,Humanities/Social Science,"哲学, 宗教学",exactMatch
+6687ffb1091058ff19128813,Other,ゲーム,exactMatch
+668828540a642802bdfeadfc,Other,科学、数学、言語学,exactMatch
+66e883265ab37f0a7da089be,Other,ゲーム、チェス,multipleChoice
+66e884515ab37f0a7da089bf,Other,ゲーム,exactMatch
+66e8d4736299517dd7a5da8c,Other,ゲーム、数学,exactMatch
+66e8e05c8bc4119df2ce4395,Other,ゲーム,exactMatch
+66e8e1056c0b8ace336996ea,Other,ゲーム,multipleChoice
+66e906f860abc895aedcf467,Other,言語学,multipleChoice
+66e90adfa5b0e84a801c7660,Other,歴史、建築,multipleChoice
+66e926cd0a94aa76a5ed8df8,Other,ゲーム,multipleChoice
+66e962f814e5657e81349bfa,Other,文学、宗教、芸術,exactMatch
+66e996260930c00374ceaa0b,Other,数学、地理,exactMatch
+66e9ae5ba60f4072c0bf5106,Other,音楽,exactMatch
+66e9b92578e89514d9ab6093,Other,数学、地理,exactMatch
+66e9fc11c19c8c61add294f0,Other,ゲーム,exactMatch
+66ea12bd86227f91af18b88b,Other,コンピューターグラフィックス,exactMatch
+66ea216e142383cfe2f74fde,Other,ゲーム,exactMatch
+66ea3d3fa715c6c835b25764,Other,アニメ、音楽,exactMatch
+66ea4076d1767539f1308fde,Other,音楽,exactMatch
+66ea40e5b44d5e443ba2eac5,Other,音楽,exactMatch
+66ea6b423082708f0c7163ca,Other,物理学、光学,exactMatch
+66ea70cd3d800a43340dd4d0,Other,天文学、歴史,exactMatch
+66eb206f99363a31f68414bc,Other,チェス,exactMatch
+66eb2d7378d12ffd1e4d123d,Other,旅行、航空、ITツール,exactMatch
+66eb3aab27b19dd593af7ebe,Other,ゲーム,exactMatch
+66eb533fcd1fb71d6d1127e4,Other,映画,exactMatch
+66ec0ed8b0ae7f67e365a163,Other,ゲーム,exactMatch
+66ec89f3f215bf00d749dc21,Other,地理,exactMatch
+66ed28dfde312a049a78b3ba,Other,ゲーム,multipleChoice
+66ed3c5dae789e6253eedddd,Other,ゲーム,exactMatch
+66ed49b5f7d32ce7859d1f48,Other,ゲーム,exactMatch
+66ed4b33edca8147396f87f4,Other,ゲーム,exactMatch
+66ed5611d94c2fb87ded8826,Other,ゲーム,exactMatch
+66ed5f1e85adbeda9f978022,Other,歴史、地理、暗号解読,multipleChoice
+66edd857a0ffa4c025458242,Other,ゲーム,exactMatch
+66ef5b2ee2bec3c64e8e4415,Other,ゲーム,exactMatch
+66f000874b6bc4f9d21fc7fa,Other,ゲーム,exactMatch
+66f042e57cd17eb270eb9ccb,Other,ゲーム,exactMatch
+66f059e79e9f029011633cba,Other,音楽,exactMatch
+66f05e67d297cdebd9abb742,Other,分野：芸術、観光,exactMatch
+66f0f65fd23ed0ac5f43b260,Other,分野：物理学、流体力学,multipleChoice
+66f2b236b1d41433f8a4edea,Other,論理学、哲学,exactMatch
+66f3fbaad1c77d20ca3338e6,Other,音楽,exactMatch
+66f44382e369fb72959c8e86,Other,プログラミング、データ可視化,exactMatch
+66f57e3ddc7259d8b5bb0b46,Other,音楽、数学,exactMatch
+66f583effa3f26008ed527e0,Other,芸術,exactMatch
+66f5ac3d909b45b3b472d01f,Other,音楽,exactMatch
+66f5db356e132c6b4fd9408b,Other,芸術,multipleChoice
+66fbcca4a177ae967e470415,Other,ゲーム,exactMatch
+66fc1a0ea7be4edbe85cf15c,Other,芸術,exactMatch
+66fc8d96b315bda762372081,Other,芸術,multipleChoice
+66fcf077c494ec3fe0ed5635,Other,音楽,multipleChoice
+66ff2d1ccee52e636551df01,Other,ゲーム,exactMatch
+6700bde8fa64315ed5204e74,Other,生物学,exactMatch
+6701d2675f6691877f264511,Other,ゲーム,exactMatch
+67028faea970bf7474de7db9,Other,音楽,exactMatch
+67029d8de7ea2ce5def2f39f,Other,芸術,exactMatch
+6703798585e4a42e6ff10916,Other,パズル,exactMatch
+6706295df10a8c2ca9a9c288,Other,暦学、天文学,exactMatch
+67095af56022f900e8e76028,Other,音楽,exactMatch
+6709df4c3c2174379ffee04b,Other,音楽,exactMatch
+670a2a076973040cfd5994a7,Other,テレビ・エンターテインメント,exactMatch
+670b307567eb710437409184,Other,カードゲーム,exactMatch
+670c1e0e47efd46fbe476752,Other,文学、言語遊び,exactMatch
+670d86ec56f489221087dc67,Other,映画,exactMatch
+670daa682c5d078fa33fba12,Other,映画,exactMatch
+670e9b885d472377f6c572a2,Other,ゲーム,exactMatch
+670edd52bddc0cfe673272cb,Other,数学,exactMatch
+670f41ad793c2cc1e973ff70,Other,ゲーム,exactMatch
+670f83926933cc6600d3185d,Other,ゲーム,exactMatch
+670f9916451a882595c8f434,Other,暗号、言語,exactMatch
+670faed07ddb2771c2d214ea,Other,歴史、建築,exactMatch
+67123492a07b17fa3a1d9344,Other,スポーツ,exactMatch
+67127dbf0d05bc73fc008e02,Other,科学,exactMatch
+6713127b95ce1eb050568352,Other,歴史、紋章学,exactMatch
+6714097c845a654135e72aa5,Other,芸術,exactMatch
+6715a17ddf8f7209e373b9b0,Other,ゲーム,exactMatch
+67161821736eae9fe5949bd2,Other,ゲーム,multipleChoice
+67161c234a4190fbded30b8f,Other,ゲーム,multipleChoice
+67162253433b031688b08f47,Other,ゲーム,multipleChoice
+6716260eae3149088ed859b9,Other,音楽、科学,exactMatch
+671683479e5d26a2905120dc,Other,ゲーム,exactMatch
+671699cb0b00e84566da1812,Other,スポーツ,exactMatch
+6716a8d3571bba1c8889e6ee,Other,ゲーム,multipleChoice
+6716ab6e8f636721baad869a,Other,ゲーム,multipleChoice
+6716fafe2a8d9330a7f89ee5,Other,ゲーム,multipleChoice
+671702c1e5b9112a7699686f,Other,ゲーム,multipleChoice
+671713bc1b093535f8a6751f,Other,映画,exactMatch
+67192f950fa7bca6462f63ae,Other,交通、地理,exactMatch
+671a30c82ca56817dc566f69,Other,ダンス,multipleChoice
+671ad5ceed3d54e87368bc68,Other,ゲーム,exactMatch
+671b8b0f7bbcc321c99f44ec,Other,芸術,exactMatch
+671d3ffb3e2d1926f04e94f0,Other,芸術,exactMatch
+671d9eb3355c956ce7de5a90,Other,チェス,exactMatch
+671db266fe1146e348ef1267,Other,ゲーム,exactMatch
+671e813c72825fc77bddc433,Other,芸術,exactMatch
+671ec12aa695a5847b48c38d,Other,芸術,exactMatch
+671f12185a31c38041aa96a8,Other,数学,exactMatch
+671f1efaf1d35a8b2b3b975c,Other,アニメ、オーディオドラマ,exactMatch
+671f3821d579cf064f22d3bd,Other,音楽,multipleChoice
+671f3d49d579cf064f22d3ce,Other,色彩学、デジタル技術,exactMatch
+671f449c879059a81a74468c,Other,芸術、バレエ,multipleChoice
+671f73993e82c6b6151dbba7,Other,漫画、オンラインコンテンツ,exactMatch
+671fc9508c7c5056012df16a,Other,舞踊（バレエ）,multipleChoice
+671fc9d46c5d3903234cd391,Other,音楽,multipleChoice
+671fd05dffd5ea2c79661486,Other,バレエ,exactMatch
+671fd9236c5d3903234cd3aa,Other,音楽,exactMatch
+671ff0e5029265f239082aac,Other,数学,exactMatch
+671ff58624e49a0a566a7894,Other,映画、歴史,multipleChoice
+671ff7a24140ffc71dfae4af,Other,数学,exactMatch
+672005f73e7f561778c0c647,Other,音楽、チェス,multipleChoice
+67204844452d0bd5546e11ef,Other,地質学、気候学,multipleChoice
+67209100563d776c82113dba,Other,芸術、ダンス,multipleChoice
+67209433c410824c16063fc6,Other,映画、音楽,exactMatch
+6720c0cd083a628a849fcb51,Other,バレエ,multipleChoice
+6720fddce4d64797f19fbdb9,Other,論理学,multipleChoice
+67217f97262eafa82562cc2b,Other,科学,multipleChoice
+67217fba262eafa82562cc2c,Other,スポーツ,multipleChoice
+672182f55e4a5b8416a1ccbe,Other,映画、テレビ、数学,multipleChoice
+67219b2486e95ac1054387bc,Other,論理学,multipleChoice
+67219bfaa8cd9fb6c1e25d6d,Other,音楽,multipleChoice
+6721a513823e82a699228953,Other,ゲーム,exactMatch
+6721ad631648dda151c2a7ec,Other,地質学,multipleChoice
+6721f74cffe59043e1a1a35e,Other,芸術,exactMatch
+6722a65a27a5569d0c5f5c0f,Other,芸術,
+6722d9de6bc44598e1fd09d6,Other,ゲーム,exactMatch
+6722ee72a4b38ebacbde4147,Other,交通,exactMatch
+67232c88e22b01bfa7b8f156,Other,音楽,exactMatch
+67233a00f0e8cb183f7c3df3,Other,音楽,multipleChoice
+67238a4a22fbf3820373cb44,Other,ゲーム,multipleChoice
+6723ebefcf4ea65226eb6f9c,Other,地質学,exactMatch
+6723f1d6e01c4b28f6115ce0,Other,映画,multipleChoice
+672433577fb5d24be68f010d,Other,囲碁,exactMatch
+67243887a7c5f8f463109d82,Other,ゲーム,exactMatch
+67244f264d59b659ef10889c,Other,論理学,exactMatch
+6724955b1dc5c59953c463ec,Other,芸術,multipleChoice
+6724ff0dea5926938a631b9e,Other,音楽,multipleChoice
+672502cc7cf2342075ca0646,Other,チェス,multipleChoice
+6725228e097e1ef2c46767ee,Other,ゲーム、動物、言語,exactMatch
+67252fe0825d7a624838317d,Other,音楽,exactMatch
+67255d1e100c04e9bad57694,Other,地質学,exactMatch
+67255f5f8488feffb0078345,Other,映画、歴史,multipleChoice
+67255fa498350d726c7c9456,Other,科学、技術,multipleChoice
+672563b098350d726c7c9467,Other,地質学,exactMatch
+67256656d246bf5d21d1377e,Other,ゲーム,exactMatch
+67256aab1f67ae0874429a7c,Other,地学,multipleChoice
+6725735924e0012c5eb7c4d7,Other,地学,exactMatch
+67257a165c16db8f964755a2,Other,地学,exactMatch
+6725e470de551b21db6a0f0d,Other,芸術,exactMatch
+6725ed2e26992c47ce3a7eb1,Other,ダンス,multipleChoice
+6725ee5d0aae355a51195c8b,Other,パズル,multipleChoice
+67260ae24ee1765ace1c8a54,Other,数学、物理学、経済学,exactMatch
+67268b4250fff4488ec9708b,Other,時計、歴史,exactMatch
+6727dd5c5e987b1e8c17f8d9,Other,時計、映画,exactMatch
+6728cb3e2008c845d3e7e4d4,Other,音楽、オペラ,exactMatch
+6728f1b489898f87cb5320ea,Other,音楽,exactMatch
+6729361f55d6dc2a717ab6a4,Other,地理,exactMatch
+6729368fd379a3ab500e65d1,Other,地理,exactMatch
+672aac7a78e0ab15cf86003b,Other,科学,exactMatch
+672b304eddf99de9738de25d,Other,音楽,exactMatch
+672c6aab9d218ddb7c620149,Other,映画、芸術,multipleChoice
+672cb7f9040d34d0d0aaff61,Other,芸術、バレエ,exactMatch
+672cd664551c643c6fca4e28,Other,芸術、バレエ,exactMatch
+672ce1e7ce33946794b97a89,Other,音楽,exactMatch
+672dd4a20576373e76bfcc8b,Other,地理,exactMatch
+672f7b4d4b45f2f295a386c5,Other,ゲーム,exactMatch
+67300f2e4524fef4d81b65c2,Other,ゲーム,exactMatch
+6730833d5363343e7c4aefd6,Other,音楽,exactMatch
+6730fc7d598fcdc8858811e6,Other,ゲーム,exactMatch
+67313dec45edd6d926b19c53,Other,芸術,exactMatch
+6731deb93e52c2db8f318e74,Other,地理,exactMatch
+6732761c77e9a02e661946ac,Other,地理,exactMatch
+67330f175d26efacb4819f35,Other,芸術、歴史,exactMatch
+6733af65f1a57e239a7e7488,Other,スポーツ,exactMatch
+6735dc4e06111f3d647d6cbd,Other,音楽,exactMatch
+673612eaff612f83700ec41f,Other,文学、芸術、哲学,exactMatch
+6736289810ec0a5f859365d0,Other,バレエ、芸術,multipleChoice
+673634d36299ad951a699b97,Other,芸術,exactMatch
+6736391e384c276d45050b3b,Other,芸術,multipleChoice
+6736562a41ab088ba14c2bc3,Other,貨幣・経済,exactMatch
+67369e8a0c523da07a8f6542,Other,映画、歴史,exactMatch
+6736db293948fca827d45576,Other,ゲーム,multipleChoice
+6736e9109055c436feb3f65a,Other,ゲーム,multipleChoice
+6736edefe41312420acd05a0,Other,ゲーム,exactMatch
+6736fbe5670838f1f416e243,Other,ゲーム,exactMatch
+673709d1980211368f0f952f,Other,地球科学,exactMatch
+673722a1f362584fff2ae212,Other,芸術,exactMatch
+6737278e15a024e05742d098,Other,文学、映画,exactMatch
+67d09fd38fd17c121c0b49ad,Other,数学,exactMatch
+673735aa61f20f11eb1097d2,Other,ゲーム,multipleChoice
+67378905b73b79a4008926af,Other,ゲーム,exactMatch
+6738288e35f9616e390e7394,Other,ビジネス、歴史,exactMatch
+6738e2bb0afc5078575438b5,Other,芸術、歴史,multipleChoice
+67399d0163641fb0bc110db9,Other,音楽、映画,exactMatch
+6739fe23f1f7144f9a3c9715,Other,数学、パズル,exactMatch
+673a4eacf1b4f95db095ac33,Other,ゲーム,exactMatch
+673a716a177d419c991c9f69,Other,環境科学,exactMatch
+674761ffca5b554156dc9037,Other,ゲーム,multipleChoice
+6748b20c65442ba996a1eb35,Other,科学、音楽,exactMatch
+674dbd94040b2918e5c0b63d,Other,文学、伝統文化,exactMatch
+674f07ffffb28de6c182c458,Other,音楽、チェス,exactMatch
+675407879744e5be6fabc0d5,Other,ゲーム、言語、旅行,exactMatch
+6754c5765d416c91137b9e65,Other,歴史,exactMatch
+675642a2829a199495a2fa4e,Other,ゲーム,exactMatch
+675704ad2626c93afa0b3a05,Other,音楽,exactMatch
+675aa6e703e9471764dfedd2,Other,科学,multipleChoice
+675b1c7bc75183431b382945,Other,ゲーム,exactMatch
+675c41c7fbd66ff2e12f23c0,Other,論理学,exactMatch
+6764a92fdf5dc6f18efd12d0,Other,地理,exactMatch
+6764acc6636f85482db4f7ce,Other,音楽,exactMatch
+6764af3e09c51ff9e2646c2c,Other,地理,exactMatch
+676762beff30b300db258691,Other,地理,exactMatch
+676dcbc58c865e5ad3fd4ed7,Other,地理,exactMatch
+676dd54cfec7cef1e3bbe74d,Other,地理,exactMatch
+6770832c6b74a5103a07f031,Other,論理・パズル,exactMatch
+677b26a903cb2e13f2c755ef,Other,映画、音楽,multipleChoice
+677c9bc140c35493a85c3c33,Other,チェス,exactMatch
+678015cd8bee77921a5c0389,Other,言語学,exactMatch
+678ae26a0b0bc44cadbb173f,Other,映画,exactMatch
+679881ce4d07aa4f13377c41,Other,チェス,exactMatch
+679ea13cf03a19732cbbe68f,Other,ゲーム,exactMatch
+67a47e0425adc58b1e414011,Other,ゲーム,exactMatch
+67a480109b152f2a4ace05fe,Other,ゲーム,exactMatch
+67c5b5f7392fd891d6d0668e,Other,芸術,exactMatch
+67c5cb4092838cbf744362df,Other,芸術,exactMatch
+67040faf4218b8555df5f245,Other,歴史、文学,exactMatch
+670698afa89008d75b31f329,Other,文学、歴史、言語学、文化,exactMatch
+675ae20bd43e49d4d1bbb66b,Other,音楽、心理学、認知科学,exactMatch
+673a5fa4329d98c7d4b69d60,Other,音楽、文化、テレビシリーズ,multipleChoice
+67057e2f6ab7d0d880663551,Other,ゲーム,exactMatch
+6749b2994fd3108e46cd57d7,Other,芸術,exactMatch
+673655e9e0cba9404f8fa465,Other,芸術,exactMatch
