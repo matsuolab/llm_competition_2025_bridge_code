@@ -13,6 +13,7 @@
 # torchなども事前にインストールしておく。2.7.1+cu128で動作確認済み
 
 # axolotlのインストール
+# f7ea140838e720cc23c6d71c4e578314e7daf52a にて動作確認済み
 git clone https://github.com/axolotl-ai-cloud/axolotl.git
 cd axolotl
 
