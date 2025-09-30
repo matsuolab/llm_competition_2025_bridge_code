@@ -1,0 +1,21 @@
+dataset: team-suzuki/hle-extract
+
+provider: vllm
+
+base_url: http://localhost:8000/v1
+
+model: Qwen/Qwen3-235B-A22B
+max_completion_tokens: 35000
+reasoning: false
+
+# 120問の抽出データセット用設定
+num_workers: 25
+max_samples: 120
+
+judge: o3-mini-2025-01-31
+
+# 新命名規則について:
+# predict出力: predicted-hle-{model_name}-{timestamp}.json
+# judge出力: judged-hle-{model_name}-{timestamp}.json
+# 互換性リンク: hle_{model_name}.json (judge用)
+# 最新リンク: predict-latest.json, judge-latest.json

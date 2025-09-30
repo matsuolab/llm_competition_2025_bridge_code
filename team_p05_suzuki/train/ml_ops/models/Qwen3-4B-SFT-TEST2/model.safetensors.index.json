@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "total_size": 26,
+    "format": "safetensors",
+    "shards": 3
+  },
+  "weight_map": {
+    "model.embed_tokens.weight": "model-00001-of-00003.safetensors",
+    "lm_head.weight": "model-00002-of-00003.safetensors",
+    "model.layers.0.mlp.gate_proj.weight": "model-00002-of-00003.safetensors",
+    "model.layers.0.mlp.up_proj.weight": "model-00002-of-00003.safetensors",
+    "model.layers.0.mlp.down_proj.weight": "model-00002-of-00003.safetensors",
+    "model.layers.1.mlp.gate_proj.weight": "model-00002-of-00003.safetensors",
+    "model.layers.1.mlp.up_proj.weight": "model-00002-of-00003.safetensors",
+    "model.layers.26.self_attn.k_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.27.self_attn.q_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.27.self_attn.k_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.28.self_attn.q_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.28.self_attn.k_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.29.self_attn.q_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.29.self_attn.k_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.30.self_attn.q_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.30.self_attn.k_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.31.self_attn.q_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.31.self_attn.k_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.32.self_attn.q_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.32.self_attn.k_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.33.self_attn.q_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.33.self_attn.k_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.34.self_attn.q_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.34.self_attn.k_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.35.self_attn.q_norm.weight": "model-00003-of-00003.safetensors",
+    "model.layers.35.self_attn.k_norm.weight": "model-00003-of-00003.safetensors"
+  }
+}

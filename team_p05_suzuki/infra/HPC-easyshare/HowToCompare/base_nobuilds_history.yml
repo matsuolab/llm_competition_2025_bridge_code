@@ -1,0 +1,26 @@
+name: base
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - conda==24.7.1
+  - setuptools
+  - pip
+  - wheel
+  - conda-content-trust
+  - conda-libmamba-solver
+  - menuinst
+  - anaconda-anon-usage
+  - git
+  - jupyter
+  - libblas[build=*mkl]
+  - matplotlib
+  - pandas
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - seaborn
+  - pytest
+  - hypothesis
+  - meson
+prefix: /home/appli/miniconda3/24.7.1-py311

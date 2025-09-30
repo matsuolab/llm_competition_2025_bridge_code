@@ -1,0 +1,3 @@
+- +dryrun=true
+- max_samples=1
+- num_workers=1

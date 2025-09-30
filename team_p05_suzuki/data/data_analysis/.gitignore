@@ -1,0 +1,6 @@
+input_data/
+*_output/
+*analysis_outputs/
+*umap_results/
+*data_sampling_results*/
+sft_corrected/

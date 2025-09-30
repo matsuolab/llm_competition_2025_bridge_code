@@ -1,0 +1,14 @@
+dataset: cais/hle
+
+provider: vllm
+
+base_url: http://localhost:8000/v1
+
+model: Meta-Llama-3-8B-Instruct  # 利用可能なモデルに変更
+max_completion_tokens: 7000
+reasoning: false  # Llama3では推論モード無効
+
+num_workers: 10
+max_samples: 10
+
+judge: o3-mini-2025-01-31

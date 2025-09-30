@@ -1,0 +1,14 @@
+name: compe_eval0_rickey
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - cuda-compiler=12.6.3
+  - cuda-toolkit=12.6.3
+  - cmake
+  - git
+  - git-lfs
+  - sqlite=3.45.3
+  - mpi4py
+  - cudnn
+prefix: /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey

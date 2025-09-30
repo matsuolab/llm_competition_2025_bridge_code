@@ -1,0 +1,99 @@
+name: datagen
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Python本体
+  - python=3.11.13
+  
+  # CUDAツールキット
+  - cuda-toolkit=12.8
+  
+  # 基本的な数値計算ライブラリ
+  - numpy=1.26.4
+  
+  # システムツール
+  - git
+  - pip
+  
+  # pipでインストールするパッケージ
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu128
+
+      # PyTorch関連
+      - torch==2.7.1+cu128
+      - torchvision==0.22.1+cu128
+      - torchaudio==2.7.1+cu128
+      
+      # vLLM本体
+      - vllm==0.10.0
+      
+      # vLLM関連依存
+      - fastapi==0.116.1
+      - pydantic==2.11.7
+      - pydantic-settings==2.10.1
+      - uvicorn==0.35.0
+      - ray==2.48.0
+      
+      # トランスフォーマー関連
+      - transformers==4.54.0
+      - accelerate==1.9.0
+      - safetensors==0.5.3
+      - tokenizers==0.21.2
+      
+      # Hugging Face Hub
+      - huggingface-hub==0.34.1
+      - datasets==3.0.0
+      
+      # LangChain関連（最新版で統一）
+      - langchain==0.2.16
+      - langchain-openai==0.1.25
+      - langchain-community==0.2.17
+      - langchain-core==0.2.43
+      
+      # OpenAI API
+      - openai==1.90.0
+      - tiktoken==0.9.0
+      
+      # データ処理
+      - pandas==2.3.1
+      - beautifulsoup4==4.13.4
+      - requests==2.32.4
+      
+      # 非同期処理
+      - asyncio-throttle==1.0.2
+      - nest-asyncio==1.6.0
+      - aiofiles==24.1.0
+      
+      # 環境管理
+      - python-dotenv==1.1.1
+      
+      # vLLM追加依存
+      - xformers==0.0.31
+      - triton==3.3.1
+      - nvidia-ml-py==12.575.51
+      - prometheus-client==0.22.1
+      - msgpack==1.1.1
+
+      # モデル依存
+      - sentencepiece==0.2.0
+      - protobuf==4.25.8
+      - einops==0.8.1
+
+      # オプション: Webスクレイピング
+      - playwright==1.44.0
+
+      # その他ユーティリティ
+      - pyyaml==6.0.2
+      - tqdm==4.67.1
+      - psutil==7.0.0
+      - ninja==1.11.1.4
+      - packaging==24.2
+      - filelock==3.18.0
+      - jinja2==3.1.6
+      - regex==2024.11.6
+      - scipy==1.16.0
+      - typing-extensions==4.14.1

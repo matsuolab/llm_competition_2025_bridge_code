@@ -1,0 +1,25 @@
+
+# YAML config for vllm_inference.py and model_download.py
+
+model: # Model config
+  model_name: deepseek-ai/DeepSeek-R1-Distill-Qwen-7B #Huggingfaceのrepo name
+  model_stored_path: YOUR_MODEL_STORED_PATH # モデルのローカル保存先
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.92
+  max_model_len: 6000 #Input (incl. chate template) + output token
+  enable_thinking: true
+  quantization: # specify fp8 if quantizing 32B model for a single H100 GPU
+
+data: # dataset config
+  dataset_name: team-suzuki/SFT_004_origin_1 # Huggingface data repository
+  hf_token: HF_TOKEN
+  split: train
+  question_field: question # change if question is stored in another tag
+  sub_sample_inf: 400 # if empty entire sample, if integer 0:N samples
+
+inference: # inference config
+  batch_size: 100 # adjust according to model size and max_model_len
+  max_tokens: 5000 # Output token length
+
+output: # output directory
+  dir: vllm_output 
