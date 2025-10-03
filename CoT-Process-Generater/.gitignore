@@ -1,0 +1,4 @@
+.venv/
+logs/
+evaluated_results.json
+generated_results.json
