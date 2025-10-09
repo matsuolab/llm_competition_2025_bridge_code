@@ -28,6 +28,10 @@
 * 備考: **trl の vLLM の量子化非対応問題が未解決**
 * Notion: [https://www.notion.so/Qwen-Axolotl-GSPO-VLLN-27ee14b94af5802baf46f6e1cbfc1aa9?source=copy_link](https://www.notion.so/Qwen-Axolotl-GSPO-VLLN-27ee14b94af5802baf46f6e1cbfc1aa9?source=copy_link)
 
+### Axolotl マージ
+
+* Notion: [https://www.notion.so/Qwen-Axolotl-270e14b94af5807da389d14708489d0d?source=copy_link](https://www.notion.so/Qwen-Axolotl-270e14b94af5807da389d14708489d0d?source=copy_link)
+
 ---
 
 ## Swift GSPO
