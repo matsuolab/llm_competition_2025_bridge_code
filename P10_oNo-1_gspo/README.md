@@ -40,7 +40,18 @@
 
 ## Swift GSPO
 
-* Notion: [https://www.notion.so/20251006_swift-QLoRA-GSPO-MedMCQA-_-284e14b94af580bb91bbda253c341f68?source=copy_link](https://www.notion.so/20251006_swift-QLoRA-GSPO-MedMCQA-_-284e14b94af580bb91bbda253c341f68?source=copy_link)
+### Swift GSPO MedMCQA(1):ベースモデル + sparse rewards
+
+* Notion: [https://www.notion.so/20251010_swift-QLoRA-GSPO-MedMCQA-1-base_sparse_rewards-288e14b94af580a3ba2cfa395c140f09?source=copy_link](https://www.notion.so/20251010_swift-QLoRA-GSPO-MedMCQA-1-base_sparse_rewards-288e14b94af580a3ba2cfa395c140f09?source=copy_link)
+
+### Swift GSPO MedMCQA(2):mergedモデル + sparse rewards
+
+* Notion: [https://www.notion.so/20251010_swift-QLoRA-GSPO-MedMCQA-2-merged_sparse_rewards-288e14b94af580b99066f8423dc82947?source=copy_link](https://www.notion.so/20251010_swift-QLoRA-GSPO-MedMCQA-2-merged_sparse_rewards-288e14b94af580b99066f8423dc82947?source=copy_link)
+
+### Swift GSPO MedMCQA(3):mergedモデル + dense rewards
+
+* Notion: [https://www.notion.so/20251010_swift-QLoRA-GSPO-MedMCQA-3-merged_dense_rewards-288e14b94af580b4b8f4c2ee125eeb3b?source=copy_link](https://www.notion.so/20251010_swift-QLoRA-GSPO-MedMCQA-3-merged_dense_rewards-288e14b94af580b4b8f4c2ee125eeb3b?source=copy_link)
+
 
 ---
 
