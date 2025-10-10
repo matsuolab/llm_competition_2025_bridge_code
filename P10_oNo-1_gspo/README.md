@@ -23,6 +23,10 @@
 
 * Notion: [https://www.notion.so/Qwen3-235B-MedMCQA-GSPO-281e14b94af580c49a53d56ad03746ce?source=copy_link](https://www.notion.so/Qwen3-235B-MedMCQA-GSPO-281e14b94af580c49a53d56ad03746ce?source=copy_link)
 
+### Axolotl GRPO MedMCQA
+
+* Notion: [https://www.notion.so/Qwen3-235B-MedMCQA-GRPO-287e14b94af580839821dce5e0755059?source=copy_link](https://www.notion.so/Qwen3-235B-MedMCQA-GRPO-287e14b94af580839821dce5e0755059?source=copy_link)
+
 ### Axolotl GSPO vLLM
 
 * 備考: **trl の vLLM の量子化非対応問題が未解決**
