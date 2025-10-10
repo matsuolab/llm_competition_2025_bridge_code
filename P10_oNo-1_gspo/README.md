@@ -52,7 +52,9 @@
 
 * Notion: [https://www.notion.so/20251010_swift-QLoRA-GSPO-MedMCQA-3-merged_dense_rewards-288e14b94af580b4b8f4c2ee125eeb3b?source=copy_link](https://www.notion.so/20251010_swift-QLoRA-GSPO-MedMCQA-3-merged_dense_rewards-288e14b94af580b4b8f4c2ee125eeb3b?source=copy_link)
 
+### Swiftマージ
 
+* Notion: [https://www.notion.so/Qwen3-thinking-GSPO-Swift-288e14b94af580b0bc23c928f6c363b3?source=copy_link](https://www.notion.so/Qwen3-thinking-GSPO-Swift-288e14b94af580b0bc23c928f6c363b3?source=copy_link)
 ---
 
 ## メモ
