@@ -1,0 +1,23 @@
+# YAML config for vllm_judge.py
+
+model: # Model config
+  model_name: Qwen/Qwen3-32B #HF model name
+  model_stored_path: /home/USER/PATH  # model location at local storage
+  tensor_parallel_size: 8
+  gpu_memory_utilization: 0.92
+  max_model_len: 8000 # enough to cover long questions
+  enable_thinking: false # disable inference for judge
+  quantization: # quantizing 32B model for a single H100 GPU
+
+data: # dataset config
+  dataset_name: HF_DATASET # Huggingface data repository
+  hf_token: hf_TOKEN # Huggingface token
+  split: train
+  question_field: question
+
+inference: # inference config
+  batch_size: 1500 # adjust according to model size and max_model_len
+  max_tokens: 20 # 20 is enough for judgement
+
+output: # output 
+  dir: vllm_output

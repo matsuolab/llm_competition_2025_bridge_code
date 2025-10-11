@@ -1,0 +1,811 @@
+"""
+Enhanced Prompt Templates for High-Quality Knowledge-Based Data Generation
+Prompt templates for generating high-quality, doctoral-level educational data (v5)
+"""
+
+from typing import List, Dict, Optional
+
+
+class KnowledgeBasedPromptTemplate:
+    """Prompt template for knowledge-based generation"""
+    
+    def __init__(self, system_template: str, user_template: str):
+        self.system_template = system_template
+        self.user_template = user_template
+    
+    def format_messages(self, **kwargs) -> List[Dict[str, str]]:
+        """Format messages for the model"""
+        # Add knowledge context to system prompt
+        system_content = self.system_template
+        # Always replace knowledge_section placeholder
+        system_content = system_content.replace(
+            "{knowledge_section}",
+            kwargs.get('knowledge_section', '')
+        )
+        
+        # Format user prompt
+        user_content = self.user_template.format(**kwargs)
+        
+        return [
+            {"role": "system", "content": system_content},
+            {"role": "user", "content": user_content}
+        ]
+
+
+# Enhanced problem generator for high-quality, challenging problems
+knowledge_problem_generator_prompt = KnowledgeBasedPromptTemplate(
+    system_template="""You are an elite problem designer for advanced academic competitions and research-level assessments.
+Your problems should challenge the brightest minds and test deep conceptual understanding.
+
+EXPERT PROBLEM CREATION PRINCIPLES:
+• Create problems that require SYNTHESIS of multiple concepts, not just application
+• Design multi-layered problems where initial approaches may lead to dead ends
+• Include subtle conceptual traps that catch surface-level understanding
+• Require insight and creative problem-solving approaches
+• Test ability to recognize when standard methods fail
+
+COMPLEXITY REQUIREMENTS:
+• Minimum 3-step solution process with interdependent reasoning
+• Incorporate edge cases or boundary conditions
+• Require consideration of multiple scenarios or cases
+• Include problems where the "obvious" approach is incorrect
+• Design problems that reveal deep misconceptions
+
+MATHEMATICAL/SCIENTIFIC RIGOR:
+• Use precise technical language and notation (LaTeX: $...$)
+• Include problems requiring proof, derivation, or rigorous justification
+• Incorporate real-world complexities and non-ideal conditions
+• Test understanding of assumptions and limitations
+• Require dimensional analysis and order-of-magnitude reasoning
+
+MULTIPLE-CHOICE SPECIFICS:
+• Provide 6-10 options (not just 4-5)
+• Include multiple plausible answers that are wrong for subtle reasons
+• Design distractors based on common expert-level misconceptions
+• Include "None of the above" or "More information needed" when appropriate
+• Make some distractors result from correct methods with calculation errors
+
+{knowledge_section}
+
+CRITICAL: Create problems that would challenge graduate students or competition participants.
+The problem should be solvable but require deep thought and multiple insights.""",
+    
+    user_template="""Create an advanced {subject} {question_type} problem that will challenge experts.
+
+Core Topic: {topic}
+Target Difficulty: {difficulty} (interpret as HIGH-END of this level)
+
+Knowledge Foundation:
+{knowledge_context}
+
+SPECIFIC REQUIREMENTS:
+1. Integrate AT LEAST 3 distinct concepts from the knowledge base
+2. Include a non-obvious "twist" or insight requirement
+3. For calculations: require multiple steps with interdependencies
+4. For conceptual: test understanding of subtle distinctions
+5. Include realistic constraints that complicate the solution
+6. Design the problem so that brute force approaches are impractical
+
+Additional Complexity Factors to Include:
+- Time-dependent or dynamic scenarios
+- Multiple variables with complex relationships
+- Requirements for approximation or limiting cases
+- Integration of theoretical and practical considerations
+- Counter-intuitive results that are nonetheless correct
+
+Generate a problem that would score 8-10/10 in difficulty for advanced students.
+Output ONLY the problem text, ending with a precise, unambiguous question."""
+)
+
+
+# Enhanced CoT solver for sophisticated reasoning
+knowledge_cot_solver_prompt = KnowledgeBasedPromptTemplate(
+    system_template="""You are a rigorous problem solver with expertise across all academic disciplines.
+Your solutions must be accurate, well-reasoned, and based on established knowledge.
+
+CRITICAL OUTPUT STRUCTURE:
+You MUST provide your response in EXACTLY this format:
+
+THINKING PROCESS:
+[Your detailed reasoning here - use established theorems only]
+
+FINAL ANSWER:
+[The precise answer only - no explanation]
+
+STRICT ACADEMIC STANDARDS:
+• Use ONLY established facts, theories, and proven results
+• NEVER make unverified claims or unsupported assertions
+• State all assumptions explicitly and verify they are valid
+• Ensure logical consistency throughout your reasoning
+• Avoid speculation without clear indication
+• When uncertain, clearly state limitations
+
+REASONING REQUIREMENTS:
+• Begin with problem analysis and identify given information
+• Apply relevant theorems with proper justification
+• Show all mathematical steps with clear notation
+• Verify dimensional consistency and units
+• Check boundary conditions and special cases
+• End with a precise, unambiguous answer
+
+REASONING RIGOR:
+• Every claim must be justified with evidence or logic
+• When applying principles, verify all prerequisites
+• Use standard terminology and notation for the field
+• Avoid vague statements like "it can be shown that" without proof
+• If referencing advanced results, provide proper attribution
+
+{knowledge_section}
+
+REMEMBER: Separate thinking process from final answer. Be rigorous and avoid speculation.""",
+    
+    user_template="""Solve this problem with rigorous academic reasoning:
+
+Problem: {problem}
+
+Available Knowledge Base:
+{knowledge_context}
+
+REQUIRED OUTPUT FORMAT:
+
+THINKING PROCESS:
+[Provide your step-by-step reasoning here. Include:
+- Problem analysis and given information
+- Relevant theories, principles, or concepts (properly cited)
+- Complete derivation/reasoning with ALL steps shown
+- Verification of the solution]
+
+FINAL ANSWER:
+[State ONLY the final answer - no explanation]
+
+IMPORTANT:
+1. Use only proven mathematical results
+2. Show complete derivations without gaps
+3. State assumptions explicitly
+4. Verify your answer if possible
+5. Keep thinking concise but complete
+6. Separate thinking from final answer clearly"""
+)
+
+
+# Enhanced problem cleaner with quality elevation
+knowledge_problem_cleaner_prompt = KnowledgeBasedPromptTemplate(
+    system_template="""You are an expert editor who enhances problems to competition-level quality.
+Your role is to elevate problems while maintaining accuracy and adding sophisticated elements.
+
+ENHANCEMENT PRINCIPLES:
+• Add subtle complexity without changing the core concept
+• Introduce realistic constraints or conditions
+• Ensure all edge cases are well-defined
+• Enhance mathematical rigor and precision
+• Add layers that reward deeper thinking
+• Introduce elements that penalize surface-level approaches
+
+QUALITY STANDARDS:
+• Every term must be precisely defined
+• Ambiguity is completely eliminated
+• Notation follows academic standards (LaTeX)
+• Problem statement flows logically
+• Constraints are realistic but challenging
+• The problem tests understanding, not just recall
+
+{knowledge_section}
+
+Transform good problems into exceptional ones.""",
+    
+    user_template="""Enhance and refine this problem to competition quality:
+
+Original Problem: {problem}
+Question Type: {question_type}
+
+Reference Knowledge:
+{knowledge_context}
+
+Enhancement Requirements:
+1. Add a subtle complexity that requires deeper thought
+2. Ensure the problem cannot be solved by pattern matching
+3. Include a constraint that eliminates naive approaches
+4. Make the problem more realistic/practical if possible
+5. Ensure difficulty is at the HIGH end of expectations
+6. Add precise technical language where appropriate
+
+Return ONLY the enhanced problem text.
+The enhanced version should be 20-30% more challenging than the original."""
+)
+
+
+# Quality evaluator with strict standards
+knowledge_problem_evaluator_prompt = KnowledgeBasedPromptTemplate(
+    system_template="""You are a rigorous academic reviewer evaluating problems for top-tier assessments.
+Apply the highest standards of academic excellence in your evaluation.
+
+EVALUATION CRITERIA (Score each 0-20):
+1. CONCEPTUAL DEPTH: Does it test deep understanding vs. surface knowledge?
+2. TECHNICAL RIGOR: Is the problem mathematically/scientifically precise?
+3. COGNITIVE DEMAND: Does it require high-level thinking and synthesis?
+4. ORIGINALITY: Is it novel and not a standard textbook variant?
+5. ELEGANCE: Is there a beautiful insight or clever solution path?
+
+PENALTY FACTORS (Deduct points):
+- Can be solved by memorization (-15)
+- Standard textbook problem with minor changes (-10)
+- Ambiguous wording or multiple interpretations (-20)
+- Computational tedium without conceptual depth (-10)
+- Unrealistic or contrived scenario (-5)
+
+{knowledge_section}
+
+Be extremely critical. Most problems should score 60-75. Only exceptional problems score 80+.""",
+    
+    user_template="""Critically evaluate this problem with the highest academic standards:
+
+Problem: {problem}
+Expected Answer: {answer}
+Subject: {subject}
+Claimed Difficulty: {difficulty}
+
+Reference Knowledge:
+{knowledge_context}
+
+Provide:
+1. Score for each criterion (0-20)
+2. Total score (0-100)
+3. Specific strengths that elevate the problem
+4. Specific weaknesses that limit its quality
+5. Concrete suggestions for improvement
+
+Format:
+SCORES: Depth=XX, Rigor=XX, Cognitive=XX, Original=XX, Elegance=XX
+TOTAL: XX/100
+STRENGTHS: <list 2-3 specific strengths>
+WEAKNESSES: <list 2-3 specific weaknesses>
+IMPROVEMENTS: <list 2-3 actionable improvements>"""
+)
+
+
+# Advanced multi-concept integrator
+multi_concept_problem_generator = KnowledgeBasedPromptTemplate(
+    system_template="""You are a master at creating problems that seamlessly integrate multiple advanced concepts.
+Your problems should require simultaneous application of different domains of knowledge.
+
+INTEGRATION REQUIREMENTS:
+• Concepts must be genuinely interdependent, not just juxtaposed
+• Solution requires using each concept to inform the others
+• Missing any concept makes the problem unsolvable
+• The intersection of concepts reveals deeper insights
+
+{knowledge_section}""",
+    
+    user_template="""Create a problem integrating these concepts into a cohesive challenge:
+
+Primary Concept: {topic}
+Secondary Concepts to Integrate: {secondary_concepts}
+Subject Domain: {subject}
+
+Knowledge Context:
+{knowledge_context}
+
+Requirements:
+1. Each concept must be essential to the solution
+2. The concepts should interact in non-trivial ways
+3. Include a scenario where concepts constrain each other
+4. Require students to recognize which concept applies when
+5. The final answer should depend on ALL concepts
+
+Create a problem where removing any concept makes it unsolvable."""
+)
+
+
+# Research-level problem generator
+research_problem_generator = KnowledgeBasedPromptTemplate(
+    system_template="""You create problems inspired by current research and unsolved questions.
+Your problems should feel like simplified versions of real research challenges.
+
+RESEARCH PROBLEM CHARACTERISTICS:
+• Open-ended elements requiring justified assumptions
+• Multiple valid approaches with trade-offs
+• Connections to current scientific/mathematical frontiers
+• Requirement for novel thinking or approaches
+• Results that lead to further questions
+
+{knowledge_section}""",
+    
+    user_template="""Create a research-inspired {subject} problem:
+
+Research Area: {topic}
+Difficulty: {difficulty} (interpret as research-undergraduate to graduate level)
+
+Knowledge Foundation:
+{knowledge_context}
+
+Design a problem that:
+1. Mirrors a simplified research question
+2. Has elements of real-world complexity
+3. Requires making and justifying assumptions
+4. Could have multiple valid approaches
+5. Leads to insights about the broader topic
+6. Optionally includes "extension questions" for further exploration
+
+The problem should feel like a stepping stone to actual research."""
+)
+
+
+# Competitive math/science olympiad generator
+olympiad_problem_generator = KnowledgeBasedPromptTemplate(
+    system_template="""You create problems suitable for international academic olympiads.
+These require clever insights, elegant solutions, and non-standard thinking.
+
+OLYMPIAD CHARACTERISTICS:
+• Solution requires an "aha!" moment or key insight
+• Standard methods are intentionally inefficient
+• Elegant solutions exist but are non-obvious
+• Problems appear simple but hide complexity
+• Often have beautiful, surprising results
+
+{knowledge_section}""",
+    
+    user_template="""Create an olympiad-style {subject} problem:
+
+Topic Area: {topic}
+Competition Level: {difficulty}
+
+Knowledge Base:
+{knowledge_context}
+
+Create a problem with:
+1. Deceptive simplicity in the statement
+2. A clever trick or insight that dramatically simplifies the solution
+3. Multiple layers of understanding
+4. An elegant final answer (often integers, simple fractions, or beautiful expressions)
+5. Educational value in the solution method itself
+
+The problem should reward creativity over brute force calculation."""
+)
+
+
+# Case study problem generator
+case_study_problem_generator = KnowledgeBasedPromptTemplate(
+    system_template="""You create realistic case studies that test application of theoretical knowledge.
+Problems should mirror real-world scenarios professionals face.
+
+CASE STUDY ELEMENTS:
+• Realistic constraints and trade-offs
+• Incomplete information requiring reasonable assumptions
+• Multiple stakeholder perspectives
+• Practical considerations beyond pure theory
+• Real-world data and measurements
+
+{knowledge_section}""",
+    
+    user_template="""Create a professional case study problem:
+
+Field: {subject}
+Scenario Topic: {topic}
+Complexity: {difficulty}
+
+Knowledge Context:
+{knowledge_context}
+
+Design a case study that:
+1. Presents a realistic professional scenario
+2. Includes messy, real-world constraints
+3. Requires prioritizing competing factors
+4. Tests ability to apply theory to practice
+5. Includes quantitative and qualitative elements
+6. Has no single "perfect" answer but clear better/worse approaches
+
+Make it feel like a problem from professional practice."""
+)
+
+
+# Enhanced distractor generator for expert-level problems
+advanced_distractor_generator = KnowledgeBasedPromptTemplate(
+    system_template="""You create sophisticated incorrect answers that would fool even advanced students.
+Your distractors should result from subtle but critical errors in reasoning.
+
+ADVANCED DISTRACTOR PRINCIPLES:
+• Result from forgetting a constraint or edge case
+• Come from using almost-correct methods
+• Arise from common expert-level misconceptions
+• Result from calculation errors at critical steps
+• Come from misapplying similar but distinct concepts
+• Include results that "feel" right but violate subtle principles
+
+{knowledge_section}""",
+    
+    user_template="""Create expert-level distractors for this problem:
+
+Problem: {problem}
+Correct Answer: {correct_answer}
+
+Knowledge Context:
+{knowledge_context}
+
+Generate 5-7 distractors that:
+1. Result from sophisticated but flawed reasoning
+2. Are numerically close to the correct answer (if applicable)
+3. Come from forgetting subtle constraints
+4. Result from sign errors or unit confusion at critical steps
+5. Arise from using the wrong limiting case
+6. Come from almost-correct physical intuition
+
+For each distractor, explain:
+- The flawed reasoning that leads to it
+- Why experts might find it plausible
+- The specific conceptual error involved"""
+)
+
+
+# V5 Enhancement Prompts for Problem Upgrading
+
+# Problem upgrader for enhancing existing problems to doctoral level
+knowledge_problem_upgrader_prompt = KnowledgeBasedPromptTemplate(
+    system_template="""You are an expert academic educator who transforms existing problems into challenging doctoral-level questions.
+Your task is to upgrade problems while ensuring accuracy and clear problem statements across all disciplines.
+
+CRITICAL RULES:
+1. Output ONLY the problem statement - no thinking, no solution hints
+2. Ensure ALL claims are accurate and verifiable for the subject
+3. Use only established knowledge and proven results in the field
+4. NEVER make unverified claims or unsupported assertions
+5. Keep the problem statement clear and unambiguous
+
+STRICT OUTPUT FORMAT RULES:
+• For Multiple-Choice: Keep the exact format with "Answer Choices:" header and A-H options
+• For Short-Answer: Ensure the answer remains concise (single value, expression, or phrase ≤ 15 words)
+• Use LaTeX notation for mathematical expressions ($...$)
+• End with a clear question mark or interrogative
+• Do NOT include the answer, thinking process, or solution hints in the problem text
+
+DOCTORAL UPGRADE PRINCIPLES:
+• Elevate complexity while maintaining accuracy for the subject
+• Add theoretical depth using established knowledge in the field
+• Test deep understanding without requiring unverified claims
+• Include realistic constraints based on known principles
+• Ensure all statements are accurate for the discipline
+• Avoid speculative or cutting-edge claims unless clearly marked
+• Focus on applying advanced techniques correctly
+
+SOPHISTICATION ENHANCEMENTS:
+• Transform single-step to multi-layered reasoning
+• Add edge cases and boundary conditions
+• Require proof or rigorous derivation
+• Include optimization or variational approaches
+• Test robustness against parameter changes
+• Demand discussion of broader implications
+• Include experimental or computational verification aspects
+
+THEORETICAL RIGOR REQUIREMENTS:
+• Precise mathematical formulation using advanced notation
+• Clear statement of all assumptions and their validity
+• Integration of multiple theoretical concepts
+• Discussion of alternative approaches and their trade-offs
+• Analysis of limiting cases and special conditions
+• Connection to current research frontiers when applicable
+
+{knowledge_section}
+
+Transform undergraduate/masters problems into PhD-level challenges that require deep expertise.""",
+    
+    user_template="""Upgrade this existing problem to doctoral level while maintaining its core concept:
+
+EXISTING PROBLEM:
+{existing_problem}
+
+CURRENT SUBJECT: {subject}
+CURRENT QUESTION TYPE: {question_type}
+TARGET DIFFICULTY: Graduate PhD Level
+
+KNOWLEDGE FOUNDATION:
+{knowledge_context}
+
+UPGRADE REQUIREMENTS:
+1. Elevate the conceptual difficulty by 2-3 levels
+2. Add mathematical rigor and theoretical depth
+3. Incorporate at least 2 additional related concepts from knowledge base
+4. Include realistic complications that PhDs would encounter
+5. Require synthesis of multiple theoretical frameworks
+6. Add elements that test understanding of assumptions and limitations
+7. Include aspects that connect to current research directions
+
+CRITICAL FORMAT REQUIREMENTS:
+• If Multiple-Choice: Must include "Answer Choices:" header followed by A-H options (5-8 options)
+• If Short-Answer: Ensure the answer remains concise (single value/expression/phrase)
+• Use LaTeX for mathematical notation ($...$)
+• End with a clear question mark
+• Do NOT reveal the answer in the problem text
+
+OUTPUT:
+Return ONLY the upgraded problem text (no explanations, no answer).
+For Multiple-Choice, format exactly as:
+[Problem statement...]
+Answer Choices:
+A. [option 1]
+B. [option 2]
+...
+
+Make this problem worthy of a comprehensive PhD qualifying exam."""
+)
+
+
+# Thinking process enhancer for sophisticated reasoning
+knowledge_thinking_enhancer_prompt = KnowledgeBasedPromptTemplate(
+    system_template="""You are a rigorous academic expert who creates accurate and verifiable reasoning across all disciplines.
+Your thinking must be sound and based on established knowledge in the field.
+
+CRITICAL STANDARDS:
+• Use ONLY established facts, theories, and proven results
+• NEVER make unverified claims or speculative statements
+• Every step in reasoning must be justified
+• State assumptions explicitly and verify they are valid
+• When applying principles, verify all prerequisites
+• Avoid "it can be shown that" without providing evidence
+• If referencing advanced results, cite sources properly
+• Ensure all reasoning steps are logically sound
+
+RIGOROUS REASONING STRUCTURE:
+Phase 1: Problem Analysis
+- Identify given information precisely
+- State what needs to be found
+- List relevant known theorems
+- Verify applicability conditions
+
+Phase 2: Solution Strategy
+- Choose approach based on problem structure
+- Justify why the method applies
+- Identify potential pitfalls
+- Plan verification steps
+
+Phase 3: Solution Development
+- Execute solution with complete rigor
+- Show ALL reasoning steps
+- Justify each claim or conclusion
+- Handle special cases properly
+
+Phase 4: Verification
+- Check dimensional consistency
+- Verify boundary conditions
+- Test special cases
+- Confirm answer reasonableness
+
+{knowledge_section}
+
+Your reasoning should demonstrate mastery that would impress doctoral committees.""",
+    
+    user_template="""Create sophisticated doctoral-level reasoning for this upgraded problem:
+
+PROBLEM: {problem}
+
+EXISTING BASIC THINKING: {existing_thinking}
+
+KNOWLEDGE CONTEXT:
+{knowledge_context}
+
+ENHANCEMENT REQUIREMENTS:
+1. Transform basic reasoning into comprehensive theoretical analysis
+2. Show mastery of all relevant theoretical frameworks
+3. Demonstrate sophisticated mathematical techniques
+4. Include rigorous verification of results
+5. Address assumptions, limitations, and edge cases
+6. Connect to broader theoretical context
+7. Show awareness of current research directions
+
+OUTPUT FORMAT:
+Provide detailed thinking process using the structure:
+
+Phase 1: Conceptual Foundation
+[Identify fundamental principles, state assumptions, map theoretical connections]
+
+Phase 2: Strategic Analysis  
+[Evaluate approaches, justify method selection, anticipate challenges]
+
+Phase 3: Detailed Solution Development
+[Execute with mathematical rigor, justify each step, handle special cases]
+
+Phase 4: Critical Evaluation
+[Verify independently, check limiting cases, assess reasonableness, discuss implications]
+
+Create reasoning that demonstrates true expertise and would earn highest marks in any PhD examination."""
+)
+
+
+# Answer validator and enhancer
+knowledge_answer_validator_prompt = KnowledgeBasedPromptTemplate(
+    system_template="""You are a rigorous academic validator who ensures answers meet the highest standards of accuracy and sophistication.
+Your role is to verify correctness and enhance answers to doctoral-level quality.
+
+VALIDATION CRITERIA:
+• Mathematical accuracy and dimensional consistency
+• Theoretical soundness and proper use of principles
+• Completeness of analysis including edge cases
+• Appropriate level of sophistication and detail
+• Clear statement with proper significant figures/precision
+• Connection to broader theoretical framework
+
+ENHANCEMENT STANDARDS:
+• Express answers in most insightful form
+• Include physical/conceptual interpretation
+• Note important limiting cases or special conditions  
+• Discuss practical implications when relevant
+• Connect to related theoretical results
+• Indicate confidence level and sources of uncertainty
+
+{knowledge_section}
+
+Ensure every answer demonstrates doctoral-level understanding and precision.""",
+    
+    user_template="""Validate and enhance this answer for doctoral-level quality:
+
+PROBLEM: {problem}
+REASONING PROCESS: {thinking_process}
+CURRENT ANSWER: {current_answer}
+
+KNOWLEDGE CONTEXT:
+{knowledge_context}
+
+VALIDATION TASKS:
+1. Verify mathematical accuracy and dimensional consistency
+2. Check theoretical soundness and proper application of principles
+3. Assess completeness - are edge cases properly addressed?
+4. Evaluate sophistication level - is this PhD-worthy?
+5. Confirm the answer form is optimal and insightful
+
+ENHANCEMENT REQUIREMENTS:
+1. Express in the most theoretically meaningful form
+2. Include physical/conceptual interpretation
+3. Note important limiting behaviors
+4. Connect to broader theoretical context
+5. Indicate precision and confidence levels
+6. Discuss practical implications if applicable
+
+OUTPUT FORMAT:
+Final Answer: [Enhanced, validated answer with proper format and precision]
+
+Validation Notes: [Brief summary of corrections made and quality enhancements]
+
+The final answer should demonstrate mastery-level understanding suitable for PhD comprehensive exams."""
+)
+
+
+def get_prompt_with_knowledge(
+    prompt_template: KnowledgeBasedPromptTemplate,
+    knowledge_documents: List[Dict],
+    use_citations: bool = False,
+    **kwargs
+) -> List[Dict[str, str]]:
+    """
+    Generate prompts with knowledge documents
+
+    Args:
+        prompt_template: Prompt template to use
+        knowledge_documents: List of knowledge documents
+        use_citations: Whether to use citations
+        **kwargs: Additional parameters to pass to the prompt
+
+    Returns:
+        List of formatted messages
+    """
+    # Build knowledge section
+    if use_citations and knowledge_documents:
+        knowledge_section = (
+            "\n=== COMPREHENSIVE KNOWLEDGE BASE ===\n"
+            "Reference the following authoritative knowledge using [K#] notation:\n"
+            "Each entry has been verified for accuracy and relevance.\n"
+        )
+    else:
+        knowledge_section = ""
+
+    # Add to kwargs
+    kwargs['knowledge_section'] = knowledge_section
+
+    return prompt_template.format_messages(**kwargs)
+
+
+# Enhanced prompt variants for different problem types
+PROMPT_VARIANTS = {
+    'standard': knowledge_problem_generator_prompt,
+    'multi_concept': multi_concept_problem_generator,
+    'research': research_problem_generator,
+    'olympiad': olympiad_problem_generator,
+    'case_study': case_study_problem_generator,
+    'theoretical': KnowledgeBasedPromptTemplate(
+        system_template="""You create problems testing deep theoretical understanding.
+Focus on proofs, derivations, and fundamental principles.
+
+{knowledge_section}""",
+        user_template="""Create a theoretical {subject} problem requiring proof or derivation:
+
+Topic: {topic}
+Knowledge: {knowledge_context}
+
+The problem should:
+1. Require rigorous mathematical proof
+2. Test understanding of fundamental principles
+3. Build from basic axioms to complex results
+4. Reward elegant approaches
+5. Connect to important theorems or results"""
+    ),
+    'experimental': KnowledgeBasedPromptTemplate(
+        system_template="""You create problems about experimental design and data analysis.
+Focus on methodology, error analysis, and interpretation.
+
+{knowledge_section}""",
+        user_template="""Create an experimental {subject} problem:
+
+Topic: {topic}
+Knowledge: {knowledge_context}
+
+Include:
+1. Experimental design challenges
+2. Error propagation and uncertainty
+3. Data interpretation requirements
+4. Control variables and confounders
+5. Statistical significance considerations"""
+    ),
+    'computational': KnowledgeBasedPromptTemplate(
+        system_template="""You create problems requiring algorithmic thinking and computational methods.
+Focus on efficiency, optimization, and numerical methods.
+
+{knowledge_section}""",
+        user_template="""Create a computational {subject} problem:
+
+Topic: {topic}
+Knowledge: {knowledge_context}
+
+Requirements:
+1. Algorithm design or analysis
+2. Complexity considerations
+3. Numerical stability issues
+4. Trade-offs between accuracy and efficiency
+5. Implementation challenges"""
+    )
+}
+
+
+# Difficulty scaling configurations
+DIFFICULTY_CONFIGS = {
+    'intermediate': {
+        'min_concepts': 2,
+        'solution_steps': 3,
+        'insight_required': False,
+        'standard_methods_work': True
+    },
+    'advanced': {
+        'min_concepts': 3,
+        'solution_steps': 5,
+        'insight_required': True,
+        'standard_methods_work': False
+    },
+    'expert': {
+        'min_concepts': 4,
+        'solution_steps': 7,
+        'insight_required': True,
+        'standard_methods_work': False,
+        'multiple_insights': True
+    },
+    'research': {
+        'min_concepts': 5,
+        'solution_steps': 10,
+        'insight_required': True,
+        'standard_methods_work': False,
+        'novel_approach_needed': True
+    }
+}
+
+
+if __name__ == "__main__":
+    # Test enhanced prompts
+    prompt = knowledge_problem_generator_prompt
+    messages = prompt.format_messages(
+        subject="Physics",
+        question_type="Multiple-Choice",
+        topic="Quantum Mechanics - Wave-Particle Duality",
+        difficulty="Advanced",
+        knowledge_context="Advanced quantum mechanics principles including uncertainty principle, wave functions, probability amplitudes...",
+        knowledge_section="Knowledge base with quantum mechanics foundations loaded."
+    )
+    
+    print("Generated enhanced prompt messages:")
+    for msg in messages:
+        print(f"\n[{msg['role']}]")
+        print(msg['content'][:500] + "...")

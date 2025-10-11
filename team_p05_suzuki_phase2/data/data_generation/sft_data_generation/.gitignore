@@ -1,0 +1,135 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data files
+*.jsonl
+*.json
+*.csv
+*.tsv
+*.parquet
+*.arrow
+*.feather
+
+# Model files
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+*.h5
+*.pb
+*.onnx
+
+# Index files
+*.faiss
+*.npy
+*.npz
+*.pkl
+*.pickle
+
+# Logs
+*.log
+logs/
+*.out
+*.err
+
+# Environment files with sensitive information
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Generated data directories
+output/
+outputs/
+generated/
+results/
+data_output/
+*/output/
+*/outputs/
+*/generated/
+
+# Sample data (keep only examples)
+sample_data/
+!sample_data/.gitkeep
+
+# Cache directories
+.cache/
+cache/
+*_cache/
+.vector_cache/
+.model_cache/
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+.tmp/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# vLLM multiprocessing temporary files (Ray disabled)
+ray_results/
+ray_logs/
+.ray/
+
+# Weights & Biases
+wandb/
+
+# MLflow
+mlruns/
+mlflow_artifacts/
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Documentation build
+docs/_build/
+docs/build/
+
+# Specific to this project
+vector_store/vector_index.faiss
+vector_store/vector_metadata.json
+knowledge_indexes/
+knowledge_indexes_from_sheets/
+*/sample_data/*.csv
+*/sample_data/*.json
+!*/sample_data/sample_metadata.json
+
+# Keep configuration examples
+!config/.env.example
+!*/config/.env.example

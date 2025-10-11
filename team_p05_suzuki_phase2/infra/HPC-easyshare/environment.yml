@@ -1,0 +1,17 @@
+name: compe_eval0_rickey
+channels:
+  - conda-forge
+  - nvidia
+  - defaults
+channel_priority: strict
+dependencies:
+  - python=3.11
+  - nvidia::cuda-toolkit=12.6.3
+  - nvidia::cuda-compiler=12.6.3
+  - cmake
+  - git
+  - git-lfs
+  - sqlite=3.45.3
+  - mpi4py
+  - cudnn
+  - pip>=21

@@ -1,0 +1,38 @@
+# conf/config.yaml
+# Existing configuration structure maintained
+
+dataset: cais/hle
+
+provider: vllm # [vllm]
+
+base_url: http://localhost:8000/v1
+
+model: Qwen/Qwen3-32B
+max_completion_tokens: 65000
+reasoning: false
+
+# Temperature settings
+temperature: 0.6  # default
+
+# sample with multimodal is 2500, so text-only sample is about 2400
+num_workers: 15
+max_samples: 2500
+
+# Judge configuration
+judge: gpt-5-mini-2025-08-07
+
+# Alternative HuggingFace judges (uncomment to use)
+# judge: deepseek-ai/DeepSeek-R1-0528-Qwen3-8B  # Recommended for evaluation tasks
+# judge: microsoft/Phi-4-Reasoning              # Lightweight reasoning model
+# judge: Qwen/Qwen2.5-14B-Instruct             # Balanced performance
+# judge: meta-llama/Llama-3.1-70B-Instruct     # High performance (requires more resources)
+
+# Device configuration for HuggingFace models (auto-added if using HF judge)
+device: auto  # Options: auto, cuda, cpu
+
+# Hydra configuration
+hydra:
+  run:
+    dir: ./outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  job:
+    name: judge_evaluation

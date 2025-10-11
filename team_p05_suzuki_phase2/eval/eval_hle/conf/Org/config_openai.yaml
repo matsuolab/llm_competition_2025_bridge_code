@@ -1,0 +1,14 @@
+dataset: cais/hle
+
+provider: openai # OpenAI API使用
+
+base_url: https://api.openai.com/v1
+
+model: gpt-4o-mini
+max_completion_tokens: 7000
+reasoning: false  # OpenAI APIではreasoning不要
+
+num_workers: 5    # OpenAI APIでは控えめに
+max_samples: 10
+
+judge: o3-mini-2025-01-31

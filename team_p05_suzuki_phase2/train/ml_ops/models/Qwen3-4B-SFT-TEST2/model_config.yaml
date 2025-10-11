@@ -1,0 +1,43 @@
+# Qwen3-4B-SFT-TEST2 Model Configuration
+model_name: "Qwen3-4B-SFT-TEST2"
+model_type: "qwen"
+huggingface_repo: "Qwen/Qwen2.5-4B-Instruct"  # 実際のHugging Faceリポジトリ
+local_path: "train/ml_ops/models/Qwen3-4B-SFT-TEST2"
+cache_dir: "~/.cache/huggingface/transformers"
+
+# モデル設定
+model_config:
+  torch_dtype: "bfloat16"
+  device_map: "auto"
+  trust_remote_code: true
+  
+# 推論設定
+inference_config:
+  max_length: 2048
+  temperature: 0.7
+  top_p: 0.9
+  do_sample: true
+
+# ファインチューニング情報（もしあれば）
+fine_tuning:
+  base_model: "Qwen/Qwen2.5-4B-Instruct"
+  training_data: "custom_sft_dataset"
+  training_date: "2025-08-19"
+  
+# 使用方法
+usage_example: |
+  from train.ml_ops.models.model_manager import ModelManager
+  
+  manager = ModelManager()
+  model, tokenizer = manager.load_model("Qwen3-4B-SFT-TEST2")
+  
+  # または直接transformersを使用
+  from transformers import AutoModelForCausalLM, AutoTokenizer
+  
+  model = AutoModelForCausalLM.from_pretrained(
+      "train/ml_ops/models/Qwen3-4B-SFT-TEST2",
+      torch_dtype=torch.bfloat16,
+      device_map="auto",
+      trust_remote_code=True
+  )
+  tokenizer = AutoTokenizer.from_pretrained("train/ml_ops/models/Qwen3-4B-SFT-TEST2")

@@ -1,0 +1,10 @@
+dataset: team-suzuki/hle-extract
+provider: vllm
+base_url: http://localhost:8000/v1
+model: deepseek-ai/DeepSeek-R1-0528-Qwen3-8B
+max_completion_tokens: 35000
+reasoning: true
+num_workers: 25
+max_samples: 120
+judge: o3-mini-2025-01-31
+dryrun: false

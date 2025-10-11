@@ -1,0 +1,11 @@
+Bootstrap: docker
+From: vllm/vllm-openai:latest
+
+%post
+    python3 -m pip install --no-cache-dir \
+        datasets>=2.19.0 transformers>=4.44.0 \
+        huggingface_hub>=0.24.0 pandas pyyaml
+
+%labels
+    Version 0.1
+    Purpose vLLM batch inference

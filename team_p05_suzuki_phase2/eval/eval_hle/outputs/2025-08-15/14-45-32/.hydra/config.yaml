@@ -1,0 +1,9 @@
+base_url: http://localhost:8000/v1
+dataset: team-suzuki/hle-extract
+judge: o3-mini-2025-01-31
+max_completion_tokens: 7000
+max_samples: 5
+model: Qwen/Qwen3-235B-A22B
+num_workers: 20
+provider: vllm
+reasoning: false

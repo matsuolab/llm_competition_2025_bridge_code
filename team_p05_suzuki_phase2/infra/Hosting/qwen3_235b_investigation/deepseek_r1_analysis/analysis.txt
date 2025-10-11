@@ -1,0 +1,112 @@
+=== DeepSeek-R1-0528 Feasibility Analysis ===
+Date: Fri Aug 15 11:24:20 AM JST 2025
+
+1. Model Information Lookup
+==============================
+Model found on Hugging Face
+Model ID: deepseek-ai/DeepSeek-R1-0528
+Downloads: 476479
+Tags: ['transformers', 'safetensors', 'deepseek_v3', 'text-generation', 'conversational', 'custom_code', 'arxiv:2501.12948', 'license:mit', 'autotrain_compatible', 'text-generation-inference', 'endpoints_compatible', 'fp8', 'region:us']
+Config available: Yes
+
+2. Model Configuration Analysis
+================================
+Configuration retrieved successfully:
+Model Type: deepseek_v3
+Architecture: DeepseekV3ForCausalLM
+Hidden Size: 7168
+Number of Layers: 61
+Attention Heads: 128
+Vocabulary Size: 129280
+Estimated Parameters: ~38.5B
+Estimated Memory (FP16): ~71.8 GB
+
+3. Advanced Model Analysis
+===========================
+MoE (Mixture of Experts) Configuration:
+  moe_intermediate_size: 2048
+  moe_layer_freq: 1
+  n_routed_experts: 256
+  n_shared_experts: 1
+  num_experts_per_tok: 8
+
+Other relevant parameters:
+Max Position Embeddings: 163840
+RMS Norm EPS: 1e-06
+Rope Theta: 10000
+Key-Value Heads: 128 (GQA enabled)
+
+4. Memory Requirement Calculation
+===================================
+DeepSeek-R1-0528 Memory Analysis:
+========================================
+Model Configuration:
+  Hidden Size: 7168
+  Layers: 61
+  Routed Experts: 256
+  Shared Experts: 1
+  Experts per Token: 8
+
+Parameter Breakdown:
+  Embeddings: 0.9B
+  Attention: 12.5B
+  MoE Experts: 687.7B
+  Shared Experts: 2.7B
+  Routers: 0.1B
+  Other: 0.0B
+
+Total Parameters: 704.0B
+Memory (FP16): 1311.3 GB
+Memory with overhead: 1573.6 GB
+
+Comparison with current setup:
+Current Qwen3-235B uses: 582.5 GB
+DeepSeek-R1 estimated: 1573.6 GB
+Available GPU memory: 637.2 GB
+❌ NOT FEASIBLE: Need 936.4 GB more
+
+5. Alternative Configuration Analysis
+=====================================
+DeepSeek-R1-0528 Alternative Hosting Strategies:
+==================================================
+Base requirement: 1573.6 GB
+Available memory: 637.2 GB
+Shortfall: 936.4 GB
+
+Optimization Strategies:
+------------------------------
+1. Quantization Options:
+   INT8: 786.8 GB (❌ Still too large)
+   INT4: 393.4 GB (✅ Feasible)
+
+2. Expert Pruning:
+   Keep 50% experts (128): 865.5 GB (❌ Still too large)
+   Keep 25% experts (64): 511.4 GB (✅ Feasible)
+   Keep 12% experts (32): 334.4 GB (✅ Feasible)
+
+3. CPU Offloading:
+   80% on GPU: 1258.9 GB (❌ Still too large)
+   60% on GPU: 944.2 GB (❌ Still too large)
+   40% on GPU: 629.4 GB (✅ Feasible)
+
+==================================================
+RECOMMENDATION SUMMARY:
+==================================================
+✅ INT4 quantization makes this model feasible
+   Estimated memory: 393.4 GB
+   Remaining: 243.8 GB
+
+Alternative approaches:
+- Use smaller DeepSeek models (e.g., DeepSeek-V3-Base)
+- Implement dynamic expert loading
+- Use multiple nodes with tensor parallelism
+
+=== ANALYSIS COMPLETE ===
+Files generated:
+total 13
+drwxr-xr-x 2 P05U019 P05U019 4096 Aug 15 11:25 .
+drwxr-xr-x 3 P05U019 P05U019 4096 Aug 15 11:24 ..
+-rw-r--r-- 1 P05U019 P05U019 2968 Aug 15 11:26 analysis.txt
+-rw-r--r-- 1 P05U019 P05U019 4975 Aug 15 11:25 feasibility_report.md
+
+Key finding: DeepSeek-R1-0528 requires INT4 quantization to be feasible

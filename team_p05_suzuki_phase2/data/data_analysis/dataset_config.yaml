@@ -1,0 +1,172 @@
+# Dataset Configuration for UMAP Visualization
+# This file controls which datasets are loaded and visualized in the interactive UMAP explorer
+
+# Active datasets to load (uncomment to include)
+datasets:
+  # SFT datasets
+  sft_001_origin:
+    path: "sft_001_origin_analysis_output/embeddings/sft_001_origin_embeddings.pkl"
+    enabled: false
+    description: "SFT 001 origin dataset"
+    
+  sft_001_qwen3:
+    path: "sft_001_qwen3_analysis_output/embeddings/sft_001_qwen3_embeddings.pkl"
+    enabled: false
+    description: "SFT 001 Qwen3 dataset"
+    
+  sft_004_origin_1:
+    path: "sft_004_origin_1_analysis_output/embeddings/sft_004_origin_1_embeddings.pkl"
+    enabled: false
+    description: "SFT 004 origin 1 dataset"
+    
+  sft_004_origin_2:
+    path: "sft_004_origin_2_analysis_output/embeddings/sft_004_origin_2_embeddings.pkl"
+    enabled: false
+    description: "SFT 004 origin 2 dataset"
+    
+  sft_004_origin_3:
+    path: "sft_004_origin_3_analysis_output/embeddings/sft_004_origin_3_embeddings.pkl"
+    enabled: false
+    description: "SFT 004 origin 3 dataset"
+    
+  sft_004_origin_4:
+    path: "sft_004_origin_4_analysis_output/embeddings/sft_004_origin_4_embeddings.pkl"
+    enabled: false
+    description: "SFT 004 origin 4 dataset"
+    
+  # Academic datasets
+  seed_20250811:
+    path: "seed_all_data_all_20250811_054121_analysis_output/embeddings/seed_all_data_all_20250811_054121_embeddings.pkl"
+    enabled: false
+    description: "SEED all data dataset"
+  
+  seed_20250806:
+    path: "seed_all_data_20250806_145655_analysis_output/embeddings/seed_all_data_20250806_145655_embeddings.pkl"
+    enabled: false
+    description: "SEED all data dataset"
+    
+  orz_math:
+    path: "orz_math_analysis_output/embeddings/orz_math_embeddings.pkl"
+    enabled: false
+    description: "ORZ math dataset (not different from Seed math)"
+    
+  leetcode:
+    path: "leetcode_analysis_output/embeddings/leetcode_embeddings.pkl"
+    enabled: false
+    description: "LeetCode dataset (pretty far from reference dataset)"
+    
+  chemistryqa:
+    path: "chemistryqa_analysis_output/embeddings/chemistryqa_embeddings.pkl"
+    enabled: false
+    description: "ChemistryQA dataset"
+    
+  chemcot:
+    path: "chemcot_analysis_output/embeddings/chemcot_embeddings.pkl"
+    enabled: false
+    description: "ChemCOT dataset (partially close to reference dataset, needs filtering)"
+    
+  metamathqa:
+    path: "metamathqa_analysis_output/embeddings/metamathqa_embeddings.pkl"
+    enabled: false
+    description: "MetaMathQA dataset"
+    
+  mathcoder:
+    path: "mathcoder_analysis_output/embeddings/mathcoder_embeddings.pkl"
+    enabled: false
+    description: "MathCoder dataset"
+    
+  mmlu_social_science:
+    path: "mmlu_social_science_analysis_output/embeddings/mmlu_social_science_embeddings.pkl"
+    enabled: false
+    description: "MMLU social science dataset (pretty far from reference dataset)"
+    
+  morishima_bio2_chem:
+    path: "morishima_bio2_chem_analysis_output/embeddings/morishima_bio2_chem_embeddings.pkl"
+    enabled: false
+    description: "Morishima Bio2/Chem dataset (Chem is close, Bio2 is far)"
+    
+  compsci_yusukeurakami:
+    path: "compsci_yusukeurakami_analysis_output/embeddings/compsci_yusukeurakami_embeddings.pkl"
+    enabled: false
+    description: "Computer Science Yusuke Urakami dataset"
+    
+  chem_yusukeurakami:
+    path: "chem_yusukeurakami_analysis_output/embeddings/chem_yusukeurakami_embeddings.pkl"
+    enabled: false
+    description: "Chemistry Yusuke Urakami dataset"
+    
+  gpqa:
+    path: "gpqa_analysis_output/embeddings/gpqa_embeddings.pkl"
+    enabled: false
+    description: "GPQA dataset"
+    
+  sft_006_origin_1:
+    path: "sft_006_origin_1_analysis_output/embeddings/sft_006_origin_1_embeddings.pkl"
+    enabled: false
+    description: "SFT 006 origin 1 dataset"
+  
+  sft_007_1_filtered_2:
+    path: "sft_007_1_filtered_2_analysis_output/embeddings/sft_007_1_filtered_2_embeddings.pkl"
+    enabled: false
+    description: "SFT 007 1 filtered 2 dataset"
+
+  arxiv_data:
+    path: "arxiv_data_analysis_output/embeddings/arxiv_data_embeddings.pkl"
+    enabled: false
+    description: "ArxivData dataset - academic questions generated from arXiv papers"
+
+  arxiv_data_filtered:
+    path: "arxiv_data_filtered_analysis_output/embeddings/arxiv_data_filtered_embeddings.pkl"
+    enabled: false
+    description: "ArxivData_filtered dataset - academic questions from arXiv papers after step1 filtering"
+
+  arxiv_data_30bfiltered:
+    path: "arxiv_data_30bfiltered_analysis_output/embeddings/arxiv_data_30bfiltered_embeddings.pkl"
+    enabled: false
+    description: "ArxivData_30Bfiltered dataset - academic questions from arXiv papers filtered through 30B model for quality control"
+  
+  dpo_006_1:
+    path: "dpo_006_1_analysis_output/embeddings/dpo_006_1_embeddings.pkl"
+    enabled: true
+    description: "DPO 006 1 dataset"
+  
+  dpo_arxivdata_widerange:
+    path: "dpo_arxivdata_widerange_analysis_output/embeddings/dpo_arxivdata_widerange_embeddings.pkl"
+    enabled: true
+    description: "DPO ArxivData Widerange dataset"
+
+# Filtering options
+filters:
+  # Categories to include (uncomment and modify as needed)
+  # includes:
+  #   - "Math"
+  #   - "math"
+  
+  # Categories to exclude
+  excludes:
+    - "code_nisiwaki"
+  
+  # Filter out images
+  exclude_images: true
+
+# UMAP parameters
+umap:
+  n_neighbors: 15
+  min_dist: 0.1
+  random_state: 42
+
+# Clustering parameters
+clustering:
+  method: "kmeans"  # "kmeans" or "dbscan"
+  n_clusters: 8
+  # For DBSCAN:
+  # eps: 0.5
+  # min_samples: 5
+
+# Visualization settings
+visualization:
+  default_color_by: "category"
+  plot_width: 1500
+  plot_height: 1000
+  marker_size: 8
+  marker_opacity: 0.7 

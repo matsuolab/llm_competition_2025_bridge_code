@@ -1,0 +1,20 @@
+dataset: cais/hle
+
+provider: vllm # [vllm]
+
+base_url: http://localhost:8000/v1
+
+model: Qwen/Qwen3-235B-A22B
+max_completion_tokens: 35000
+reasoning: true
+
+num_workers: 25
+max_samples: 2500
+
+judge: o3-mini-2025-01-31
+
+#### **安全な計算**
+#総制限: 40,960 tokens
+#入力予想: 3,000 tokens (安全マージン)
+#出力可能: 40,960 - 3,000 = 37,960 tokens
+#推奨設定: 35,000 tokens (さらに安全マージン)

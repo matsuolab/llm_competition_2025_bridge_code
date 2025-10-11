@@ -1,0 +1,28 @@
+# --- Build Tools & Core Dependencies ---
+wheel
+cmake
+ninja
+pybind11
+
+# --- Data Handling ---
+zarr
+tensorstore
+
+# --- LLM/ML Core Packages ---
+numpy==1.26.4
+six
+regex
+#deepspeed
+wandb
+tensorboard
+sentencepiece
+nltk
+packaging
+transformers
+accelerate
+safetensors
+einops
+peft
+datasets
+trl
+hydra-core

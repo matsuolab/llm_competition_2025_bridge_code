@@ -1,0 +1,39 @@
+# Environment files
+config/.env
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Data and outputs
+*.csv
+*.jsonl
+*.faiss
+*.pkl
+data/
+output/
+outputs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

@@ -1,0 +1,174 @@
+=== Qwen3-235B-A22B vLLM Investigation Report ===
+Date: Fri Aug 15 10:54:15 AM JST 2025
+Model: Qwen/Qwen3-235B-A22B
+
+1. vLLM Process Information
+================================
+P05U019  3568214  0.0  0.0   7264  1920 pts/0    S+   10:20   0:00 /bin/bash ./vwf_start_vllm-Qweb3-235B-A22B.sh
+P05U019  3568215  0.5  0.0 6876660 724252 pts/0  Sl+  10:20   0:11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568216  0.0  0.0   5596  1920 pts/0    S+   10:20   0:00 tee vllm_start.log
+P05U019  3568273  0.5  0.0 8004284 807460 pts/0  Sl+  10:21   0:11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568279 99.5  0.1 462344740 1922296 pts/0 Rl+ 10:21  32:51 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568280 99.5  0.1 462600828 1927348 pts/0 Rl+ 10:21  32:50 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568281 99.3  0.1 462601064 1940788 pts/0 Rl+ 10:21  32:47 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568282 99.4  0.1 462371392 1908028 pts/0 Rl+ 10:21  32:49 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568283 99.6  0.1 632307044 2030356 pts/0 Rl+ 10:21  32:52 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568284 99.5  0.1 632896416 2037808 pts/0 Rl+ 10:21  32:50 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568285 99.5  0.1 632896412 2049948 pts/0 Rl+ 10:21  32:50 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568286 99.4  0.1 632437544 2030628 pts/0 Rl+ 10:21  32:49 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+
+2. GPU Status and Memory Usage
+===============================
+Fri Aug 15 10:54:24 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.133.20             Driver Version: 570.133.20     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA H100 80GB HBM3          Off |   00000000:18:00.0 Off |                    0 |
+| N/A   31C    P0            114W /  700W |   73103MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA H100 80GB HBM3          Off |   00000000:2A:00.0 Off |                    0 |
+| N/A   33C    P0            114W /  700W |   73151MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA H100 80GB HBM3          Off |   00000000:3A:00.0 Off |                    0 |
+| N/A   33C    P0            112W /  700W |   73151MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA H100 80GB HBM3          Off |   00000000:5D:00.0 Off |                    0 |
+| N/A   30C    P0            111W /  700W |   73193MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   4  NVIDIA H100 80GB HBM3          Off |   00000000:9A:00.0 Off |                    0 |
+| N/A   31C    P0            111W /  700W |   75965MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   5  NVIDIA H100 80GB HBM3          Off |   00000000:AB:00.0 Off |                    0 |
+| N/A   34C    P0            117W /  700W |   75967MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   6  NVIDIA H100 80GB HBM3          Off |   00000000:BA:00.0 Off |                    0 |
+| N/A   33C    P0            114W /  700W |   75967MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   7  NVIDIA H100 80GB HBM3          Off |   00000000:DB:00.0 Off |                    0 |
+| N/A   31C    P0            115W /  700W |   75957MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A         3568279      C   ...e_eval0_rickey/bin/python3.11      73096MiB |
+|    1   N/A  N/A         3568280      C   ...e_eval0_rickey/bin/python3.11      73144MiB |
+|    2   N/A  N/A         3568281      C   ...e_eval0_rickey/bin/python3.11      73144MiB |
+|    3   N/A  N/A         3568282      C   ...e_eval0_rickey/bin/python3.11      73186MiB |
+|    4   N/A  N/A         3568283      C   ...e_eval0_rickey/bin/python3.11      75958MiB |
+|    5   N/A  N/A         3568284      C   ...e_eval0_rickey/bin/python3.11      75960MiB |
+|    6   N/A  N/A         3568285      C   ...e_eval0_rickey/bin/python3.11      75960MiB |
+|    7   N/A  N/A         3568286      C   ...e_eval0_rickey/bin/python3.11      75950MiB |
++-----------------------------------------------------------------------------------------+
+
+3. Detailed GPU Information
+============================
+index, name, memory.total [MiB], memory.used [MiB], memory.free [MiB], utilization.gpu [%], utilization.memory [%], temperature.gpu, power.draw [W], power.limit [W]
+0, NVIDIA H100 80GB HBM3, 81559 MiB, 73103 MiB, 8241 MiB, 0 %, 0 %, 31, 114.36 W, 700.00 W
+1, NVIDIA H100 80GB HBM3, 81559 MiB, 73151 MiB, 8193 MiB, 0 %, 0 %, 33, 114.71 W, 700.00 W
+2, NVIDIA H100 80GB HBM3, 81559 MiB, 73151 MiB, 8193 MiB, 0 %, 0 %, 33, 112.84 W, 700.00 W
+3, NVIDIA H100 80GB HBM3, 81559 MiB, 73193 MiB, 8151 MiB, 0 %, 0 %, 30, 111.13 W, 700.00 W
+4, NVIDIA H100 80GB HBM3, 81559 MiB, 75965 MiB, 5379 MiB, 0 %, 0 %, 31, 111.75 W, 700.00 W
+5, NVIDIA H100 80GB HBM3, 81559 MiB, 75967 MiB, 5377 MiB, 0 %, 0 %, 34, 117.42 W, 700.00 W
+6, NVIDIA H100 80GB HBM3, 81559 MiB, 75967 MiB, 5377 MiB, 0 %, 0 %, 33, 114.90 W, 700.00 W
+7, NVIDIA H100 80GB HBM3, 81559 MiB, 75957 MiB, 5387 MiB, 0 %, 0 %, 31, 115.06 W, 700.00 W
+
+4. System Memory Usage
+=======================
+               total        used        free      shared  buff/cache   available
+Mem:           1.5Ti       207Gi       697Gi       6.8Gi       620Gi       1.3Ti
+Swap:          8.0Gi          0B       8.0Gi
+
+Memory usage by vLLM processes:
+3568214 0.0 7264 1920
+Total RSS: 16.5775 GB
+
+5. CPU Usage and Load
+======================
+CPU cores: 240
+Load average:  8.40, 8.30, 7.84
+
+Top CPU consuming processes:
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+P05U019  3568283 99.6  0.1 632307044 2030356 pts/0 Rl+ 10:21  33:12 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568279 99.5  0.1 462344740 1922296 pts/0 Rl+ 10:21  33:11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568280 99.5  0.1 462600828 1927348 pts/0 Rl+ 10:21  33:10 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568284 99.5  0.1 632896416 2037808 pts/0 Rl+ 10:21  33:10 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568285 99.5  0.1 632896412 2049948 pts/0 Rl+ 10:21  33:10 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568286 99.5  0.1 632437544 2030628 pts/0 Rl+ 10:21  33:10 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568282 99.4  0.1 462371392 1908028 pts/0 Rl+ 10:21  33:09 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+P05U019  3568281 99.3  0.1 462601064 1940788 pts/0 Rl+ 10:21  33:07 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/python3.11 /home/Competition2025/P05/P05U019/envs/compe_eval0_rickey/bin/vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+root       23425 13.4  0.0 1319572 32388 ?       Ssl  May02 20379:59 /usr/local/bin/process-exporter -config.path=/etc/process-exporter/all.yaml -web.listen-address=:9256
+
+6. Network and Service Status
+==============================
+Listening ports:
+LISTEN 0      2048         0.0.0.0:8000       0.0.0.0:*    users:(("vllm",pid=3568286,fd=45),("vllm",pid=3568285,fd=45),("vllm",pid=3568284,fd=45),("vllm",pid=3568283,fd=45),("vllm",pid=3568282,fd=45),("vllm",pid=3568281,fd=45),("vllm",pid=3568280,fd=45),("vllm",pid=3568279,fd=45),("vllm",pid=3568273,fd=45),("vllm",pid=3568215,fd=45))
+
+vLLM service test:
+
+7. vLLM Configuration Analysis
+===============================
+Command line parameters:
+/bin/bash ./vwf_start_vllm-Qweb3-235B-A22B.sh 
+
+Actual vLLM serve parameters:
+vllm serve Qwen/Qwen3-235B-A22B --host 0.0.0.0 --port 8000 --tensor-parallel-size 4 --pipeline-parallel-size 2 --distributed-executor-backend mp --enable-expert-parallel --gpu-memory-utilization 0.90 --max-model-len 40960 --max-parallel-loading-workers 1 --trust-remote-code
+
+8. GPU Memory Analysis and Capacity Planning
+=============================================
+GPU Memory Summary:
+Total GPU Memory: 637.2 GB
+Used GPU Memory: 582.5 GB (91.4%)
+Free GPU Memory: 53.0 GB (8.3%)
+
+9. Storage and Model Cache Analysis
+====================================
+Disk usage:
+/dev/sda4                                                                                  363G   51G  313G  14% /
+192.168.11.201@o2ib:192.168.11.202@o2ib:192.168.12.201@o2ib:192.168.12.202@o2ib:/oskhome1  1.9P  1.5P  391T  80% /home
+
+Hugging Face cache size:
+9.9G	/home/Competition2025/P05/P05U019/.cache/huggingface/
+
+10. Capacity Analysis for Larger Models
+=========================================
+Current Model: Qwen/Qwen3-235B-A22B
+Estimated model size: ~235B parameters
+
+Resource Utilization Analysis:
+- GPU Memory Used: 582.5 GB / 637.2 GB (91.4%)
+- GPU Memory Free: 53.0 GB (8.3%)
+- System RAM Used: 207 GB / 1.5 TB (13.8%)
+- CPU Load: 8.4 (240 cores available)
+
+Configuration:
+- Tensor Parallel: 4
+- Pipeline Parallel: 2
+- Total GPUs used: 8 x H100 80GB
+- GPU Memory Utilization: 90%
+- Max Model Length: 40960 tokens
+
+=== INVESTIGATION COMPLETE ===
+Generated files:
+total 29
+drwxr-xr-x 2 P05U019 P05U019  4096 Aug 15 10:55 .
+drwxr-xr-x 3 P05U019 P05U019  4096 Aug 15 10:54 ..
+-rw-r--r-- 1 P05U019 P05U019  4347 Aug 15 10:55 analysis_report.md
+-rw-r--r-- 1 P05U019 P05U019 17738 Aug 15 10:55 investigation_log.txt
+
+Report saved to: /home/Competition2025/P05/P05U019/team_suzuki/infra/Hosting/qwen3_235b_investigation

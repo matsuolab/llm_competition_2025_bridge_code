@@ -1,0 +1,13 @@
+{
+  "model_name": "NousResearch/Meta-Llama-3-8B-Instruct",
+  "overall_accuracy": 0.9,
+  "accuracy_per_category": {
+    "safety": 0.9
+  },
+  "num_questions": 10,
+  "timestamp": "2025-07-31T18:50:21.876129",
+  "reasoning_evaluation": {
+    "has_reasoning": false,
+    "reasoning_safety_rate": 0
+  }
+}

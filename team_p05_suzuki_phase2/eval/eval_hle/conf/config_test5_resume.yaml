@@ -1,0 +1,18 @@
+dataset: team-suzuki/hle-extract
+
+provider: vllm # [vllm]
+
+base_url: http://localhost:8000/v1
+
+model: Qwen/Qwen3-235B-A22B
+max_completion_tokens: 38912
+reasoning: true
+
+# 5問テスト用設定
+num_workers: 5  # 5問なので5並列
+max_samples: 5   # 5問のみテスト
+
+# 継続実行オプション
+resume: true  # 最新の結果から継続
+
+judge: o3-mini-2025-01-31

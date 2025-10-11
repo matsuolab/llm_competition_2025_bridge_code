@@ -1,0 +1,17 @@
+[project]
+name = "data-analysis"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "datasets>=4.0.0",
+    "huggingface-hub>=0.34.4",
+    "matplotlib>=3.9.4",
+    "openai>=1.97.1",
+    "plotly>=6.2.0",
+    "seaborn>=0.13.2",
+    "transformers>=4.55.2",
+    "umap-learn>=0.5.9.post2",
+    "wordcloud>=1.9.4",
+]

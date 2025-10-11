@@ -1,0 +1,15 @@
+dataset: team-suzuki/hle-extract
+
+provider: vllm
+
+base_url: http://localhost:8000/v1
+
+model: Qwen/Qwen3-235B-A22B
+max_completion_tokens: 3000  # 保守的設定で安全マージン確保
+reasoning: false
+
+# 120問の抽出データセット用設定
+num_workers: 20  # 並列度も少し下げて安定性向上
+max_samples: 120
+
+judge: o3-mini-2025-01-31

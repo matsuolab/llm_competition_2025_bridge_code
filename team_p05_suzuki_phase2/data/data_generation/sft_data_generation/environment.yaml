@@ -1,0 +1,133 @@
+name: datagen
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Python本体
+  - python=3.11
+  
+  # CUDAツールキット
+  - cuda-toolkit=12.4
+  
+  # 基本的な数値計算ライブラリ
+  - numpy=1.26.4
+  
+  # RAG関連（conda経由でインストール）
+  - faiss-gpu=1.8.0
+  
+  # システムツール
+  - git
+  - pip
+  
+  # pipでインストールするパッケージ
+  - pip:
+      # PyTorch関連（CUDA 12.8対応）
+      - torch==2.7.1
+      - torchvision==0.22.1
+      - torchaudio==2.7.1
+
+      # CUDA関連ライブラリ（明示的に追加）
+      - nvidia-cusparselt-cu12==0.6.3
+      - nvidia-nccl-cu12==2.26.2
+      - nvidia-ml-py==12.575.51
+
+      # vLLM本体
+      - vllm==0.10.0
+
+      # vLLM関連依存
+      - fastapi==0.116.1
+      - pydantic==2.11.7
+      - pydantic-settings==2.10.1
+      - uvicorn==0.35.0
+
+      # トランスフォーマー関連
+      - transformers==4.54.0
+      - accelerate==1.9.0
+      - safetensors==0.5.3
+      - tokenizers==0.21.2
+
+      # Hugging Face Hub
+      - huggingface-hub==0.34.1
+      - datasets==3.0.0
+
+      # データ処理
+      - pandas==2.3.1
+      - beautifulsoup4==4.13.4
+      - PyPDF2==3.0.1
+      - requests==2.32.3
+
+      # 非同期処理
+      - asyncio-throttle==1.0.2
+      - nest-asyncio==1.6.0
+      - aiofiles==24.1.0
+
+      # 環境管理
+      - python-dotenv==1.1.1
+
+      # vLLM追加依存
+      - xformers==0.0.31
+      - triton==3.3.1
+      - prometheus-client==0.21.0
+      - msgpack==1.1.0
+      - cloudpickle==3.1.1
+      - diskcache==5.6.3
+      - blake3==1.0.5
+      - compressed-tensors==0.10.2
+      - depyf==0.19.0
+
+      # モデル依存
+      - sentencepiece==0.2.0
+      - protobuf==5.28.3
+      - einops==0.8.0
+
+      # RAG関連 (v3_seed_with_rag用)
+      - sentence-transformers==3.0.1
+      - faiss-cpu==1.12.0
+      
+      # オプション: Webスクレイピング
+      - playwright==1.48.0
+      
+      # v4_knowledge_based_rag用追加パッケージ
+      - gspread==6.1.4
+      - google-auth==2.36.0
+      - google-auth-oauthlib==1.2.1
+      - google-auth-httplib2==0.2.0
+      - google-api-python-client==2.149.0
+      
+      # その他ユーティリティ
+      - pyyaml==6.0.2
+      - tqdm==4.67.0
+      - psutil==6.1.0
+      - ninja==1.11.1.1
+      - packaging==24.2
+      - filelock==3.16.1
+      - jinja2==3.1.4
+      - regex==2024.11.6
+      - scipy==1.16.0
+      - typing-extensions==4.12.2
+      - cupy-cuda12x==13.6.0
+      - numba
+      - ray
+      - openai
+      - mistral_common
+      - outlines_core
+      - lm-format-enforcer
+      - llguidance
+      - xgrammar
+      - gguf
+      - watchfiles
+      - pyzmq
+      - cbor2==5.7.0
+      - msgspec
+      - lark
+      - partial-json-parser
+      - prometheus-fastapi-instrumentator==7.1.0
+      - python-json-logger==3.3.0
+      - opencv-python-headless
+      - pillow
+      - py-cpuinfo
+      - pybase64
+      - tiktoken

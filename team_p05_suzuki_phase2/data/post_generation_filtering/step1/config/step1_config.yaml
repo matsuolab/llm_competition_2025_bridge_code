@@ -1,0 +1,138 @@
+# Step1: 基本フィルタリング設定
+
+# 埋め込みモデル設定（重複検出用）
+embedding:
+  model: "BAAI/bge-large-en-v1.5"  # 多言語対応埋め込みモデル
+  dim: 1024
+  ann_index: "faiss_ivf_pq"  # 近似最近傍検索（小規模データ時は自動でfaiss_flatに切り替わる）
+  batch_size: 256
+
+# 重複検出設定
+dedup:
+  hard_threshold: 0.94   # duplicate → fail（評価結果に基づき0.92→0.94へ厳格化）
+  soft_threshold: 0.88   # near_duplicate → review（評価結果に基づき0.85→0.88へ厳格化）
+  use_minhash: true      # 高速な字面類似度チェック
+  use_hash_filter: true  # ハッシュベース事前フィルタリング
+  hash_prefix_length: 100  # ハッシュ計算に使用する文字数
+
+# パイプライン設定
+pipeline:
+  batch_size: 1000          # バッチサイズ
+  save_interval: 5000       # 中間保存間隔
+  parallel_workers: 8       # 並列処理数
+
+# HuggingFaceアップロード設定
+huggingface:
+  private: true            # プライベートリポジトリとしてアップロード
+
+# サンプリング設定
+sampling:
+  sample_size: null         # サンプリングサイズ（nullの場合は全データ）
+  random_seed: 42           # ランダムシード（再現性のため）
+
+# テンプレート検出設定
+template_detection:
+  max_template_count: 3   # 3回以上でreview
+  max_template_ratio: 0.15  # 15%以上でreview
+  template_phrases:  # 検出するテンプレートフレーズ（正規表現）
+    - 'Now,?\s+(?:let''?s\s+)?evaluat(?:e|ing)\s+(?:the\s+|each\s+)?options?'
+    - 'Let''?s\s+(?:evaluate|analyze|examine|review)\s+(?:each\s+|the\s+)?options?'
+    - 'Based\s+on\s+(?:this|the\s+above)'
+    - 'Therefore,?\s+(?:the\s+)?option'
+    - 'The\s+correct\s+answer\s+is'
+
+# ログ設定
+logging:
+  level: "INFO"
+
+# thinking部分のチェック設定
+think_checks:
+  check_enabled: true
+
+# 長さチェック設定
+length:
+  t_min: 30       # 最小トークン数（fail判定、評価結果から25-32トークンが適切）
+  t_min_review: 50  # レビュー判定の最小トークン数
+  t_min_strict: 25  # 絶対的な最小値（これ未満は即fail）
+  t_borderline_lower: 30  # ボーダーライン下限（30-35トークンはreviewへ）
+  t_borderline_upper: 35  # ボーダーライン上限
+
+# n-gram重複とエントロピー設定
+ngram:
+  n: 5                        # n-gramのサイズ
+  topk: 20                    # 上位k個のn-gramをチェック
+  
+  # 改善されたFail判定用閾値（誤検知を削減）
+  fail_repeated_5gram_strong: 5      # 5以上の5-gram反復で強いfail
+  fail_repeated_5gram_medium: 3      # 3以上の5-gram反復で中程度fail（条件付き）
+  fail_distinct_2_threshold: 0.63    # distinct-2がこれ未満かつ5-gram反復≥3でfail
+  
+  # Review判定用の閾値（軽度の冗長性）
+  coverage_review: 0.35       # カバレッジがこれを超えるとreview
+  entropy_review: 2.5         # エントロピーがこれ未満でreview
+  distinct_2_review: 0.70     # distinct-2がこれ以上で、反復が少ない場合はfailを回避
+  distinct_3_min: 0.7         # distinct-3の最小値（review用）
+  self_bleu_max: 0.4          # self-BLEUの最大値（review用）
+
+# 途中切れチェック設定
+truncation:
+  check_brackets: true    # 括弧の対応をチェック
+  check_quotes: true      # 引用符の対応をチェック
+  check_endings: true     # 文末の不完全性をチェック
+  check_sentence_completion: true  # 文の完全性チェック
+  check_math_expressions: true     # 数式の完全性チェック
+  incomplete_patterns:    # 不完全パターンのリスト
+    - '\.\.\.$'          # ...で終わる
+    - ',$'               # カンマで終わる
+    - '\s+and$'         # andで終わる
+    - '\s+or$'          # orで終わる
+    - '\s+but$'         # butで終わる
+    - '\s+so$'          # soで終わる
+    - ':\s*$'           # コロンで終わる（内容なし）
+
+# 矛盾検出設定（ルールベース）
+contradiction_detection:
+  enabled: true
+  score_fail_threshold: 0.8     # これ以上のスコアでfail
+  score_review_threshold: 0.5   # これ以上のスコアでreview
+
+# 数学的検証設定（Python計算エンジン）
+math_validation:
+  enabled: true
+  max_equations_check: 10       # チェックする数式の最大数（高速化のため）
+  tolerance: 1e-6                # 計算誤差の許容範囲
+
+# 分野別パラメータチューニング
+field_specific_tuning:
+  enabled: true
+  fields:
+    mathematics:
+      ngram_coverage_review: 0.3       # 数学は冗長対策を最優先（より厳格）
+      distinct_3_min: 0.75
+      # 改善された数学向け調整
+      fail_repeated_5gram_strong: 4      # 数学は少し厳しめ
+      fail_repeated_5gram_medium: 2      # 数学は繰り返しに厳しく
+      fail_distinct_2_threshold: 0.65    # 数学は多様性をより重視
+      distinct_2_review: 0.75             # 数学はreview基準も厳しめ
+      # 長さ調整（数学は短い解答も許容）
+      t_min_strict: 20                   # 数学は最小長を緩和
+      t_min: 25
+      t_borderline_lower: 25
+      t_borderline_upper: 30
+    physics:
+      # 長さ設定（新形式に統一）
+      t_min: 35                         # 物理は最小長を強化
+      t_min_review: 60
+      t_min_strict: 30
+      t_borderline_lower: 35
+      t_borderline_upper: 40
+      require_reasoning_paragraphs: true
+    biology_medicine:
+      truncation_strict: true          # Bio/Medは途中切れ監視を厳格化
+      check_technical_terms: true
+      bracket_check_strict: true
+    computer_science:
+      code_syntax_check: true
+      check_indentation: true
+    default:                            # その他の分野用デフォルト
+      use_base_config: true

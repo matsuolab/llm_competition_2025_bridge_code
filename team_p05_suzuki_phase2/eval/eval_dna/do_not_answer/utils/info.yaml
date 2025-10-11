@@ -1,0 +1,4 @@
+OpenAI: ${OPENAI_API_KEY}
+Gemini: ${GEMINI_API_KEY}
+HuggingFace: ${HF_TOKEN}
+Anthropic: ${ANTHROPIC_API_KEY}

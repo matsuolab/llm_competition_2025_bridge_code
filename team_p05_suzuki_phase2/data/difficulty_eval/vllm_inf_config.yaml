@@ -1,0 +1,27 @@
+
+# YAML config for vllm_inference.py and model_download.py
+
+model: # Model config
+  model_name: Qwen/Qwen3-235B-A22B-Thinking-2507 #Huggingface's repo name
+  model_stored_path: /home/USER/PATH # model location at local storage
+  tensor_parallel_size: 8
+  gpu_memory_utilization: 0.92
+  max_model_len: 131072 #Input (incl. chate template) + output token 128k
+  enable_thinking: true
+  quantization: fp8 # specify fp8 if quantizing 32B model for a single H100 GPU
+  kv_cache_quant: fp8 # specify kv cache quantization fp8, fp8_e5m2
+
+data: # dataset config
+  dataset_name: HF_DATASET # Huggingface data repository
+  hf_token: hf_TOKEN # Huggingface token
+  split: train
+  question_field: question # change if questions are stored in another tag
+  sub_sample_inf: # if empty entire sample, if integer 0:N samples
+
+inference: # inference config
+  batch_size: 96 # adjust according to model size and max_model_len
+  max_tokens: 30000 # Output token length
+  temparature: 1 # temparature for inference
+
+output: # output directory
+  dir: vllm_output

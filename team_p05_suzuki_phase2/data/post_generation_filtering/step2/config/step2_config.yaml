@@ -1,0 +1,30 @@
+# 検証機能の有効/無効設定
+validation:
+  # 論理的整合性チェック（常に有効）
+  logical_consistency: true
+  
+  # 意味的矛盾検出（有効/無効を切り替え可能）
+  contradiction_detection: false
+  
+  # 回答品質チェック（有効/無効を切り替え可能）
+  answer_quality: false
+
+# LLM設定（DeepSeek-R1専用）
+llm_config:
+  tensor_parallel_size: 8     # GPU並列数
+  max_model_len: 16384        # 動作確認済みの最大長
+  gpu_memory_utilization: 0.90  # メモリ使用率
+  temperature: 0.1            # 判定用の低温度
+  max_tokens: 512            # 判定応答の最大トークン数
+
+# データセット設定
+dataset:
+  batch_size: 100  # LLM処理のため小さめ
+
+# パイプライン設定
+pipeline:
+  save_interval: 1000       # 中間保存間隔
+
+# ログ設定
+logging:
+  level: "INFO"
