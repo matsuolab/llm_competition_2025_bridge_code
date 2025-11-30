@@ -1,0 +1,9 @@
+vllm
+hydra-core
+openai
+datasets
+hf-transfer
+pandas
+openpyxl
+prettytable
+timeout-decorator
